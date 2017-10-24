@@ -23,7 +23,6 @@
 ## Built With
 * [Angular4](https://angular.io/)
 * [NodeJS](https://nodejs.org/en/)
-* ~~[MySQL](https://www.mysql.com/)~~
 * [MongoDB](https://www.mongodb.com/)
 
 ## Contributing
