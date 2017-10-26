@@ -44,5 +44,8 @@ Note: Be sure to merge the latest from "upstream" before making a pull request!:
 * **Diego Valdes**
 
 ## License
+MIT
 
 ## Acknowledgments
+
+
