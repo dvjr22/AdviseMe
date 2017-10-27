@@ -26,13 +26,22 @@
 * [MongoDB](https://www.mongodb.com/)
 
 ## Contributing
-1. **Fork** the repo 
+1. **Fork** the repo
 2. **Clone** the project to your own machine
 3. **Commit** changes to your own branch
 4. **Push** your work back up to your fork
 5. Subit a **Pull request** so that we can review your changes
 
 Note: Be sure to merge the latest from "upstream" before making a pull request!:
+
+### Extended Contributing
+* **Component**  ``` ng g component my-new-component ```
+* **Service**  ``` ng g service my-new-service ```
+* **Module**  ``` ng g module my-new-module ```
+* **IF YOU DON'T KNOW WHERE SOMETHING GOES... ASK**
+
+* npm install [packages] --save or --save-dev for development only
+
 ## Versioning
 
 ## Authors
@@ -47,5 +56,3 @@ Note: Be sure to merge the latest from "upstream" before making a pull request!:
 MIT
 
 ## Acknowledgments
-
-
