@@ -12,12 +12,18 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/node-auth')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
+var bluebird = require('bluebird');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
+var mongoose = require('mongoose')
+mongoose.Promise = bluebird
+mongoose.connect('mongodb://127.0.0.1:27017/AdviseMe', { useMongoClient: true})
+.then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/AdviseMe`)})
+.catch(()=> { console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/AdviseMe`)})
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
