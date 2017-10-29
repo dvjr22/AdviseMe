@@ -8,7 +8,17 @@ describe('adviseme-webapp App', () => {
   });
 
   it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    page.navigateTo('/');
+    expect(page.getParagraphText()).toEqual('Please sign in');
+  });
+
+  it('should register a new user', () => {
+    page.navigateTo('/registration');
+    page.register('Test User', 'testuser', 'testuser');
+  });
+
+  it('should login', () => {
+    page.navigateTo('/');
+    page.login('testuser', 'testuser');
   });
 });
