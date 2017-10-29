@@ -1,3 +1,2 @@
-adviseme-api/node_modules/
-adviseme-webapp/node_modules/
+node_modules/
 *.DS*
