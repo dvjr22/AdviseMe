@@ -37,8 +37,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', index);
 app.use('/users', users);
+
+app.use('/api', index);
 
 // Angular DIST output folder
 app.use(express.static('../adviseme-webapp/dist'));
