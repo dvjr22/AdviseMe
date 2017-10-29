@@ -37,8 +37,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+//app.use('/', index);
 app.use('/users', users);
+
+// Angular DIST output folder
+app.use(express.static('../adviseme-webapp/dist'));
+
+// Set all other requests to the Angular app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../adviseme-webapp/dist/index.html'));
+});
 
 // passport configuration
 var User = require('./models/User');
