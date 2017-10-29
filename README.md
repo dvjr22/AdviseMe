@@ -13,10 +13,11 @@
 * Run ```npm install``` to install requirements
 
 ## Deployment
-* To run locally run ```ng serve```
-* To run on the server run:
-  - ```ng build```
-  - ```node server``` or ```node run```
+* Build Angular app from adviseme-webapp
+  - ```ng build --watch```
+* Express Node.js server from adviseme-api
+  - ```nodemon server```
+
 ## Unit Tests
 * Run ```ng test``` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
