@@ -11,4 +11,9 @@ router.post('/login', auth.doLogin);
 // route for logout action
 router.get('/logout', auth.logout);
 
+// Route for Google oauth login
+router.get('/google', auth.google);
+
+router.get('/google/callback', auth.googleCallback);
+
 module.exports = router;

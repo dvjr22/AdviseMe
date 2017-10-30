@@ -38,4 +38,16 @@ userController.logout = function(req, res){
   res.redirect('/');
 };
 
+// Google OAuth
+userController.google = function(req, res){
+  passport.authenticate('google', {scope: ['profile']});
+}
+
+userController.googleCallback = function(req, res){
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  };
+};
+
 module.exports = userController;

@@ -5,8 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+// Passport authentication stuff
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/node-auth')
@@ -61,6 +63,18 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+passport.use(new GoogleStrategy({
+  clientID: "677211642800-8asb5kpkbl467acro54ja8ekh3q59lam.apps.googleusercontent.com",
+  clientSecret: "KocJHyD-4SrZPjxQyjsmeYk_",
+  callbackURL: "127.0.0.1:3000/api/google/callback"
+},
+function(accessToken, refreshToken, profile, cb){
+  User.findOrCreate({ googleId: profile.id }, function(err, user){
+    return cb(err, user);
+  });
+}));
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -78,5 +92,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
