@@ -26,6 +26,7 @@ mongoose.Promise = bluebird
 mongoose.connect('mongodb://127.0.0.1:27017/AdviseMe', { useMongoClient: true})
 .then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/AdviseMe`)})
 .catch(()=> { console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/AdviseMe`)})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -43,7 +44,9 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
+
+
+//app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', users);
 

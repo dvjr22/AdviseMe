@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
 
+// Components
 import { AppComponent } from './app.component';
 import { AdvisementSignupComponent } from './pages/advisement-signup/advisement-signup.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
@@ -13,6 +14,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 
+// Services
+import { UserService } from './services/user.service';
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -75,7 +78,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     HttpModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
