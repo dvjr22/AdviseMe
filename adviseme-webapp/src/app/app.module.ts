@@ -16,6 +16,7 @@ import { RegisterComponent } from './pages/register/register.component';
 
 // Services
 import { UserService } from './services/user.service';
+import { AuthenticationService } from './services/authentication.service';
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -78,7 +79,10 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     HttpModule,
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    AuthenticationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
