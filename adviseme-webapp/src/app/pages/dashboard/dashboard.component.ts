@@ -11,13 +11,20 @@ import { UserService } from '../../services/user.service';
 export class DashboardComponent implements OnInit {
   currentUser: User;
   users: User[] = [];
+  signedIn: boolean;
 
   constructor(private userService: UserService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
+    this.signedIn = false;
     this.loadAllUsers();
+
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (this.currentUser) {
+      this.signedIn = true;
+    }
   }
 
   private loadAllUsers() {

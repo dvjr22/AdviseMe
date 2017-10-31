@@ -1,12 +1,17 @@
-<p>
   dashboard works!
-  <h1>Hi {{currentUser.firstName}}!</h1>
-    <p>You're logged in with the MEAN Stack Angular 2!!</p>
-    <h3>All registered users:</h3>
-    <ul>
-        <li *ngFor="let user of users">
-            {{user}}
-            - <a (click)="deleteUser(user._id)">Delete</a>
-        </li>
-    </ul>
-    <p><a [routerLink]="['/login']">Logout</a></p>
+  <div *ngIf="signedIn">
+    <h1>Hi {{currentUser.username}}!</h1>
+      <p>You're logged in with the MEAN Stack Angular 2!!</p>
+      <h3>All registered users:</h3>
+      <ul>
+          <li *ngFor="let user of users">
+              {{user.firstname}} {{user.lastname}}
+          </li>
+      </ul>
+      <p><a [routerLink]="['/login']">Logout</a></p>
+  </div>
+  <div *ngIf="!signedIn">
+    <h3>If you wish to view your dashboard please
+      <p><a [routerLink]="['/login']">login</a></p>
+    </h3>
+  </div>
