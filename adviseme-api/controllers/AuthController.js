@@ -1,5 +1,16 @@
-var config = require('config.json');
-var userService = require('services/user.service');
+var config = require('../config.json');
+var userService = require('../services/user.service');
+
+var authController = {};
+
+authController.authenticate = authenticate;
+authController.register = register;
+authController.getAll = getAll;
+authController.getCurrent = getCurrent;
+authController.update = update;
+authController._delete = _delete;
+
+module.exports = authController;
 
 function authenticate(req, res) {
   userService.authenticate(req.body.username, req.body.password)
