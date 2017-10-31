@@ -1,7 +1,35 @@
-<form role="form" action="/register" method="post" style="max-width: 300px;" class="form-signin">
+<form role="form" (ngSubmit)="register()" style="max-width: 300px;" class="form-signin">
   <h2 class="form-signin-heading">Sign Up here</h2>
-  <input type="text" name="name" placeholder="Your Name" class="form-control"/>
-  <input type="text" name="username" placeholder="Your Username" class="form-control"/>
-  <input type="password" name="password" placeholder="Your Password" class="form-control"/>
+<!-- First Name -->
+  <input type="text"
+    name="firstName"
+    [(ngModel)]="model.firstname"
+    placeholder="First Name"
+    class="form-control"
+  />
+<!-- Last Name -->
+  <input type="text"
+    name="lastName"
+    [(ngModel)]="model.lastname"
+    placeholder="Last Name"
+    class="form-control"
+  />
+<!-- Username -->
+  <input type="text"
+    name="username"
+    [(ngModel)]="model.username"
+    placeholder="Your Username"
+    class="form-control"
+  />
+<!-- Password -->
+  <input type="password"
+    name="password"
+    [(ngModel)]="model.password"
+    placeholder="Your Password"
+    class="form-control"
+  />
+
   <button type="submit" class="btn btn-lg btn-primary btn-block">Sign Up</button>
+
+  <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
 </form>
