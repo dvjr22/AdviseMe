@@ -9,16 +9,17 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { CanActivateUser } from './services/authentication.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'advisement-signup', component: AdvisementSignupComponent},
-  { path: 'appointment', component: AppointmentComponent},
-  { path: 'class-info/:id:', component: ClassInfoComponent},
-  { path: 'class-list', component: ClassListComponent},
-  { path: 'dashboard',  component: DashboardComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full', canActivate: [CanActivateUser]},
+  { path: 'advisement-signup', component: AdvisementSignupComponent, canActivate: [CanActivateUser]},
+  { path: 'appointment', component: AppointmentComponent, canActivate: [CanActivateUser]},
+  { path: 'class-info/:id:', component: ClassInfoComponent, canActivate: [CanActivateUser]},
+  { path: 'class-list', component: ClassListComponent, canActivate: [CanActivateUser]},
+  { path: 'dashboard',  component: DashboardComponent, canActivate: [CanActivateUser]},
   { path: 'login', component: LoginComponent},
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile', component: ProfileComponent, canActivate: [CanActivateUser]},
   { path: 'register', component: RegisterComponent }
 ];
 

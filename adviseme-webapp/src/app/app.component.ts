@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { User } from './models/user';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,32 @@ export class AppComponent implements OnInit {
   currentUser = User;
   signedIn = false;
 
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) { }
+  // Check login permission when the component is initiated and whenever
+  // the router is activated (the changeOfRoutes method is called)
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.checkPermission();
+  }
+  changeOfRoutes() {
+    this.checkPermission();
+  }
 
-    if (this.currentUser) {
+  // Call the authenticationService to see if a user is currently logged in
+  checkPermission() {
+    // Call the authenticationService to see if a user is currently logged in
+    if (this.authenticationService.checkForLocalUser()) {
+      // A user is logged in so change the signedIn flag which set the
+      // ng-template to fullSite and renders the entire navigation.
+      // Also the CanActivateUser will notice this and unlock the routes
       this.signedIn = true;
+    } else {
+      // A user is not logged in so only show the login and registration
+      // nav bar. The router should re-route to the login page
+      this.signedIn = false;
     }
   }
+
 }

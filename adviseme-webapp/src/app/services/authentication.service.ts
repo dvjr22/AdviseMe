@@ -31,23 +31,24 @@ export class AuthenticationService {
     // Remove user from local storage to log user out
     localStorage.removeItem('currentUser');
   }
+
+  checkForLocalUser(): boolean {
+    if (localStorage.getItem('currentUser') !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 @Injectable()
-class CanActivateUser implements CanActivate {
-  constructor(private permissions: Permissions, private currentUser: User) {
-  }
+export class CanActivateUser implements CanActivate {
+  constructor(private authenticationService: AuthenticationService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean>|Promise<boolean>|boolean {
-    return this.permissions.canActivate(this.currentUser);
-  }
-}
-
-class Permissions {
-  canActivate(user: User): boolean {
-    return true;
+    return this.authenticationService.checkForLocalUser();
   }
 }

@@ -16,7 +16,11 @@ import { RegisterComponent } from './pages/register/register.component';
 
 // Services
 import { UserService } from './services/user.service';
-import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationService, CanActivateUser } from './services/authentication.service';
+
+// Models
+import { User } from './models/user';
+
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -81,7 +85,9 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   providers: [
     UserService,
-    AuthenticationService
+    AuthenticationService,
+    CanActivateUser,
+    User
   ],
   bootstrap: [AppComponent]
 })
