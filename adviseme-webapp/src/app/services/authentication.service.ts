@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { User } from '../models/user';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
@@ -28,5 +30,24 @@ export class AuthenticationService {
   logout() {
     // Remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+  }
+}
+
+@Injectable()
+class CanActivateUser implements CanActivate {
+  constructor(private permissions: Permissions, private currentUser: User) {
+  }
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean>|Promise<boolean>|boolean {
+    return this.permissions.canActivate(this.currentUser);
+  }
+}
+
+class Permissions {
+  canActivate(user: User): boolean {
+    return true;
   }
 }
