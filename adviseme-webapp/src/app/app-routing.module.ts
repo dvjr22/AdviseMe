@@ -12,7 +12,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { CanActivateUser } from './services/authentication.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full', canActivate: [CanActivateUser]},
+  { path: '', redirectTo: '/login', pathMatch: 'full', canActivate: [CanActivateUser]},
   { path: 'advisement-signup', component: AdvisementSignupComponent, canActivate: [CanActivateUser]},
   { path: 'appointment', component: AppointmentComponent, canActivate: [CanActivateUser]},
   { path: 'class-info/:id:', component: ClassInfoComponent, canActivate: [CanActivateUser]},

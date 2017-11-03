@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { User } from './models/user';
 import { AuthenticationService } from './services/authentication.service';
 
 @Component({
@@ -9,19 +7,13 @@ import { AuthenticationService } from './services/authentication.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  currentUser = User;
   signedIn = false;
 
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService
-  ) { }
+  constructor(private authenticationService: AuthenticationService) { }
+
   // Check login permission when the component is initiated and whenever
-  // the router is activated (the changeOfRoutes method is called)
+  // the router is activated
   ngOnInit() {
-    this.checkPermission();
-  }
-  changeOfRoutes() {
     this.checkPermission();
   }
 
