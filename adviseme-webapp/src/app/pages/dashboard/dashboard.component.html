@@ -8,10 +8,10 @@
               {{user.firstname}} {{user.lastname}}
           </li>
       </ul>
-      <p><a [routerLink]="['/login']">Logout</a></p>
+      <p><a [routerLink]="['/logout']">Logout</a></p>
   </div>
   <div *ngIf="!signedIn">
     <h3>If you wish to view your dashboard please
-      <p><a [routerLink]="['/login']">login</a></p>
+      <p><a [routerLink]="['/logout']">login</a></p>
     </h3>
   </div>
