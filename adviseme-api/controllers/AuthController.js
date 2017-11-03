@@ -1,41 +1,83 @@
-var mongoose = require('mongoose');
-var passport = require('passport');
-var User = require('../models/User');
+var config = require('../config.json');
+var userService = require('../services/user.service');
 
-var userController = {};
+var authController = {};
 
-// Post registration
-userController.doRegister = function(req, res) {
-  User.register(
-    new User(
-      {
-        username: req.body.username,
-        name: req.body.name
-      }),
-      req.body.password,
-      function(err, user) {
-        if (err) {
-          return res.render('register', { user: user });
-        }
+authController.authenticate = authenticate;
+authController.register = register;
+authController.getAll = getAll;
+authController.getCurrent = getCurrent;
+authController.update = update;
+authController._delete = _delete;
 
-        passport.authenticate('local')(req,res,function(){
-          res.redirect('/');
-        });
+module.exports = authController;
+
+function authenticate(req, res) {
+  userService.authenticate(req.body.username, req.body.password)
+    .then(function (user) {
+      if (user) {
+        // Authentication successful!
+        res.send(user);
+      } else {
+        // Authentication failed :(
+        res.status(400).send('Username or password is incorrect');
+      }
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
     });
-};
+}
 
-// Post login
-userController.doLogin = function(req, res){
-  passport.authenticate('local')(req, res, function() {
-    console.log("Successfully logged in")
-    res.redirect('/');
-  });
-};
+function register(req, res) {
+  userService.create(req.body)
+    .then(function () {
+      res.sendStatus(200);
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    });
+}
 
-// logout
-userController.logout = function(req, res){
-  req.logout();
-  res.redirect('/');
-};
+function getAll(req, res) {
+  userService.getAll()
+    .then(function (users) {
+      res.send(users);
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    });
+}
 
-module.exports = userController;
+function getCurrent(req, res) {
+  userService.getById(req.user.sub)
+    .then(function (user) {
+      if(user) {
+        res.send(user);
+      } else {
+        res.sendStatus(404);
+      }
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    });
+}
+
+function update(req, res) {
+  userService.update(req.params._id, req.body)
+    .then(function () {
+      res.sendStatus(200);
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    });
+}
+
+function _delete(req, res) {
+  userService.delete(req.params._id)
+    .then(function () {
+      res.sendStatus(200);
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    });
+}
