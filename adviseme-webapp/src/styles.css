@@ -1,5 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+@import '~https://fonts.googleapis.com/css?family=Convergence';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
+
+body {
+    background-image: url("assets/hexabump_@2X.png");
+}
+
+h1 {
+    color: #bce2ff !important;
+    font-family: "Convergence" !important;
+}
+
+h2 {
+    color: #94d4ff !important;
+    font-family: "Convergence" !important;
+}
+
+h3 {
+    color: #94d4ff !important;
+    font-family: "Convergence" !important;
+}
+
+p {
+    color: #008fff !important;
+}
