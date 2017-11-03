@@ -27,7 +27,7 @@ export class RegisterComponent {
         },
         error => {
           this.loading = false;
-          console.error('Error registering');
+          console.error('Error registering' + JSON.stringify(error));
         });
   }
 }
