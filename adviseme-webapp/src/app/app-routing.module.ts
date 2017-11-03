@@ -17,7 +17,7 @@ import { CanActivateUser } from './services/authentication.service';
 
 // Definitions for possible routes and the components to load in the router
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full', canActivate: [CanActivateUser]},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'advisement-signup', component: AdvisementSignupComponent, canActivate: [CanActivateUser]},
   { path: 'appointment', component: AppointmentComponent, canActivate: [CanActivateUser]},
   { path: 'class-info/:id:', component: ClassInfoComponent, canActivate: [CanActivateUser]},
