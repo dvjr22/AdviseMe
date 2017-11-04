@@ -61,6 +61,7 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
+import { AlertComponent } from './common/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import {
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

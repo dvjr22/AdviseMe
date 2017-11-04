@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
+  errorMessage: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
         error => {
           this.loading = false;
           console.error('A login error has occured');
+          this.errorMessage = 'Invalid Username or Password';
         });
   }
 
