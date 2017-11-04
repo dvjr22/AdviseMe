@@ -5,7 +5,7 @@
       <h3>All registered users:</h3>
       <ul>
           <li *ngFor="let user of users">
-              {{user.firstname}} {{user.lastname}}
+              {{user.fullName}}
           </li>
       </ul>
       <p><a [routerLink]="['/logout']">Logout</a></p>
