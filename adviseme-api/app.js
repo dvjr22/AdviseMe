@@ -12,6 +12,9 @@ var expressJwt = require('express-jwt');
 var auth = require('./routes/auth');
 var users = require('./routes/users');
 
+// Get the API route ...
+var api = require('./routes/api.route')
+
 var app = express();
 
 mongoose.Promise = bluebird
@@ -36,6 +39,9 @@ app.use(require('express-session')({
 }));
 
 app.use('/users', auth);
+
+//Use the API routes for all routes matching /api
+app.use('/api', api);
 
 // Angular DIST output folder
 app.use(express.static('../adviseme-webapp/dist'));
