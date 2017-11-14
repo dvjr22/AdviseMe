@@ -10,6 +10,7 @@ var expressJwt = require('express-jwt');
 
 var auth = require('./routes/auth');
 var users = require('./routes/users');
+var notification = require('./routes/notification')
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use(require('express-session')({
 }));
 
 app.use('/users', auth);
+app.use('/notify', notification);
 
 // Angular DIST output folder
 app.use(express.static('../adviseme-webapp/dist'));
