@@ -11,7 +11,7 @@ function sendNotification(req, res) {
 // TODO: At some point change these hardcoded phone numbers so ppl will stop texting me
   client.messages.create({
     // Whom to send tho message too
-    to: '+18037922216',
+    to: '',
     // The Twilio Phone number to send it from
     from: '+18036755450',
     // Parse a message out of the post request body
