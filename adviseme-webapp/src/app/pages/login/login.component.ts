@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { AuthenticationService } from '../../services/authentication.service';
+import { AlertService } from '../../services/alert.service';
+
 
 @Component({
   selector: 'app-login',
@@ -12,17 +13,15 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
-  errorMessage: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
-    // reset login status
-   //  this.authenticationService.logout();
 
    // If the user is already logged in then redirect to the dashboard
    if (this.authenticationService.checkForLocalUser()) {
@@ -42,7 +41,7 @@ export class LoginComponent implements OnInit {
         error => {
           this.loading = false;
           console.error('A login error has occured');
-          this.errorMessage = 'Invalid Username or Password';
+          this.alertService.error('Invalid password or username');
         });
   }
 

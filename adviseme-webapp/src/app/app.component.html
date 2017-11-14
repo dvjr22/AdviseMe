@@ -1,3 +1,4 @@
+
 <div *ngIf="signedIn; then fullSite else loginPlease"></div>
 <ng-template #fullSite>
   <nav class="navbar navbar-default">
@@ -20,6 +21,7 @@
     </div>
   </nav>
   <div class="container">
+    <app-alert></app-alert>
     <router-outlet (activate)="ngOnInit()"></router-outlet>
   </div>
 </ng-template>
@@ -39,6 +41,7 @@
     </div>
   </nav>
   <div class="container">
+    <app-alert></app-alert>
     <router-outlet (activate)="ngOnInit()"></router-outlet>
   </div>
 </ng-template>

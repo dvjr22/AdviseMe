@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService } from '../../services/user.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,8 @@ export class RegisterComponent {
 
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private alertService: AlertService
   ) { }
 
 
@@ -28,6 +30,7 @@ export class RegisterComponent {
         error => {
           this.loading = false;
           console.error('Error registering' + JSON.stringify(error));
+          this.alertService.error('Error invalid registration');
         });
   }
 }

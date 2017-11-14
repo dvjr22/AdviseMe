@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 // Services
 import { UserService } from './services/user.service';
 import { AuthenticationService, CanActivateUser } from './services/authentication.service';
+import { AlertService } from './services/alert.service';
 
 // Models
 import { User } from './models/user';
@@ -89,7 +90,8 @@ import { AlertComponent } from './common/alert/alert.component';
     UserService,
     AuthenticationService,
     CanActivateUser,
-    User
+    User,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })
