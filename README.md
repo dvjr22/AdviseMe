@@ -10,7 +10,13 @@
 ### Installing
 * Clone this repo
 * Install Prerequisites
-* Run ```npm install``` to install requirements
+* In adviseme-webapp
+  * Run ```npm install``` to install requirements
+* In adviseme-api
+  * Run ```npm install``` to install requirements
+* In the chance we missed a requirment in the package.json
+  * Inform the AdviseMe Team
+  * In the mean time use ```npm install <requirements>
 
 ## Deployment
 * Build Angular app from adviseme-webapp
