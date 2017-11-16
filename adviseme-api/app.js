@@ -12,6 +12,9 @@ var auth = require('./routes/auth');
 var users = require('./routes/users');
 var notification = require('./routes/notification')
 
+// Get the API route ...
+var api = require('./routes/api.route')
+
 var app = express();
 
 mongoose.Promise = bluebird
@@ -37,6 +40,9 @@ app.use(require('express-session')({
 
 app.use('/users', auth);
 app.use('/notify', notification);
+
+//Use the API routes for all routes matching /api
+app.use('/api', api);
 
 // Angular DIST output folder
 app.use(express.static('../adviseme-webapp/dist'));
