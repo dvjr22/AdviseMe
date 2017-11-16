@@ -1,0 +1,58 @@
+prefix,co_num,title,hours
+engl,101,Critical Reading and Composition,3
+math,141,Calculus 1,4
+csce,145,Algorithmic Design 1,4
+csce,190,Computing in the Modern World,1
+engl,102,Rhetoric and Composition,3
+math,142,Calculus 2,4
+Chem,111,General Chemistry,3
+chem,111L,General Chemistry Lab,1
+phys,211,Essentials of Phys 1,3
+phys,211L,Essentials of Phys Lab,1
+csce,146,Algorithmic Design 2,4
+csce,215,UNIX/Linus Fundamentals,1
+csce,211,Digital Logic Design,3
+csce,240,Introduction to Software Engineering,3
+math,374,Discrete Structures,3
+chem,112,General Chemistry 2,3
+chem,112L,General Chemistry Lab,1
+phys,212,Essentials of Phys 2,3
+phys,212L,Essentials of Phys Lab,1
+spch,140,Public Communication,3
+csce,212,Intro to Computer Architecture,3
+math,241,Vector Calculus,3
+csce,311,Operating Systems,3
+csce,330,Programming Language Structures,3
+csce,350,Data Structures & Algorithms,3
+csce,390,Prof. Issues in Computer Science Engr.,3
+engl,462,Technical Writing,3
+engl,463,Business Writing,3
+csce,416,Introduction to Computer Networks,3
+stat,509,Statistics for Engineers,3
+csce,490,Capstone Computing Project 1,3
+csce,355,Foundations of Computation,3
+math,344,Applied Linear Algebra,3
+math,344L,Applied Linear Algebra Lab,1
+csce,492,Capstone Computing Project 2,3
+csce,274,Robotic Applications & Design,3
+elct,102,Electrical Science,3
+math,242,Elementary Differential Equations,3
+elct,221,Circuits,3
+elct,222,Signals & Systems,3
+csce,313,Embedded Systems,3
+csce,317,Computer Systems Engineering,3
+elct,371,Electronics,3
+csce,611,Advanced Digital Design,3
+ccrq,1,Carolina Core,3
+ccrq,2,Carolina Core,3
+ccrq,3,Carolina Core,3
+lsel,1,Laboratory Science Elective,3
+aael,1,Application Area Elective,3
+aael,2,Application Area Elective,3
+aael,3,Application Area Elective,3
+lael,1,Liberal Arts Elective,3
+lael,2,Liberal Arts Elective,3
+lael,3,Liberal Arts Elective,3
+csel,1,CSCE Major Elective,3
+csel,2,CSCE Major Elective,4
+csel,3,CSCE Major Elective,5
