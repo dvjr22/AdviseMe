@@ -8,36 +8,33 @@
   * [Download Node and NPM](https://nodejs.org/en/)
 * [Angular CLI](https://cli.angular.io/) version 1.4.4 or higher (*should be saved in devDependencies*)
   * ```npm install -g @angular/cli@latest```
+* [MongoDB](https://docs.mongodb.com/getting-started/shell/installation/)
 
 ### Installing
 * Clone this repo
   * ```git clone https://github.com/SCCapstone/AdviseMe.git```
-* Install Prerequisites
-  * LOOK ABOVE
+* Install Prerequisites (Check the above section)
 * ```cd <path>/AdviseMe```
   * ```cd adviseme-api/```
     * ```npm install```
-    * if any issues occur 
-      * Delete node_module file and package-lock.json file and try again
   * ```cd adviseme-webapp/```
     * ```npm install```
-    * if any issues occur 
-      * Delete node_module file and package-lock.json file and try again
-* Install [MongoDB](https://www.mongodb.com/what-is-mongodb)
-  * [Download](https://docs.mongodb.com/getting-started/shell/installation/)
+* Note: If the npm install throws an error:
+  * If it says a module is not installed run ```npm install --save <module name>```
+  * If it says that an invalid character was read at the end of the line delete the node_module folder and the package-lock.json file and try the ```npm install`` command again
 
 ## Deployment
-* 3 TERMINALS REQUIRED
-* Terminal 1 : Starts mongo database
-  *```mongod```
-* Terminal 2 : Starts the Express server
+* 3 Terminal Setup
+* Terminal 1 : Runs the mongo database
+  * ```mongod```
+* Terminal 2 : Runs the Express server
   * ```cd <path>/AdviseMe/adviseme-api/```
   * ```nodemon server```
-  * If cannot find module ```npm install --save <package-name>```
-* Terminal 3 : Builds the webapp 
+  * If cannot find module ```npm install --save <module>```
+* Terminal 3 : Builds the webapp to the dist directory to be served by the Express server
   * ```cd <path>/AdviseMe/adviseme-webapp/```
   * ```ng build --watch```
-* Web Browser: ```http://localhost:3000/```
+* The AdviseMe application should now be available at http://localhost:3000
 
 ## Unit Tests
 * Run ```ng test``` to execute the unit tests via [Karma](https://karma-runner.github.io).
