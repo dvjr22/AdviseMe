@@ -9,6 +9,8 @@
 * [Angular CLI](https://cli.angular.io/) version 1.4.4 or higher (*should be saved in devDependencies*)
   * ```npm install -g @angular/cli@latest```
 * [MongoDB](https://docs.mongodb.com/getting-started/shell/installation/)
+* Nodemon
+  * ```npm install -g nodemon```
 
 ### Installing
 * Clone this repo
