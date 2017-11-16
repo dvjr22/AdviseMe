@@ -6,11 +6,12 @@
 @import "~font-awesome/css/font-awesome.css";
 
 body {
-    background-image: url("assets/hexabump_@2X.png");
+    /*background-image: url("assets/hexabump_@2X.png");*/
+    background-color: #404040 !important;
 }
 
 h1 {
-    color: #bce2ff !important;
+    color: #94d4ff !important;
     font-family: "Convergence" !important;
 }
 
@@ -26,4 +27,9 @@ h3 {
 
 p {
     color: #008fff !important;
+    font-family: "Convergence" !important;
+}
+
+a {
+    font-family: "Convergence" !important;
 }

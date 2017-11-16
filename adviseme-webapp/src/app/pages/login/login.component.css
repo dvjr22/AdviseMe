@@ -1,0 +1,7 @@
+p { text-align: center }
+h3 { text-align: center }
+a {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+ }
