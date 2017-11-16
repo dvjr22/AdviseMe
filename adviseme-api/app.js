@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -11,6 +10,7 @@ var expressJwt = require('express-jwt');
 
 var auth = require('./routes/auth');
 var users = require('./routes/users');
+var notification = require('./routes/notification')
 
 // Get the API route ...
 var api = require('./routes/api.route')
@@ -39,6 +39,7 @@ app.use(require('express-session')({
 }));
 
 app.use('/users', auth);
+app.use('/notify', notification);
 
 //Use the API routes for all routes matching /api
 app.use('/api', api);

@@ -1,11 +1,11 @@
-  dashboard works!
+  <p>dashboard works!</p>
   <div *ngIf="signedIn">
     <h1>Hi {{currentUser.username}}!</h1>
       <p>You're logged in with the MEAN Stack Angular 2!!</p>
       <h3>All registered users:</h3>
       <ul>
           <li *ngFor="let user of users">
-              {{user.firstname}} {{user.lastname}}
+              {{user.fullName}}
           </li>
       </ul>
       <p><a [routerLink]="['/logout']">Logout</a></p>
