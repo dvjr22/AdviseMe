@@ -20,18 +20,17 @@ MongoClient.connect(url, function(err, db) {
 
 	if (err) throw err;
 
-    console.log("AdviseMe db created");
+    console.log("Database created!");
 
-    // todo - need to figure out why this didn't work in a for loop - dvj 11/16/17
     db.createCollection(collections[0], function(err, res) {
         if (err) throw err;
-        console.log("Users collection created!");
+        console.log("Collection created!");
         db.close();
     });
 
     db.createCollection(collections[1], function(err, res) {
         if (err) throw err;
-        console.log("Classes collection created!");
+        console.log("Collection created!");
         db.close();
     });
 
