@@ -13,7 +13,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 
 // Services
-import { CanActivateUser } from './services/authentication.service';
+import { CanActivateUser } from './_shared/services/authentication.service';
 
 // Definitions for possible routes and the components to load in the router
 const routes: Routes = [
