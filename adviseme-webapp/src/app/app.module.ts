@@ -9,14 +9,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
 // Services
-<<<<<<< HEAD
 import { UserService } from './_shared/services/user.service';
 import { AuthenticationService, CanActivateUser } from './_shared/services/authentication.service';
-=======
-import { UserService } from './services/user.service';
-import { AuthenticationService, CanActivateUser } from './services/authentication.service';
-import { AlertService } from './services/alert.service';
->>>>>>> origin/master
+import { AlertService } from './_shared/services/alert.service';
 
 // Models
 import { User } from './_shared/models/user';
@@ -67,7 +62,7 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
-import { AlertComponent } from './common/alert/alert.component';
+import { AlertComponent } from './_shared/alert/alert.component';
 
 @NgModule({
   declarations: [
