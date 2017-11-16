@@ -21,7 +21,7 @@
     * ```npm install```
 * Note: If the npm install throws an error:
   * If it says a module is not installed run ```npm install --save <module name>```
-  * If it says that an invalid character was read at the end of the line delete the node_module folder and the package-lock.json file and try the ```npm install`` command again
+  * If it says that an invalid character was read at the end of the line delete the node_module folder and the package-lock.json file and try the ```npm install``` command again
 
 ## Deployment
 * 3 Terminal Setup
