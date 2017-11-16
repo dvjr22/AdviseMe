@@ -17,10 +17,13 @@
 * In the chance we missed a requirment in the package.json
   * Inform the AdviseMe Team
   * In the mean time use ```npm install <requirements>
+* Install [MongoDB](https://www.mongodb.com/what-is-mongodb)
 
 ## Deployment
 * Build Angular app from adviseme-webapp
   - ```ng build --watch```
+* Start a MongoDB server
+  - ```mongod```
 * Express Node.js server from adviseme-api
   - ```nodemon server```
 
