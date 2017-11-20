@@ -28,10 +28,6 @@ MongoClient.connect(url, function(err, db) {
 		console.log("connected");
 	}
 
-
-	// Stuff to do goes in here
-
-
 	// pass the json object
 	db.collection("classes").insertMany(insertMany, function(err, res) {
 
