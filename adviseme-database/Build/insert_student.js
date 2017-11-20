@@ -2,11 +2,13 @@
 // @author Diego Valdes
 // Nov. 16, 2016
 
+// Insert randomly generated students
+
 var MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
 var url = "mongodb://localhost:27017/adviseMe";		// Database name
 
 let insertMany = []; // array to hold json 
-let noOfStudents = 40; // Number of students want to create
+let noOfStudents = 40; // Number of students to generate
 
 // Create students
 for (var i = 0; i < noOfStudents; i++) {

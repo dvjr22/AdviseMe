@@ -1,6 +1,9 @@
-// mongo connectins test
+// connection.js
+// @author Diego Valdes
+// Nov. 16, 2016
 
-//var MongoClient = require('mongodb').MongoClient;
+// Insert class test data
+
 var MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
 var url = "mongodb://localhost:27017/adviseMe";		// Database name
 
