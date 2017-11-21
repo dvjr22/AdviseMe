@@ -28,14 +28,14 @@
   * A binory BSON dump of the database can be found: AdviseMe/adviseme-database/adviseMe
 
    * Ensure Mongo has been started on your local machine using:
- ```$ sudo service mongod start```
+ *```$ sudo service mongod start```
  or
- ```$ sudo service mongod restart```
+ *```$ sudo service mongod restart```
   * Use mongorestore to restore the dump file to your local machine
   * MongoDB default port number: 27017
-```$ mongorestore --port <port number> <path to the backup>```
+*```$ mongorestore --port <port number> <path to the backup>```
 Consider the example:
-```mongorestore dump-2013-10-25/```
+*```mongorestore dump-2013-10-25/```
  * [MongoDB](https://docs.mongodb.com/manual/tutorial/backup-and-restore-tools/)
 
 ## Deployment
