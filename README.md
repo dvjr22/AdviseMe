@@ -33,7 +33,7 @@
 * Use mongorestore to restore the dump file to your local machine
 * MongoDB default port number: 27017
   * ```$ mongorestore --port <port number> <path to the backup>```
-Consider the example:
+* As example:
  * ```mongorestore dump-2013-10-25/```
  * Troubleshooting assitance can be found [here](https://docs.mongodb.com/manual/tutorial/backup-and-restore-tools/)
 
