@@ -2,14 +2,20 @@
 # @author Diego Valdes
 # Nov. 20, 2016
 
-import pymongo, collections, os, sys, csv
+# import pymongo
+import collections, os, sys, csv, linecache
+
 
 # Get Mongo db connection
-client = pymongo.MongoClient('localhost', 27017)
+# client = pymongo.MongoClient('localhost', 27017)
 # Get dbName.collectionName
-db = client.adviseMe.classes
+# db = client.adviseMe.classes
 
-path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured'
+# print(db)
+
+#path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured'
+path = '/home/diego/Capstone/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured'
+
 
 # Walk directory path for .csv files containing class data
 for root, subdirs, files in os.walk(path):
@@ -25,19 +31,36 @@ for root, subdirs, files in os.walk(path):
 
 		# Process file
 		else:
-			print(filePath)
+			data = collections.OrderedDict()
+			data['_id'] = linecache.getline(filePath, 1).strip().replace(',', '')
+			#id = id.replace(',', '')
+			print(data['_id'])
 
+			course = linecache.getline(filePath, 2).strip()
+			courseArr = course.split(',')
+			print(courseArr)
+			print(courseArr[0])
+			print(courseArr[1])
+		
+
+
+
+			#data['class'] = {'prefix' : course[0], 'courseNo' : course[1], 'title' : course[2]}
+
+
+			'''
 			with open(filePath, 'r') as file:
 
 				spamreader = csv.reader(file)
 
 				for row in spamreader:
 					print(row)
+			'''
 
 
 
 
-print(db)
+
 
 '''
 # Create 
