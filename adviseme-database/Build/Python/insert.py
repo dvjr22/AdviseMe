@@ -36,11 +36,14 @@ for root, subdirs, files in os.walk(path):
 			#id = id.replace(',', '')
 			print(data['_id'])
 
-			course = linecache.getline(filePath, 2).strip()
-			courseArr = course.split(',')
-			print(courseArr)
-			print(courseArr[0])
-			print(courseArr[1])
+			course = linecache.getline(filePath, 2).strip(',')
+
+			print(len(course))
+			print(course)
+			
+
+	
+
 		
 
 
