@@ -24,6 +24,24 @@
 * Note: If the npm install throws an error:
   * If it says a module is not installed run ```npm install --save <module name>```
   * If it says that an invalid character was read at the end of the line delete the node_module folder and the package-lock.json file and try the ```npm install``` command again
+* Create a local database
+  * A binory BSON dump of the database can be found: AdviseMe/adviseme-database/adviseMe
+  * Ensure Mongo has been started on your local machine:
+   * Linux:
+    * ```$ sudo service mongod start```
+  or
+    * ```$ sudo service mongod restart```
+   * Mac (if mongodb was installed via homebrew):
+    * ```brew services start mongodb```
+    * to restart:
+     * ```brew services stop mongodb```
+     * ```brew services start mongodb```
+* Use mongorestore to restore the dump file to your local machine
+* MongoDB default port number: 27017
+  * ```$ mongorestore --port <port number> <path to the backup>```
+* As example:
+ * ```mongorestore dump-2013-10-25/```
+ * Troubleshooting assitance can be found [here](https://docs.mongodb.com/manual/tutorial/backup-and-restore-tools/)
 
 ## Deployment
 * 3 Terminal Setup
