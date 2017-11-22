@@ -33,9 +33,9 @@
     * ```$ sudo service mongod restart```
    * Mac (if mongodb was installed via homebrew):
     * ```brew services start mongodb```
-  to restart:
-    * ```brew services stop mongodb```
-    * ```brew services start mongodb```
+    * to restart:
+     * ```brew services stop mongodb```
+     * ```brew services start mongodb```
 * Use mongorestore to restore the dump file to your local machine
 * MongoDB default port number: 27017
   * ```$ mongorestore --port <port number> <path to the backup>```
