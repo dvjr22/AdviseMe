@@ -3,19 +3,19 @@
 # Nov. 20, 2016
 # Reads csv files and converts to JSON format for db insertion
 
-# import pymongo
+import pymongo
 import collections, os, sys, csv, linecache, json
 
 
 # Get Mongo db connection
-# client = pymongo.MongoClient('localhost', 27017)
+client = pymongo.MongoClient('localhost', 27017)
 # Get dbName.collectionName
-# db = client.adviseMe.classes
+db = client.adviseMe.classes
 
-# print(db)
+print(db)
 
-#path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured'
-path = '/home/diego/Capstone/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured'
+path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured'
+#path = '/home/diego/Capstone/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured'
 
 
 # Walk directory path for .csv files containing class data
@@ -44,7 +44,7 @@ for root, subdirs, files in os.walk(path):
 						data['_id'] = row[0].strip()
 
 					elif i == 1:
-						data['class'] =  {'prefix' : row[0], 'courseNo' : row[1], 'title' : row[2]}
+						data['class'] = {'prefix' : row[0].strip(), 'courseNo' : int(row[1]), 'title' : row[2].strip()}
 						
 					elif i == 2:
 						
@@ -67,8 +67,8 @@ for root, subdirs, files in os.walk(path):
 
 				print(data)
 				print(json.dumps(data))
-				'''
+				
 				# Insert data
 				db.insert_one(data)
-				'''
+				
 
