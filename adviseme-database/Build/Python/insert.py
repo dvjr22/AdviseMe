@@ -1,9 +1,10 @@
-# connection.js
+# insert.py
 # @author Diego Valdes
 # Nov. 20, 2016
+# Reads csv files and converts to JSON format for db insertion
 
 # import pymongo
-import collections, os, sys, csv, linecache
+import collections, os, sys, csv, linecache, json
 
 
 # Get Mongo db connection
@@ -31,50 +32,43 @@ for root, subdirs, files in os.walk(path):
 
 		# Process file
 		else:
-			data = collections.OrderedDict()
-			data['_id'] = linecache.getline(filePath, 1).strip().replace(',', '')
-			#id = id.replace(',', '')
-			print(data['_id'])
 
-			course = linecache.getline(filePath, 2).strip(',')
-
-			print(len(course))
-			print(course)
-			
-
-	
-
-		
-
-
-
-			#data['class'] = {'prefix' : course[0], 'courseNo' : course[1], 'title' : course[2]}
-
-
-			'''
 			with open(filePath, 'r') as file:
 
+				data = collections.OrderedDict()
 				spamreader = csv.reader(file)
 
-				for row in spamreader:
-					print(row)
-			'''
+				for i, row in enumerate(spamreader):
 
+					if i == 0:
+						data['_id'] = row[0].strip()
 
+					elif i == 1:
+						data['class'] =  {'prefix' : row[0], 'courseNo' : row[1], 'title' : row[2]}
+						
+					elif i == 2:
+						
+						data['prerequisites'] = list(filter(lambda x : x != '', row))
 
+					elif i == 3:
 
+						data['requiredFor'] = list(filter(lambda x : x != '', row))
+				
+					elif i == 4:
 
+						data['department'] = row[0].strip()
 
-'''
-# Create 
-data = collections.OrderedDict()
-data['_id'] = 'CSCE200'
-data['class'] = {'prefix' : "CSCE", 'courseNo' : 145, 'title' : 'Algorithmic Design I'}
-data['prerequisites'] = ["MATH111", "MATH115"]
-data['requiredFor'] = ["CSCE146", "CSCE190", "CSCE215", "CSCE212"]
-data['department'] = 'cs'
-data['curriculum'] = ['cs', 'ce']
+					elif i == 5:
 
-# Insert data
-db.insert_one(data)
-'''
+						 data['curriculum'] = list(filter(lambda x : x != '', row))
+
+					else:
+						break
+
+				print(data)
+				print(json.dumps(data))
+				'''
+				# Insert data
+				db.insert_one(data)
+				'''
+
