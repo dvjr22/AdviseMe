@@ -28,40 +28,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 
-
-import {
-  MatAutocompleteModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatChipsModule,
-  // MatCoreModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatExpansionModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
-  MatRippleModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule,
-  MatTooltipModule
-} from '@angular/material';
+//Nebular
+import { NbThemeModule } from '@nebular/theme';
 import { AlertComponent } from './_shared/alert/alert.component';
 
 @NgModule({
@@ -79,6 +47,7 @@ import { AlertComponent } from './_shared/alert/alert.component';
     AlertComponent
   ],
   imports: [
+    NbThemeModule.forRoot({ name: 'default' }),
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
