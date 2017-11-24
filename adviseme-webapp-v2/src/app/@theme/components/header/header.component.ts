@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
               private authenticationService: AuthenticationService) {
   }
 
-  userMenu = [{ title: 'Profile', link: 'pages/dashboard' }, { title: 'Log out', link: '/auth/login', click: this.authenticationService.logout() }];
+  userMenu = [{ title: 'Profile', link: '/pages/dashboard' }, { title: 'Log out', link: '/auth/logout' }];
 
   ngOnInit() {
     this.userService.getUsers()
