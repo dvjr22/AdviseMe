@@ -4,6 +4,8 @@ import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 
+import { AuthenticationService } from '../../../_shared/services/authentication.service';
+
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -11,18 +13,18 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
 })
 export class HeaderComponent implements OnInit {
 
-
   @Input() position = 'normal';
 
   user: any;
 
-  userMenu = [{ title: 'Profile', link: '/#' }, { title: 'Log out', link: '/#' }];
-
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private userService: UserService,
-              private analyticsService: AnalyticsService) {
+              private analyticsService: AnalyticsService,
+              private authenticationService: AuthenticationService) {
   }
+
+  userMenu = [{ title: 'Profile', link: 'pages/dashboard' }, { title: 'Log out', link: '/auth/login', click: this.authenticationService.logout() }];
 
   ngOnInit() {
     this.userService.getUsers()

@@ -23,7 +23,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Login',
-        link: '/login',
+        link: '/auth/login',
       },
     ],
   },
