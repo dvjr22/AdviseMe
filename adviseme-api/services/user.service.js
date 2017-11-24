@@ -31,6 +31,17 @@ function authenticate(username, password){
         username: user.username,
         firstName: user.firstName,
         lastName: user.lastName,
+        email: user.email,
+        school: user.school,
+        role: user.role,
+        advisor: user.advisor,
+        currentClasses: user.currentClasses,
+        suggestedClasses: user.suggestedClasses,
+        student_Meta: user.student_Meta,
+        underlings: user.underlings,
+        appointments: user.appointments,
+        created: user.created,
+        updated: Date.now,
         token: jwt.sign({ sub: user._id }, config.secret)
       });
     } else {
@@ -100,6 +111,8 @@ function create(userParam) {
 
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
+        user.Created = Date.now;
+        user.Updated = Date.now;
 
         db.users.insert(
             user,
@@ -142,9 +155,21 @@ function update(_id, userParam) {
     function updateUser() {
         // fields to update
         var set = {
+            username: userParam.username,
             firstName: userParam.firstName,
             lastName: userParam.lastName,
-            username: userParam.username,
+            email: userParam.email,
+            school: userParam.school,
+            role: userParam.role,
+            advisor: userParam.advisor,
+            currentClasses: userParam.currentClasses,
+            suggestedClasses: userParam.suggestedClasses,
+            student_Meta: userParam.student_Meta,
+            underlings: userParam.underlings,
+            appointments: userParam.appointments,
+            created: userParam.created,
+            updated: Date.now,
+
         };
 
         // update password if it was entered
