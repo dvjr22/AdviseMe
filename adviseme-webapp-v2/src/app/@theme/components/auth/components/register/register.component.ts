@@ -30,6 +30,28 @@ import { NbAuthResult, NbAuthService } from '../../services/auth.service';
         </div>
 
         <div class="form-group">
+          <label for="input-username" class="sr-only">Username</label>
+          <input name="username" [(ngModel)]="user.username" id="input-username" #username="ngModel"
+                 class="form-control" placeholder="Username"
+                 [class.form-control-danger]="username.invalid && username.touched"
+                 [required]="getConfigValue('forms.validation.username.required')"
+                 [minlength]="getConfigValue('forms.validation.username.minLength')"
+                 [maxlength]="getConfigValue('forms.validation.username.maxLength')"
+                 autofocus>
+          <small class="form-text error" *ngIf="username.invalid && username.touched && username.errors?.required">
+            username is required!
+          </small>
+          <small
+            class="form-text error"
+            *ngIf="username.invalid && username.touched && (username.errors?.minlength || username.errors?.maxlength)">
+            Full name should contains
+            from {{getConfigValue('forms.validation.password.minLength')}}
+            to {{getConfigValue('forms.validation.password.maxLength')}}
+            characters
+          </small>
+        </div>
+
+        <div class="form-group">
           <label for="input-name" class="sr-only">Full name</label>
           <input name="fullName" [(ngModel)]="user.fullName" id="input-name" #fullName="ngModel"
                  class="form-control" placeholder="Full name"
