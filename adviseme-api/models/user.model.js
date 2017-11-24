@@ -6,7 +6,6 @@ var passportLocalMongoose = require('passport-local-mongoose');
 //TODO: VALIDATION
 
 var UserSchema = new mongoose.Schema({
-    _id: Schema.ObjectId,
     username: {
       type: String,
       required: true,
