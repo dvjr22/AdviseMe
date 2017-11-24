@@ -46,6 +46,7 @@ var UserSchema = new mongoose.Schema({
     currentClasses: [{class_id: Schema.ObjectId }],
     suggestedClasses: [{class_id: Schema.ObjectId }],
     student_Meta: Schema.ObjectId,
+    cart: Schema.ObjectId,
 
     //Adviser/Teacher
     underlings: [ {student_id: Schema.ObjectId}],
@@ -55,6 +56,20 @@ var UserSchema = new mongoose.Schema({
     created: Date,
     updated: { type: Date, default: Date.now}
 })
+
+UserSchema.pre('save', function(next) {
+  // get the current date
+  var currentDate = new Date();
+
+  // change the updated_at field to current date
+  this.updated = currentDate;
+
+  // if created_at doesn't exist, add to that field
+  if (!this.created)
+    this.created = currentDate;
+
+  next();
+});
 
 UserSchema.plugin(passportLocalMongoose);
 UserSchema.plugin(mongoosePaginate)

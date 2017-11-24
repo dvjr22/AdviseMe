@@ -41,7 +41,7 @@ function authenticate(username, password){
         underlings: user.underlings,
         appointments: user.appointments,
         created: user.created,
-        updated: Date.now,
+        updated: user.updated,
         token: jwt.sign({ sub: user._id }, config.secret)
       });
     } else {
@@ -111,8 +111,6 @@ function create(userParam) {
 
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
-        user.Created = Date.now;
-        user.Updated = Date.now;
 
         db.users.insert(
             user,
@@ -168,7 +166,7 @@ function update(_id, userParam) {
             underlings: userParam.underlings,
             appointments: userParam.appointments,
             created: userParam.created,
-            updated: Date.now,
+            updated: userParam.updated,
 
         };
 
