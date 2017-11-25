@@ -2,31 +2,41 @@
 // @author Diego Valdes
 // Nov. 16, 2016
 
+// Insert randomly generated students
+
 var MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
 var url = "mongodb://localhost:27017/adviseMe";		// Database name
 
-var obj = new Object(); // object to store JSON data
-id = makeid(); // get random id
+let insertMany = []; // array to hold json 
+let noOfStudents = 40; // Number of students to generate
 
-// set student data
-obj._id = id;
-obj.firstName = firstName(); // get random first name
-obj.lastName = lastName(); // get random last name
-obj.sid = id;
-obj.major = major(); // get major
+// Create students
+for (var i = 0; i < noOfStudents; i++) {
 
-coursesArr = course(); // get random course work
-obj.status = status(coursesArr); // set status based on course work
-obj.course = coursesArr;
+	var obj = new Object(); // object to store JSON data
+	id = makeid(); // get random id
 
-console.log(JSON.stringify(obj)); // log to console
+	obj._id = id;
+	obj.firstName = firstName(); // get random first name
+	obj.lastName = lastName(); // get random last name
+	obj.sid = id;
+	obj.major = major(); // get major
+
+	coursesArr = course(); // get random course work
+	obj.status = status(coursesArr); // set status based on course work
+	obj.course = coursesArr;
+
+	// console.log(JSON.stringify(obj)); // log to console
+
+	insertMany.push(obj); // add student to array
+}
 
 // get connection
 MongoClient.connect(url, function(err, db) {
 
 	if (err) throw err;
 	// pass the json object
-	db.collection("users").insertOne(obj, function(err, res) {
+	db.collection("users").insertMany(insertMany, function(err, res) {
 
 		if (err) throw err;
 
