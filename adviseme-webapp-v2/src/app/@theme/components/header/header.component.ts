@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
-import { UserService } from '../../../@core/data/users.service';
+//import { UserService } from '../../../@core/data/users.service';
+import { UserService } from '../../../_shared/services/user.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 
 import { AuthenticationService } from '../../../_shared/services/authentication.service';
@@ -27,8 +28,12 @@ export class HeaderComponent implements OnInit {
   userMenu = [{ title: 'Profile', link: '/pages/dashboard' }, { title: 'Log out', link: '/auth/logout' }];
 
   ngOnInit() {
-    this.userService.getUsers()
-      .subscribe((users: any) => this.user = users.joe);
+    var id = JSON.parse(localStorage.getItem("_id"));
+
+    this.userService.getById(id)
+        .subscribe(res => this.user = res);
+    // this.userService.getUsers()
+    //   .subscribe((users: any) => this.user = users.joe);
   }
 
   toggleSidebar(): boolean {
