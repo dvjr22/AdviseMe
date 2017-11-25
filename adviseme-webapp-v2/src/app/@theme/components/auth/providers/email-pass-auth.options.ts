@@ -44,6 +44,12 @@ export interface NgEmailPassAuthProviderConfig {
     getter?: Function;
   };
   validation?: {
+    username?: {
+      required?: boolean;
+      minLength?: number | null;
+      maxLength?: number | null;
+      regexp?: string | null;
+    }
     password?: {
       required?: boolean;
       minLength?: number | null;

@@ -50,6 +50,11 @@ export const defaultSettings: any = {
       provider: 'email',
     },
     validation: {
+      username: {
+        required: true,
+        minLength: 4,
+        maxLength: 50,
+      },
       password: {
         required: true,
         minLength: 4,

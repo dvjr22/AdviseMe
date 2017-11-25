@@ -18,7 +18,7 @@ import { NbAuthResult, NbAuthService } from '../../services/auth.service';
   template: `
   <nb-auth-block>
     <h2 class="title">Sign In</h2>
-    <small class="form-text sub-title">Hello! Sign in with your username or email</small>
+    <small class="form-text sub-title">Hello! Sign in with your username</small>
 
     <form (ngSubmit)="login()" #form="ngForm" autocomplete="nope">
 
@@ -35,19 +35,24 @@ import { NbAuthResult, NbAuthService } from '../../services/auth.service';
       </div>
 
       <div class="form-group">
-        <label for="input-username" class="sr-only">Email address</label>
-        <input name="username" [(ngModel)]="user.username" id="input-username"
-               class="form-control" placeholder="Email address" #username="ngModel"
-               [class.form-control-danger]="username.invalid && username.touched" autofocus
-               [required]="getConfigValue('forms.validation.username.required')">
-        <small class="form-text error" *ngIf="username.invalid && username.touched && username.errors?.required">
-          Email is required!
-        </small>
-        <small class="form-text error"
-               *ngIf="username.invalid && username.touched">
-          Email should be the real one!
-        </small>
-      </div>
+          <label for="input-username" class="sr-only">Email address</label>
+          <input name="username" [(ngModel)]="user.username" id="input-username"
+                 class="form-control" placeholder="Username" #username="ngModel"
+                 [class.form-control-danger]="username.invalid && username.touched" autofocus
+                 [required]="getConfigValue('forms.validation.username.required')"
+                 [minlength]="getConfigValue('forms.validation.username.minLength')"
+                 [maxlength]="getConfigValue('forms.validation.username.maxLength')">
+          <small class="form-text error" *ngIf="username.invalid && username.touched && username.errors?.required">
+            Username is required!
+          </small>
+          <small class="form-text error"
+                 *ngIf="username.invalid && username.touched && (username.errors?.minlength || username.errors?.maxlength)">
+                 Username should contains
+                 from {{ getConfigValue('forms.validation.password.minLength') }}
+                 to {{ getConfigValue('forms.validation.password.maxLength') }}
+                 characters
+          </small>
+        </div>
 
       <div class="form-group">
         <label for="input-password" class="sr-only">Password</label>
@@ -55,7 +60,7 @@ import { NbAuthResult, NbAuthService } from '../../services/auth.service';
                class="form-control" placeholder="Password" #password="ngModel"
                [class.form-control-danger]="password.invalid && password.touched"
                [required]="getConfigValue('forms.validation.password.required')"
-
+               [minlength]="getConfigValue('forms.validation.password.minLength')"
                [maxlength]="getConfigValue('forms.validation.password.maxLength')">
         <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.required">
           Password is required!
