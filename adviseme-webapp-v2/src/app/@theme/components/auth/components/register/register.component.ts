@@ -10,6 +10,9 @@ import { getDeepFromObject } from '../../helpers';
 
 import { NbAuthResult, NbAuthService } from '../../services/auth.service';
 
+import { UserService } from '../../../../../_shared/services/user.service';
+import { AlertService } from '../../../../../_shared/services/alert.service';
+
 @Component({
   selector: 'nb-register',
   styleUrls: ['./register.component.scss'],
@@ -160,32 +163,26 @@ export class NbRegisterComponent {
 
   constructor(protected service: NbAuthService,
               @Inject(NB_AUTH_OPTIONS_TOKEN) protected config = {},
-              protected router: Router) {
+              protected router: Router,
+              private userService: UserService,
+              private alertService: AlertService
+            ) {
 
     this.redirectDelay = this.getConfigValue('forms.register.redirectDelay');
     this.showMessages = this.getConfigValue('forms.register.showMessages');
     this.provider = this.getConfigValue('forms.register.provider');
   }
 
-  register(): void {
-    this.errors = this.messages = [];
-    this.submitted = true;
-
-    this.service.register(this.provider, this.user).subscribe((result: NbAuthResult) => {
-      this.submitted = false;
-      if (result.isSuccess()) {
-        this.messages = result.getMessages();
-      } else {
-        this.errors = result.getErrors();
-      }
-
-      const redirect = result.getRedirect();
-      if (redirect) {
-        setTimeout(() => {
-          return this.router.navigateByUrl(redirect);
-        }, this.redirectDelay);
-      }
-    });
+  register() {
+    this.userService.create(this.user)
+      .subscribe(
+        data => {
+          this.router.navigate(['auth/login']);
+        },
+        error => {
+          console.error('Error registering' + JSON.stringify(error));
+          this.alertService.error('Error invalid registration');
+        });
   }
 
   getConfigValue(key: string): any {
