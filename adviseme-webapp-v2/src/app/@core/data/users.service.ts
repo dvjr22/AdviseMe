@@ -8,7 +8,7 @@ let counter = 0;
 export class UserService {
 
   private users = {
-    joe: { name: 'John Doe', picture: 'assets/images/pic.png', school: 'USC', major: 'CS' },
+    joe: { name: 'John Doe', picture: 'assets/images/pic.png', school: 'USC', major: 'CS', github: 'https://github.com/tbhall' },
   };
 
   private userArray: any[];
