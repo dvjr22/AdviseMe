@@ -72,8 +72,7 @@ function getAll() {
 
 function getById(_id) {
     var deferred = Q.defer();
-
-    db.users.findById(_id, function (err, user) {
+    db.users.findOne(mongo.helper.toObjectID(_id), function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user) {

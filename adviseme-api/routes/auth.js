@@ -6,8 +6,8 @@ var auth = require("../controllers/AuthController.js");
 router.post('/authenticate', auth.authenticate);
 router.post('/register', auth.register);
 router.get('/', auth.getAll);
-router.get('/current', auth.getCurrent);
+router.get('/:_id', auth.getUser);
 router.put('/:_id', auth.update);
-router.delete(':_id', auth._delete);
+router.delete('/:_id', auth._delete);
 
 module.exports = router;

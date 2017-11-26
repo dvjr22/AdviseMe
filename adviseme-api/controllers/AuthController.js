@@ -6,7 +6,7 @@ var authController = {};
 authController.authenticate = authenticate;
 authController.register = register;
 authController.getAll = getAll;
-authController.getCurrent = getCurrent;
+authController.getUser = getUser;
 authController.update = update;
 authController._delete = _delete;
 
@@ -48,8 +48,8 @@ function getAll(req, res) {
     });
 }
 
-function getCurrent(req, res) {
-  userService.getById(req.user.sub)
+function getUser(req, res) {
+  userService.getById(req.param._id)
     .then(function (user) {
       if(user) {
         res.send(user);
