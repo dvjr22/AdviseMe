@@ -14,7 +14,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Profile',
     icon: 'nb-person',
-    link: '/pages/profile',
+    children: [
+      {
+        title: 'Profile',
+        link: '/pages/profile/profile',
+      },
+      {
+        title: 'Edit Profile',
+        link: '/pages/profile/edit-profile',
+      },
+    ],
 
   },
   {

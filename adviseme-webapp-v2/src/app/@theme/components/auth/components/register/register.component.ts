@@ -53,21 +53,42 @@ import { AlertService } from '../../../../../_shared/services/alert.service';
           </div>
 
         <div class="form-group">
-          <label for="input-name" class="sr-only">Full name</label>
-          <input name="fullName" [(ngModel)]="user.fullName" id="input-name" #fullName="ngModel"
-                 class="form-control" placeholder="Full name"
-                 [class.form-control-danger]="fullName.invalid && fullName.touched"
-                 [required]="getConfigValue('forms.validation.fullName.required')"
-                 [minlength]="getConfigValue('forms.validation.fullName.minLength')"
-                 [maxlength]="getConfigValue('forms.validation.fullName.maxLength')"
+          <label for="input-name" class="sr-only">First name</label>
+          <input name="firstName" [(ngModel)]="user.firstName" id="input-name" #firstName="ngModel"
+                 class="form-control" placeholder="First name"
+                 [class.form-control-danger]="firstName.invalid && firstName.touched"
+                 [required]="getConfigValue('forms.validation.firstName.required')"
+                 [minlength]="getConfigValue('forms.validation.firstName.minLength')"
+                 [maxlength]="getConfigValue('forms.validation.firstName.maxLength')"
                  autofocus>
-          <small class="form-text error" *ngIf="fullName.invalid && fullName.touched && fullName.errors?.required">
-            Full name is required!
+          <small class="form-text error" *ngIf="firstName.invalid && firstName.touched && firstName.errors?.required">
+            First name is required!
           </small>
           <small
             class="form-text error"
-            *ngIf="fullName.invalid && fullName.touched && (fullName.errors?.minlength || fullName.errors?.maxlength)">
-            Full name should contains
+            *ngIf="firstName.invalid && firstName.touched && (firstName.errors?.minlength || firstName.errors?.maxlength)">
+            First name should contains
+            from {{getConfigValue('forms.validation.password.minLength')}}
+            to {{getConfigValue('forms.validation.password.maxLength')}}
+            characters
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="input-name" class="sr-only">Last name</label>
+          <input name="lastName" [(ngModel)]="user.lastName" id="input-name" #lastName="ngModel"
+                 class="form-control" placeholder="Last name"
+                 [class.form-control-danger]="lastName.invalid && lastName.touched"
+                 [required]="getConfigValue('forms.validation.lastName.required')"
+                 [minlength]="getConfigValue('forms.validation.lastName.minLength')"
+                 [maxlength]="getConfigValue('forms.validation.lastName.maxLength')"
+                 autofocus>
+          <small class="form-text error" *ngIf="lastName.invalid && lastName.touched && lastName.errors?.required">
+            Last name is required!
+          </small>
+          <small
+            class="form-text error"
+            *ngIf="lastName.invalid && lastName.touched && (lastName.errors?.minlength || lastName.errors?.maxlength)">
+            Last name should contains
             from {{getConfigValue('forms.validation.password.minLength')}}
             to {{getConfigValue('forms.validation.password.maxLength')}}
             characters
@@ -113,8 +134,8 @@ import { AlertService } from '../../../../../_shared/services/alert.service';
         <div class="form-group">
           <label for="input-re-password" class="sr-only">Repeat password</label>
           <input
-            name="rePass" [(ngModel)]="user.confirmPassword" type="password" id="input-re-password"
-            class="form-control" placeholder="Confirm Password" #rePass="ngModel"
+            name="rePass" type="password" id="input-re-password"
+            class="form-control" placeholder="Confirm Password"
             [class.form-control-danger]="(rePass.invalid || password.value != rePass.value) && rePass.touched"
             [required]="getConfigValue('forms.validation.password.required')">
           <small class="form-text error"
@@ -172,6 +193,7 @@ export class NbRegisterComponent {
   }
 
   register() {
+    this.user.fullName = this.user.firstName + " " + this.user.lastName;
     this.userService.create(this.user)
       .subscribe(
         data => {

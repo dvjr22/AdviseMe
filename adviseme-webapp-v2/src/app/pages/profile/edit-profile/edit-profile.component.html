@@ -1,0 +1,39 @@
+<nb-card>
+      <nb-card-header>Edit Profile</nb-card-header>
+      <nb-card-body>
+        <form (ngSubmit)="update()" #form="ngForm">
+          <div class="input-group">
+            <span class="input-group-addon success">@</span>
+            <input name="username" [(ngModel)]="currentUser.username" id="input-username"
+                     class="form-control" placeholder="Username" value="{{currentUser.username}}" #username="ngModel">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon success"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+            <input name="firstName" [(ngModel)]="currentUser.firstName" id="input-username"
+                     class="form-control" placeholder="First name" value="{{currentUser.firstName}}" #username="ngModel">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon success"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+            <input name="lastName" [(ngModel)]="currentUser.lastName" id="input-lastName"
+                     class="form-control" placeholder="Last name" value="{{currentUser.lastName}}" #username="ngModel">
+          </div>
+          <div class="input-group mail-btn-group">
+            <span class="input-group-btn">
+              <button class="btn btn-primary btn-icon">
+                <i class="ion-ios-email-outline"></i>
+              </button>
+            </span>
+            <input name="email" [(ngModel)]="emailBegin" class="form-control" value="{{emailBegin}}" #email="ngModel">
+            <span class="input-group-btn">
+              <button class="btn btn-primary">
+                {{emailEnding}}
+              </button>
+            </span>
+          </div>
+          <button class="btn btn-block btn-hero-success"
+                [class.btn-pulse]="submitted">
+          Update Profile
+        </button>
+        </form>
+      </nb-card-body>
+    </nb-card>

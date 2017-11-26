@@ -18,17 +18,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.signedIn = false;
-    this.loadAllUsers();
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     if (this.currentUser) {
       this.signedIn = true;
     }
-  }
-
-  private loadAllUsers() {
-    this.userService.getAll().subscribe(users => { this.users = users; });
   }
 
 }

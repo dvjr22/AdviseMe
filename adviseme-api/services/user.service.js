@@ -29,19 +29,20 @@ function authenticate(username, password){
       deferred.resolve({
         _id: user._id,
         username: user.username,
+        fullName: user.fullName,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        school: user.school,
-        role: user.role,
-        advisor: user.advisor,
-        currentClasses: user.currentClasses,
-        suggestedClasses: user.suggestedClasses,
-        student_Meta: user.student_Meta,
-        underlings: user.underlings,
-        appointments: user.appointments,
-        created: user.created,
-        updated: user.updated,
+        // school: user.school,
+        // role: user.role,
+        // advisor: user.advisor,
+        // currentClasses: user.currentClasses,
+        // suggestedClasses: user.suggestedClasses,
+        // student_Meta: user.student_Meta,
+        // underlings: user.underlings,
+        // appointments: user.appointments,
+        // created: user.created,
+        // updated: user.updated,
         token: jwt.sign({ sub: user._id }, config.secret)
       });
     } else {
@@ -153,20 +154,10 @@ function update(_id, userParam) {
         // fields to update
         var set = {
             username: userParam.username,
+            fullName: userParam.fullName,
             firstName: userParam.firstName,
             lastName: userParam.lastName,
             email: userParam.email,
-            school: userParam.school,
-            role: userParam.role,
-            advisor: userParam.advisor,
-            currentClasses: userParam.currentClasses,
-            suggestedClasses: userParam.suggestedClasses,
-            student_Meta: userParam.student_Meta,
-            underlings: userParam.underlings,
-            appointments: userParam.appointments,
-            created: userParam.created,
-            updated: userParam.updated,
-
         };
 
         // update password if it was entered

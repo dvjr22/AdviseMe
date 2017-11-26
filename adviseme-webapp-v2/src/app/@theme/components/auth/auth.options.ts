@@ -63,10 +63,15 @@ export const defaultSettings: any = {
       email: {
         required: true,
       },
-      fullName: {
-        required: false,
-        minLength: 4,
-        maxLength: 50,
+      firstName: {
+        required: true,
+        minLength: 1,
+        maxLength: 25,
+      },
+      lastName: {
+        required: true,
+        minLength: 1,
+        maxLength: 25,
       },
     },
   },

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [{
   path: '',
@@ -10,6 +11,10 @@ const routes: Routes = [{
   children: [{
     path: 'dashboard',
     component: DashboardComponent,
+  },
+  {
+    path: 'profile',
+    loadChildren: './profile/profile.module#ProfileModule',
   },
   {
       path: 'classes',
