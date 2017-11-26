@@ -18,7 +18,21 @@ export const MENU_ITEMS: NbMenuItem[] = [
 
   },
   {
-    title: 'Auth',
+    title: 'Classes',
+    icon: 'nb-list',
+    children: [
+      {
+        title: 'TinyMCE',
+        link: '/pages/classes/tinymce',
+      },
+      {
+        title: 'CKEditor',
+        link: '/pages/classes/ckeditor',
+      },
+    ],
+  },
+  {
+    title: 'Test-Auth',
     icon: 'nb-locked',
     children: [
       {

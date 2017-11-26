@@ -10,7 +10,12 @@ const routes: Routes = [{
   children: [{
     path: 'dashboard',
     component: DashboardComponent,
-  }, {
+  },
+  {
+      path: 'classes',
+      loadChildren: './classes/classes.module#ClassesModule',
+    },
+  {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
