@@ -33,7 +33,7 @@ function authenticate(username, password){
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        // school: user.school,
+        university: user.university,
         // role: user.role,
         // advisor: user.advisor,
         // currentClasses: user.currentClasses,
@@ -158,6 +158,7 @@ function update(_id, userParam) {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
             email: userParam.email,
+            university: userParam.university,
             image: userParam.image,
         };
 

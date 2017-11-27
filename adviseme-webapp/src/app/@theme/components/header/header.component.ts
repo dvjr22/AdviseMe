@@ -29,8 +29,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.currentUser);
-    var id = JSON.parse(localStorage.getItem("_id"));
   }
 
   toggleSidebar(): boolean {

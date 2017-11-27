@@ -9,8 +9,6 @@
                      class="form-control form-control-danger" placeholder="Username" required value="{{currentUser.username}}"#username="ngModel"
                      required minlength="4"
                      [class.form-control-danger]="username.invalid && username.touched" autofocus>
-            <div *ngIf="username.invalid">
-            </div>
           </div>
           <div class="input-group">
             <span *ngIf="firstName.valid" class="input-group-addon success"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
@@ -41,6 +39,14 @@
                 {{emailEnding}}
               </button>
             </span>
+          </div>
+          <div class="input-group">
+            <span *ngIf="university.valid" class="input-group-addon success"><i class="ion-university" aria-hidden="true"></i></span>
+            <span *ngIf="university.invalid" class="input-group-addon danger"><i class="ion-university" aria-hidden="true"></i></span>
+            <input name="university" [(ngModel)]="currentUser.university" id="input-university"
+                     class="form-control" placeholder="University" value="{{currentUser.university}}" #university="ngModel"
+                     required minlength="2"
+                     [class.form-control-danger]="university.invalid && university.touched" autofocus>
           </div>
           <button [disabled]="submitted || !form.valid || form.pristine" class="btn btn-block btn-hero-success"
                 [class.btn-pulse]="submitted">

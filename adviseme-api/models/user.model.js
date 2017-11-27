@@ -34,7 +34,7 @@ var UserSchema = new mongoose.Schema({
       data: Buffer,
       contentType: String,
     },
-    school: {
+    university: {
       type: String,
       required: true,
       trim: true,

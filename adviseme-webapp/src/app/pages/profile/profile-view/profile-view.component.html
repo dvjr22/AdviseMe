@@ -1,0 +1,36 @@
+<nb-card>
+      <nb-card-header>Profile</nb-card-header>
+      <nb-card-body>
+        <form (ngSubmit)="update()" #form="ngForm">
+          <div class="input-group has-person-icon">
+            <span class="input-group-addon">@</span>
+            <span class="form-control">{{currentUser.username}}</span>
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon"><i class="ion-person" aria-hidden="true"></i></span>
+            <span class="form-control">{{currentUser.firstName}}</span>
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon"><i class="ion-person" aria-hidden="true"></i></span>
+            <span class="form-control">{{currentUser.lastName}}</span>
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon"><i class="ion-email" aria-hidden="true"></i></span>
+            <span class="form-control">{{emailBegin}}</span>
+            <span class="input-group-btn">
+              <button class="btn btn-primary">
+                {{emailEnding}}
+              </button>
+            </span>
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon"><i class="ion-university" aria-hidden="true"></i></span>
+            <span class="form-control">{{currentUser.university}}</span>
+          </div>
+      </form>
+      </nb-card-body>
+    </nb-card>

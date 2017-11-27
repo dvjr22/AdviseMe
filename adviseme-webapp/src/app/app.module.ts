@@ -43,7 +43,14 @@ import { User } from './_shared/models/user';
     BrowserAnimationsModule,
     HttpModule,
     AppRoutingModule,
-    NbAuthModule.forRoot(),
+    NbAuthModule.forRoot({
+      providers: {
+        email: {
+          service: NbEmailPassAuthProvider,
+          config: {},
+        }
+      }
+    }),
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),

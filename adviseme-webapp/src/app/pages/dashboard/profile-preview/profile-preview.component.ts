@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../@core/data/users.service';
 
 @Component({
@@ -10,14 +11,12 @@ import { UserService } from '../../../@core/data/users.service';
 
 export class ProfilePreviewComponent implements OnInit {
 
-  user: any;
+  currentUser: User;
 
   constructor(private userService: UserService,) {
   }
 
   ngOnInit() {
-
-    this.userService.getUsers()
-      .subscribe((users: any) => this.user = users.joe);
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 }

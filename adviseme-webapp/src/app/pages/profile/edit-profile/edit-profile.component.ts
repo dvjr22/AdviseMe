@@ -10,27 +10,15 @@ import { UserService } from '../../../_shared/services/user.service';
 })
 export class EditProfileComponent implements OnInit {
   currentUser: User;
-  signedIn: boolean;
-  pic: any = '';
   user: any = {};
   emailBegin: string;
   emailEnding: string;
-
-  fileToUpload: File;
-
-  isUsernameValid: true;
-  isUsernameInValid: false;
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit() {
-    this.signedIn = false;
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-    if (this.currentUser) {
-      this.signedIn = true;
-    }
 
     var emailArray = this.currentUser.email.split("@");
 
@@ -39,8 +27,10 @@ export class EditProfileComponent implements OnInit {
   }
 
   update() {
+    this.currentUser.fullName = this.currentUser.firstName + " " + this.currentUser.lastName;
     this.currentUser.email = this.emailBegin + this.emailEnding;
     this.userService.update(this.currentUser).subscribe();
+    localStorage.setItem('currentUser',JSON.stringify(this.currentUser));
     //router to Profile
   }
 }

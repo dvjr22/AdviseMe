@@ -1,30 +1,23 @@
-<nb-card size="xxlarge">
+<nb-card size="medium">
   <nb-card-body>
-    <div class="picture" style.background-image="url( {{ user.picture }} )"></div>
+    <!-- <div class="picture" style.background-image="url(/assets/images/pic.png)"> </div> -->
 
     <div class="details">
       <div class="title">
-        {{ user.name }}
+        {{ currentUser.fullName }}
       </div>
       <div class="description">
-        School: {{ user.school }}, Major: {{ user.major }}
+        School: {{ currentUser.university }},
+        <br>
+        Major: {{ currentUser.major }},
+        <br>
+        Year: {{ currentUser.status }},
       </div>
     </div>
   </nb-card-body>
 
 
   <nb-card-footer>
-    <a href= "#" target="_blank">
-      <i class="ion-ios-world"></i>
-    </a>
-    <a href= "#" target="_blank">
-      <i class="ion-social-apple"></i>
-    </a>
-    <a href= "#" target="_blank">
-      <i class="ion-social-android"></i>
-    </a>
-    <a href= "{{ user.github }}" target="_blank">
-      <i class="ion-social-github"></i>
-    </a>
+
   </nb-card-footer>
 </nb-card>
