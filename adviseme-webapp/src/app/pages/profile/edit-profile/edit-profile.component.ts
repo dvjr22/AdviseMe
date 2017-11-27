@@ -18,6 +18,9 @@ export class EditProfileComponent implements OnInit {
 
   fileToUpload: File;
 
+  isUsernameValid: true;
+  isUsernameInValid: false;
+
   constructor(private userService: UserService) {
   }
 
@@ -38,5 +41,6 @@ export class EditProfileComponent implements OnInit {
   update() {
     this.currentUser.email = this.emailBegin + this.emailEnding;
     this.userService.update(this.currentUser).subscribe();
+    //router to Profile
   }
 }
