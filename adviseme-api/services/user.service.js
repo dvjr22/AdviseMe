@@ -158,6 +158,7 @@ function update(_id, userParam) {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
             email: userParam.email,
+            image: userParam.image,
         };
 
         // update password if it was entered

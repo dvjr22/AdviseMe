@@ -4,9 +4,9 @@ import { User } from '../../_shared/models/user';
 import { UserService } from '../../_shared/services/user.service';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'ngx-app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   currentUser: User;
@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.signedIn = false;
-
+    
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     if (this.currentUser) {

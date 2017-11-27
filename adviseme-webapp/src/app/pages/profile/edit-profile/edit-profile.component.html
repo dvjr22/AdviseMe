@@ -3,6 +3,9 @@
       <nb-card-body>
         <form (ngSubmit)="update()" #form="ngForm">
           <div class="input-group">
+            <input type="file">
+          </div>
+          <div class="input-group">
             <span class="input-group-addon success">@</span>
             <input name="username" [(ngModel)]="currentUser.username" id="input-username"
                      class="form-control" placeholder="Username" value="{{currentUser.username}}" #username="ngModel">
@@ -35,5 +38,6 @@
           Update Profile
         </button>
         </form>
+        <img src="{{image}}" alt="Mountain View">
       </nb-card-body>
     </nb-card>

@@ -55,7 +55,7 @@ export class CanActivateUser implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): Observable<boolean>|Promise<boolean>|boolean {
     return this.authenticationService.checkForLocalUser();
   }

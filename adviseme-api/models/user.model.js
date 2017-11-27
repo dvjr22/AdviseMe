@@ -30,6 +30,10 @@ var UserSchema = new mongoose.Schema({
       required: true,
       trim: true,
     },
+    image: {
+      data: Buffer,
+      contentType: String,
+    },
     school: {
       type: String,
       required: true,

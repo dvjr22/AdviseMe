@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Class } from './class';
 
 @Injectable()
 export class Cart {
   _id: string;
-  classes: Class[];
+  prefix: string;
+  courseNo: number;
+  title: string;
+  semester: string;
+  requirement: number[];
+  preReqs: number[];
+  department: string;
 }

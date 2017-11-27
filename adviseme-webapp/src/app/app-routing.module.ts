@@ -1,37 +1,61 @@
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { AlertComponent } from './_shared/alert/alert.component';
+import { HttpModule } from '@angular/http';
 
-// Components
-import { AdvisementSignupComponent } from './pages/advisement-signup/advisement-signup.component';
-import { AppointmentComponent } from './pages/appointment/appointment.component';
-import { ClassInfoComponent } from './pages/class-info/class-info.component';
-import { ClassListComponent } from './pages/class-list/class-list.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { LoginComponent } from './pages/login/login.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { LogoutComponent } from './pages/logout/logout.component';
+import { NbAuthComponent } from '@nebular/auth'
+//import { NbAuthComponent } from './auth/components/auth.component';
+import { NbAuthBlockComponent } from './@theme/components/auth/components/auth-block/auth-block.component';
+import { NbLoginComponent } from './@theme/components/auth/components/login/login.component';
+import { NbRegisterComponent } from './@theme/components/auth/components/register/register.component';
+import { NbLogoutComponent } from './@theme/components/auth/components/logout/logout.component';
+import { NbRequestPasswordComponent } from './@theme/components/auth/components/request-password/request-password.component';
+import { NbResetPasswordComponent } from './@theme/components/auth/components/reset-password/reset-password.component';
 
 // Services
+import { UserService } from './_shared/services/user.service';
 import { CanActivateUser } from './_shared/services/authentication.service';
+import { AlertService } from './_shared/services/alert.service';
 
-// Definitions for possible routes and the components to load in the router
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full'},
-  { path: 'advisement-signup', component: AdvisementSignupComponent, canActivate: [CanActivateUser]},
-  { path: 'appointment', component: AppointmentComponent, canActivate: [CanActivateUser]},
-  { path: 'class-info/:id:', component: ClassInfoComponent, canActivate: [CanActivateUser]},
-  { path: 'class-list', component: ClassListComponent, canActivate: [CanActivateUser]},
-  { path: 'dashboard',  component: DashboardComponent, canActivate: [CanActivateUser]},
-  { path: 'login', component: LoginComponent},
-  { path: 'profile', component: ProfileComponent, canActivate: [CanActivateUser]},
-  { path: 'register', component: RegisterComponent },
-  { path: 'logout', component: LogoutComponent }
+    {
+      path: 'auth',
+      component: NbAuthComponent,
+      children: [
+        {
+          path: 'login',
+          component: NbLoginComponent,
+        },
+        {
+          path: 'register',
+          component: NbRegisterComponent,
+        },
+        {
+          path: 'logout',
+          component: NbLogoutComponent,
+        },
+        {
+          path: 'request-password',
+          component: NbRequestPasswordComponent,
+        },
+        {
+          path: 'reset-password',
+          component: NbResetPasswordComponent,
+        },
+      ],
+    },
+  { path: 'pages',canActivate: [CanActivateUser], loadChildren: 'app/pages/pages.module#PagesModule'},
+  { path: '', redirectTo: '/auth/login', pathMatch: 'full'},
+  { path: '**', redirectTo: '/auth/login' },
 ];
 
-// Initialize the routes defined in routes above
+const config: ExtraOptions = {
+  useHash: true,
+};
+
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes, config)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
