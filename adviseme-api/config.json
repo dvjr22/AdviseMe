@@ -1,5 +1,5 @@
 {
-    "connectionString": "mongodb://localhost:27017/mean-angular2-registration-login-example",
+    "connectionString": "mongodb://localhost:27017/adviseMe",
     "apiUrl": "http://localhost:3000",
     "secret": "REPLACE THIS WITH YOUR OWN SECRET, IT CAN BE ANY STRING",
     "twilioAccountSid": "ACf609fc6c1c74c3773fa13f451bad6fe4",

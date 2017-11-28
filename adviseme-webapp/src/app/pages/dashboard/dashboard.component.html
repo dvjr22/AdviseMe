@@ -1,17 +1,7 @@
-  <p>dashboard works!</p>
-  <div *ngIf="signedIn">
-    <h1>Hi {{currentUser.username}}!</h1>
-      <p>You're logged in with the MEAN Stack Angular 2!!</p>
-      <h3>All registered users:</h3>
-      <ul>
-          <li *ngFor="let user of users">
-              {{user.fullName}}
-          </li>
-      </ul>
-      <p><a [routerLink]="['/logout']">Logout</a></p>
+<!-- .col-12 .col-sm-6 .col-md-8 -->
+<!--  container-fluid = full screen -->
+<div class="row">
+  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+    <ngx-profile-preview></ngx-profile-preview>
   </div>
-  <div *ngIf="!signedIn">
-    <h3>If you wish to view your dashboard please
-      <p><a [routerLink]="['/logout']">login</a></p>
-    </h3>
-  </div>
+</div>

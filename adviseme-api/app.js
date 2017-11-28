@@ -18,9 +18,9 @@ var api = require('./routes/api.route')
 var app = express();
 
 mongoose.Promise = bluebird
-mongoose.connect('mongodb://127.0.0.1:27017/AdviseMe', { useMongoClient: true})
-.then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/AdviseMe`)})
-.catch(()=> { console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/AdviseMe`)})
+mongoose.connect('mongodb://127.0.0.1:27017/adviseMe', { useMongoClient: true})
+.then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/adviseMe`)})
+.catch(()=> { console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/adviseMe`)})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

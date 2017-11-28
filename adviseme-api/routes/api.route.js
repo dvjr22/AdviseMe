@@ -7,7 +7,5 @@ var appointments = require('./api/appointment.route')
 
 //add route modules here
 router.use('/classes', classes);
-router.use('/appointments', appointments)
-
-
+router.use('/appointments', appointments);
 module.exports = router;

@@ -29,8 +29,20 @@ function authenticate(username, password){
       deferred.resolve({
         _id: user._id,
         username: user.username,
+        fullName: user.fullName,
         firstName: user.firstName,
         lastName: user.lastName,
+        email: user.email,
+        university: user.university,
+        // role: user.role,
+        // advisor: user.advisor,
+        // currentClasses: user.currentClasses,
+        // suggestedClasses: user.suggestedClasses,
+        // student_Meta: user.student_Meta,
+        // underlings: user.underlings,
+        // appointments: user.appointments,
+        // created: user.created,
+        // updated: user.updated,
         token: jwt.sign({ sub: user._id }, config.secret)
       });
     } else {
@@ -61,8 +73,7 @@ function getAll() {
 
 function getById(_id) {
     var deferred = Q.defer();
-
-    db.users.findById(_id, function (err, user) {
+    db.users.findOne(mongo.helper.toObjectID(_id), function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user) {
@@ -142,9 +153,13 @@ function update(_id, userParam) {
     function updateUser() {
         // fields to update
         var set = {
+            username: userParam.username,
+            fullName: userParam.fullName,
             firstName: userParam.firstName,
             lastName: userParam.lastName,
-            username: userParam.username,
+            email: userParam.email,
+            university: userParam.university,
+            image: userParam.image,
         };
 
         // update password if it was entered
