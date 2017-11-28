@@ -16,6 +16,9 @@ import { NbAuthResult, NbAuthService } from '../../services/auth.service';
 @Component({
   selector: 'nb-login',
   template: `
+  <nb-card-body>
+    <toaster-container></toaster-container>
+  </nb-card-body>
   <nb-auth-block>
     <h2 class="title">Sign In</h2>
     <small class="form-text sub-title">Hello! Sign in with your username</small>
@@ -132,7 +135,7 @@ export class NbLoginComponent {
         error => {
           this.loading = false;
           console.error('A login error has occured');
-          this.alertService.error('Invalid password or username');
+          this.alertService.error('Invalid Username or Password');
         });
   }
 

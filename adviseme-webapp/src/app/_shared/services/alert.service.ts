@@ -1,38 +1,53 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+
 
 @Injectable()
 export class AlertService {
-  private subject = new Subject<any>();
-  private keepAfterNavigationChange = false;
+  constructor(private toasterService: ToasterService) {}
 
-  constructor(private router: Router) {
-    // Clear alert message on route change
-    router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        if (this.keepAfterNavigationChange) {
-          // only keep for a single location change
-          this.keepAfterNavigationChange = false;
-        } else {
-          this.subject.next();
-        }
-      }
-     });
+  config: ToasterConfig;
+  position = 'toast-top-right';
+  animationType = 'fade';
+  title = 'HI there!';
+  content = `I'm cool toaster!`;
+  timeout = 5000;
+  toastsLimit = 5;
+  type = 'default';
+  isNewestOnTop = true;
+  isHideOnClick = true;
+  isDuplicatesPrevented = false;
+  isCloseButton = true;
+
+  success(message: string) {
+    this.showToast('default', 'Success', message);
   }
 
-  success(message: string, keepAfterNavigationChange = false) {
-    this.keepAfterNavigationChange = keepAfterNavigationChange;
-    this.subject.next({ type: 'success', text: message });
+  error(message: string) {
+    this.showToast('error', 'Error', message);
   }
 
-  error(message: string, keepAfterNavigationChange = false) {
-    this.keepAfterNavigationChange = keepAfterNavigationChange;
-    this.subject.next({ type: 'error', text: message });
+  private showToast(type: string, title: string, body: string) {
+    console.log('Making a toast');
+    this.config = new ToasterConfig({
+      positionClass: this.position,
+      timeout: this.timeout,
+      newestOnTop: this.isNewestOnTop,
+      tapToDismiss: this.isHideOnClick,
+      preventDuplicates: this.isDuplicatesPrevented,
+      animation: this.animationType,
+      limit: this.toastsLimit,
+    });
+    const toast: Toast = {
+      type: type,
+      title: title,
+      body: body,
+      timeout: this.timeout,
+      showCloseButton: this.isCloseButton,
+      bodyOutputType: BodyOutputType.TrustedHtml,
+    };
+    this.toasterService.popAsync(toast);
   }
 
-  getMessage(): Observable<any> {
-    return this.subject.asObservable();
+  getMessage(): string {
   }
 }
