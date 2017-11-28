@@ -6,10 +6,12 @@ _this = this
 exports.createAppointment = async function(req, res, next){
   //req.body contains form submit values
   var newAppointment = {
+    studentID: req.body.studentID,
     name: req.body.name,
     major: req.body.major,
     year: req.body.year,
     advisor: req.body.advisor,
+    roomNumber: req.body.roomNumber,
     date: req.body.date,
   }
 
@@ -50,10 +52,12 @@ exports.updateAppointment = async function(req, res, next){
 
   var Appointment = {
     id,
+    studentID: req.body.studentID,
     name: req.body.name,
     major: req.body.major,
     year: req.body.year,
     advisor: req.body.advisor,
+    roomNumber: req.body.roomNumber,
     date: req.body.date,
   }
 

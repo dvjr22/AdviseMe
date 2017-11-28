@@ -6,13 +6,13 @@ _this = this
 exports.createClass = async function(req, res, next){
   //req.body contains form submit values
   var newClass = {
+    _id: req.body._id,
     prefix: req.body.prefix,
-    course_num: req.body.course_num,
+    courseNo: req.body.courseNo,
     title: req.body.title,
-    semester: req.body.semester,
-    description: req.body.description,
-    preReqs: req.body.preReqs,
-    department: req.body.department
+    requiredFor: req.body.requiredFor,
+    department: req.body.department,
+    curriculum: req.body.curriculum,
   }
 
   try{
@@ -47,18 +47,19 @@ exports.updateClass = async function(req, res, next){
     return res.status(400).json({status: 400, message: "Id must be present"})
   }
 
-  var id = req.body._id;
+  var _id = req.body._id;
   console.log(req.body)
 
   var Class = {
-    id,
-    prefix: req.body.prefix,
-    course_num: req.body.course_num,
-    title: req.body.title,
-    semester: req.body.semester ? req.body.semester : null,
-    description: req.body.description ? req.body.description : null,
-    preReqs: req.body.preReqs,
-    department: req.body.department
+    _id,
+    class: {
+      prefix: req.body.prefix,
+      courseNo: req.body.courseNo,
+      title: req.body.title,
+    },
+    requiredFor: req.body.requiredFor,
+    department: req.body.department,
+    curriculum: req.body.curriculum,
   }
 
   try{

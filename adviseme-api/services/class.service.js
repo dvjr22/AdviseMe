@@ -15,13 +15,15 @@ _this = this
 //create a new mongoose object
 exports.createClass = async function(aClass){
     var newClass = new Class({
-        prefix: aClass.prefix,
-        course_num: aClass.course_num,
-        title: aClass.title,
-        semester: aClass.semester,
-        description: aClass.description,
-        preReqs: aClass.preReqs,
+        _id: aClass._id,
+        class: {
+          prefix: aClass.prefix,
+          courseNo: aClass.courseNo,
+          title: aClass.title,
+        },
+        requiredFor: aClass.requiredFor,
         department: aClass.department,
+        curriculum: aClass.curriculum,
     })
 
     try{
@@ -38,11 +40,11 @@ exports.createClass = async function(aClass){
 * To new Class info sent in request.
 */
 exports.updateClass = async function(aClass){
-  var id = aClass.id
+  var _id = aClass._id
 
   try{
     //find by Id
-    var oldClass = await Class.findById(id);
+    var oldClass = await Class.findById(_id);
   }catch(e){
     throw Error(e.message)
   }
@@ -50,13 +52,13 @@ exports.updateClass = async function(aClass){
   console.log(oldClass)
 
   //edit the class object
-  oldClass.prefix = aClass.prefix
-  oldClass.course_num = aClass.course_num
-  oldClass.title = aClass.title
-  oldClass.semester = aClass.semester
-  oldClass.description = aClass.description
-  oldClass.preReqs = aClass.preReqs
+  oldClass._id = aClass._id
+  oldClass.class.prefix = aClass.class.prefix
+  oldClass.class.courseNo = aClass.class.courseNo
+  oldClass.class.title = aClass.class.title
+  oldClass.requiredFor = aClass.requiredFor
   oldClass.department = aClass.department
+  oldClass.curriculum = aClass.curriculum
 
   console.log(oldClass)
 
