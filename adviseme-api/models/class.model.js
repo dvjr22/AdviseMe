@@ -2,13 +2,15 @@ var mongoose = require('mongoose')
 var mongoosePaginate = require('mongoose-paginate')
 
 var ClassSchema = new mongoose.Schema({
-    prefix: { type: String, required: true },
-    course_num: { type: String, required: true },
-    title: { type: String, required: true },
-    semester: String,
-    description: String,
-    preReqs: String,
+    _id: { type: String, required: true},
+    class: {
+      prefix: { type: String, required: true },
+      courseNo: { type: String, required: true },
+      title: { type: String, required: true },
+    },
+    requiredFor: [String],
     department: { type: String, required: true },
+    curriculum: [String],
 })
 
 ClassSchema.plugin(mongoosePaginate)

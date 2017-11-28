@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class Appointment {
-  _id: string;
-  createdBy: string; //ObjectId
-  createdFor: string;//ObjectId
-  dateCreated: Date; //not sure how this will be formated
-  dateFor: Date;
+  studentID: number; //ObjectId
+  name: string;
+  major: string;
+  year: string;
+  advisor: string;
   roomNumber: string;
+  date: Date;
 }

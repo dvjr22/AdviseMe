@@ -15,10 +15,12 @@ _this = this
 //create a new mongoose object
 exports.createAppointment = async function(aAppointment){
     var newAppointment = new Appointment({
+      studentID: aAppointment.studentID,
       name: aAppointment.name,
       major: aAppointment.major,
       year: aAppointment.year,
       advisor: aAppointment.advisor,
+      roomNumber: aAppointment.roomNumber,
       date: aAppointment.date,
     })
 
@@ -48,10 +50,12 @@ exports.updateAppointment = async function(aAppointment){
   console.log(oldAppointment)
 
   //edit the Appointment object
+  oldAppointment.studentID = aAppointment.studentID,
   oldAppointment.name = aAppointment.name,
   oldAppointment.major = aAppointment.major,
   oldAppointment.year = aAppointment.year,
   oldAppointment.advisor = aAppointment.advisor,
+  oldAppointment.roomNumber = aAppointment.roomNumber,
   oldAppointment.date = aAppointment.date,
 
   console.log(oldAppointment)

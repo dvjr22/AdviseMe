@@ -8,9 +8,9 @@ import 'rxjs/add/operator/map';
 export class AppointmentService {
 
   constructor(private http: Http) { }
-
-    getById(_id: string) {
-        return this.http.get('/appointment/' + _id).map((response: Response) => response.json());
+  
+    get(appointment: Appointment) {
+      return this.http.get('/appointment/', appointment);
     }
 
     create(appointment: Appointment) {
