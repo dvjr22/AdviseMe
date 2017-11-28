@@ -10,17 +10,23 @@ var url = "mongodb://localhost:27017/adviseMe";		// Database name
 let insertMany = []; // array to hold json 
 let noOfStudents = 40; // Number of students to generate
 
+insertMany.push(makeTyler()); // push Tyler to db
+
 // Create students
 for (var i = 0; i < noOfStudents; i++) {
 
 	var obj = new Object(); // object to store JSON data
-	id = makeid(); // get random id
+	var id = makeid(); // get random id
+	var lastName = lastName();
 
-	obj._id = id;
 	obj.firstName = firstName(); // get random first name
-	obj.lastName = lastName(); // get random last name
+	obj.lastName = lastName; // get random last name
 	obj.sid = id;
 	obj.major = major(); // get major
+
+	obj.username = lastName + id; // unique user login
+	obj.email = "random.student@email.sc.edu";  // user email
+	obj.hash = "$2a$10$AYYlKAk7SFPzIwHCBAV8gu8FDwv/.RgNYvbfzN.k.Mfxwl.wcl8Sa"; // password 1234
 
 	coursesArr = course(); // get random course work
 	obj.status = status(coursesArr); // set status based on course work
@@ -45,6 +51,29 @@ MongoClient.connect(url, function(err, db) {
 	});
 
 });
+
+/**************************************************************************************************
+*	generate Tyler Hall
+*/
+function makeTyler() {
+
+	let obj = new Object(); // object to store JSON data
+
+	obj.firstName = "Tyler"; // get random first name
+	obj.lastName = "Hall"; // get random last name
+	obj.sid = makeid();
+	obj.major = major(); // get major
+
+	obj.username = "tbhall";
+	obj.email = "tbhall@email.sc.edu";
+	obj.hash = "$2a$10$AYYlKAk7SFPzIwHCBAV8gu8FDwv/.RgNYvbfzN.k.Mfxwl.wcl8Sa";
+
+	coursesArr = course(); // get random course work
+	obj.status = status(coursesArr); // set status based on course work
+	obj.course = coursesArr;
+
+	return obj;
+}
 
 /**************************************************************************************************
 *	generate random id

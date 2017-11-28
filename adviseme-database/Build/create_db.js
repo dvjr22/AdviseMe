@@ -12,7 +12,7 @@
 
 var MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
 var url = "mongodb://localhost:27017/adviseMe";		// Database name
-var collections = ["users", "classes"];
+var collections = ["users", "classes", "appointments"];
 
 
 // Connect and create collections
@@ -29,6 +29,12 @@ MongoClient.connect(url, function(err, db) {
     });
 
     db.createCollection(collections[1], function(err, res) {
+        if (err) throw err;
+        console.log("Collection created!");
+        db.close();
+    });
+
+    db.createCollection(collections[2], function(err, res) {
         if (err) throw err;
         console.log("Collection created!");
         db.close();
