@@ -48,18 +48,6 @@
                      required minlength="2"
                      [class.form-control-danger]="university.invalid && university.touched" autofocus>
           </div>
-
-          //Status
-          <div class="input-group">
-          <span class="input-group-addon"><i class="ion-university" aria-hidden="true"></i></span>
-          <select class="form-control">
-            <option>Minsk</option>
-            <option>Gomel</option>
-            <option>Brest</option>
-            <option>Grodno</option>
-            <option>Mogilev</option>
-          </select>
-        </div>
           <div class="input-group">
             <span *ngIf="status.valid" class="input-group-addon success"><i class="ion-university" aria-hidden="true"></i></span>
             <span *ngIf="status.invalid" class="input-group-addon danger"><i class="ion-status" aria-hidden="true"></i></span>
