@@ -27,6 +27,7 @@ import { NbResetPasswordComponent } from './@theme/components/auth/components/re
 import { UserService } from './_shared/services/user.service';
 import { AuthenticationService, CanActivateUser } from './_shared/services/authentication.service';
 import { AlertService } from './_shared/services/alert.service';
+import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 
 // Models
 import { User } from './_shared/models/user';
@@ -48,8 +49,8 @@ import { User } from './_shared/models/user';
         email: {
           service: NbEmailPassAuthProvider,
           config: {},
-        }
-      }
+        },
+      },
     }),
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
@@ -64,6 +65,7 @@ import { User } from './_shared/models/user';
     User,
     AlertService,
     NbAuthService,
+    ToasterService,
     { provide: APP_BASE_HREF, useValue: '/' },
   ],
 })

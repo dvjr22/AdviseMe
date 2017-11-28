@@ -28,6 +28,7 @@ import { NbRegisterComponent } from './components/register/register.component';
 import { NbLogoutComponent } from './components/logout/logout.component';
 import { NbRequestPasswordComponent } from './components/request-password/request-password.component';
 import { NbResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ToasterModule, ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 
 import { routes } from './auth.routes';
 import { deepExtend } from './helpers';
@@ -59,6 +60,7 @@ export function nbOptionsFactory(options) {
     RouterModule.forChild(routes),
     FormsModule,
     HttpClientModule,
+    ToasterModule,
   ],
   declarations: [
     NbAuthComponent,
@@ -77,6 +79,9 @@ export function nbOptionsFactory(options) {
     NbRequestPasswordComponent,
     NbResetPasswordComponent,
     NbLogoutComponent,
+  ],
+  providers: [
+    ToasterService,
   ],
 })
 export class NbAuthModule {
