@@ -3,9 +3,9 @@
 # Nov. 20, 2016
 # Reads csv files and converts to JSON format for db insertion
 
-import pymongo
 import collections, os, sys, csv, linecache, json
-
+'''
+import pymongo
 
 # Get Mongo db connection
 client = pymongo.MongoClient('localhost', 27017)
@@ -13,10 +13,10 @@ client = pymongo.MongoClient('localhost', 27017)
 db = client.adviseMe.classes
 
 print(db)
+'''
 
-path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured'
-#path = '/home/diego/Capstone/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured'
-
+# path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Lab pc path
+path = '/home/diego/Capstone/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Laptop path
 
 # Walk directory path for .csv files containing class data
 for root, subdirs, files in os.walk(path):
@@ -29,38 +29,41 @@ for root, subdirs, files in os.walk(path):
 		# Check if path is to directory, pass to next path (This should never happen)
 		if os.path.isdir(filePath):
 			pass
-
 		# Process file
 		else:
 
 			with open(filePath, 'r') as file:
 
-				data = collections.OrderedDict()
+				data = collections.OrderedDict() # store data in json format in the insertion order
 				spamreader = csv.reader(file)
 
 				for i, row in enumerate(spamreader):
 
 					if i == 0:
-						data['_id'] = row[0].strip()
-
+						data['_id'] = row[0].strip() # class id 
 					elif i == 1:
+						# class info
 						data['class'] = {'prefix' : row[0].strip(), 'courseNo' : int(row[1]), 'title' : row[2].strip()}
-						
 					elif i == 2:
-						
+						# list of prerequisites as class ids
 						data['prerequisites'] = list(filter(lambda x : x != '', row))
-
 					elif i == 3:
-
-						data['requiredFor'] = list(filter(lambda x : x != '', row))
-				
+						data['department'] = row[0].strip() # department		
 					elif i == 4:
+						# The curriculum class can fall under
+						curriculum = list(filter(lambda x : x != '', row))
+						insert = [] # track curriculum in major -> recommended order
+						curriculumHolder = [] # array to insert into json
 
-						data['department'] = row[0].strip()
+						for i, sequence in enumerate(curriculum):
+							
+							insert.append(sequence) 
+							# ensure each instance of insert only has 2 values
+							if i % 2 == 1:
+								curriculumHolder.append(insert) # add pair to array
+								insert = [] # reset insert
 
-					elif i == 5:
-
-						 data['curriculum'] = list(filter(lambda x : x != '', row))
+						data['curriculum'] = curriculumHolder 
 
 					else:
 						break
@@ -69,6 +72,6 @@ for root, subdirs, files in os.walk(path):
 				print(json.dumps(data))
 				
 				# Insert data
-				db.insert_one(data)
+				#db.insert_one(data)
 				
 
