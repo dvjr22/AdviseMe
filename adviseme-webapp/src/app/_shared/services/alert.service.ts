@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-
+import { ToasterModule, ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 
 @Injectable()
 export class AlertService {
   constructor(private toasterService: ToasterService) {}
-
   config: ToasterConfig;
   position = 'toast-top-right';
   animationType = 'fade';
@@ -27,7 +26,6 @@ export class AlertService {
   }
 
   private showToast(type: string, title: string, body: string) {
-    console.log('Making a toast');
     this.config = new ToasterConfig({
       positionClass: this.position,
       timeout: this.timeout,
@@ -46,8 +44,5 @@ export class AlertService {
       bodyOutputType: BodyOutputType.TrustedHtml,
     };
     this.toasterService.popAsync(toast);
-  }
-
-  getMessage(): string {
   }
 }
