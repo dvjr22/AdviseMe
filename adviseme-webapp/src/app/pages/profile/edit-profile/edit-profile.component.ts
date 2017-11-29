@@ -10,6 +10,9 @@ import { UserService } from '../../../_shared/services/user.service';
 })
 export class EditProfileComponent implements OnInit {
   currentUser: User;
+  user: any = {};
+  emailBegin: string;
+  emailEnding: string;
 
   constructor(private userService: UserService) {
   }
@@ -22,7 +25,8 @@ export class EditProfileComponent implements OnInit {
 
   update() {
     this.currentUser.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
+    this.currentUser.email = this.emailBegin + this.emailEnding;
     this.userService.update(this.currentUser).subscribe();
-    // router to Profile
+    //router to Profile
   }
 }
