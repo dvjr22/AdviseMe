@@ -9,11 +9,11 @@ export enum Role {
 
 export enum Status {
   None,
-  Freshman, // 0
-  Sophmore, // 1
-  Junior,   // 2
-  Senior,   // 3
-  SSenior,  // 4 Super Senior
+  freshman, // 0
+  sophomore, // 1
+  junior,   // 2
+  senior,   // 3
+  sSenior,  // 4 Super Senior
 }
 
 export enum Major {
