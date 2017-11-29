@@ -1,10 +1,7 @@
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AlertComponent } from './_shared/alert/alert.component';
 import { HttpModule } from '@angular/http';
-
-import { NbAuthComponent } from '@nebular/auth'
-//import { NbAuthComponent } from './auth/components/auth.component';
+import { NbAuthComponent } from '@nebular/auth';
 import { NbAuthBlockComponent } from './@theme/components/auth/components/auth-block/auth-block.component';
 import { NbLoginComponent } from './@theme/components/auth/components/login/login.component';
 import { NbRegisterComponent } from './@theme/components/auth/components/register/register.component';
@@ -44,11 +41,10 @@ const routes: Routes = [
         },
       ],
     },
-  { path: 'pages',canActivate: [CanActivateUser], loadChildren: 'app/pages/pages.module#PagesModule'},
+  { path: 'pages', canActivate: [CanActivateUser], loadChildren: 'app/pages/pages.module#PagesModule'},
   { path: '', redirectTo: '/auth/login', pathMatch: 'full'},
   { path: '**', redirectTo: '/auth/login' },
 ];
-
 const config: ExtraOptions = {
   useHash: true,
 };
