@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../../../_shared/models/user';
+import { User, Status } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 
 @Component({
@@ -8,13 +8,18 @@ import { UserService } from '../../../_shared/services/user.service';
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss'],
 })
+
+
 export class EditProfileComponent implements OnInit {
+  status = Status;
+  keys: any;
   currentUser: User;
   user: any = {};
   emailBegin: string;
   emailEnding: string;
 
   constructor(private userService: UserService) {
+    this.keys = Object.keys(this.status).filter(Number);
   }
 
   ngOnInit() {
@@ -27,6 +32,6 @@ export class EditProfileComponent implements OnInit {
     this.currentUser.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
     this.currentUser.email = this.emailBegin + this.emailEnding;
     this.userService.update(this.currentUser).subscribe();
-    //router to Profile
+    // router to Profile
   }
 }

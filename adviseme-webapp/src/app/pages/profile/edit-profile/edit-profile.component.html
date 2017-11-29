@@ -44,16 +44,14 @@
                      [class.form-control-danger]="university.invalid && university.touched" autofocus>
           </div>
           <div class="input-group">
-            <span *ngIf="status.valid" class="input-group-addon success"><i class="ion-university" aria-hidden="true"></i></span>
-            <span *ngIf="status.invalid" class="input-group-addon danger"><i class="ion-status" aria-hidden="true"></i></span>
-            <input name="status" [(ngModel)]="currentUser.status" id="input-status"
-                     class="form-control" placeholder="Status" value="{{currentUser.status}}" #status="ngModel"
-                     required minlength="2"
-                     [class.form-control-danger]="status.invalid && status.touched" autofocus>
+            <span class="input-group-addon success"><i class="ion-university" aria-hidden="true"></i></span>
+            <select class="form-control">
+              <option *ngFor="let key of keys" [value]="key" [label]="status[key]"></option>
+            </select>
           </div>
           <div class="input-group">
             <span *ngIf="major.valid" class="input-group-addon success"><i class="ion-university" aria-hidden="true"></i></span>
-            <span *ngIf="major.invalid" class="input-group-addon danger"><i class="ion-major" aria-hidden="true"></i></span>
+            <span *ngIf="major.invalid" class="input-group-addon danger"><i class="ion-university" aria-hidden="true"></i></span>
             <input name="major" [(ngModel)]="currentUser.major" id="input-major"
                      class="form-control" placeholder="Major" value="{{currentUser.major}}" #major="ngModel"
                      required minlength="2"
