@@ -41,7 +41,7 @@ app.use(require('express-session')({
 app.use('/users', auth);
 app.use('/notify', notification);
 
-//Use the API routes for all routes matching /api
+//Use the API routes in api.route.js
 app.use(api);
 
 // Angular DIST output folder
