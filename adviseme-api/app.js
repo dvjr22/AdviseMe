@@ -42,7 +42,7 @@ app.use('/users', auth);
 app.use('/notify', notification);
 
 //Use the API routes for all routes matching /api
-app.use('/api', api);
+app.use(api);
 
 // Angular DIST output folder
 app.use(express.static('../adviseme-webapp/dist'));
