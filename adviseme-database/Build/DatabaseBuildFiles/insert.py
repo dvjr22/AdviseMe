@@ -78,14 +78,11 @@ for root, subdirs, files in os.walk(path):
 
 					else:
 						break
-
-				# print(data)
-				# print(json.dumps(data))
-				# print("")
 				
 				# Insert data
 				if db.insert_one(data):
 					print("Class: %s inserted" %(data['_id']))
+					# print(json.dumps(data)+'\n')
 
 				
 
