@@ -10,18 +10,18 @@ export class AppointmentService {
   constructor(private http: Http) { }
 
     get(appointment: Appointment) {
-      return this.http.get('/appointment/', appointment);
+      return this.http.get('/appointments/', appointment);
     }
 
     create(appointment: Appointment) {
-        return this.http.post('/appointment', appointment);
+        return this.http.post('/appointments', appointment);
     }
 
     update(appointment: Appointment) {
-        return this.http.put('/appointment/' + appointment, appointment);
+        return this.http.put('/appointments/' + appointment, appointment);
     }
 
     delete(_id: Appointment) {
-        return this.http.delete('/appointment/' + _id);
+        return this.http.delete('/appointments/' + _id);
     }
 }
