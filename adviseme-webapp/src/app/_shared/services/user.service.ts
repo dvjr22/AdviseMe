@@ -13,7 +13,7 @@ export class UserService {
 
   constructor(private http: Http) { }
 
-  getAll() {
+    getAll() {
         return this.http.get('/users').map((response: Response) => response.json());
     }
 

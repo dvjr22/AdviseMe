@@ -25,12 +25,14 @@ import { NbResetPasswordComponent } from './@theme/components/auth/components/re
 
 // Services
 import { UserService } from './_shared/services/user.service';
+import { ClassService } from './_shared/services/class.service';
 import { AuthenticationService, CanActivateUser } from './_shared/services/authentication.service';
 import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 
 // Models
 import { User } from './_shared/models/user';
+import { Class } from './_shared/models/class';
 
 //Import images
 
@@ -60,9 +62,11 @@ import { User } from './_shared/models/user';
   bootstrap: [AppComponent],
   providers: [
     UserService,
+    ClassService,
     AuthenticationService,
     CanActivateUser,
     User,
+    Class,
     AlertService,
     NbAuthService,
     ToasterService,

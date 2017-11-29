@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ClassesComponent } from './classes.component';
 import { TinyMCEComponent } from './tiny-mce/tiny-mce.component';
 import { CKEditorComponent } from './ckeditor/ckeditor.component';
+import { CoursesComponent } from './courses/courses.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,6 +15,9 @@ const routes: Routes = [{
   }, {
     path: 'ckeditor',
     component: CKEditorComponent,
+  }, {
+    path: 'courses',
+    component: CoursesComponent,
   }],
 }];
 
@@ -27,4 +31,5 @@ export const routedComponents = [
   ClassesComponent,
   TinyMCEComponent,
   CKEditorComponent,
+  CoursesComponent,
 ];

@@ -17,12 +17,13 @@ print(db)
 
 # path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Lab pc path
 path = '/home/diego/Capstone/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Laptop path
+# path = '~/Documents/GitHub/AdviseMe/adviseme-database/Data/SemiStructered' ~ Ethan's Mac
 
 # Walk directory path for .csv files containing class data
 for root, subdirs, files in os.walk(path):
 
 	for classFiles in os.listdir(root):
-		
+
 		# Create path of file
 		filePath = os.path.join(root, classFiles)
 
@@ -40,7 +41,7 @@ for root, subdirs, files in os.walk(path):
 				for i, row in enumerate(spamreader):
 
 					if i == 0:
-						data['_id'] = row[0].strip() # class id 
+						data['_id'] = row[0].strip() # class id
 					elif i == 1:
 						# class info
 						data['class'] = {'prefix' : row[0].strip(), 'courseNo' : int(row[1]), 'title' : row[2].strip()}
@@ -48,7 +49,7 @@ for root, subdirs, files in os.walk(path):
 						# list of prerequisites as class ids
 						data['prerequisites'] = list(filter(lambda x : x != '', row))
 					elif i == 3:
-						data['department'] = row[0].strip() # department		
+						data['department'] = row[0].strip() # department
 					elif i == 4:
 						# The curriculum class can fall under
 						curriculum = list(filter(lambda x : x != '', row))
@@ -56,22 +57,20 @@ for root, subdirs, files in os.walk(path):
 						curriculumHolder = [] # array to insert into json
 
 						for i, sequence in enumerate(curriculum):
-							
-							insert.append(sequence) 
+
+							insert.append(sequence)
 							# ensure each instance of insert only has 2 values
 							if i % 2 == 1:
 								curriculumHolder.append(insert) # add pair to array
 								insert = [] # reset insert
 
-						data['curriculum'] = curriculumHolder 
+						data['curriculum'] = curriculumHolder
 
 					else:
 						break
 
 				print(data)
 				print(json.dumps(data))
-				
+
 				# Insert data
 				#db.insert_one(data)
-				
-

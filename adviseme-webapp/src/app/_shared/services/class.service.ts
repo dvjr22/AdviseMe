@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
- import { Class } from '../models/class';
+import { Class } from '../models/class';
 
 @Injectable()
 export class ClassService {
@@ -11,6 +11,10 @@ export class ClassService {
 
     get(classes: Class) {
       return this.http.get('/classes/', classes);
+    }
+
+    getAll() {
+      return this.http.get('/classes/');
     }
 
     create(classes: Class) {

@@ -38,6 +38,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'CKEditor',
         link: '/pages/classes/ckeditor',
       },
+      {
+        title: 'Courses',
+        link: '/pages/classes/courses'
+      }
     ],
   },
   {
