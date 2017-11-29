@@ -1,12 +1,13 @@
-// fileName.js
+// insert_appointment.js
 // @author Diego Valdes
-// Nov. 16, 2016
+// Nov. 29, 2016
 
 
 
 var MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
 var url = "mongodb://localhost:27017/adviseMe";		// Database name
 
+// create one test appointment record
 let obj = new Object();
 obj.studentID = "tHall01";
 obj.firstName = "Tyler";
@@ -28,7 +29,5 @@ MongoClient.connect(url, function(err, db) {
 		 	db.close();
 		});
 	}
-
-	db.close();
 
 });

@@ -17,10 +17,10 @@ for (var i = 0; i < noOfStudents; i++) {
 
 	var obj = new Object(); // object to store JSON data
 	var id = makeid(); // get random id
-	var last = lastName();
+	var last = lastName(); // get random last name
 
 	obj.firstName = firstName(); // get random first name
-	obj.lastName = last; // get random last name
+	obj.lastName = last; 
 	obj.studentID = id;
 	obj.major = major(); // get major
 

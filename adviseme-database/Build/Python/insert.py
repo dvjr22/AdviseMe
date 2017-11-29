@@ -15,8 +15,8 @@ db = client.adviseMe.classes
 print(db)
 '''
 
-# path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Lab pc path
-path = '/home/diego/Capstone/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Laptop path
+path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Lab pc path
+# path = '/home/diego/Capstone/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Laptop path
 
 # Walk directory path for .csv files containing class data
 for root, subdirs, files in os.walk(path):
@@ -46,7 +46,10 @@ for root, subdirs, files in os.walk(path):
 						data['class'] = {'prefix' : row[0].strip(), 'courseNo' : int(row[1]), 'title' : row[2].strip()}
 					elif i == 2:
 						# list of prerequisites as class ids
-						data['prerequisites'] = list(filter(lambda x : x != '', row))
+						prerequisites = list(filter(lambda x : x != '', row))
+						# Check if class has prerequisites before inserting
+						if len(prerequisites)  != 0:
+							data['prerequisites'] = prerequisites
 					elif i == 3:
 						data['department'] = row[0].strip() # department		
 					elif i == 4:
@@ -68,8 +71,9 @@ for root, subdirs, files in os.walk(path):
 					else:
 						break
 
-				print(data)
+				# print(data)
 				print(json.dumps(data))
+				print("")
 				
 				# Insert data
 				#db.insert_one(data)
