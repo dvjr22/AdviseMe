@@ -21,9 +21,9 @@
             <span class="input-group-addon"><i class="ion-email" aria-hidden="true"></i></span>
             <span class="form-control">{{emailBegin | ngxCapitalize}}</span>
             <span class="input-group-btn">
-              <button class="btn btn-primary">
+              <span class="btn btn-primary disabled">
                 {{emailEnding}}
-              </button>
+              </span>
             </span>
           </div>
 
@@ -38,7 +38,7 @@
           </div>
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-university" aria-hidden="true"></i></span>
-            <span class="form-control">{{currentUser.major | ngxCapitalize}}</span>
+            <span class="form-control">{{currentUser.major | uppercase}}</span>
           </div>
       </form>
       </nb-card-body>
