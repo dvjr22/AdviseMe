@@ -10,27 +10,19 @@ import { UserService } from '../../../_shared/services/user.service';
 })
 export class EditProfileComponent implements OnInit {
   currentUser: User;
-  user: any = {};
-  emailBegin: string;
-  emailEnding: string;
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-    var emailArray = this.currentUser.email.split("@");
-
-    this.emailBegin = emailArray[0];
-    this.emailEnding = "@" + emailArray[1];
+    this.userService.getById(this.currentUser._id)
+        .subscribe(res => this.currentUser = res);
   }
 
   update() {
-    this.currentUser.fullName = this.currentUser.firstName + " " + this.currentUser.lastName;
-    this.currentUser.email = this.emailBegin + this.emailEnding;
+    this.currentUser.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
     this.userService.update(this.currentUser).subscribe();
-    localStorage.setItem('currentUser',JSON.stringify(this.currentUser));
-    //router to Profile
+    // router to Profile
   }
 }

@@ -13,10 +13,8 @@ import { AuthenticationService } from '../../../_shared/services/authentication.
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-  currentUser = User;
+  currentUser: User;
   @Input() position = 'normal';
-
-  user: any;
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -29,6 +27,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.userService.getById(this.currentUser._id)
+        .subscribe(res => this.currentUser = res);
   }
 
   toggleSidebar(): boolean {

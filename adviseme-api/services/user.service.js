@@ -28,21 +28,6 @@ function authenticate(username, password){
       // Authentication successful
       deferred.resolve({
         _id: user._id,
-        username: user.username,
-        fullName: user.fullName,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        university: user.university,
-        // role: user.role,
-        // advisor: user.advisor,
-        // currentClasses: user.currentClasses,
-        // suggestedClasses: user.suggestedClasses,
-        // student_Meta: user.student_Meta,
-        // underlings: user.underlings,
-        // appointments: user.appointments,
-        // created: user.created,
-        // updated: user.updated,
         token: jwt.sign({ sub: user._id }, config.secret)
       });
     } else {
