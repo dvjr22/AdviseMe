@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
     this.userService.getById(this.currentUser._id)
         .subscribe(res => {
           this.currentUser = res;
-          this.fullName = this.currentUser.firstName + this.currentUser.lastName;
+          this.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
         });
   }
 

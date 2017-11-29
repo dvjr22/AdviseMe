@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
-import { User, Status } from '../../../_shared/models/user';
+import { User } from '../../../_shared/models/user';
+import { Status, Universities } from '../../../_shared/models/constants';
 import { UserService } from '../../../_shared/services/user.service';
+
+import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
 @Component({
   selector: 'ngx-edit-profile',
@@ -11,6 +15,7 @@ import { UserService } from '../../../_shared/services/user.service';
 
 
 export class EditProfileComponent implements OnInit {
+  universities = Universities;
   status = Status;
   keys: any;
   currentUser: User;
@@ -36,9 +41,11 @@ export class EditProfileComponent implements OnInit {
   onStatusChange(status) {
     this.currentUser.status = status;
   }
+  onUniversityChange(university) {
+    this.currentUser.university = university;
+  }
 
   update() {
-    console.log(this.currentUser);
     this.currentUser.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
     this.currentUser.email = this.emailBegin + this.emailEnding;
     this.userService.update(this.currentUser).subscribe();

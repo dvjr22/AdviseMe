@@ -35,6 +35,10 @@ $nb-themes: nb-register-theme((
     overflow: visible;
   }
 
+  .capitalize {
+    text-transform: capitalize;
+  }
+
   .input-group {
     margin-bottom: 1rem;
   }

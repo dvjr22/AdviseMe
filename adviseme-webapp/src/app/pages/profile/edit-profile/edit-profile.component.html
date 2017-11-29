@@ -41,17 +41,15 @@
             </span>
           </div>
           <div class="input-group">
-            <span *ngIf="university.valid" class="input-group-addon success"><i class="ion-university" aria-hidden="true"></i></span>
-            <span *ngIf="university.invalid" class="input-group-addon danger"><i class="ion-university" aria-hidden="true"></i></span>
-            <input name="university" [(ngModel)]="currentUser.university" id="input-university"
-                     class="form-control" placeholder="University" value="{{currentUser.university}}" #university="ngModel"
-                     required minlength="2"
-                     [class.form-control-danger]="university.invalid && university.touched" autofocus>
+            <span class="input-group-addon success"><i class="ion-university" aria-hidden="true"></i></span>
+            <select class="form-control" (ngModelChange)="onUniversityChange($event)" [ngModel]="currentUser.university" name="university">
+              <option *ngFor="let university of universities" [value]="university" [label]="university"></option>
+            </select>
           </div>
           <div class="input-group">
             <span class="input-group-addon success"><i class="ion-university" aria-hidden="true"></i></span>
             <select class="form-control" (ngModelChange)="onStatusChange($event)" [ngModel]="currentUser.status" name="status">
-              <option *ngFor="let key of keys" [value]="status[key]" [label]="status[key]"></option>
+              <option *ngFor="let key of keys" [value]="status[key]"> {{status[key] | ngxCapitalize}}</option>
             </select>
           </div>
           <div class="input-group">

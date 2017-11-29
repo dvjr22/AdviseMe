@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 
+import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
+
 @Component({
   selector: 'ngx-profile-view',
   templateUrl: './profile-view.component.html',
