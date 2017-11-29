@@ -17,14 +17,14 @@ for (var i = 0; i < noOfStudents; i++) {
 
 	var obj = new Object(); // object to store JSON data
 	var id = makeid(); // get random id
-	var lastName = lastName();
+	var last = lastName();
 
 	obj.firstName = firstName(); // get random first name
-	obj.lastName = lastName; // get random last name
-	obj.sid = id;
+	obj.lastName = last; // get random last name
+	obj.studentID = id;
 	obj.major = major(); // get major
 
-	obj.username = lastName + id; // unique user login
+	obj.username = last + id; // unique user login
 	obj.email = "random.student@email.sc.edu";  // user email
 	obj.hash = "$2a$10$AYYlKAk7SFPzIwHCBAV8gu8FDwv/.RgNYvbfzN.k.Mfxwl.wcl8Sa"; // password 1234
 
@@ -61,7 +61,7 @@ function makeTyler() {
 
 	obj.firstName = "Tyler"; // get random first name
 	obj.lastName = "Hall"; // get random last name
-	obj.sid = makeid();
+	obj.studentID = "tHall01"
 	obj.major = major(); // get major
 
 	obj.username = "tbhall";
