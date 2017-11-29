@@ -39,9 +39,10 @@ A web app that will assist college students through the majority of advising req
      * ```brew services start mongodb```
 * Use mongorestore to restore the dump file to your local machine
 * MongoDB default port number: 27017
-  * ```$ mongorestore --port <port number> <path to the backup>```
-* As example:
- * ```mongorestore dump-2013-10-25/```
+  * ```$ mongorestore <path to the backup>```
+  * A restore folder of the database exists in adviseme-database/dump
+* To restore a copy of the database on your local machine from the adviseme-database folder:
+ * ```mongorestore dump```
  * Troubleshooting assitance can be found [here](https://docs.mongodb.com/manual/tutorial/backup-and-restore-tools/)
 
 ## Deployment
