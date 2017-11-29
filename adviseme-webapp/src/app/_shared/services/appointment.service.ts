@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 export class AppointmentService {
 
   constructor(private http: Http) { }
-  
+
     get(appointment: Appointment) {
       return this.http.get('/appointment/', appointment);
     }
@@ -18,7 +18,7 @@ export class AppointmentService {
     }
 
     update(appointment: Appointment) {
-        return this.http.put('/appointment/' + appointment._id, appointment);
+        return this.http.put('/appointment/' + appointment, appointment);
     }
 
     delete(_id: Appointment) {
