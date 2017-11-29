@@ -26,7 +26,7 @@ A web app that will assist college students through the majority of advising req
   * If it says a module is not installed run ```npm install --save <module name>```
   * If it says that an invalid character was read at the end of the line delete the node_module folder and the package-lock.json file and try the ```npm install``` command again
 * Create a local database
-  * A binory BSON dump of the database can be found: AdviseMe/adviseme-database/adviseMe
+  * A binory BSON dump of the database can be found: AdviseMe/adviseme-database/dump
   * Ensure Mongo has been started on your local machine:
    * Linux:
     * ```$ sudo service mongod start```
@@ -40,9 +40,8 @@ A web app that will assist college students through the majority of advising req
 * Use mongorestore to restore the dump file to your local machine
 * MongoDB default port number: 27017
   * ```$ mongorestore <path to the backup>```
-  * A restore folder of the database exists in adviseme-database/dump
-* To restore a copy of the database on your local machine from the adviseme-database folder:
- * ```mongorestore dump```
+* Example:
+  * ```$ mongorestore AdviseMe/adviseme-database/dump```
  * Troubleshooting assitance can be found [here](https://docs.mongodb.com/manual/tutorial/backup-and-restore-tools/)
 
 ## Deployment
