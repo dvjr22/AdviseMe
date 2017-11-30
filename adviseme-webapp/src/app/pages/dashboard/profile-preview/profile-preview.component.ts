@@ -5,6 +5,8 @@ import { Class } from '../../../_shared/models/class';
 import { UserService } from '../../../_shared/services/user.service';
 import { ClassService } from '../../../_shared/services/class.service';
 
+import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
+
 @Component({
   selector: 'ngx-profile-preview',
   styleUrls: ['./profile-preview.component.scss'],

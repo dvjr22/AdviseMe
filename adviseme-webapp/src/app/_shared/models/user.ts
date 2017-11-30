@@ -17,11 +17,11 @@ export class User {
   // Student Role
   status: Status;
   major: Major;
-  course: {
+  course: [{
     prefix: string;
     coNum: number;
     grade: string;
-  };
+  }];
 
   // Advisor Role
 

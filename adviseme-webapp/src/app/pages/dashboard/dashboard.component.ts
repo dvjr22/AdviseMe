@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.signedIn = false;
-    
+
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     if (this.currentUser) {
