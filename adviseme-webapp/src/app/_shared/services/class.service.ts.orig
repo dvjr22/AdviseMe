@@ -5,6 +5,9 @@ import { Injectable } from '@angular/core';
 import { Class } from '../models/class';
 import 'rxjs/add/operator/map';
 
+import { Class } from '../models/class';
+
+>>>>>>> fb2ce245024faec1c1f95fdde60ba3c21437bbf2
 @Injectable()
 export class ClassService {
 
