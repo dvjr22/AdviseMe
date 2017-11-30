@@ -1,4 +1,4 @@
-<nb-card size="medium">
+<nb-card size="small">
   <nb-card-header>
     <span> Profile Preview </span>
   </nb-card-header>
@@ -6,22 +6,21 @@
     <!-- <div class="picture" style.background-image="url(/assets/images/pic.png)"> </div> -->
 
     <div class="details">
-      <div class="name bold">
+      <div class="title">
         {{ currentUser.fullName }}
       </div>
       <div class="description">
-        School: {{ currentUser.university }},
         <br>
-        Major: {{ currentUser.major }},
+        <b>School:</b> {{ currentUser.university }},
         <br>
-        Year: {{ currentUser.status }},
+        <br>
+        <b>Major:</b> {{ currentUser.major | uppercase }},
+        <br>
+        <br>
+        <b>Year:</b> {{ currentUser.status | ngxCapitalize}},
+
       </div>
       <div>
-  <ul>
-      <li *ngFor="let class of classes">
-      {{class._id}}
-    </li>
-  </ul>
 </div>
     </div>
   </nb-card-body>

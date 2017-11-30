@@ -1,0 +1,20 @@
+<nb-card size="small">
+  <nb-card-header>
+    <span> Current Classes </span>
+  </nb-card-header>
+  <nb-card-body>
+    <div>
+      <ul>
+        <li *ngFor="let course of currentUser.course">
+          {{course.prefix}}{{course.coNum}} <br>
+          Current Grade: {{course.grade}}
+        </li>
+      </ul>
+    </div>
+  </nb-card-body>
+
+
+  <nb-card-footer>
+
+  </nb-card-footer>
+</nb-card>
