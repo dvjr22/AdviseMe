@@ -1,3 +1,6 @@
+
+
+
 from subprocess import call
 
 call(["node", "DatabaseBuildFiles/drop_db.js"])
