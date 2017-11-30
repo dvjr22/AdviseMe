@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Pipe, PipeTransform} from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from '../../../_shared/models/user';
 import { Status, Universities } from '../../../_shared/models/constants';
@@ -23,7 +24,8 @@ export class EditProfileComponent implements OnInit {
   emailBegin: string;
   emailEnding: string;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              protected router: Router) {
     this.keys = Object.keys(this.status).filter(Number);
   }
 
@@ -48,6 +50,6 @@ export class EditProfileComponent implements OnInit {
   update() {
     this.currentUser.email = this.emailBegin + this.emailEnding;
     this.userService.update(this.currentUser).subscribe();
-    // router to Profile
+    this.router.navigate(['pages/profile/profile-view']);
   }
 }
