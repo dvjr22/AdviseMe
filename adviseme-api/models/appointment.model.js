@@ -7,7 +7,12 @@ var AppointmentSchema = new mongoose.Schema({
       required: true,
       trim: true,
     },
-    name: {
+    firstName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    lastName: {
       type: String,
       required: true,
       trim: true,
@@ -17,7 +22,7 @@ var AppointmentSchema = new mongoose.Schema({
       default: 'undeclared',
       trim: true,
     },
-    year: {
+    status: {
       type: String,
       required: true,
       trim: true,
@@ -34,7 +39,8 @@ var AppointmentSchema = new mongoose.Schema({
     },
     date: {
       type: Date,
-      default: Date.now
+      required: true,
+      default: Date.now,
     },
 })
 
