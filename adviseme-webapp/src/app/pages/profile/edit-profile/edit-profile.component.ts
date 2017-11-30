@@ -46,7 +46,6 @@ export class EditProfileComponent implements OnInit {
   }
 
   update() {
-    this.currentUser.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
     this.currentUser.email = this.emailBegin + this.emailEnding;
     this.userService.update(this.currentUser).subscribe();
     // router to Profile
