@@ -16,6 +16,13 @@
         <br>
         Year: {{ currentUser.status }},
       </div>
+      <div>
+  <ul>
+      <li *ngFor="let class of classes">
+      {{class._id}}
+    </li>
+  </ul>
+</div>
     </div>
   </nb-card-body>
 
