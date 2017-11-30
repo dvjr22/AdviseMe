@@ -16,15 +16,16 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 export class PreviousClassesComponent implements OnInit {
 
   currentUser: User;
-  data: any;
+  temp: any;
+  courses: any = [{}];
   settings = {
     actions: false,
     columns: {
-      prefix: {
-        title: 'Prefix',
+      department: {
+        title: 'Department',
       },
       coNum: {
-        title: 'Course Num',
+        title: 'Course Number',
       },
       grade: {
         title: 'Grade',
@@ -42,8 +43,15 @@ export class PreviousClassesComponent implements OnInit {
     this.userService.getById(this.currentUser._id)
         .subscribe(res => {
           this.currentUser = res;
-          this.data = this.currentUser.course;
-          this.source.load(this.data);
+          for (let i = 0; i < this.currentUser.course.length; i++) {
+            if (this.currentUser.course[i].classID != null) {
+              const department = this.currentUser.course[i].classID.slice(0, 4);
+              const coNum = this.currentUser.course[i].classID.slice(4);
+              const grade = this.currentUser.course[i].grade;
+              this.courses.push({department: department, coNum: coNum, grade: grade});
+            }
+          }
+          this.source.load(this.courses);
         });
   }
 }
