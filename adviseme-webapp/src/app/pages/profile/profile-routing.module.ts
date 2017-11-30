@@ -9,7 +9,7 @@ const routes: Routes = [{
   path: '',
   component: ProfileComponent,
   children: [{
-    path: 'profile',
+    path: 'profile-view',
     component: ProfileViewComponent,
   }, {
     path: 'edit-profile',
@@ -26,5 +26,5 @@ export class ProfileRoutingModule { }
 export const routedComponents = [
   ProfileComponent,
   EditProfileComponent,
-  ProfileViewComponent
+  ProfileViewComponent,
 ];

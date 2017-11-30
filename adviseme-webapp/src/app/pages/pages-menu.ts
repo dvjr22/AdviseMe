@@ -16,8 +16,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-person',
     children: [
       {
-        title: 'Profile',
-        link: '/pages/profile/profile',
+        title: 'Profile View',
+        link: '/pages/profile/profile-view',
       },
       {
         title: 'Edit Profile',
@@ -37,24 +37,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'CKEditor',
         link: '/pages/classes/ckeditor',
-      },
-    ],
-  },
-  {
-    title: 'Test-Auth',
-    icon: 'nb-locked',
-    children: [
-      {
-        title: 'Login',
-        link: '/auth/login',
-      },
-      {
-        title: 'Logout',
-        link: '/auth/logout',
-      },
-      {
-        title: 'Register',
-        link: '/auth/register',
       },
     ],
   },
