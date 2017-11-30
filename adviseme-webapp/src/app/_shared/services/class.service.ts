@@ -14,7 +14,7 @@ export class ClassService {
     }
 
     getAll() {
-      return this.http.get('/classes/');
+      return this.http.get('/classes');
     }
 
     create(classes: Class) {

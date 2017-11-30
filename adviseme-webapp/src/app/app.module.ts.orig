@@ -30,12 +30,16 @@ import { AuthenticationService, CanActivateUser } from './_shared/services/authe
 import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 
+<<<<<<< HEAD
 // Models
 import { User } from './_shared/models/user';
 import { Class } from './_shared/models/class';
 
 //Import images
 
+
+=======
+>>>>>>> origin/master
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,8 +68,11 @@ import { Class } from './_shared/models/class';
     ClassService,
     AuthenticationService,
     CanActivateUser,
+<<<<<<< HEAD
     User,
     Class,
+=======
+>>>>>>> origin/master
     AlertService,
     NbAuthService,
     ToasterService,

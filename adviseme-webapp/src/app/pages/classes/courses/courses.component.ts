@@ -9,13 +9,16 @@ import { ClassService } from '../../../_shared/services/class.service';
   //styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent implements OnInit {
-    classes: Class[];
+    classes: any;
 
     constructor(private classService: ClassService) {
     }
 
     ngOnInit() {
-      this.classService.getAll().subscribe(res => this.classes = res);
+      //this.classService.getAll().subscribe(res => this.classes = res);
+      this.classService.getAll().subscribe(data => {
+        this.classes = data["data"]
+      });
       console.log(this.classes);
     }
 }
