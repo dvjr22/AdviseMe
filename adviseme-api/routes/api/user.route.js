@@ -1,16 +1,13 @@
-var express = require('express')
+var express = require('express');
+var router = express.Router();
+var user = require("../../controllers/user.controller.js");
 
-var router = express.Router()
+// route for register action
+router.post('/authenticate', user.authenticate);
+router.post('/register', user.register);
+router.get('/', user.getAll);
+router.get('/:_id', user.getUser);
+router.put('/:_id', user.update);
+router.delete('/:_id', user._delete);
 
-// Getting the user Controller
-var userController = require('../../controllers/user.controller');
-
-// Map each API to the Controller FUnctions
-router.get('/:id', userController.getUser)
-router.post('/', userController.createUser)
-router.put('/', userController.updateUser)
-router.delete('/:id',userController.removeUser)
-
-
-// Export the Router
 module.exports = router;

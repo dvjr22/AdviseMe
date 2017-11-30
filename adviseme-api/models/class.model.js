@@ -8,9 +8,8 @@ var ClassSchema = new mongoose.Schema({
       courseNo: { type: String, required: true },
       title: { type: String, required: true },
     },
-    requiredFor: [String],
     department: { type: String, required: true },
-    curriculum: [String],
+    curriculum: [[String]],
 })
 
 ClassSchema.plugin(mongoosePaginate)
