@@ -8,9 +8,6 @@ var bluebird = require('bluebird');
 var config = require('./config.json');
 var expressJwt = require('express-jwt');
 
-var auth = require('./routes/auth');
-var notification = require('./routes/notification')
-
 // Get the API route ...
 var api = require('./routes/api.route')
 
@@ -37,8 +34,6 @@ app.use(require('express-session')({
     saveUninitialized: false
 }));
 
-app.use('/users', auth);
-app.use('/notify', notification);
 
 //Use the API routes in api.route.js
 app.use(api);
