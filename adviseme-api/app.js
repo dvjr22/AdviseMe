@@ -9,7 +9,6 @@ var config = require('./config.json');
 var expressJwt = require('express-jwt');
 
 var auth = require('./routes/auth');
-var users = require('./routes/users');
 var notification = require('./routes/notification')
 
 // Get the API route ...
