@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
               private authenticationService: AuthenticationService) {
   }
 
-  userMenu = [{ title: 'Profile', link: '/pages/dashboard' }, { title: 'Log out', link: '/auth/logout' }];
+  userMenu = [{ title: 'Profile', link: '/pages/profile/profile-view' }, { title: 'Log out', link: '/auth/logout' }];
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));

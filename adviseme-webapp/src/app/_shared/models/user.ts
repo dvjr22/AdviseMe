@@ -4,9 +4,9 @@ import { Role, Status, Major } from './constants';
 @Injectable()
 export class User {
   _id: string;
+  studentID: string;
   username: string;
   password: string;
-  fullName: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -16,4 +16,13 @@ export class User {
   // Student Role
   status: Status;
   major: Major;
+  course: {
+    prefix: string;
+    coNum: number;
+    grade: string;
+  };
+
+  // Advisor Role
+
+  // Admin Role
 }
