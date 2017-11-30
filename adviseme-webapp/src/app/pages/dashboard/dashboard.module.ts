@@ -5,7 +5,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
 import { StatusCardComponent } from './status-card/status-card.component';
 import { ProfilePreviewComponent } from './profile-preview/profile-preview.component';
-import { CurrentClassesComponent } from './current-classes/current-classes.component';
+import { PreviousClassesComponent } from './previous-classes/previous-classes.component';
 @NgModule({
   imports: [
     ThemeModule,
@@ -16,7 +16,7 @@ import { CurrentClassesComponent } from './current-classes/current-classes.compo
     DashboardComponent,
     StatusCardComponent,
     ProfilePreviewComponent,
-    CurrentClassesComponent,
+    PreviousClassesComponent,
   ],
 })
 export class DashboardModule { }

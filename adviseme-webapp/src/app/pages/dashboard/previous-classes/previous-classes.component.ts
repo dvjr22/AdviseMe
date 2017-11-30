@@ -8,12 +8,12 @@ import { UserService } from '../../../_shared/services/user.service';
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
 @Component({
-  selector: 'ngx-current-classes',
-  styleUrls: ['./current-classes.component.scss'],
-  templateUrl: './current-classes.component.html',
+  selector: 'ngx-previous-classes',
+  styleUrls: ['./previous-classes.component.scss'],
+  templateUrl: './previous-classes.component.html',
 })
 
-export class CurrentClassesComponent implements OnInit {
+export class PreviousClassesComponent implements OnInit {
 
   currentUser: User;
   data: any;
