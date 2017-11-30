@@ -29,8 +29,12 @@
                      [class.form-control-danger]="lastName.invalid && lastName.touched" autofocus>
           </div>
           <div class="input-group">
-            <span class="input-group-addon"><i class="ion-email" aria-hidden="true"></i></span>
-            <span class="form-control">{{emailBegin | ngxCapitalize}}</span>
+            <span *ngIf="email.valid" class="input-group-addon success"><i class="ion-email" aria-hidden="true"></i></span>
+            <span *ngIf="email.invalid" class="input-group-addon danger"><i class="ion-email" aria-hidden="true"></i></span>
+            <input name="email" [(ngModel)]="emailBegin" id="input-lastName"
+                     class="form-control" placeholder="Last name" required value="{{emailBegin}}" #email="ngModel"
+                     required minlength="1"
+                     [class.form-control-danger]="email.invalid && email.touched" autofocus>
             <span class="input-group-btn">
               <span class="btn btn-primary disabled">
                 {{emailEnding}}
