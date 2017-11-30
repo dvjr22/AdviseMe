@@ -7,9 +7,10 @@ exports.createAppointment = async function(req, res, next){
   //req.body contains form submit values
   var newAppointment = {
     studentID: req.body.studentID,
-    name: req.body.name,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     major: req.body.major,
-    year: req.body.year,
+    status: req.body.status,
     advisor: req.body.advisor,
     roomNumber: req.body.roomNumber,
     date: req.body.date,
@@ -53,9 +54,10 @@ exports.updateAppointment = async function(req, res, next){
   var Appointment = {
     id,
     studentID: req.body.studentID,
-    name: req.body.name,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     major: req.body.major,
-    year: req.body.year,
+    status: req.body.status,
     advisor: req.body.advisor,
     roomNumber: req.body.roomNumber,
     date: req.body.date,
