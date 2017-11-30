@@ -14,6 +14,7 @@ import { AuthenticationService } from '../../../_shared/services/authentication.
 })
 export class HeaderComponent implements OnInit {
   currentUser: User;
+  fullName: string;
   @Input() position = 'normal';
 
   constructor(private sidebarService: NbSidebarService,
@@ -28,7 +29,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id)
-        .subscribe(res => this.currentUser = res);
+        .subscribe(res => {
+          this.currentUser = res;
+          this.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
+        });
   }
 
   toggleSidebar(): boolean {

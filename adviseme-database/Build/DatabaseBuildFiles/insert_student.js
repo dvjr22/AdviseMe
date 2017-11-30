@@ -129,36 +129,35 @@ function course() {
 
 	let classes = [
 		// freshman 1 (4)
-		["CSCE", 145, "B+"],
-		["CSCE", 190, "A"],
-		["ENGL", 101, "B"],
-		["MATH", 141, "B+"],
+		["CSCE145", "B+"],
+		["CSCE190", "A"],
+		["ENGL101", "B"],
+		["MATH141", "B+"],
 		// freshman 2 (10)
-		["MATH", 142, "B"],
-		["ENGL", 102, "A"],
-		["CHEM", 111, "B"],
-		["CHEM", "111L", "A"],
-		["CSCE", 215, "A"], 
-		["CSCE", 146, "A"],
+		["MATH142", "B"],
+		["ENGL102", "A"],
+		["CHEM111", "B"],
+		["CHEM111L", "A"],
+		["CSCE215", "A"], 
+		["CSCE146", "A"],
 
 		// Sophmore 1 (15)
-		["CSCE", 211, "B+"],
-		["CSCE", 240, "A"],
-		["SPCH", 140, "B"],
-		["CHEM", 112, "C"],
-		["CHEM", "112L", "A"],
-		
+		["CSCE211", "B+"],
+		["CSCE240", "A"],
+		["SPCH140", "B"],
+		["CHEM112", "C"],
+		["CHEM112L", "A"],
 
 		// sophmore 2 (18)
-		["MATH", 241, "B"],
-		["CSCE", 212, "A"],
-		["MATH", 374, "B+"],
+		["MATH241", "B"],
+		["CSCE212", "A"],
+		["MATH374", "B+"],
 
 		// junior 1 (length)
-		["CSCE", 311, "A"],
-		["CSCE", 350, "B"],
-		["CSCE", 390, "A"], 
-		["ENGL", 462, "A"]
+		["CSCE311", "A"],
+		["CSCE350", "B"],
+		["CSCE390", "A"], 
+		["ENGL462", "A"]
 	];
 
 	let index = Math.floor(Math.random() * classes.length);
@@ -168,9 +167,8 @@ function course() {
 	for (let i = 0; i < index; i++) {
 
 		var course = new Object();
-		course.prefix = classes[i][0];
-		course.coNum = classes[i][1];
-		course.grade = classes[i][2];
+		course.classID = classes[i][0];
+		course.grade = classes[i][1];
 
 		courses.push(course);
 		//console.log(JSON.stringify(course));
