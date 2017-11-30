@@ -7,6 +7,8 @@ export enum Role {
 
 export const Universities = ['University of South Carolina', 'Clemsux'];
 
+export const Grades = ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F'];
+
 export enum Status {
   None,
   freshman, // 0
