@@ -2,12 +2,7 @@ var config = require('../config.json');
 // Connect to the Twilio API
 const client = require('twilio')(config["twilioAccountSid"], config["twilioAuthToken"]);
 
-// Module crap
-var notificationController = {};
-notificationController.sendNotification = sendNotification;
-module.exports = notificationController;
-
-function sendNotification(req, res) {
+exports.sendNotification = async function(req, res) {
 // TODO: At some point change these hardcoded phone numbers so ppl will stop texting me
   client.messages.create({
     // Whom to send tho message too

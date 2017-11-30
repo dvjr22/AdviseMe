@@ -16,9 +16,10 @@ _this = this
 exports.createAppointment = async function(aAppointment){
     var newAppointment = new Appointment({
       studentID: aAppointment.studentID,
-      name: aAppointment.name,
+      firstName: aAppointment.firstName,
+      lastName: aAppointment.lastName,
       major: aAppointment.major,
-      year: aAppointment.year,
+      status: aAppointment.status,
       advisor: aAppointment.advisor,
       roomNumber: aAppointment.roomNumber,
       date: aAppointment.date,
@@ -51,9 +52,10 @@ exports.updateAppointment = async function(aAppointment){
 
   //edit the Appointment object
   oldAppointment.studentID = aAppointment.studentID,
-  oldAppointment.name = aAppointment.name,
+  oldAppointment.firstName = aAppointment.firstName,
+  oldAppointment.lastName = aAppointment.lastName,
   oldAppointment.major = aAppointment.major,
-  oldAppointment.year = aAppointment.year,
+  oldAppointment.status = aAppointment.status,
   oldAppointment.advisor = aAppointment.advisor,
   oldAppointment.roomNumber = aAppointment.roomNumber,
   oldAppointment.date = aAppointment.date,
