@@ -1,18 +1,7 @@
 var config = require('../config.json');
 var userService = require('../services/user.service');
 
-var authController = {};
-
-authController.authenticate = authenticate;
-authController.register = register;
-authController.getAll = getAll;
-authController.getUser = getUser;
-authController.update = update;
-authController._delete = _delete;
-
-module.exports = authController;
-
-function authenticate(req, res) {
+exports.authenticate = async function(req, res) {
   userService.authenticate(req.body.username, req.body.password)
     .then(function (user) {
       if (user) {
@@ -28,7 +17,7 @@ function authenticate(req, res) {
     });
 }
 
-function register(req, res) {
+exports.register = async function(req, res) {
   userService.create(req.body)
     .then(function () {
       res.sendStatus(200);
@@ -38,7 +27,7 @@ function register(req, res) {
     });
 }
 
-function getAll(req, res) {
+exports.getAll = async function(req, res) {
   userService.getAll()
     .then(function (users) {
       res.send(users);
@@ -48,7 +37,7 @@ function getAll(req, res) {
     });
 }
 
-function getUser(req, res) {
+exports.getUser = async function(req, res) {
   userService.getById(req.param._id)
     .then(function (user) {
       if(user) {
@@ -62,7 +51,7 @@ function getUser(req, res) {
     });
 }
 
-function update(req, res) {
+exports.update = async function(req, res) {
   userService.update(req.params._id, req.body)
     .then(function () {
       res.sendStatus(200);
@@ -72,7 +61,7 @@ function update(req, res) {
     });
 }
 
-function _delete(req, res) {
+exports._delete = async function(req, res) {
   userService.delete(req.params._id)
     .then(function () {
       res.sendStatus(200);
