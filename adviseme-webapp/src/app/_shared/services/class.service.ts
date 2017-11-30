@@ -5,12 +5,23 @@ import { Injectable } from '@angular/core';
 import { Class } from '../models/class';
 import 'rxjs/add/operator/map';
 
+import { Class } from '../models/class';
+
+>>>>>>> fb2ce245024faec1c1f95fdde60ba3c21437bbf2
 @Injectable()
 export class ClassService {
 
   api_url = 'http://localhost:3000';
   classUrl = `${this.api_url}/classes`;
   constructor(private http: HttpClient) { }
+
+    getAll() {
+      return this.http.get('/classes');
+    }
+
+    create(classes: Class) {
+        return this.http.post('/classes', classes);
+    }
 
   // Don't ask why x it just works that way
   createClass(x: Class): Observable<any> {
