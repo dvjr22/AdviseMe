@@ -1,16 +1,9 @@
-<nb-card size="small">
+<nb-card size="xlarge">
   <nb-card-header>
     <span> Current Classes </span>
   </nb-card-header>
   <nb-card-body>
-    <div>
-      <ul>
-        <li *ngFor="let course of currentUser.course">
-          {{course.prefix}}{{course.coNum}} <br>
-          Current Grade: {{course.grade}}
-        </li>
-      </ul>
-    </div>
+    <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
   </nb-card-body>
 
 
