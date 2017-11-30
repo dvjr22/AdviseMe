@@ -9,17 +9,22 @@
 
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-person" aria-hidden="true"></i></span>
-            <span class="form-control">{{currentUser.firstName}}</span>
+            <span class="form-control">{{currentUser.firstName | ngxCapitalize}}</span>
           </div>
 
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-person" aria-hidden="true"></i></span>
-            <span class="form-control">{{currentUser.lastName}}</span>
+            <span class="form-control">{{currentUser.lastName | ngxCapitalize}}</span>
           </div>
 
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-email" aria-hidden="true"></i></span>
-            <span class="form-control">{{currentUser.email}}</span>
+            <span class="form-control">{{emailBegin | ngxCapitalize}}</span>
+            <span class="input-group-btn">
+              <span class="btn btn-primary disabled">
+                {{emailEnding}}
+              </span>
+            </span>
           </div>
 
           <div class="input-group">
@@ -29,11 +34,11 @@
 
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-university" aria-hidden="true"></i></span>
-            <span class="form-control">{{currentUser.status}}</span>
+            <span class="form-control">{{currentUser.status | ngxCapitalize}}</span>
           </div>
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-university" aria-hidden="true"></i></span>
-            <span class="form-control">{{currentUser.major}}</span>
+            <span class="form-control">{{currentUser.major | uppercase}}</span>
           </div>
       </form>
       </nb-card-body>

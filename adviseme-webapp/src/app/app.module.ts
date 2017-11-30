@@ -29,12 +29,6 @@ import { AuthenticationService, CanActivateUser } from './_shared/services/authe
 import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 
-// Models
-import { User } from './_shared/models/user';
-
-//Import images
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +56,6 @@ import { User } from './_shared/models/user';
     UserService,
     AuthenticationService,
     CanActivateUser,
-    User,
     AlertService,
     NbAuthService,
     ToasterService,
