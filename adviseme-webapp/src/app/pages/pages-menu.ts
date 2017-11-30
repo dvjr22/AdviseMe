@@ -27,6 +27,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
 
   },
   {
+    title: 'Advisement',
+    icon: 'nb-compose',
+    children: [
+      {
+        title: 'Make an Appointment',
+        link: '/pages/advisement/appointment',
+      }
+
+    ],
+  },
+  {
     title: 'Classes',
     icon: 'nb-list',
     children: [

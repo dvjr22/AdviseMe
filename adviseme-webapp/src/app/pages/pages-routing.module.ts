@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdvisementComponent } from './advisement/advisement.component';
 
 const routes: Routes = [{
   path: '',
@@ -19,7 +20,11 @@ const routes: Routes = [{
   {
       path: 'classes',
       loadChildren: './classes/classes.module#ClassesModule',
-    },
+  },
+  {
+    path: 'advisement',
+    loadChildren: './advisement/advisement.module#AdvisementModule',
+  },
   {
     path: '',
     redirectTo: 'dashboard',
