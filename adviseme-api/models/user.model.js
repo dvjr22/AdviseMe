@@ -2,7 +2,6 @@ var mongoose = require('mongoose')
 var mongoosePaginate = require('mongoose-paginate')
 var passportLocalMongoose = require('passport-local-mongoose');
 
-
 //TODO: VALIDATION
 
 var UserSchema = new mongoose.Schema({
@@ -11,9 +10,14 @@ var UserSchema = new mongoose.Schema({
       required: true,
       trim: true,
     },
-    password: {
+    hash: {
       type: String,
       required: true,
+    },
+    studentID: {
+      type: Number,
+      required: true,
+      trim: true,
     },
     firstName: {
       type: String,
@@ -23,6 +27,11 @@ var UserSchema = new mongoose.Schema({
     lastName: {
       type: String,
       required: true,
+      trim: true,
+    },
+    major: {
+      type: String,
+      default: 'undeclared',
       trim: true,
     },
     email: {
@@ -39,7 +48,7 @@ var UserSchema = new mongoose.Schema({
       required: true,
       trim: true,
     },
-    role: {
+    status: {
       type: String,
       required: true,
       trim: true,
@@ -47,8 +56,13 @@ var UserSchema = new mongoose.Schema({
 
     //Student
     advisor: Schema.ObjectId,
-    currentClasses: [{class_id: Schema.ObjectId }],
-    suggestedClasses: [{class_id: Schema.ObjectId }],
+    course: [
+      {
+        classID: { Schema.ObjectId, required: true },
+        grade:  { type: String, required: true}
+      }
+    ],
+    suggestedClasses: [{classID: Schema.ObjectId }],
     student_Meta: Schema.ObjectId,
     cart: Schema.ObjectId,
 

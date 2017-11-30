@@ -18,8 +18,7 @@ export class User {
   status: Status;
   major: Major;
   course: [{
-    prefix: string;
-    coNum: number;
+    classID: string;
     grade: string;
   }];
 
