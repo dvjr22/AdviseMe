@@ -8,21 +8,17 @@ import { ClassService } from '../../../_shared/services/class.service';
 @Component({
   selector: 'ngx-courses-list-page',
   templateUrl: './courses.component.html',
-  //styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent implements OnInit {
-    classes: any;
+    classes: any = [];
     settings = {
       actions: false,
       columns: {
-        prefix: {
-          title: 'Prefix',
+        _id: {
+          title: '_id',
         },
-        coNum: {
-          title: 'Course Num',
-        },
-        grade: {
-          title: 'Grade',
+        department: {
+          title: 'Department',
         },
       },
     };
@@ -33,11 +29,10 @@ export class CoursesComponent implements OnInit {
     }
 
     ngOnInit() {
-      //this.classService.getAll().subscribe(res => this.classes = res);
       this.classService.getClasses()
         .subscribe(res => {
           this.classes = res;
+          this.source.load(this.classes);
         });
-      console.log(this.classes);
     }
 }
