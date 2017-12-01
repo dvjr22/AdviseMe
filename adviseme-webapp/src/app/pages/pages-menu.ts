@@ -36,7 +36,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'View Appointments',
-        link: '/pages/advisement/appointment-view',
+        link: '/pages/advisement/view-appointment',
       },
     ],
   },
