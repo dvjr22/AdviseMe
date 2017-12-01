@@ -9,6 +9,7 @@ export class User {
   password: string;
   firstName: string;
   lastName: string;
+  fullName: string;
   email: string;
   university: string;
   role: Role;

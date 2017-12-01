@@ -27,6 +27,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
 
   },
   {
+    title: 'Advisement',
+    icon: 'nb-compose',
+    children: [
+      {
+        title: 'Make an Appointment',
+        link: '/pages/advisement/appointment',
+      },
+      {
+        title: 'View Appointments',
+        link: '/pages/advisement/appointment-view',
+      },
+    ],
+  },
+  {
     title: 'Classes',
     icon: 'nb-list',
     children: [
@@ -38,6 +52,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'CKEditor',
         link: '/pages/classes/ckeditor',
       },
+      {
+        title: 'Courses',
+        link: '/pages/classes/courses'
+      }
     ],
   },
 ];
