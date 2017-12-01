@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LocalDataSource } from 'ng2-smart-table';
+
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
 
@@ -10,6 +12,22 @@ import { ClassService } from '../../../_shared/services/class.service';
 })
 export class CoursesComponent implements OnInit {
     classes: any;
+    settings = {
+      actions: false,
+      columns: {
+        prefix: {
+          title: 'Prefix',
+        },
+        coNum: {
+          title: 'Course Num',
+        },
+        grade: {
+          title: 'Grade',
+        },
+      },
+    };
+
+    source: LocalDataSource = new LocalDataSource();
 
     constructor(private classService: ClassService) {
     }

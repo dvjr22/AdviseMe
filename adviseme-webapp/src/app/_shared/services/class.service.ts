@@ -1,6 +1,6 @@
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {Response} from '@angular/http';
+import { Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Class } from '../models/class';
 import 'rxjs/add/operator/map';
