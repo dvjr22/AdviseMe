@@ -61,7 +61,6 @@ import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-t
     AlertService,
     NbAuthService,
     ToasterService,
-    { provide: APP_BASE_HREF, useValue: '/' },
   ],
 })
 export class AppModule {

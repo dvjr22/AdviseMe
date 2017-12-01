@@ -46,7 +46,7 @@ const routes: Routes = [
   { path: '**', redirectTo: '/auth/login' },
 ];
 const config: ExtraOptions = {
-  useHash: true,
+  useHash: false,
 };
 
 @NgModule({
