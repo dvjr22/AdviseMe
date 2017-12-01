@@ -9,8 +9,8 @@ export class AppointmentService {
 
   constructor(private http: Http) { }
 
-    get(appointment: Appointment) {
-      return this.http.get('/appointments/', appointment);
+    getAll() {
+      return this.http.get('/appointments/').map((response: Response) => response.json());
     }
 
     create(appointment: Appointment) {

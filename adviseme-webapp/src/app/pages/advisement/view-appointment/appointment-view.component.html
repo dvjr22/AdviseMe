@@ -1,0 +1,17 @@
+<nb-card>
+      <nb-card-header>Upcoming Appointments!</nb-card-header>
+      <nb-card-body>
+        <ul class="list-unstyled">
+          <li *ngFor="let ap of appointment">
+            <h6> studentID: {{ ap.studentID }} </h6>
+            <h6> First Name: {{ ap.firstName }} </h6>
+            <h6> Last Name: {{ ap.lastName }} </h6>
+            <h6> Major: {{ ap.major }} </h6>
+            <h6> Status: {{ ap.status }} </h6>
+            <h6> Advisor: {{ ap.advisor }} </h6>
+            <h6> Room: {{ ap.roomNumber }} </h6>
+            <h6> Appointment Date: {{ ap.date }} </h6>
+          </li>
+        </ul>
+      </nb-card-body>
+</nb-card>
