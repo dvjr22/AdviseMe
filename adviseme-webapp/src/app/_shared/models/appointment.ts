@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Appointment {
   studentID: number; // ObjectId
-  name: string;
+  firstName: string;
+  lastName: string;
   major: string;
-  year: string;
+  status: string;
   advisor: string;
   roomNumber: string;
   date: Date;
