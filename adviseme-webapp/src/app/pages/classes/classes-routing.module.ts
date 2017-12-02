@@ -17,5 +17,4 @@ export class ClassesRoutingModule { }
 
 export const routedComponents = [
   ClassesComponent,
-
 ];
