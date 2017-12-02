@@ -6,6 +6,9 @@ import { DashboardComponent } from './dashboard.component';
 import { StatusCardComponent } from './status-card/status-card.component';
 import { ProfilePreviewComponent } from './profile-preview/profile-preview.component';
 import { PreviousClassesComponent } from './previous-classes/previous-classes.component';
+import { CurrentClassesComponent } from './current-classes/current-classes.component';
+import { FutureClassesComponent } from './future-classes/future-classes.component';
+
 @NgModule({
   imports: [
     ThemeModule,
@@ -17,6 +20,8 @@ import { PreviousClassesComponent } from './previous-classes/previous-classes.co
     StatusCardComponent,
     ProfilePreviewComponent,
     PreviousClassesComponent,
+    CurrentClassesComponent,
+    FutureClassesComponent,
   ],
 })
 export class DashboardModule { }
