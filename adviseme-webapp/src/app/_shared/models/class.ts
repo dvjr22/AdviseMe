@@ -3,10 +3,13 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Class {
   _id: string;
-  prefix: string;
-  courseNo: string;
+  deapartment: string;
   title: string;
-  requiredFor: string[];
-  department: string;
-  curriculum: string[];
+  class: {
+    title: string;
+    courseNo: string;
+    prefix: string;
+  };
+  prerequisites: string[];
+  curriculum: string[][];
 }
