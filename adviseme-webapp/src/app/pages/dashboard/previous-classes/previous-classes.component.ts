@@ -17,7 +17,7 @@ export class PreviousClassesComponent implements OnInit {
 
   currentUser: User;
   temp: any;
-  courses: any = [{}];
+  courses: any = [];
   settings = {
     actions: false,
     columns: {
