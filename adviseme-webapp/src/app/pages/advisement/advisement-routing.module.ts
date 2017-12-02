@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdvisementComponent } from './advisement.component';
 import { AppointmentComponent } from './appointment/appointment.component';
-import { AppointmentViewComponent } from './appointment-view/appointment-view.component';
+import { AppointmentViewComponent } from './view-appointment/appointment-view.component';
 
 const routes: Routes = [{
   path: '',
@@ -12,7 +12,7 @@ const routes: Routes = [{
     path: 'appointment',
     component: AppointmentComponent,
   }, {
-    path: 'appointment-view',
+    path: 'view-appointment',
     component: AppointmentViewComponent,
   }],
 }];
