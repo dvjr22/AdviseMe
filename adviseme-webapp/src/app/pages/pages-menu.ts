@@ -40,18 +40,4 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
-  {
-    title: 'Classes',
-    icon: 'nb-list',
-    children: [
-      {
-        title: 'TinyMCE',
-        link: '/pages/classes/tinymce',
-      },
-      {
-        title: 'CKEditor',
-        link: '/pages/classes/ckeditor',
-      },
-    ],
-  },
 ];
