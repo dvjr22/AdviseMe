@@ -8,13 +8,7 @@ import { CKEditorComponent } from './ckeditor/ckeditor.component';
 const routes: Routes = [{
   path: '',
   component: ClassesComponent,
-  children: [{
-    path: 'tinymce',
-    component: TinyMCEComponent,
-  }, {
-    path: 'ckeditor',
-    component: CKEditorComponent,
-  }],
+  children: [],
 }];
 
 @NgModule({
