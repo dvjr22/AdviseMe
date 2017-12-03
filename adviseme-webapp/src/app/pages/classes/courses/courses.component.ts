@@ -15,17 +15,14 @@ export class CoursesComponent implements OnInit {
     settings = {
       actions: false,
       columns: {
-        _id: {
-          title: 'Course Code',
+        class_prefix: {
+          title: 'Department',
         },
-        class: {
+        class_courseNo: {
+          title: 'Course Number',
+        },
+        class_title: {
           title: 'Course Title',
-          valuePrepareFunction: (cell, row) => {
-            //return row.class.title;
-          },
-        },
-        prerequisites: {
-          title: 'Prerequisites',
         },
       },
     };
