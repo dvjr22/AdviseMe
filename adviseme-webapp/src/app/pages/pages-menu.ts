@@ -12,19 +12,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: 'Profile',
-    icon: 'nb-person',
-    children: [
-      {
-        title: 'Profile View',
-        link: '/pages/profile/profile-view',
-      },
-      {
-        title: 'Edit Profile',
-        link: '/pages/profile/edit-profile',
-      },
-    ],
-
+    title: 'Classes',
+    icon: 'nb-list',
+    link: '/pages/classes/courses',
   },
   {
     title: 'Advisement',
@@ -41,8 +31,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Classes',
-    icon: 'nb-list',
-    link: '/pages/classes/courses'
-  }
+    title: 'Profile',
+    icon: 'nb-person',
+    children: [
+      {
+        title: 'Profile View',
+        link: '/pages/profile/profile-view',
+      },
+      {
+        title: 'Edit Profile',
+        link: '/pages/profile/edit-profile',
+      },
+    ],
+
+  },
 ];
