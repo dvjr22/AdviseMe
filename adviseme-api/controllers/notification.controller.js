@@ -12,7 +12,7 @@ exports.sendNotification = async function(req, res) {
 
   client.messages.create({
     // Whom to send tho message too
-    to: '+18037922216',
+    to: '',
     // The Twilio Phone number to send it from
     from: '+18036755450',
     // Parse a message out of the post request body
