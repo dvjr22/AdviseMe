@@ -24,13 +24,12 @@ client = pymongo.MongoClient('localhost', 27017)
 # Follows format client.dbName.collectionName
 db = client.adviseMe.classes
 
-<<<<<<< HEAD:adviseme-database/Build/Python/insert.py
 # path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Lab pc path
 path = '/home/diego/Capstone/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Laptop path
 # path = '~/Documents/GitHub/AdviseMe/adviseme-database/Data/SemiStructered' ~ Ethan's Mac
-=======
+
 print("Inserting data to: %s" %(db))
->>>>>>> origin/master:adviseme-database/Build/DatabaseBuildFiles/insert.py
+
 
 # Walk directory path for .csv files containing class data
 for root, subdirs, files in os.walk(path):
@@ -84,20 +83,14 @@ for root, subdirs, files in os.walk(path):
 
 					else:
 						break
-<<<<<<< HEAD:adviseme-database/Build/Python/insert.py
 
 				print(data)
 				print(json.dumps(data))
 
 				# Insert data
 				#db.insert_one(data)
-=======
-				
+
 				# Insert data
 				if db.insert_one(data):
 					print("Class: %s inserted" %(data['_id']))
 					# print(json.dumps(data)+'\n')
-
-				
-
->>>>>>> origin/master:adviseme-database/Build/DatabaseBuildFiles/insert.py
