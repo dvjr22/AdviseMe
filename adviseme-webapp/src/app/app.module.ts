@@ -30,6 +30,7 @@ import {AppointmentService } from './_shared/services/appointment.service';
 import { AuthenticationService, CanActivateUser } from './_shared/services/authentication.service';
 import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
+import { NotificationService } from './_shared/services/notification.service';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-t
     AlertService,
     NbAuthService,
     ToasterService,
+    NotificationService,
   ],
 })
 export class AppModule {
