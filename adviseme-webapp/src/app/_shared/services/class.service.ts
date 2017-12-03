@@ -8,8 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ClassService {
 
-  api_url = 'http://127.0.0.1:3000';
-  classUrl = `${this.api_url}/classes`;
+  classUrl = `/classes`;
   constructor(private http: HttpClient) { }
 
   // Don't ask why x it just works that way
