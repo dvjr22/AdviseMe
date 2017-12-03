@@ -4,6 +4,7 @@ import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 import { Appointment } from '../../../_shared/models/appointment';
 import { AppointmentService } from '../../../_shared/services/appointment.service';
+import { NotificationService } from '../../../_shared/services/notification.service';
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
@@ -21,7 +22,8 @@ export class AppointmentComponent implements OnInit {
   constructor(private userService: UserService,
               private appointmentService: AppointmentService,
               private ngbDateParserFormatter: NgbDateParserFormatter,
-              protected router: Router) { }
+              protected router: Router,
+              private notificationService: NotificationService) { }
 
   public newAppointment: Appointment = new Appointment();
 
@@ -40,6 +42,7 @@ export class AppointmentComponent implements OnInit {
     // have to use a formatter because ng date picker uses ISO format instead of the standard date format
     this.newAppointment.date = new Date(this.ngbDateParserFormatter.format(this.model));
     this.appointmentService.create(this.newAppointment).subscribe();
+    this.notificationService.sendNotification(JSON.stringify(this.newAppointment));
     this.router.navigate(['pages/advisement/view-appointment']);
   }
 
