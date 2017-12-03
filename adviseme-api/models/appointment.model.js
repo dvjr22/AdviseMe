@@ -3,7 +3,7 @@ var mongoosePaginate = require('mongoose-paginate')
 
 var AppointmentSchema = new mongoose.Schema({
     studentID: {
-      type: Number,
+      type: String,
       required: true,
       trim: true,
     },

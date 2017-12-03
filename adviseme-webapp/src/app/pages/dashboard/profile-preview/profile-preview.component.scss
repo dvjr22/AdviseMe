@@ -2,6 +2,9 @@
 
 @include nb-install-component() {
 
+  nb-card {
+    height: 96%;
+  }
   nb-card-body {
     display: flex;
     flex-direction: column;
