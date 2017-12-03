@@ -26,18 +26,20 @@ import { NbResetPasswordComponent } from './@theme/components/auth/components/re
 // Services
 import { UserService } from './_shared/services/user.service';
 import { ClassService } from './_shared/services/class.service';
-import {AppointmentService } from './_shared/services/appointment.service';
 import { AuthenticationService, CanActivateUser } from './_shared/services/authentication.service';
 import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
-import { NotificationService } from './_shared/services/notification.service';
 
+<<<<<<< HEAD
 // Models
 import { User } from './_shared/models/user';
 import { Class } from './_shared/models/class';
 
 //Import images
 
+
+=======
+>>>>>>> origin/master
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,15 +66,17 @@ import { Class } from './_shared/models/class';
   providers: [
     UserService,
     ClassService,
-    AppointmentService,
     AuthenticationService,
     CanActivateUser,
+<<<<<<< HEAD
     User,
     Class,
+=======
+>>>>>>> origin/master
     AlertService,
     NbAuthService,
     ToasterService,
-    NotificationService,
+    { provide: APP_BASE_HREF, useValue: '/' },
   ],
 })
 export class AppModule {

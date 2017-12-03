@@ -40,4 +40,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+  {
+    title: 'Classes',
+    icon: 'nb-list',
+    link: '/pages/classes/courses'
+  }
 ];

@@ -1,6 +1,6 @@
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {Response} from '@angular/http';
+import { Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Class } from '../models/class';
 import 'rxjs/add/operator/map';
@@ -16,9 +16,9 @@ export class ClassService {
   createClass(x: Class): Observable<any> {
     return this.http.post(`${this.classUrl}`, x);
   }
-getClasses(): Observable<Class[]> {
-  return this.http.get(this.classUrl)
-  .map(res  => {
+  getClasses(): Observable<Class[]> {
+    return this.http.get(this.classUrl)
+    .map(res  => {
     return res['data'].docs as Class[];
   });
 }

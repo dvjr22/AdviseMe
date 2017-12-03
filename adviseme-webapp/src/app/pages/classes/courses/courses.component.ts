@@ -5,6 +5,8 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
 
+import { flattenObject } from './flattenObject';
+
 @Component({
   selector: 'ngx-courses-list-page',
   templateUrl: './courses.component.html',
@@ -13,17 +15,14 @@ export class CoursesComponent implements OnInit {
     settings = {
       actions: false,
       columns: {
-        _id: {
-          title: 'Course Code',
+        class_prefix: {
+          title: 'Department',
         },
-        class: {
-          title: 'title',
-          valuePrepareFunction: (cell, row) => {
-            return row.class.title;
-          },
+        class_courseNo: {
+          title: 'Course Number',
         },
-        prerequisites: {
-          title: 'Prerequisites',
+        class_title: {
+          title: 'Course Title',
         },
       },
     };
@@ -34,9 +33,11 @@ export class CoursesComponent implements OnInit {
     }
 
     ngOnInit() {
+
       this.classService.getClasses()
-        .subscribe(res => {
-          this.source.load(res);
+        .subscribe((res: Class[]) => {
+          this.source.load(flattenObject(res));
         });
+      console.log(this.source);
     }
 }

@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ClassesComponent } from './classes.component';
+import { CoursesComponent } from './courses/courses.component';
 
 const routes: Routes = [{
   path: '',
   component: ClassesComponent,
-  children: [],
+  children: [{
+    path: 'courses',
+    component: CoursesComponent,
+  }],
 }];
 
 @NgModule({
@@ -17,4 +21,5 @@ export class ClassesRoutingModule { }
 
 export const routedComponents = [
   ClassesComponent,
+  CoursesComponent,
 ];
