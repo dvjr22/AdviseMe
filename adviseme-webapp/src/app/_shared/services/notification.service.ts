@@ -6,6 +6,6 @@ export class NotificationService {
 
   constructor(private http: Http) { }
   sendNotification(msg: string) {
-    return this.http.post('/notify/sendnotification', { message: msg }).subscribe();
+    return this.http.post('/notify/sendnotification', { message: JSON.parse(msg) }).subscribe();
   }
 }
