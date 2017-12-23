@@ -14,6 +14,8 @@ import { UserService } from './_shared/services/user.service';
 import { CanActivateUser } from './_shared/services/authentication.service';
 import { AlertService } from './_shared/services/alert.service';
 
+// Main Route
+
 const routes: Routes = [
     {
       path: 'auth',

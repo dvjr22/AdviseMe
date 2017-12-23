@@ -6,6 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdvisementComponent } from './advisement/advisement.component';
 
+// Routing for the Pages
+
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
