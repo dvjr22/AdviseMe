@@ -14,5 +14,3 @@ import { UserService } from '../../_shared/services/user.service';
 })
 export class DashboardComponent {
   }
-
-}

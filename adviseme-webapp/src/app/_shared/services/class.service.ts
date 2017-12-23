@@ -48,8 +48,8 @@ export class ClassService {
     @param {Class} class
     @returns {any}
   */
-  editClass(class: Class): Observable <any> {
-    return this.http.put(`${this.classUrl}`, class);
+  editClass(c: Class): Observable <any> {
+    return this.http.put(`${this.classUrl}`, c);
   }
 
   /**
