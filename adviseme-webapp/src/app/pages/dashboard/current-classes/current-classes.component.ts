@@ -7,6 +7,10 @@ import { UserService } from '../../../_shared/services/user.service';
 
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
+/**
+  Component:
+    For the current classes that the user is in
+*/
 @Component({
   selector: 'ngx-current-classes',
   styleUrls: ['./current-classes.component.scss'],
@@ -15,9 +19,17 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
 export class CurrentClassesComponent implements OnInit {
 
+  /**
+    Getting the current user
+  */
   currentUser: User;
-  temp: any;
+  /**
+    Array of courses
+  */
   courses: any = [];
+  /**
+    Configuration for the table
+  */
   settings = {
     actions: false,
     columns: {
@@ -30,11 +42,22 @@ export class CurrentClassesComponent implements OnInit {
     },
   };
 
+  /**
+    The data that will go into the table
+  */
   source: LocalDataSource = new LocalDataSource();
 
+  /**
+    Initializes new names for the imports
+  */
   constructor(private userService: UserService) {
   }
 
+  /**
+    Gets the currents users classes they are currently taking
+
+    TODO: Use the real current users current class data
+  */
   ngOnInit() {
     this.source.load(CurrentClasses);
   }
