@@ -15,9 +15,21 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
   styleUrls: ['./profile-view.component.scss'],
 })
 export class ProfileViewComponent implements OnInit {
+  /**
+    Getting the current user
+  */
   currentUser: User;
+  /**
+    Array to split email by @
+  */
   emailArray: any;
+  /**
+    Email before the @
+  */
   emailBegin: string;
+  /**
+    Email starting at the @
+  */
   emailEnding: string;
 
   /**
