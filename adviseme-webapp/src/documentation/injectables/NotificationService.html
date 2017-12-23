@@ -903,6 +903,13 @@
             <code>app/_shared/services/notification.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>SMS Notification service that calls api notification service</p>
+
+            </p>
 
 
             <section>
@@ -938,12 +945,14 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">app/_shared/services/notification.service.ts:5</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">app/_shared/services/notification.service.ts:8</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes new names for the imports</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -1001,12 +1010,16 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">app/_shared/services/notification.service.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">app/_shared/services/notification.service.ts:23</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Calls the api notification service to send a user a Notification
+            TODO: When a user signs up, he has his phone number as well. Phone number
+               Will be another param that will be sent.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1055,10 +1068,25 @@
         <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { Http, Headers, Response } from &#x27;@angular/http&#x27;;
 
+/**
+  SMS Notification service that calls api notification service
+*/
 @Injectable()
 export class NotificationService {
 
+  /**
+    Initializes new names for the imports
+  */
   constructor(private http: Http) { }
+
+  /**
+    Calls the api notification service to send a user a Notification
+    TODO: When a user signs up, he has his phone number as well. Phone number
+      Will be another param that will be sent.
+
+    @param {string} msg
+    @returns {none}
+  */
   sendNotification(msg: string) {
     return this.http.post(&#x27;/notify/sendnotification&#x27;, { message: msg }).subscribe();
   }

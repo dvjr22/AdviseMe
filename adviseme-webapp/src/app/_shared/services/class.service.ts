@@ -5,29 +5,63 @@ import { Injectable } from '@angular/core';
 import { Class } from '../models/class';
 import 'rxjs/add/operator/map';
 
+/**
+  Service that makes calls to the api class service
+*/
 @Injectable()
 export class ClassService {
-
+  /**
+    Class Url for the api
+  */
   classUrl = `/classes`;
+
+  /**
+    Initializes new names for the imports
+  */
   constructor(private http: HttpClient) { }
 
-  // Don't ask why x it just works that way
+  /**
+    Creates a new class
+
+    @param {Class} x
+    @returns {any}
+  */
   createClass(x: Class): Observable<any> {
     return this.http.post(`${this.classUrl}`, x);
   }
+
+  /**
+    Get all the classes
+
+    @returns {Class[]}
+  */
   getClasses(): Observable<Class[]> {
     return this.http.get(this.classUrl)
     .map(res  => {
     return res['data'].docs as Class[];
-  });
-}
-
-editTodo(todo: Class) {
-    const editUrl = `${this.classUrl}`;
-    return this.http.put(editUrl, todo);
+    });
   }
 
-  deleteTodo(id: string): any {
+  /**
+    Edit Class
+
+    @param {Class} class
+    @returns {any}
+  */
+  editClass(class: Class): Observable <any> {
+    return this.http.put(`${this.classUrl}`, class);
+  }
+
+  /**
+    Delete Class by id
+
+    @param {string} id
+    @returns {any}
+  */
+  deleteClass(id: string): any {
+    /**
+      url to delete the user by id
+    */
     const deleteUrl = `${this.classUrl}/${id}`;
     return this.http.delete(deleteUrl)
     .map(res  => {
