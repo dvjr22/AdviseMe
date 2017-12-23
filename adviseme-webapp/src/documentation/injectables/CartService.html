@@ -903,6 +903,13 @@
             <code>app/_shared/services/cart.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service that makes calls to the api cart service</p>
+
+            </p>
 
 
             <section>
@@ -947,12 +954,14 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">app/_shared/services/cart.service.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">app/_shared/services/cart.service.ts:11</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes new names for the imports</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -1010,12 +1019,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">app/_shared/services/cart.service.ts:16</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">app/_shared/services/cart.service.ts:33</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Create a new cart</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1076,12 +1087,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">app/_shared/services/cart.service.ts:24</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">app/_shared/services/cart.service.ts:53</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Delete cart by id</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1142,12 +1155,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">app/_shared/services/cart.service.ts:12</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">app/_shared/services/cart.service.ts:23</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Get a cart by id</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1208,12 +1223,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">app/_shared/services/cart.service.ts:20</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">app/_shared/services/cart.service.ts:43</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Update cart</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1265,23 +1282,52 @@ import &#x27;rxjs/add/operator/map&#x27;;
 
 import { Cart } from &#x27;../models/cart&#x27;;
 
+/**
+  Service that makes calls to the api cart service
+*/
 @Injectable()
 export class CartService {
 
+  /**
+    Initializes new names for the imports
+  */
   constructor(private http: Http) { }
+    /**
+      Get a cart by id
 
+      @param {string} _id
+      @returns {json}
+    */
     getById(_id: string) {
         return this.http.get(&#x27;/cart/&#x27; + _id).map((response: Response) &#x3D;&gt; response.json());
     }
 
+    /**
+      Create a new cart
+
+      @param {Cart} cart
+      @returns {none}
+    */
     create(cart: Cart) {
         return this.http.post(&#x27;/cart&#x27;, cart);
     }
 
+    /**
+      Update cart
+
+      @param {Cart} cart
+      @returns {none}
+    */
     update(cart: Cart) {
         return this.http.put(&#x27;/cart/&#x27; + cart._id, cart);
     }
 
+    /**
+      Delete cart by id
+
+      @param {string} _id
+      @returns {none}
+    */
     delete(_id: string) {
         return this.http.delete(&#x27;/cart/&#x27; + _id);
     }
