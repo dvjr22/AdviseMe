@@ -7,11 +7,17 @@ import { ClassService } from '../../../_shared/services/class.service';
 
 import { flattenObject } from './flattenObject';
 
+/**
+  Complete course catalog
+*/
 @Component({
   selector: 'ngx-courses-list-page',
   templateUrl: './courses.component.html',
 })
 export class CoursesComponent implements OnInit {
+    /**
+      Configuration for the table
+    */
     settings = {
       actions: false,
       columns: {
@@ -27,11 +33,21 @@ export class CoursesComponent implements OnInit {
       },
     };
 
+    /**
+      The data that will go into the table
+    */
     source: LocalDataSource = new LocalDataSource();
 
+    /**
+      Initializes new names for the imports
+    */
     constructor(private classService: ClassService) {
     }
 
+    /**
+        Gets all the classes flattens the object to add to the table
+        @returns {none}
+    */
     ngOnInit() {
 
       this.classService.getClasses()
