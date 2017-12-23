@@ -927,7 +927,7 @@ import { UserService } from &#x27;./_shared/services/user.service&#x27;;
 import { CanActivateUser } from &#x27;./_shared/services/authentication.service&#x27;;
 import { AlertService } from &#x27;./_shared/services/alert.service&#x27;;
 
-// Main Route
+// Main Routes 
 
 const routes: Routes &#x3D; [
     {
@@ -960,7 +960,14 @@ const routes: Routes &#x3D; [
   { path: &#x27;&#x27;, redirectTo: &#x27;/auth/login&#x27;, pathMatch: &#x27;full&#x27;},
   { path: &#x27;**&#x27;, redirectTo: &#x27;/auth/login&#x27; },
 ];
+
+/**
+  Extra configuration options for the Router
+*/
 const config: ExtraOptions &#x3D; {
+  /**
+    Do not use the hashtag in the url
+  */
   useHash: false,
 };
 

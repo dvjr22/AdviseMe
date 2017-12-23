@@ -903,6 +903,14 @@
     <code>app/pages/pages.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component:
+   For base pages layout mainly for naviagation menu</p>
+
+    </p>
 
 
 
@@ -1004,10 +1012,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">app/pages/pages.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">app/pages/pages.component.ts:23</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Navigation bar menu</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1021,6 +1035,10 @@
 
 import { MENU_ITEMS } from &#x27;./pages-menu&#x27;;
 
+/**
+  Component:
+    For base pages layout mainly for naviagation menu
+*/
 @Component({
   selector: &#x27;ngx-pages&#x27;,
   template: &#x60;
@@ -1031,7 +1049,9 @@ import { MENU_ITEMS } from &#x27;./pages-menu&#x27;;
   &#x60;,
 })
 export class PagesComponent {
-
+  /**
+    Navigation bar menu
+  */
   menu &#x3D; MENU_ITEMS;
 }
 </code></pre>

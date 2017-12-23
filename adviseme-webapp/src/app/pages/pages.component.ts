@@ -3,6 +3,10 @@ import { Component } from '@angular/core';
 
 import { MENU_ITEMS } from './pages-menu';
 
+/**
+  Component:
+    For base pages layout mainly for naviagation menu
+*/
 @Component({
   selector: 'ngx-pages',
   template: `
@@ -13,6 +17,8 @@ import { MENU_ITEMS } from './pages-menu';
   `,
 })
 export class PagesComponent {
-
+  /**
+    Navigation bar menu
+  */
   menu = MENU_ITEMS;
 }
