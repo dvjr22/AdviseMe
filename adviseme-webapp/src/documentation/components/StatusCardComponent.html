@@ -903,6 +903,14 @@
     <code>app/pages/dashboard/status-card/status-card.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component:
+   status-card</p>
+
+    </p>
 
 
 
@@ -996,6 +1004,8 @@
                             <code>on</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>on </p>
+</div>
                             <p>
                               <em>Default value: </em><code>true</code>
                             </p>
@@ -1003,7 +1013,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">app/pages/dashboard/status-card/status-card.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">app/pages/dashboard/status-card/status-card.component.ts:41</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1016,6 +1026,8 @@
                             <code>title</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Title for the card</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
@@ -1024,7 +1036,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">app/pages/dashboard/status-card/status-card.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">app/pages/dashboard/status-card/status-card.component.ts:33</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1037,6 +1049,8 @@
                             <code>type</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Type of card</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
@@ -1045,7 +1059,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">app/pages/dashboard/status-card/status-card.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">app/pages/dashboard/status-card/status-card.component.ts:37</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1063,6 +1077,10 @@
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { Component, Input } from &#x27;@angular/core&#x27;;
 
+/**
+  Component:
+    status-card
+*/
 @Component({
   selector: &#x27;ngx-status-card&#x27;,
   styleUrls: [&#x27;./status-card.component.scss&#x27;],
@@ -1081,10 +1099,22 @@
     &lt;/nb-card&gt;
   &#x60;,
 })
-export class StatusCardComponent {
 
+/**
+  Input type
+*/
+export class StatusCardComponent {
+  /**
+    Title for the card
+  */
   @Input() title: string;
+  /**
+    Type of card
+  */
   @Input() type: string;
+  /**
+    on 
+  */
   @Input() on &#x3D; true;
 }
 </code></pre>

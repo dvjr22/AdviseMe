@@ -25,6 +25,9 @@ const routes: Routes = [{
 })
 export class ProfileRoutingModule { }
 
+/**
+  Profile and Children Components
+*/
 export const routedComponents = [
   ProfileComponent,
   EditProfileComponent,

@@ -5,6 +5,10 @@ import { UserService } from '../../../_shared/services/user.service';
 
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
+/**
+  Component:
+    Allows a user to look at an overview of their profile
+*/
 @Component({
   selector: 'ngx-profile-view',
   templateUrl: './profile-view.component.html',
@@ -16,9 +20,16 @@ export class ProfileViewComponent implements OnInit {
   emailBegin: string;
   emailEnding: string;
 
+  /**
+    Initializes new names for the imports
+  */
   constructor(private userService: UserService) {
   }
 
+  /**
+    Gets the currents users id from the local cache then uses the user service
+    to get the users information
+  */
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id)

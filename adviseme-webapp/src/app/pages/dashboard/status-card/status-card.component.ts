@@ -27,8 +27,16 @@ import { Component, Input } from '@angular/core';
   Input type
 */
 export class StatusCardComponent {
-
+  /**
+    Title for the card
+  */
   @Input() title: string;
+  /**
+    Type of card
+  */
   @Input() type: string;
+  /**
+    on 
+  */
   @Input() on = true;
 }
