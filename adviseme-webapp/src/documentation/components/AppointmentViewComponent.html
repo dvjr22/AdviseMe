@@ -906,6 +906,13 @@
     <code>app/pages/advisement/view-appointment/appointment-view.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component that allows the user to see their appointments</p>
+
+    </p>
 
 
     <p class="comment">
@@ -1001,12 +1008,14 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">app/pages/advisement/view-appointment/appointment-view.component.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">app/pages/advisement/view-appointment/appointment-view.component.ts:17</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Initializes new names for the imports</p>
+    </div>
                                 <div>
                                         <b>Parameters :</b>
                                         <table class="params">
@@ -1068,17 +1077,25 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">app/pages/advisement/view-appointment/appointment-view.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">app/pages/advisement/view-appointment/appointment-view.component.ts:29</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Calling the appointment api gets all the appointments
+    TODO: Get only appointments for the user, still being able to sort</p>
+    </div>
     
+                                <div>
+                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
     
                                 </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -1117,10 +1134,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">app/pages/advisement/view-appointment/appointment-view.component.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">app/pages/advisement/view-appointment/appointment-view.component.ts:17</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Variable to store all the appointments for the user collected from the api</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1134,17 +1157,30 @@
 import { Appointment } from &#x27;../../../_shared/models/appointment&#x27;;
 import { AppointmentService } from &#x27;../../../_shared/services/appointment.service&#x27;;
 
+/**
+  Component that allows the user to see their appointments
+*/
 @Component({
   selector: &#x27;ngx-app-appointment-view&#x27;,
   templateUrl: &#x27;./appointment-view.component.html&#x27;,
   styleUrls: [&#x27;./appointment-view.component.scss&#x27;],
 })
 export class AppointmentViewComponent implements OnInit {
+  /**
+   Variable to store all the appointments for the user collected from the api
+  */
   appointment: any;
 
+  /**
+    Initializes new names for the imports
+  */
   constructor(private appointmentService: AppointmentService) {
   }
-
+  /**
+    Calling the appointment api gets all the appointments
+    TODO: Get only appointments for the user, still being able to sort
+    @returns {none}
+  */
   ngOnInit() {
     this.appointmentService.getAll().subscribe( res &#x3D;&gt; {
       this.appointment &#x3D; res[&#x27;data&#x27;][&#x27;docs&#x27;];
