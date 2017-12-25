@@ -7,7 +7,6 @@ import { Role, Status, Major } from './constants';
 @Injectable()
 export class User {
   _id: string;
-  studentID: string;
   username: string;
   password: string;
   firstName: string;
@@ -15,9 +14,11 @@ export class User {
   fullName: string;
   email: string;
   university: string;
+  appointments: string[];
   role: Role;
 
   // Student Role
+  studentID: string;
   status: Status;
   major: Major;
   course: [{
@@ -26,8 +27,10 @@ export class User {
   }];
 
   // Advisor Role
+  students: string[];
 
   // Admin Role
+
 }
 
 /**

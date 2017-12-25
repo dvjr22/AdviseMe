@@ -5,6 +5,9 @@ var bcrypt = require('bcryptjs');
 var Q = require('q');
 var mongo = require('mongoskin');
 var db = mongo.db(config.connectionString, { native_parser: true });
+
+var secretKey = require('./secret-key.js');
+
 db.bind('users');
 
 var service = {};
@@ -28,7 +31,7 @@ function authenticate(username, password){
       // Authentication successful
       deferred.resolve({
         _id: user._id,
-        token: jwt.sign({ sub: user._id }, config.secret)
+        token: jwt.sign({ sub: user._id }, user.secret)
       });
     } else {
       // Authentication failure
@@ -73,6 +76,10 @@ function getById(_id) {
     return deferred.promise;
 }
 
+function secretKeyGen() {
+  return (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
+}
+
 function create(userParam) {
     var deferred = Q.defer();
 
@@ -96,7 +103,7 @@ function create(userParam) {
 
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
-
+        user.secret = secretKeyGen();
         db.users.insert(
             user,
             function (err, doc) {
