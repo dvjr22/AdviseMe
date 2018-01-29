@@ -36,7 +36,7 @@ import { NotificationService } from './_shared/services/notification.service';
 import { User } from './_shared/models/user';
 import { Class } from './_shared/models/class';
 
-//Import images
+// Import images
 
 @NgModule({
   declarations: [

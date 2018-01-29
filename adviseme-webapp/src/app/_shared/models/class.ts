@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+/**
+  Class class
+*/
 @Injectable()
 export class Class {
   _id: string;

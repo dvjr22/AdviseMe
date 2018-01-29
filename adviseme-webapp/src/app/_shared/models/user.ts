@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Role, Status, Major } from './constants';
-// authentication user profile
+
+/**
+  User class
+*/
 @Injectable()
 export class User {
   _id: string;
-  studentID: string;
   username: string;
   password: string;
   firstName: string;
@@ -12,9 +14,11 @@ export class User {
   fullName: string;
   email: string;
   university: string;
+  appointments: string[];
   role: Role;
 
   // Student Role
+  studentID: string;
   status: Status;
   major: Major;
   course: [{
@@ -23,10 +27,17 @@ export class User {
   }];
 
   // Advisor Role
+  students: string[];
 
   // Admin Role
+
 }
 
+/**
+  Temp current user classes
+
+  TODO: Remove
+*/
 export const CurrentClasses = [
   {department: 'CSCE', coNum: '490'},
   {department: 'CSCE', coNum: '355'},
@@ -34,8 +45,13 @@ export const CurrentClasses = [
   {department: 'MATH', coNum: '526'},
   {department: 'CRJU', coNum: '340'}];
 
-  export const FutureClasses = [
-    {department: 'CSCE', coNum: '492'},
-    {department: 'CSCE', coNum: '522'},
-    {department: 'CSCE', coNum: '480'},
-    {department: 'CRJU', coNum: '101'}];
+/**
+  Temp future uer classes
+
+  TODO: Remove
+*/
+export const FutureClasses = [
+  {department: 'CSCE', coNum: '492'},
+  {department: 'CSCE', coNum: '522'},
+  {department: 'CSCE', coNum: '480'},
+  {department: 'CRJU', coNum: '101'}];

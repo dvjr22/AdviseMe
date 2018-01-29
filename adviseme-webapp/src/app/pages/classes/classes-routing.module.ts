@@ -19,6 +19,9 @@ const routes: Routes = [{
 })
 export class ClassesRoutingModule { }
 
+/**
+  Classes and Children Components
+*/
 export const routedComponents = [
   ClassesComponent,
   CoursesComponent,

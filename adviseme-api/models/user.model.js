@@ -14,6 +14,10 @@ var UserSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    secret: {
+      type: String,
+      required: true,
+    }
     studentID: {
       type: Number,
       required: true,

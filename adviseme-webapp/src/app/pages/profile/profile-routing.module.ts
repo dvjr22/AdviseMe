@@ -5,6 +5,8 @@ import { ProfileComponent } from './profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 
+// Children Routes of the Profile
+
 const routes: Routes = [{
   path: '',
   component: ProfileComponent,
@@ -23,6 +25,9 @@ const routes: Routes = [{
 })
 export class ProfileRoutingModule { }
 
+/**
+  Profile and Children Components
+*/
 export const routedComponents = [
   ProfileComponent,
   EditProfileComponent,

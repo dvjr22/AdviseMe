@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 
+/**
+  Appointment class
+*/
 @Injectable()
 export class Appointment {
+  _id: string;
   studentID: string; // ObjectId
   firstName: string;
   lastName: string;

@@ -60,6 +60,12 @@ A web app that will assist college students through the majority of advising req
 ## Unit Tests
 * Run ```ng test``` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
+## Creating Documentation
+* Install compdoc package
+  * ```npm i -g @compodoc/compodoc```
+* Create the documentation for Angular
+  * ```cd <path>/AdviseMe/adviseme-webapp/src```
+  * ```compodoc -p tsconfig.app.json```
 ## Built With
 * [Angular4](https://angular.io/)
 * [NodeJS](https://nodejs.org/en/)

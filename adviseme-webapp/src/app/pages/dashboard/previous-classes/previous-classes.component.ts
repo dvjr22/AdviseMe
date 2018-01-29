@@ -7,6 +7,10 @@ import { UserService } from '../../../_shared/services/user.service';
 
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
+/**
+  Component:
+    For the past classes that the user is in
+*/
 @Component({
   selector: 'ngx-previous-classes',
   styleUrls: ['./previous-classes.component.scss'],
@@ -14,10 +18,17 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 })
 
 export class PreviousClassesComponent implements OnInit {
-
+  /**
+    Getting the current user
+  */
   currentUser: User;
-  temp: any;
+  /**
+    Array of courses
+  */
   courses: any = [];
+  /**
+    Configuration for the table
+  */
   settings = {
     actions: false,
     columns: {
@@ -33,11 +44,20 @@ export class PreviousClassesComponent implements OnInit {
     },
   };
 
+  /**
+    The data that will go into the table
+  */
   source: LocalDataSource = new LocalDataSource();
 
+  /**
+    Initializes new names for the imports
+  */
   constructor(private userService: UserService) {
   }
 
+    /**
+      Gets the currents users classes they have took
+    */
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id)

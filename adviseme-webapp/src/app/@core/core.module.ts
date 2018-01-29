@@ -38,6 +38,10 @@ export class CoreModule {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
   }
 
+  /**
+   * Removes Module
+   * @returns {ModuleWithProviders}
+   */
   static forRoot(): ModuleWithProviders {
     return <ModuleWithProviders>{
       ngModule: CoreModule,
