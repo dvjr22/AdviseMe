@@ -1,5 +1,6 @@
 import { TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
 import { Http, Headers, RequestOptions, Response, ResponseOptions, BaseRequestOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { AppointmentService } from './appointment.service';
 import { MockBackend } from '@angular/http/testing';
 
@@ -31,7 +32,7 @@ describe('AppointmentService', () => {
 
   it('getAll should return some appointments', fakeAsync(() => {
     // Data for the MockBackend to return
-    let response = {
+    const response = {
           'status': 200,
           'data': {
               'docs': [
@@ -88,9 +89,17 @@ describe('AppointmentService', () => {
         }));
       });
 
-      const resp = service.getAll();
-      tick(); // Wait for all promises and awaits to return
-      console.log("RESP");
-      console.log(typeof(resp));
+      let appointments: any;
+      service.getAll().subscribe( res => {
+        appointments = res['data']['docs'];
+      });
+
+      // Wait for all promises and awaits to return
+      tick();
+
+      // Expectations
+      expect(appointments.length).toBe(3);
+      expect(appointments[0].advisor).toBe('Captain America');
+      expect(appointments[1].firstName).toBe('Tyler');
   }));
 });
