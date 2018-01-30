@@ -34,6 +34,10 @@ module.exports = function (config) {
         flags: ['--no-sandbox']
       }
     },
+    browserConsoleLogOptions: {
+      level: 'log',
+      terminal: true
+    },
     singleRun: false
   };
 
