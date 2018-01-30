@@ -9,6 +9,8 @@ describe('AppointmentService', () => {
   let service: AppointmentService;
   let backend: MockBackend;
 
+  let response;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -28,11 +30,9 @@ describe('AppointmentService', () => {
 
     // Returns a service so we can test dummy (like ethan) reponses
     service = TestBed.get(AppointmentService);
-  });
 
-  it('getAll should return some appointments', fakeAsync(() => {
     // Data for the MockBackend to return
-    const response = {
+    response = {
           'status': 200,
           'data': {
               'docs': [
@@ -79,8 +79,9 @@ describe('AppointmentService', () => {
           },
           'message': 'Successfully found Appointment',
       }; // END response
+  });
 
-
+  it('should return three appointments', fakeAsync(() => {
 
       // When the request subscribes for results on a connection, return a fake response
       backend.connections.subscribe(connection => {

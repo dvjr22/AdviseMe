@@ -21,7 +21,7 @@ export class AppointmentService {
       @returns {json}
     */
     getAll() {
-      return this.http.get('/appointments/').map((response: Response) => response.json());
+       return this.http.get('/appointments/').map((response: Response) => response.json());
     }
 
     /**
@@ -55,4 +55,8 @@ export class AppointmentService {
     delete(_id: string) {
         return this.http.delete('/appointments/' + _id);
     }
+}
+
+interface AppointmentResponse {
+  results: string[];
 }
