@@ -9,51 +9,69 @@
 
 class Nara {
 
+	/**********************************************************************************************
+	*
+	*/
 	constructor(studentId){
-		this.studentId = studentId;
-		//this.MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
-		this.url = "mongodb://localhost:27017/adviseMe";	
 
-		this.MongoClient = require('mongodb').MongoClient;
-		//this.assert = require('assert');
+		this.studentId = studentId; // student id
+		this.MongoClient = require('mongodb').MongoClient; // Mongo client to connect
+		this.url = "mongodb://localhost:27017/adviseMe"; // port and db 
+		this.assert = require('assert'); // handle errors
 	}
 
+	/**********************************************************************************************
+	*
+	*/
 	get studentId(){
-		//this.log(this.url)
+
 		return this._studentId;
 	}
 
+	/**********************************************************************************************
+	*
+	*/
 	set studentId(studentId) {
+
 		this._studentId = studentId;
 	}
 
-	getThatRec(){
+	/**********************************************************************************************
+	*
+	*/
+	getThatRec(callback){
 
-		var sI = this.studentId; //assign id to var to be accessed with Mongo call
+		var sI = this.studentId; // assign id to var to be accessed inside Mongo call
+		var assert = this.assert; // assign assert to hande errors inside Mongo call
 
 		// Connect to db
 		this.MongoClient.connect(this.url, function(err, db) {
 
-			if (!err) {
-				console.log("connected NaraV1");
+			assert.equal(err, null);
 
+			console.log("connected NaraV1");
 
-				db.collection('users').findOne({ studentID : sI}, function(err, doc){
-					console.log(doc);
+			// find student
+			db.collection('users').findOne({ studentID : sI}, function(err, doc){
+
+				doc.course.forEach(function(element) {
+
+					console.log(element.classID);
+					console.log(element.grade);
+
 				});
 
-			}
+				callback(doc); // return the document
+				
+			});
 
-			db.close();
+			db.close(); // close db
 
 		});
 
-		//var results = ["CSCE145", "CSCE146", "MATH141"];
-
-		//return results;
 	}
 
 }
 
-module.exports = Nara;
+module.exports = Nara; // export class
 

@@ -9,24 +9,27 @@
 
 class NaraV2 {
 
+	/**********************************************************************************************
+	*
+	*/
 	getThatRec(studentId, callback){
 
 		var MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
-		var url = "mongodb://localhost:27017/adviseMe";	
-		var assert = require('assert');
-
+		var url = "mongodb://localhost:27017/adviseMe";	// port and db 
+		var assert = require('assert'); // handle errors
 
 		var classes = []; // array of class ids to query and create graph
 
+		// connect to db
 		MongoClient.connect(url, function(err, db) {
 
 			assert.equal(err, null); // error check
 
-
-
 			console.log("connected NaraV2");
 
-			db.collection('users').findOne({ studentID : studentId }, function(err, doc){
+			// find student
+			db.collection('users').findOne( { studentID : studentId }, function(err, doc) {
+
 
 				doc.course.forEach(function(element) {
 
@@ -37,16 +40,18 @@ class NaraV2 {
 
 				});
 
-				//callback(doc); // return the document
-				callback(classes); // return test array
+				callback(doc); // return the document
+				//callback(classes); // return test array
 
 			});
+
+			db.close(); // close db
 
 		});
 
 	}
 
-
+/*
 	getClassList() {
 
 		db.collection('classes').findOne( { '_id' : 'CSCE145' }, function(err, doc) {
@@ -59,9 +64,9 @@ class NaraV2 {
 		db.close();
 
 	}
-
+*/
 }
 
-module.exports = NaraV2; //this class is exportable
+module.exports = NaraV2; //t export class
 
 
