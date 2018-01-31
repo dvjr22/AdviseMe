@@ -28,18 +28,17 @@ class Nara {
 	}
 
 	getThatRec(){
-		
-		//get the results here
+
+		var sI = this.studentId; //assign id to var to be accessed with Mongo call
 
 		// Connect to db
 		this.MongoClient.connect(this.url, function(err, db) {
 
 			if (!err) {
-				console.log("connected");
+				console.log("connected NaraV1");
 
-				// Stuff to do goes in here
 
-				db.collection('users').findOne({ studentID : 'tHall01'}, function(err, doc){
+				db.collection('users').findOne({ studentID : sI}, function(err, doc){
 					console.log(doc);
 				});
 
@@ -49,9 +48,9 @@ class Nara {
 
 		});
 
-		var results = ["CSCE145", "CSCE146", "MATH141"];
+		//var results = ["CSCE145", "CSCE146", "MATH141"];
 
-		return results;
+		//return results;
 	}
 
 }

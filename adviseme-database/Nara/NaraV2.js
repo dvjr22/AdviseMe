@@ -11,20 +11,36 @@ class NaraV2 {
 
 	getThatRec(studentId){
 
-		//var MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
+		var MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
 		var url = "mongodb://localhost:27017/adviseMe";	
 
-		this.log("getting that recomendation for " + studentId);
-
 		//get the results here
+
+		MongoClient.connect(url, function(err, db) {
+
+		if (!err) {
+			console.log("connected NaraV2");
+
+			// Stuff to do goes in here
+
+			var query = { studentID : studentId }; //{ studentID : 'tHall01'}
+
+			db.collection('users').findOne({ studentID : studentId }, function(err, doc){
+
+				var test = doc;
+				console.log(doc);
+
+			});
+
+			db.close();
+		} 
+
+		});
 
 		var results = ["CSCE240", "CSCE210", "MATH374"];
 
 		return results;
-	}
 
-	log(statement) {
-		console.log(statement);
 	}
 
 }
