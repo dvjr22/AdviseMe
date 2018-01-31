@@ -37,4 +37,6 @@ let narav2 = new NaraV2();
 
 narav2.getThatRec("tHall01", function(returnValue) {
 	log(returnValue);
+	var x = returnValue;
 });
+
