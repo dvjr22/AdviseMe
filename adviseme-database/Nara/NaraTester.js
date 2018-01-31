@@ -16,15 +16,19 @@ function iterate(list) {
 }
 
 //Test v1
-const Nara = require('/home/diego/Nara.js');
-let nara = new Nara("A1234");
+//const Nara = require('/home/diego/Nara.js'); 
+const Nara = require('/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Nara/Nara.js');
+let nara = new Nara("tHall01");
 //log(nara.studentId);
 let results_1 = nara.getThatRec();
 iterate(results_1);
 
-
+/*
 //Test v2
-const NaraV2 = require('/home/diego/NaraV2.js');
+//const NaraV2 = require('/home/diego/NaraV2.js');
+const NaraV2 = require('/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Nara/Nara.js');
 let narav2 = new NaraV2();
 let results_2 = narav2.getThatRec("A5678");
 iterate(results_2);
+'/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Nara/Nara.js'
+*/
