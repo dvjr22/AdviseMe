@@ -23,9 +23,9 @@ export class AuthenticationService {
         // login successful if there is a jwt token in the response
         const user = response.json();
         if (user && user.token) {
-          // Store the token in the localStorage so that other
+          // Store the token in the sessionStorage so that other
           // components can check the logged in user
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          sessionStorage.setItem('currentUser', JSON.stringify(user));
         }
         return user;
       });
@@ -33,13 +33,13 @@ export class AuthenticationService {
 
   logout() {
     // Remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser');
   }
 
     // This method is used by components wanting to know if the
     // user is currently logged in or not
   checkForLocalUser(): boolean {
-    if (localStorage.getItem('currentUser') !== null) {
+    if (sessionStorage.getItem('currentUser') !== null) {
       return true;
     } else {
       return false;
