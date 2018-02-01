@@ -1,11 +1,14 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { AlertService } from './alert.service';
+import { ToasterModule, ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
+
 
 describe('AlertService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AlertService],
+      providers: [AlertService,
+                  ToasterService ],
     });
   });
 
