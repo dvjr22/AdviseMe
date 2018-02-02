@@ -27,6 +27,7 @@ for (var i = 0; i < noOfStudents; i++) {
 	obj.username = last + id; // unique user login
 	obj.email = "random.student@email.sc.edu";  // user email
 	obj.hash = "$2a$10$AYYlKAk7SFPzIwHCBAV8gu8FDwv/.RgNYvbfzN.k.Mfxwl.wcl8Sa"; // password 1234
+	obj.secret = "6k30wtqneku43i0zy7cn2b"
 
 	coursesArr = course(); // get random course work
 	obj.status = status(coursesArr); // set status based on course work
@@ -67,6 +68,7 @@ function makeTyler() {
 	obj.username = "tbhall";
 	obj.email = "tbhall@email.sc.edu";
 	obj.hash = "$2a$10$AYYlKAk7SFPzIwHCBAV8gu8FDwv/.RgNYvbfzN.k.Mfxwl.wcl8Sa";
+	obj.secret = "6k30wtqneku43i0zy7cn2b"
 
 	coursesArr = course(); // get random course work
 	obj.status = status(coursesArr); // set status based on course work
