@@ -74,7 +74,8 @@ AdviseMe has multiple unit testing systems for various parts of the project. The
 * Commands to run:
   * ```cd adviseme-webapp```
   * ```npm test```
-
+* Note:
+  * Karma will start up a browser with the test results. There are green dots in the top left corner to indicate successful tests and red x's to indicate failed tests. Clicking on Spec List will bring up a list of all the tests.
 ### End-to-end Integration Testing
 * Framework:
   * [Protractor](http://www.protractortest.org/#/)
