@@ -70,7 +70,7 @@ exports.updateClass = async function(aClass){
   }
 }
 
-//gets a class mongoose object by ID
+//get all class objects
 exports.getClass = async function(query, page, limit) {
 
   //options setup for the mongoose paginate
@@ -87,6 +87,19 @@ exports.getClass = async function(query, page, limit) {
     throw Error(e.message)
   }
 }
+
+//gets a class object by ID
+exports.getClassById = async function(id) {
+
+  //try-catch handle errors
+  try{
+    var classes = await Class.findById({_id: id});
+    return classes;
+  }catch(e){
+    throw Error(e.message, "Error while finding class by id")
+  }
+}
+
 
 //delete a class mongoose object by ID
 exports.deleteClass = async function(id) {
