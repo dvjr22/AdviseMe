@@ -7,8 +7,6 @@ var mongoose = require('mongoose');
 var bluebird = require('bluebird');
 var config = require('./config.json');
 var jwt = require('jsonwebtoken');
-// var expressJwt = require('express-jwt');
-var verifyJwt = require('./services/verify');
 
 // Get the API route ...
 var api = require('./routes/api.route')
@@ -36,19 +34,8 @@ app.use(require('express-session')({
     saveUninitialized: false
 }));
 
-// app.use(jwt({
-//   secret: '6k30wtqneku43i0zy7cn2b',
-//   credentialsRequired: false,
-//   getToken: function fromHeaderOrQuerystring (req) {
-//     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-//         return req.headers.authorization.split(' ')[1];
-//     } else if (req.query && req.query.token) {
-//       return req.query.token;
-//     }
-//     return null;
-//   }
-// }).unless({path: ['/api/users/registration', '/api/users/authenticate']}));
 
+//TODO: Do not allow the display of data... will have to be from issuer
 app.all('/api/*', function(req, res, next) {
   if(req.url === '/api/users/authenticate' || req.url === 'api/users/registration' ) {
     next();
