@@ -6,7 +6,9 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var bluebird = require('bluebird');
 var config = require('./config.json');
-var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
+// var expressJwt = require('express-jwt');
+var verifyJwt = require('./services/verify');
 
 // Get the API route ...
 var api = require('./routes/api.route')
@@ -34,6 +36,40 @@ app.use(require('express-session')({
     saveUninitialized: false
 }));
 
+// app.use(jwt({
+//   secret: '6k30wtqneku43i0zy7cn2b',
+//   credentialsRequired: false,
+//   getToken: function fromHeaderOrQuerystring (req) {
+//     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+//         return req.headers.authorization.split(' ')[1];
+//     } else if (req.query && req.query.token) {
+//       return req.query.token;
+//     }
+//     return null;
+//   }
+// }).unless({path: ['/api/users/registration', '/api/users/authenticate']}));
+
+app.all('/api/*', function(req, res, next) {
+  if(req.url === '/api/users/authenticate' || req.url === 'api/users/registration' ) {
+    next();
+  } else {
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+      console.log("Verifying");
+      try {
+        //TODO: Get users secret key instead of using mine...
+        var decoded = jwt.verify(req.headers.authorization.split(' ')[1], '6k30wtqneku43i0zy7cn2b');
+      } catch(err) {
+        //TODO: Error should be thrown
+        console.log("Something went wrong");
+      }
+      next();
+    } else {
+      //TODO: Error Should be thrown
+      console.log("No token... Please take this out after fix");
+      next();
+    }
+  }
+});
 
 //Use the API routes in api.route.js
 app.use(api);

@@ -25,7 +25,7 @@ export class UserService {
       @return {json}
     */
     getAll() {
-        return this.http.get('/users').map((response: Response) => response.json());
+        return this.http.get('api/users').map((response: Response) => response.json());
     }
 
     /**
@@ -35,7 +35,7 @@ export class UserService {
       @return {json}
     */
     getById(_id: string) {
-        return this.http.get('/users/' + _id).map((response: Response) => response.json());
+        return this.http.get('api/users/' + _id).map((response: Response) => response.json());
     }
 
     /**
@@ -44,7 +44,7 @@ export class UserService {
       @return {none}
     */
     create(user: User) {
-        return this.http.post('/users/register', user);
+        return this.http.post('api/users/register', user);
     }
 
     /**
@@ -53,7 +53,7 @@ export class UserService {
       @return {none}
     */
     update(user: User) {
-        return this.http.put('/users/' + user._id, user);
+        return this.http.put('api/users/' + user._id, user);
     }
 
     /**
@@ -62,6 +62,6 @@ export class UserService {
       @return {none}
     */
     delete(_id: string) {
-        return this.http.delete('/users/' + _id);
+        return this.http.delete('api/users/' + _id);
     }
 }

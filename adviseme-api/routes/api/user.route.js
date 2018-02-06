@@ -3,6 +3,7 @@ var router = express.Router();
 var user = require("../../controllers/user.controller.js");
 
 // route for register action
+
 router.post('/authenticate', user.authenticate);
 router.post('/register', user.register);
 router.get('/', user.getAll);

@@ -21,7 +21,7 @@ export class CartService {
       @returns {json}
     */
     getById(_id: string) {
-        return this.http.get('/cart/' + _id).map((response: Response) => response.json());
+        return this.http.get('api/cart/' + _id).map((response: Response) => response.json());
     }
 
     /**
@@ -31,7 +31,7 @@ export class CartService {
       @returns {none}
     */
     create(cart: Cart) {
-        return this.http.post('/cart', cart);
+        return this.http.post('api/cart', cart);
     }
 
     /**
@@ -41,7 +41,7 @@ export class CartService {
       @returns {none}
     */
     update(cart: Cart) {
-        return this.http.put('/cart/' + cart._id, cart);
+        return this.http.put('api/cart/' + cart._id, cart);
     }
 
     /**
@@ -51,6 +51,6 @@ export class CartService {
       @returns {none}
     */
     delete(_id: string) {
-        return this.http.delete('/cart/' + _id);
+        return this.http.delete('api/cart/' + _id);
     }
 }

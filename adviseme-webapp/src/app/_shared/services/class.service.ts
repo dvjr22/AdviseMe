@@ -13,7 +13,7 @@ export class ClassService {
   /**
     Class Url for the api
   */
-  classUrl = `/classes`;
+  classUrl = `api/classes`;
 
   /**
     Initializes new names for the imports

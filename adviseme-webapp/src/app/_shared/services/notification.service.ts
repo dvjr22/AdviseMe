@@ -21,6 +21,6 @@ export class NotificationService {
     @returns {none}
   */
   sendNotification(msg: string) {
-    return this.http.post('/notify/sendnotification', { message: JSON.parse(msg) }).subscribe();
+    return this.http.post('api/notify/sendnotification', { message: JSON.parse(msg) }).subscribe();
   }
 }
