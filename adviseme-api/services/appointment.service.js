@@ -70,7 +70,7 @@ exports.updateAppointment = async function(aAppointment){
   }
 }
 
-//gets a Appointment mongoose object by ID
+//gets a Appointment mongoose object
 exports.getAppointment = async function(query, page, limit) {
 
   //options setup for the mongoose paginate
@@ -85,6 +85,18 @@ exports.getAppointment = async function(query, page, limit) {
     return appointments;
   }catch(e){
     throw Error(e.message)
+  }
+}
+
+//gets a appointment object by ID
+exports.getAppointmentById = async function(id) {
+
+  //try-catch handle errors
+  try{
+    var appointments = await Appointment.findById({_id: id});
+    return appointments;
+  }catch(e){
+    throw Error(e.message, "Error while finding appointment by id")
   }
 }
 

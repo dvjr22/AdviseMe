@@ -41,6 +41,26 @@ exports.getAppointment = async function(req, res, next) {
 
 }
 
+//get Appointment by id
+exports.getAppointmentById = async function (req, res, next) {
+
+  var _id = req.body._id;
+
+  if(!req.body._id) { //id is necessary for findById
+    return res.status(400).json({status: 400, message: "Id must be present"})
+  }
+
+  try{
+    var Appointments = await AppointmentService.getAppointmentById(id)
+    //return classes list with appropiate HTTP status code and message
+    return res.status(200).json({status: 200, data: Appointments, message: "Successfully received classes"})
+  }catch(e){
+    //return error code response with error message
+    return res.status(400).json({status: 400, message: e.message})
+  }
+
+}
+
 //update Appointment
 exports.updateAppointment = async function(req, res, next){
 
