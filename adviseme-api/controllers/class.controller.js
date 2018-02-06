@@ -43,11 +43,11 @@ exports.getClass = async function(req, res, next) {
 //get Class by id
 exports.getClassById = async function (req, res, next) {
 
-  var _id = req.body._id;
-
   if(!req.body._id) { //id is necessary for findById
     return res.status(400).json({status: 400, message: "Id must be present"})
   }
+
+  var id = req.body._id;
 
   try{
     var classes = await classService.getClassById(id)

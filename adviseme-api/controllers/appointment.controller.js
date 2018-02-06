@@ -44,11 +44,11 @@ exports.getAppointment = async function(req, res, next) {
 //get Appointment by id
 exports.getAppointmentById = async function (req, res, next) {
 
-  var _id = req.body._id;
-
   if(!req.body._id) { //id is necessary for findById
     return res.status(400).json({status: 400, message: "Id must be present"})
   }
+
+  var id = req.body._id;
 
   try{
     var Appointments = await AppointmentService.getAppointmentById(id)
