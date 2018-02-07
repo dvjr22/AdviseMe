@@ -22,7 +22,8 @@ export class ClassService {
   currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   headers = new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
-        .set('Authorization', 'Bearer ' + this.currentUser.token );
+        .set('Authorization', 'Bearer ' + this.currentUser.token )
+        .set('Issuer', this.currentUser._id);
   /**
     Creates a new class
 

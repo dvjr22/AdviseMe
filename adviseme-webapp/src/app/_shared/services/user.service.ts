@@ -20,6 +20,7 @@ export class UserService {
   currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   headerDict = {
     'Authorization': `Bearer ` + this.currentUser.token,
+    'Issuer': this.currentUser._id,
   };
 
   requestOptions = {
