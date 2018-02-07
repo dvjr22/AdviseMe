@@ -4,6 +4,7 @@
 */
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import { User } from '../models/user';
@@ -11,7 +12,7 @@ import { User } from '../models/user';
 @Injectable()
 export class UserService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getAll() {
         return this.http.get('/users').map((response: Response) => response.json());
