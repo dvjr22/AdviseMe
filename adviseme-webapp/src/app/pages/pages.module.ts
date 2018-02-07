@@ -7,6 +7,9 @@ import { AdvisementModule } from './advisement/advisement.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 
+/**
+  All components for Pages
+*/
 const PAGES_COMPONENTS = [
   PagesComponent,
 ];

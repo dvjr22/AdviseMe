@@ -20,7 +20,7 @@ import { NbAuthResult, NbAuthService } from '../../services/auth.service';
     <toaster-container></toaster-container>
   </nb-card-body>
   <nb-auth-block>
-    <h2 class="title">Sign In</h2>
+    <h2 class="title">AdviseMe</h2>
     <small class="form-text sub-title">Hello! Sign in with your username</small>
 
     <form (ngSubmit)="login()" #form="ngForm" autocomplete="nope">
@@ -88,13 +88,13 @@ import { NbAuthResult, NbAuthService } from '../../services/auth.service';
       <small class="form-text">Or connect with:</small>
 
       <div class="socials">
-        <a href="https://github.com/akveo" target="_blank" class="socicon-github"></a>
-        <a href="https://www.facebook.com/akveo/" target="_blank" class="socicon-facebook"></a>
-        <a href="https://twitter.com/akveo_inc" target="_blank" class="socicon-twitter"></a>
+        <a href="https://github.com/SCCapstone/AdviseMe" target="_blank" class="socicon-github"></a>
+        <a href="https://www.facebook.com/" target="_blank" class="socicon-facebook"></a>
+        <a href="https://twitter.com" target="_blank" class="socicon-twitter"></a>
       </div>
 
       <small class="form-text">
-        Don't have an account? <a routerLink="../register"><strong>Sign Up</strong></a>
+        Don't have an account? <a routerLink="../register" id="signuplink"><strong>Sign Up</strong></a>
       </small>
     </div>
   </nb-auth-block>

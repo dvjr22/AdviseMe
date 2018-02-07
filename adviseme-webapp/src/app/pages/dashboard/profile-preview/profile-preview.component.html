@@ -3,21 +3,19 @@
     <span> Profile Preview </span>
   </nb-card-header>
   <nb-card-body>
-    <!-- <div class="picture" style.background-image="url(/assets/images/pic.png)"> </div> -->
-
     <div class="details">
       <div class="title">
         {{ currentUser.fullName }}
       </div>
       <div class="description">
         <br>
-        <b>School:</b> {{ currentUser.university }},
+        <b>School:</b> {{ currentUser.university }}
         <br>
         <br>
-        <b>Major:</b> {{ currentUser.major | uppercase }},
+        <b>Major:</b> {{ currentUser.major | uppercase }}
         <br>
         <br>
-        <b>Year:</b> {{ currentUser.status | ngxCapitalize}},
+        <b>Year:</b> {{ currentUser.status | ngxCapitalize}}
 
       </div>
     </div>

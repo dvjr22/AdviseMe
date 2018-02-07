@@ -51,5 +51,6 @@ export class HeaderComponent implements OnInit {
 
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
+    console.log("Searching");
   }
 }

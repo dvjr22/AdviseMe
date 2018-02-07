@@ -1,0 +1,66 @@
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+<nb-card>
+  <nb-card-header>Class Information</nb-card-header>
+  <nb-card-body>
+    <nb-card>
+      <nb-card-header>Information</nb-card-header>
+      <nb-card-body>
+        <p><b>Class: </b>ENGL 102</p>
+        <br><br>
+        <p><b>Semester Offered: </b>Fall 2017/Spring 2018</p>
+        <br><br>
+        <p><b>Pre-Requisites: </b>ENGL 101 with a grade of C or better</p>
+      </nb-card-body>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>Description</nb-card-header>
+      <nb-card-body>
+        <p>Instruction and intensive practice in researching, analyzing, <br>
+           and composing written arguments about academic and public issues. <br>
+           3.000 Credit/Lecture Hours.</p>
+      </nb-card-body>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>Related Classes</nb-card-header>
+      <nb-card-body>
+        <table>
+          <tr>
+            <th>Completed</th>
+            <th>Course</th>
+            <th>Reason</th>
+          </tr>
+          <tr>
+            <td text-align: center><input id="checkBox" type="checkbox" checked></td>
+            <td>ENGL 101</td>
+            <td>Pre-Requisite</td>
+          </tr>
+          <tr>
+            <td text-align: center><input id="checkBox" type="checkbox"></td>
+            <td>ENGL 462</td>
+            <td>CS Curriculum Option</td>
+          </tr>
+          <tr>
+            <td text-align: center><input id="checkBox" type="checkbox" checked></td>
+            <td>ENGL 463</td>
+            <td>CS Curriculum Option</td>
+          </tr>
+        </table>
+      </nb-card-body>
+    </nb-card>
+  </nb-card-body>
+</nb-card>

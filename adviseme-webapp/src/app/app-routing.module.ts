@@ -14,6 +14,8 @@ import { UserService } from './_shared/services/user.service';
 import { CanActivateUser } from './_shared/services/authentication.service';
 import { AlertService } from './_shared/services/alert.service';
 
+// Main Routes 
+
 const routes: Routes = [
     {
       path: 'auth',
@@ -45,7 +47,14 @@ const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full'},
   { path: '**', redirectTo: '/auth/login' },
 ];
+
+/**
+  Extra configuration options for the Router
+*/
 const config: ExtraOptions = {
+  /**
+    Do not use the hashtag in the url
+  */
   useHash: false,
 };
 

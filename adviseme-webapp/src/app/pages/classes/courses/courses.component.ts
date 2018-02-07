@@ -5,38 +5,54 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
 
+import { flattenObject } from './flattenObject';
+
+/**
+  Complete course catalog
+*/
 @Component({
   selector: 'ngx-courses-list-page',
   templateUrl: './courses.component.html',
 })
 export class CoursesComponent implements OnInit {
+    /**
+      Configuration for the table
+    */
     settings = {
       actions: false,
       columns: {
-        _id: {
-          title: 'Course Code',
+        class_prefix: {
+          title: 'Department',
         },
-        class: {
-          title: 'title',
-          valuePrepareFunction: (cell, row) => {
-            return row.class.title;
-          },
+        class_courseNo: {
+          title: 'Course Number',
         },
-        prerequisites: {
-          title: 'Prerequisites',
+        class_title: {
+          title: 'Course Title',
         },
       },
     };
 
+    /**
+      The data that will go into the table
+    */
     source: LocalDataSource = new LocalDataSource();
 
+    /**
+      Initializes new names for the imports
+    */
     constructor(private classService: ClassService) {
     }
 
+    /**
+        Gets all the classes flattens the object to add to the table
+        @returns {none}
+    */
     ngOnInit() {
+
       this.classService.getClasses()
-        .subscribe(res => {
-          this.source.load(res);
+        .subscribe((res: Class[]) => {
+          this.source.load(flattenObject(res));
         });
     }
 }

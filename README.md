@@ -58,8 +58,43 @@ A web app that will assist college students through the majority of advising req
 * The AdviseMe application should now be available at http://localhost:3000
 
 ## Unit Tests
-* Run ```ng test``` to execute the unit tests via [Karma](https://karma-runner.github.io).
+AdviseMe has multiple unit testing systems for various parts of the project. There are unit tests in the API, the front end, and end to end integration tests.
+### API Unit Tests
+* Framework:
+  * [Mocha](https://mochajs.org/)
+  * [Chai](http://chaijs.com/)
+* Commands to run:
+  * ```cd adviseme-api```
+  * ```npm test```
 
+### Angular Unit Tests
+* Framework:
+  * [Karma](https://karma-runner.github.io/2.0/index.html)
+  * [Jasmine](https://jasmine.github.io/)
+* Commands to run:
+  * ```cd adviseme-webapp```
+  * ```npm test```
+* Note:
+  * Karma will start up a browser with the test results. There are green dots in the top left corner to indicate successful tests and red x's to indicate failed tests. Clicking on Spec List will bring up a list of all the tests.
+### End-to-end Integration Testing
+* Framework:
+  * [Protractor](http://www.protractortest.org/#/)
+* Commands to run:
+You will need two terminal sessions running. The first for the Selenium web server (webdriver-manager) and the second for the actual Protractor
+  * Selenium Terminal
+    * ```cd adviseme-webapp```
+    * ```webdriver-manager reload```
+    * ```webdriver-manager start```
+  * Protractor Terminal
+    * ```cd adviseme-webapp```
+    * ```protractor```
+
+## Creating Documentation
+* Install compdoc package
+  * ```npm i -g @compodoc/compodoc```
+* Create the documentation for Angular
+  * ```cd <path>/AdviseMe/adviseme-webapp/src```
+  * ```compodoc -p tsconfig.app.json```
 ## Built With
 * [Angular4](https://angular.io/)
 * [NodeJS](https://nodejs.org/en/)

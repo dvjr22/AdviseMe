@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 
+/**
+  Component:
+    For the Profile
+*/
 @Component({
   selector: 'ngx-profile',
   template: `
