@@ -37,23 +37,20 @@ app.use(require('express-session')({
 
 //TODO: Do not allow the display of data... will have to be from issuer
 app.all('/api/*', function(req, res, next) {
+  console.log(req.headers);
   if(req.url === '/api/users/authenticate' || req.url === 'api/users/registration' ) {
     next();
   } else {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-      console.log("Verifying");
       try {
         //TODO: Get users secret key instead of using mine...
         var decoded = jwt.verify(req.headers.authorization.split(' ')[1], '6k30wtqneku43i0zy7cn2b');
       } catch(err) {
-        //TODO: Error should be thrown
-        console.log("Something went wrong");
+        res.status(401).send({ error: 'Not valid token' })
       }
       next();
     } else {
-      //TODO: Error Should be thrown
-      console.log("No token... Please take this out after fix");
-      next();
+      res.status(400).send({ error: 'No token' })
     }
   }
 });

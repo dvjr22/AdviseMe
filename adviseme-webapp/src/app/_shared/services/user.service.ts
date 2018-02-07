@@ -13,11 +13,18 @@ import { User } from '../models/user';
 */
 @Injectable()
 export class UserService {
-
   /**
     Initializes new names for the imports
   */
-  constructor(private http: Http) { }
+  constructor(private http: Http) {}
+  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  headerDict = {
+    'Authorization': `Bearer ` + this.currentUser.token,
+  };
+
+  requestOptions = {
+    headers: new Headers(this.headerDict),
+  };
 
     /**
       Calls api users service to get all users
@@ -25,7 +32,7 @@ export class UserService {
       @return {json}
     */
     getAll() {
-        return this.http.get('api/users').map((response: Response) => response.json());
+        return this.http.get('/api/users', this.requestOptions).map((response: Response) => response.json());
     }
 
     /**
@@ -35,7 +42,7 @@ export class UserService {
       @return {json}
     */
     getById(_id: string) {
-        return this.http.get('api/users/' + _id).map((response: Response) => response.json());
+        return this.http.get('/api/users/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
 
     /**
@@ -44,7 +51,7 @@ export class UserService {
       @return {none}
     */
     create(user: User) {
-        return this.http.post('api/users/register', user);
+        return this.http.post('/api/users/register', user);
     }
 
     /**
@@ -53,7 +60,7 @@ export class UserService {
       @return {none}
     */
     update(user: User) {
-        return this.http.put('api/users/' + user._id, user);
+        return this.http.put('/api/users/' + user._id, user);
     }
 
     /**
@@ -62,6 +69,6 @@ export class UserService {
       @return {none}
     */
     delete(_id: string) {
-        return this.http.delete('api/users/' + _id);
+        return this.http.delete('/api/users/' + _id);
     }
 }

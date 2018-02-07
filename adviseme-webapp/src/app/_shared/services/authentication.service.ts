@@ -18,7 +18,7 @@ export class AuthenticationService {
   // Method for logging in a user by posting the username and password
   // to the rest api
   login(username: string, password: string) {
-    return this.http.post('api/users/authenticate', { username: username, password: password})
+    return this.http.post('/api/users/authenticate', { username: username, password: password})
       .map((response: Response) => {
         // login successful if there is a jwt token in the response
         const user = response.json();

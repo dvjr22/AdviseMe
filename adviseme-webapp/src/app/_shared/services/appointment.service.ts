@@ -21,7 +21,7 @@ export class AppointmentService {
       @returns {json}
     */
     getAll() {
-       return this.http.get('api/appointments/').map((response: Response) => response.json());
+       return this.http.get('/api/appointments/').map((response: Response) => response.json());
     }
 
     /**
@@ -31,7 +31,7 @@ export class AppointmentService {
       @returns {none}
     */
     create(appointment: Appointment) {
-        return this.http.post('api/appointments', appointment);
+        return this.http.post('/api/appointments', appointment);
     }
 
     /**
@@ -41,7 +41,7 @@ export class AppointmentService {
       @returns {none}
     */
     update(appointment: Appointment) {
-        return this.http.put('api/appointments/' + appointment, appointment);
+        return this.http.put('/api/appointments/' + appointment, appointment);
     }
 
     /**
@@ -53,7 +53,7 @@ export class AppointmentService {
       @returns {none}
     */
     delete(_id: string) {
-        return this.http.delete('api/appointments/' + _id);
+        return this.http.delete('/api/appointments/' + _id);
     }
 }
 
