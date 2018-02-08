@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
  import { Appointment } from '../models/appointment';
@@ -10,11 +9,11 @@ import 'rxjs/add/operator/map';
  */
 @Injectable()
 export class AppointmentService {
-  
-    /**
+
+  /**
     Initializes new names for the imports
   */
-  constructor(private http: HttpClient) { }
+  constructor(private http: Http) { }
 
     /**
       Gat all appointments

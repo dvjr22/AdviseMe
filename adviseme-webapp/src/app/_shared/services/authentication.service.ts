@@ -5,7 +5,6 @@
 */
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { User } from '../models/user';
@@ -14,7 +13,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 @Injectable()
 export class AuthenticationService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: Http) { }
 
   // Method for logging in a user by posting the username and password
   // to the rest api
