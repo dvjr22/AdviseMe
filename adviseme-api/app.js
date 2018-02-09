@@ -37,14 +37,13 @@ app.use(require('express-session')({
 
 //TODO: Do not allow the display of data... will have to be from issuer
 app.all('/api/*', function(req, res, next) {
-  console.log(req.headers);
+  //console.log(req.headers);
   if(req.url === '/api/users/authenticate' || req.url === 'api/users/registration' ) {
     next();
   } else {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
       try {
-        //TODO: Get users secret key instead of using mine...
-        var decoded = jwt.verify(req.headers.authorization.split(' ')[1], '6k30wtqneku43i0zy7cn2b');
+        var decoded = jwt.verify(req.headers.authorization.split(' ')[1], config.secret);
       } catch(err) {
         res.status(401).send({ error: 'Not valid token' })
       }

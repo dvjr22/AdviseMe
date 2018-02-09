@@ -1,6 +1,7 @@
 var mongoose = require('mongoose')
 var mongoosePaginate = require('mongoose-paginate')
 var passportLocalMongoose = require('passport-local-mongoose');
+var Schema = mongoose.Schema;
 
 //TODO: VALIDATION
 
@@ -17,7 +18,7 @@ var UserSchema = new mongoose.Schema({
     secret: {
       type: String,
       required: true,
-    }
+    },
     studentID: {
       type: Number,
       required: true,
