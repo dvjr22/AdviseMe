@@ -64,29 +64,30 @@ AdviseMe has multiple unit testing systems for various parts of the project. The
   * [Mocha](https://mochajs.org/)
   * [Chai](http://chaijs.com/)
 * Commands to run:
-  * cd adviseme-api
-  * npm test
+  * ```cd adviseme-api```
+  * ```npm test```
 
 ### Angular Unit Tests
 * Framework:
   * [Karma](https://karma-runner.github.io/2.0/index.html)
   * [Jasmine](https://jasmine.github.io/)
 * Commands to run:
-  * cd adviseme-webapp
-  * npm test
-
+  * ```cd adviseme-webapp```
+  * ```npm test```
+* Note:
+  * Karma will start up a browser with the test results. There are green dots in the top left corner to indicate successful tests and red x's to indicate failed tests. Clicking on Spec List will bring up a list of all the tests.
 ### End-to-end Integration Testing
 * Framework:
   * [Protractor](http://www.protractortest.org/#/)
 * Commands to run:
 You will need two terminal sessions running. The first for the Selenium web server (webdriver-manager) and the second for the actual Protractor
   * Selenium Terminal
-    * cd adviseme-webapp
-    * webdriver-manager reload
-    * webdriver-manager start
+    * ```cd adviseme-webapp```
+    * ```webdriver-manager reload```
+    * ```webdriver-manager start```
   * Protractor Terminal
-    * cd adviseme-webapp
-    * protractor
+    * ```cd adviseme-webapp```
+    * ```protractor```
 
 ## Creating Documentation
 * Install compdoc package
