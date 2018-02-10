@@ -14,6 +14,15 @@ export class CartService {
     Initializes new names for the imports
   */
   constructor(private http: Http) { }
+  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  headerDict = {
+    'Authorization': `Bearer ` + this.currentUser.token,
+    'Issuer': this.currentUser._id,
+  };
+
+  requestOptions = {
+    headers: new Headers(this.headerDict),
+  };
     /**
       Get a cart by id
 
@@ -21,7 +30,7 @@ export class CartService {
       @returns {json}
     */
     getById(_id: string) {
-        return this.http.get('/api/cart/' + _id).map((response: Response) => response.json());
+        return this.http.get('/api/cart/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
 
     /**
@@ -31,7 +40,7 @@ export class CartService {
       @returns {none}
     */
     create(cart: Cart) {
-        return this.http.post('/api/cart', cart);
+        return this.http.post('/api/cart', cart, this.requestOptions);
     }
 
     /**
@@ -41,7 +50,7 @@ export class CartService {
       @returns {none}
     */
     update(cart: Cart) {
-        return this.http.put('/api/cart/' + cart._id, cart);
+        return this.http.put('/api/cart/' + cart._id, cart, this.requestOptions);
     }
 
     /**
@@ -51,6 +60,6 @@ export class CartService {
       @returns {none}
     */
     delete(_id: string) {
-        return this.http.delete('/api/cart/' + _id);
+        return this.http.delete('/api/cart/' + _id, this.requestOptions);
     }
 }
