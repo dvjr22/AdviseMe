@@ -70,6 +70,6 @@ export class UserService {
       @return {none}
     */
     delete(_id: string) {
-        return this.http.delete('/api/users/' + _id);
+        return this.http.delete('/api/users/' + _id, this.requestOptions);
     }
 }
