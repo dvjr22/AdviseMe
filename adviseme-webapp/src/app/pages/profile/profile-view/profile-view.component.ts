@@ -43,7 +43,7 @@ export class ProfileViewComponent implements OnInit {
     to get the users information
   */
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id)
         .subscribe(res => {
           this.currentUser = res;

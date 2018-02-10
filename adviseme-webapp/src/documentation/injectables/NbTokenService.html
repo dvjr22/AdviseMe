@@ -1532,19 +1532,19 @@ import { NB_AUTH_TOKEN_WRAPPER_TOKEN,  NbAuthJWTToken} from '</code></pre>
                   key: &#x27;auth_app_token&#x27;,
             
                   getter: (): Observable&lt;NbAuthSimpleToken&gt; &#x3D;&gt; {
-                    const tokenValue &#x3D; localStorage.getItem(this.getConfigValue(&#x27;token.key&#x27;));
+                    const tokenValue &#x3D; sessionStorage.getItem(this.getConfigValue(&#x27;token.key&#x27;));
                     this.tokenWrapper.setValue(tokenValue);
                     return Observable.of(this.tokenWrapper);
                   },
             
                   setter: (token: string|NbAuthSimpleToken): Observable&lt;null&gt; &#x3D;&gt; {
                     const raw &#x3D; token instanceof NbAuthSimpleToken ? token.getValue() : token;
-                    localStorage.setItem(this.getConfigValue(&#x27;token.key&#x27;), raw);
+                    sessionStorage.setItem(this.getConfigValue(&#x27;token.key&#x27;), raw);
                     return Observable.of(null);
                   },
             
                   deleter: (): Observable&lt;null&gt; &#x3D;&gt; {
-                    localStorage.removeItem(this.getConfigValue(&#x27;token.key&#x27;));
+                    sessionStorage.removeItem(this.getConfigValue(&#x27;token.key&#x27;));
                     return Observable.of(null);
                   },
                 },
@@ -1708,19 +1708,19 @@ export class NbTokenService {
       key: &#x27;auth_app_token&#x27;,
 
       getter: (): Observable&lt;NbAuthSimpleToken&gt; &#x3D;&gt; {
-        const tokenValue &#x3D; localStorage.getItem(this.getConfigValue(&#x27;token.key&#x27;));
+        const tokenValue &#x3D; sessionStorage.getItem(this.getConfigValue(&#x27;token.key&#x27;));
         this.tokenWrapper.setValue(tokenValue);
         return Observable.of(this.tokenWrapper);
       },
 
       setter: (token: string|NbAuthSimpleToken): Observable&lt;null&gt; &#x3D;&gt; {
         const raw &#x3D; token instanceof NbAuthSimpleToken ? token.getValue() : token;
-        localStorage.setItem(this.getConfigValue(&#x27;token.key&#x27;), raw);
+        sessionStorage.setItem(this.getConfigValue(&#x27;token.key&#x27;), raw);
         return Observable.of(null);
       },
 
       deleter: (): Observable&lt;null&gt; &#x3D;&gt; {
-        localStorage.removeItem(this.getConfigValue(&#x27;token.key&#x27;));
+        sessionStorage.removeItem(this.getConfigValue(&#x27;token.key&#x27;));
         return Observable.of(null);
       },
     },

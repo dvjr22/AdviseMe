@@ -1194,7 +1194,7 @@ export class ProfilePreviewComponent implements OnInit {
     Gets the currents users to display info about them
   */
   ngOnInit() {
-    this.currentUser &#x3D; JSON.parse(localStorage.getItem(&#x27;currentUser&#x27;));
+    this.currentUser &#x3D; JSON.parse(sessionStorage.getItem(&#x27;currentUser&#x27;));
     this.userService.getById(this.currentUser._id)
         .subscribe(res &#x3D;&gt; this.currentUser &#x3D; res);
   }

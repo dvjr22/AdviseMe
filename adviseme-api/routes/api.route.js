@@ -8,8 +8,8 @@ var user = require('./api/user.route')
 var notification = require('./api/notification.route')
 
 //add route modules here
-router.use('/classes', classes);
-router.use('/appointments', appointments);
-router.use('/users', user);
-router.use('/notify', notification);
+router.use('/api/classes', classes);
+router.use('/api/appointments', appointments);
+router.use('/api/users', user);
+router.use('/api/notify', notification);
 module.exports = router;
