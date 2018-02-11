@@ -14,7 +14,7 @@ import { UserService } from './_shared/services/user.service';
 import { CanActivateUser } from './_shared/services/authentication.service';
 import { AlertService } from './_shared/services/alert.service';
 
-// Main Routes 
+// Main Routes
 
 const routes: Routes = [
     {
@@ -44,8 +44,8 @@ const routes: Routes = [
       ],
     },
   { path: 'pages', canActivate: [CanActivateUser], loadChildren: 'app/pages/pages.module#PagesModule'},
-  { path: '', redirectTo: '/auth/login', pathMatch: 'full'},
-  { path: '**', redirectTo: '/auth/login' },
+  { path: '', redirectTo: '/pages/dashboard', pathMatch: 'full'},
+  { path: '**', redirectTo: '/pages/dashboard' },
 ];
 
 /**

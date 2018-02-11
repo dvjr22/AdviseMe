@@ -8,7 +8,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { User } from '../models/user';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
@@ -51,12 +51,18 @@ export class AuthenticationService {
 // when there is not a valid user logged in
 @Injectable()
 export class CanActivateUser implements CanActivate {
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean>|Promise<boolean>|boolean {
-    return this.authenticationService.checkForLocalUser();
+    if(this.authenticationService.checkForLocalUser()) {
+      return true;
+    } else {
+      this.router.navigate(['/auth/login']);
+      return false;
+    }
   }
 }
