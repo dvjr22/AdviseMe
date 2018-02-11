@@ -61,7 +61,7 @@ export class UserService {
       @return {none}
     */
     update(user: User) {
-        return this.http.put('/api/users/' + user._id, user);
+        return this.http.put('/api/users/' + user._id, user, this.requestOptions);
     }
 
     /**
@@ -70,6 +70,6 @@ export class UserService {
       @return {none}
     */
     delete(_id: string) {
-        return this.http.delete('/api/users/' + _id);
+        return this.http.delete('/api/users/' + _id, this.requestOptions);
     }
 }
