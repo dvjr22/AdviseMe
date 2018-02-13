@@ -8,6 +8,7 @@ import { AdvisementRoutingModule, routedComponents } from './advisement-routing.
     CommonModule,
     ThemeModule,
     AdvisementRoutingModule,
+    RequestClassesModule,
   ],
   declarations: [
     ...routedComponents,
