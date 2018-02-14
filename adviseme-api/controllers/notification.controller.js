@@ -4,7 +4,6 @@ const client = require('twilio')(config["twilioAccountSid"], config["twilioAuthT
 
 exports.sendNotification = async function(req, res) {
 // TODO: At some point change these hardcoded phone numbers so ppl will stop texting me
-
   var date = req.body["message"]["date"];
   var advisor = req.body["message"]["advisor"]
   var roomNumber = req.body["message"]["roomNumber"]

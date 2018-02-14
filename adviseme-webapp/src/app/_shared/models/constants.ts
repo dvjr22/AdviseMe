@@ -28,6 +28,7 @@ export enum Status {
   junior,   // 2
   senior,   // 3
   sSenior,  // 4 Super Senior
+  graduate, // 5
 }
 
 /**
