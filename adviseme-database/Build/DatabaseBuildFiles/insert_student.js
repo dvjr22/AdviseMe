@@ -7,7 +7,7 @@
 var MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
 var url = "mongodb://localhost:27017/adviseMe";		// Database name
 
-let insertMany = []; // array to hold json 
+let insertMany = []; // array to hold json
 let noOfStudents = 40; // Number of students to generate
 
 insertMany.push(makeTyler()); // push Tyler to db
@@ -20,7 +20,7 @@ for (var i = 0; i < noOfStudents; i++) {
 	var last = lastName(); // get random last name
 
 	obj.firstName = firstName(); // get random first name
-	obj.lastName = last; 
+	obj.lastName = last;
 	obj.studentID = id;
 	obj.major = major(); // get major
 
@@ -93,7 +93,7 @@ function makeid() {
 */
 function lastName() {
 
-	let last = ["Parker", "Wayne", "Stevens", "Cooper", "Thomas", "Smith", "Peterson", "Brady", "Rogers", 
+	let last = ["Parker", "Wayne", "Stevens", "Cooper", "Thomas", "Smith", "Peterson", "Brady", "Rogers",
 		"Jordan", "Ewing", "Starks", "King", "Washington", "Cain", "Grayson", "Prince", "Gonzalez",
 		"Gordon", "Jameson", "Holmes", "Cole", "Summers", "Connors", "Kent", "Morales"];
 
@@ -105,8 +105,8 @@ function lastName() {
 */
 function firstName() {
 
-	let first = ["Bill", "Ted", "Peter", "Thomas", "Bruce", "Samuel", "Kevin", "Tyler", "Evan", "Ethan", 
-		"Jean", "Cassandra", "Gwen", "Angelica", "Barbara", "Stacey", "Nikki", "August", "April", 
+	let first = ["Bill", "Ted", "Peter", "Thomas", "Bruce", "Samuel", "Kevin", "Tyler", "Evan", "Ethan",
+		"Jean", "Cassandra", "Gwen", "Angelica", "Barbara", "Stacey", "Nikki", "August", "April",
 		"Ann", "Nick", "Patricia", "Mary Jane", "Kitty", "Casey", "Caleb", "Clark", "Bruce"];
 
 		return first[Math.floor(Math.random() * first.length)];
@@ -138,7 +138,7 @@ function course() {
 		["ENGL102", "A"],
 		["CHEM111", "B"],
 		["CHEM111L", "A"],
-		["CSCE215", "A"], 
+		["CSCE215", "A"],
 		["CSCE146", "A"],
 
 		// Sophmore 1 (15)
@@ -156,7 +156,7 @@ function course() {
 		// junior 1 (length)
 		["CSCE311", "A"],
 		["CSCE350", "B"],
-		["CSCE390", "A"], 
+		["CSCE390", "A"],
 		["ENGL462", "A"]
 	];
 

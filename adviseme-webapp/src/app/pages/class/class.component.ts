@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 
 /**
-  Classes Component
+  Component:
+    For the class
 */
 @Component({
-  selector: 'ngx-editors',
+  selector: 'ngx-class',
   template: `
     <router-outlet></router-outlet>
   `,
 })
-export class ClassesComponent {
+export class ClassComponent {
 
 }

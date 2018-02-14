@@ -1,7 +1,7 @@
 {
     "connectionString": "mongodb://localhost:27017/adviseMe",
     "apiUrl": "http://localhost:3000",
-    "secret": "REPLACE THIS WITH YOUR OWN SECRET, IT CAN BE ANY STRING",
+    "secret": "dWOPP1yquWDwlPSNQDKXGl2S4LpRhgHeNhyoQL248QZAExecp9cDlLMcnPkBatB",
     "twilioAccountSid": "ACf609fc6c1c74c3773fa13f451bad6fe4",
     "twilioAuthToken": "79534b7ee4030056df1950398bc7c945"
 }

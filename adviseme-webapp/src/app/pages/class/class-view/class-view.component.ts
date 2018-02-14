@@ -7,14 +7,14 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
 /**
   Component:
-    Allows a user to look at an overview of their profile
+    Allows a user to look at an overview of their class
 */
 @Component({
-  selector: 'ngx-profile-view',
-  templateUrl: './profile-view.component.html',
-  styleUrls: ['./profile-view.component.scss'],
+  selector: 'ngx-class-view',
+  templateUrl: './class-view.component.html',
+  styleUrls: ['./class-view.component.scss'],
 })
-export class ProfileViewComponent implements OnInit {
+export class ClassViewComponent implements OnInit {
   /**
     Getting the current user
   */

@@ -1663,7 +1663,7 @@ export class EditProfileComponent implements OnInit {
     to get the users information
   */
   ngOnInit() {
-    this.currentUser &#x3D; JSON.parse(localStorage.getItem(&#x27;currentUser&#x27;));
+    this.currentUser &#x3D; JSON.parse(sessionStorage.getItem(&#x27;currentUser&#x27;));
     this.userService.getById(this.currentUser._id)
         .subscribe((res: any) &#x3D;&gt; {
           this.currentUser &#x3D; res;

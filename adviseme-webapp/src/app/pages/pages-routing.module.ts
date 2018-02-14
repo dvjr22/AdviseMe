@@ -28,6 +28,10 @@ const routes: Routes = [{
     loadChildren: './advisement/advisement.module#AdvisementModule',
   },
   {
+    path: 'class',
+    loadChildren: './class/class.module#ClassModule',
+  },
+  {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',

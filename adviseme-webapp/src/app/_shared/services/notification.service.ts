@@ -11,6 +11,15 @@ export class NotificationService {
     Initializes new names for the imports
   */
   constructor(private http: Http) { }
+  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  headerDict = {
+    'Authorization': `Bearer ` + this.currentUser.token,
+    'Issuer': this.currentUser._id,
+  };
+
+  requestOptions = {
+    headers: new Headers(this.headerDict),
+  };
 
   /**
     Calls the api notification service to send a user a Notification
@@ -21,6 +30,6 @@ export class NotificationService {
     @returns {none}
   */
   sendNotification(msg: string) {
-    return this.http.post('/notify/sendnotification', { message: JSON.parse(msg) }).subscribe();
+    return this.http.post('/api/notify/sendnotification', { message: JSON.parse(msg) }, this.requestOptions).subscribe();
   }
 }

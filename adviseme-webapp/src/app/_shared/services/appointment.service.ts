@@ -14,6 +14,15 @@ export class AppointmentService {
     Initializes new names for the imports
   */
   constructor(private http: Http) { }
+  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  headerDict = {
+    'Authorization': `Bearer ` + this.currentUser.token,
+    'Issuer': this.currentUser._id,
+  };
+
+  requestOptions = {
+    headers: new Headers(this.headerDict),
+  };
 
     /**
       Gat all appointments
@@ -21,7 +30,7 @@ export class AppointmentService {
       @returns {json}
     */
     getAll() {
-       return this.http.get('/appointments/').map((response: Response) => response.json());
+       return this.http.get('/api/appointments/', this.requestOptions).map((response: Response) => response.json());
     }
 
     /**
@@ -31,7 +40,7 @@ export class AppointmentService {
       @returns {none}
     */
     create(appointment: Appointment) {
-        return this.http.post('/appointments', appointment);
+        return this.http.post('/api/appointments', appointment, this.requestOptions);
     }
 
     /**
@@ -41,7 +50,7 @@ export class AppointmentService {
       @returns {none}
     */
     update(appointment: Appointment) {
-        return this.http.put('/appointments/' + appointment, appointment);
+        return this.http.put('/api/appointments/' + appointment, appointment, this.requestOptions);
     }
 
     /**
@@ -53,7 +62,7 @@ export class AppointmentService {
       @returns {none}
     */
     delete(_id: string) {
-        return this.http.delete('/appointments/' + _id);
+        return this.http.delete('/api/appointments/' + _id, this.requestOptions);
     }
 }
 
