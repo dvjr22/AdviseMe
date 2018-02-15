@@ -43,8 +43,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-locked',
     children: [
       {
-        title: 'Yo',
-        link: '/pages/administrator',
+        title: 'Edit Permissions',
+        link: '/pages/administrator/permission',
       },
     ],
   },
