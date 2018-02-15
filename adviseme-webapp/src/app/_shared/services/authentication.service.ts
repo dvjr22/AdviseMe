@@ -41,6 +41,14 @@ export class AuthenticationService {
       .map((response: Response) => {
         const token2 = response.json();
         return token2;
+      }).subscribe(val => {
+        if (val.return === 'true' && val.status === '200') {
+          console.log("Got here");
+          return true;
+        } else {
+          console.log("Got false");
+          return false;
+        }
       });
   }
 
@@ -50,7 +58,29 @@ export class AuthenticationService {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     const apiReturn = '';
     if (currentUser !== null && apiReturn === '') {
-      return true;
+      let checkedToken: boolean;
+      // checkedToken = true;
+      // this.checkToken(currentUser.token).subscribe(val => {
+      //   if (val.return === 'true' && val.status === '200') {
+      //     console.log("Got here");
+      //     checkedToken = true;
+      //   } else {
+      //     console.log("Got false");
+      //     checkedToken = false;
+      //   }
+      // });
+      return this.checkToken(currentUser.token);
+      // return checkedToken
+      // do {
+      //   // nothing
+      // } while (done === false);
+      // if (checkedToken === true) {
+      //   console.log("Checked token === True");
+      //   return true;
+      // } else {
+      //   console.log("Checked token === False");
+      //   return false;
+      // }
     } else {
       return false;
     }
