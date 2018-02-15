@@ -5,6 +5,9 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
 
+import { User } from '../../../_shared/models/user';
+import { UserService } from '../../../_shared/services/user.service';
+
 import { flattenObject } from '../../classes/courses/flattenObject';
 
 @Component({
@@ -17,26 +20,32 @@ export class PermissionComponent implements OnInit {
       Configuration for the table
     */
     settings = {
-      actions: false,
       columns: {
-        class_prefix: {
-          title: 'Department',
+        firstName: {
+          title: 'First Name',
         },
-        class_courseNo: {
-          title: 'Course Number',
+        lastName: {
+          title: 'Last Name',
         },
-        class_title: {
-          title: 'Course Title',
+        major: {
+          title: 'Major',
+        },
+        email: {
+          title: 'Email',
+        },
+        status: {
+          title: 'Status',
         },
       },
     };
 
   source: LocalDataSource = new LocalDataSource();
-  constructor(private classService: ClassService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.classService.getClasses()
+    this.userService.getAll()
       .subscribe((res: Class[]) => {
+        console.log(JSON.stringify(res));
         this.source.load(flattenObject(res));
       });
   }
