@@ -69,4 +69,3 @@ class NaraV2 {
 
 module.exports = NaraV2; //t export class
 
-

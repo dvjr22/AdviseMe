@@ -100,19 +100,19 @@ export class NbTokenService {
       key: 'auth_app_token',
 
       getter: (): Observable<NbAuthSimpleToken> => {
-        const tokenValue = localStorage.getItem(this.getConfigValue('token.key'));
+        const tokenValue = sessionStorage.getItem(this.getConfigValue('token.key'));
         this.tokenWrapper.setValue(tokenValue);
         return Observable.of(this.tokenWrapper);
       },
 
       setter: (token: string|NbAuthSimpleToken): Observable<null> => {
         const raw = token instanceof NbAuthSimpleToken ? token.getValue() : token;
-        localStorage.setItem(this.getConfigValue('token.key'), raw);
+        sessionStorage.setItem(this.getConfigValue('token.key'), raw);
         return Observable.of(null);
       },
 
       deleter: (): Observable<null> => {
-        localStorage.removeItem(this.getConfigValue('token.key'));
+        sessionStorage.removeItem(this.getConfigValue('token.key'));
         return Observable.of(null);
       },
     },

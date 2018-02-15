@@ -24,10 +24,6 @@ client = pymongo.MongoClient('localhost', 27017)
 # Follows format client.dbName.collectionName
 db = client.adviseMe.classes
 
-# path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Lab pc path
-path = '/home/diego/Capstone/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Laptop path
-# path = '~/Documents/GitHub/AdviseMe/adviseme-database/Data/SemiStructered' ~ Ethan's Mac
-
 print("Inserting data to: %s" %(db))
 
 

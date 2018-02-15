@@ -1465,7 +1465,7 @@ export class HeaderComponent implements OnInit {
   userMenu &#x3D; [{ title: &#x27;Profile&#x27;, link: &#x27;/pages/profile/profile-view&#x27; }, { title: &#x27;Log out&#x27;, link: &#x27;/auth/logout&#x27; }];
 
   ngOnInit() {
-    this.currentUser &#x3D; JSON.parse(localStorage.getItem(&#x27;currentUser&#x27;));
+    this.currentUser &#x3D; JSON.parse(sessionStorage.getItem(&#x27;currentUser&#x27;));
     this.userService.getById(this.currentUser._id)
         .subscribe(res &#x3D;&gt; {
           this.currentUser &#x3D; res;

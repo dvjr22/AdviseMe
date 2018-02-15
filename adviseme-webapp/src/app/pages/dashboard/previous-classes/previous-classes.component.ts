@@ -59,7 +59,7 @@ export class PreviousClassesComponent implements OnInit {
       Gets the currents users classes they have took
     */
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id)
         .subscribe(res => {
           this.currentUser = res;

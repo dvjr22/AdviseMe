@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Class } from '../models/class';
@@ -13,13 +13,17 @@ export class ClassService {
   /**
     Class Url for the api
   */
-  classUrl = `/classes`;
+  classUrl = `/api/classes`;
 
   /**
     Initializes new names for the imports
   */
   constructor(private http: HttpClient) { }
-
+  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  headers = new HttpHeaders()
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .set('Authorization', 'Bearer ' + this.currentUser.token )
+        .set('Issuer', this.currentUser._id);
   /**
     Creates a new class
 
@@ -27,7 +31,12 @@ export class ClassService {
     @returns {any}
   */
   createClass(x: Class): Observable<any> {
-    return this.http.post(`${this.classUrl}`, x);
+    return this.http.post(`${this.classUrl}`,
+      x,
+      {
+          headers: this.headers,
+      },
+    );
   }
 
   /**
@@ -36,7 +45,11 @@ export class ClassService {
     @returns {Class[]}
   */
   getClasses(): Observable<Class[]> {
-    return this.http.get(this.classUrl)
+    return this.http.get(this.classUrl,
+      {
+          headers: this.headers,
+      },
+    )
     .map(res  => {
     return res['data'].docs as Class[];
     });
@@ -49,7 +62,12 @@ export class ClassService {
     @returns {any}
   */
   editClass(c: Class): Observable <any> {
-    return this.http.put(`${this.classUrl}`, c);
+    return this.http.put(`${this.classUrl}`,
+      c,
+      {
+          headers: this.headers,
+      },
+    );
   }
 
   /**
@@ -63,7 +81,11 @@ export class ClassService {
       url to delete the user by id
     */
     const deleteUrl = `${this.classUrl}/${id}`;
-    return this.http.delete(deleteUrl)
+    return this.http.delete(deleteUrl,
+      {
+          headers: this.headers,
+      },
+    )
     .map(res  => {
       return res;
     });
