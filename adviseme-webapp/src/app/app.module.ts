@@ -26,7 +26,7 @@ import { NbResetPasswordComponent } from './@theme/components/auth/components/re
 // Services
 import { UserService } from './_shared/services/user.service';
 import { ClassService } from './_shared/services/class.service';
-import {AppointmentService } from './_shared/services/appointment.service';
+import { AppointmentService } from './_shared/services/appointment.service';
 import { AuthenticationService, CanActivateUser } from './_shared/services/authentication.service';
 import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';

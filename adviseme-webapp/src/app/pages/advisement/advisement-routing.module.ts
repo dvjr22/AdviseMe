@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdvisementComponent } from './advisement.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { AppointmentViewComponent } from './view-appointment/appointment-view.component';
-import { RequestClassesComponent } from './request-classes/request-classes-view.component';
+import { RequestClassesComponent } from './request-classes/request-classes.component';
 
 const routes: Routes = [{
   path: '',
