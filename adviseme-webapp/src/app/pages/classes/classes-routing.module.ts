@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ClassesComponent } from './classes.component';
 import { CoursesComponent } from './courses/courses.component';
+import { EditCourseComponent } from './edit-course/edit-course.component';
 
 const routes: Routes = [{
   path: '',
@@ -25,4 +26,5 @@ export class ClassesRoutingModule { }
 export const routedComponents = [
   ClassesComponent,
   CoursesComponent,
+  EditCourseComponent,
 ];

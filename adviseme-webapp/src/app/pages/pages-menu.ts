@@ -20,6 +20,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/classes/courses',
   },
   {
+    title: 'Edit Courses (placeholder)',
+    icon: 'nb-list',
+    link: '/pages/classes/edit-course',
+  },
+  {
     title: 'Class (placeholder)',
     icon: 'nb-list',
     link: '/pages/class/class-view',
