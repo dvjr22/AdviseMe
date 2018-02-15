@@ -39,6 +39,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: 'Administration',
+    icon: 'nb-locked',
+    children: [
+      {
+        title: 'Yo',
+        link: '/pages/administrator',
+      },
+    ],
+  },
+  {
     title: 'Profile',
     icon: 'nb-person',
     children: [
