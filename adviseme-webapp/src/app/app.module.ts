@@ -25,6 +25,7 @@ import { NbResetPasswordComponent } from './@theme/components/auth/components/re
 
 // Services
 import { UserService } from './_shared/services/user.service';
+import { RegisterService } from './_shared/services/register.service';
 import { ClassService } from './_shared/services/class.service';
 import {AppointmentService } from './_shared/services/appointment.service';
 import { AuthenticationService, CanActivateUser } from './_shared/services/authentication.service';
@@ -62,6 +63,7 @@ import { Class } from './_shared/models/class';
   ],
   bootstrap: [AppComponent],
   providers: [
+    RegisterService,
     UserService,
     ClassService,
     AppointmentService,
