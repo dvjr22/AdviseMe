@@ -30,7 +30,7 @@ function authenticate(username, password){
       // Authentication successful
       deferred.resolve({
         _id: user._id,
-        token: jwt.sign({ sub: user._id }, config.secret)
+        token: jwt.sign({ sub: user._id }, user.secret)
       });
     } else {
       // Authentication failure
