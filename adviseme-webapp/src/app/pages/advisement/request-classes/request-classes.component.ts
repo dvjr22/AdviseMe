@@ -2,11 +2,13 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
-
+import { LocalDataSource } from 'ng2-smart-table';
+import { Class } from '../../../_shared/models/class';
+import { ClassService } from '../../../_shared/services/class.service';
+import { flattenObject } from './flattenObject';
 
 /**
- Component:
-    For the requestclasses Creation Screen
+  Complete course catalog
 */
 @Component({
   selector: 'ngx-app-request-classes',
@@ -15,30 +17,44 @@ import { UserService } from '../../../_shared/services/user.service';
 })
 
 export class RequestClassesComponent implements OnInit {
-  /**
-    User initialized from ngOnInit
-  */
-  currentUser: User;
-  /**
-    Variable to hold ISO date format from date picker
-  */
+    /**
+      Configuration for the table
+    */
+    settings = {
+      actions: false,
+      columns: {
+        class_prefix: {
+          title: 'Department',
+        },
+        class_courseNo: {
+          title: 'Course Number',
+        },
+        class_title: {
+          title: 'Course Title',
+        },
+      },
+    };
 
-  /**
-    Initializes new names for the imports
-  */
-  constructor(private userService: UserService,
-              protected router: Router) { }
+    /**
+      The data that will go into the table
+    */
+    source: LocalDataSource = new LocalDataSource();
 
+    /**
+      Initializes new names for the imports
+    */
+    constructor(private classService: ClassService) {
+    }
 
-  /**
-      Get the current user from the local cache
-      then calls api to get the users info
-      @returns {none}
-  */
-  ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.userService.getById(this.currentUser._id)
-        .subscribe(res => this.currentUser = res);
-  }
+    /**
+        Gets all the classes flattens the object to add to the table
+        @returns {none}
+    */
+    ngOnInit() {
 
+      this.classService.getClasses()
+        .subscribe((res: Class[]) => {
+          this.source.load(flattenObject(res));
+        });
+    }
 }
