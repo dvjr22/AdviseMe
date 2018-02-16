@@ -71,17 +71,11 @@ exports.updateClass = async function(aClass){
 }
 
 //get all class objects
-exports.getClass = async function(query, page, limit) {
-
-  //options setup for the mongoose paginate
-  var options = {
-    page,
-    limit
-  }
+exports.getClass = async function() {
 
   //try-catch handle errors
   try{
-    var classes = await Class.paginate(query,options)
+    var classes = await Class.find({})
     return classes;
   }catch(e){
     throw Error(e.message)
