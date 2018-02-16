@@ -21,6 +21,7 @@ for (var i = 0; i < noOfStudents; i++) {
 
 	obj.firstName = firstName(); // get random first name
 	obj.lastName = last;
+	obj.role = "student"
 	obj.studentID = id;
 	obj.major = major(); // get major
 
@@ -61,6 +62,7 @@ function makeTyler() {
 
 	obj.firstName = "Tyler"; // get random first name
 	obj.lastName = "Hall"; // get random last name
+	obj.role = "student"
 	obj.studentID = "tHall01"
 	obj.major = major(); // get major
 
