@@ -51,7 +51,7 @@ export class ClassService {
       },
     )
     .map(res  => {
-    return res['data'].docs as Class[];
+    return res['data'] as Class[];
     });
   }
 
