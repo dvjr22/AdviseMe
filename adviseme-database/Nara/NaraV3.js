@@ -30,7 +30,6 @@ class NaraV3 {
 			// find student
 			db.collection('users').findOne( { studentID: studentId}, {_id : 0, course : 1}, function(err, doc) {
 
-
 				doc.course.forEach(function(element) {
 
 					//console.log(element.classID);
