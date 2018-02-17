@@ -21,7 +21,13 @@ export class RequestClassesComponent implements OnInit {
       Configuration for the table
     */
     settings = {
-      actions: false,
+      selectMode: 'multi',
+      actions: {
+        delete: false,
+        add: false,
+        edit: false,
+        select: true,
+      },
       columns: {
         class_prefix: {
           title: 'Department',
@@ -31,6 +37,14 @@ export class RequestClassesComponent implements OnInit {
         },
         class_title: {
           title: 'Course Title',
+        },
+        request: {
+          title: 'Request',
+          type: 'html',
+          valuePrepareFunction:(cell,row)=>{
+            return `<input id="checkBox" type="checkbox" checked>`
+          },
+          filter: false
         },
       },
     };
