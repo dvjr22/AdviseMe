@@ -11,6 +11,9 @@ const routes: Routes = [{
   children: [{
     path: 'courses',
     component: CoursesComponent,
+  },
+  { path: 'edit-course',
+    component: EditCourseComponent,
   }],
 }];
 
