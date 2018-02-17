@@ -1,5 +1,8 @@
+# create.py
+# @author Diego Valdes
+# Nov. 16, 2017
 
-
+# Nuke adviseMe db and recreate
 
 from subprocess import call
 
