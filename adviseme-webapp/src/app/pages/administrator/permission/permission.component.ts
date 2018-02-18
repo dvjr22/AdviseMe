@@ -27,6 +27,9 @@ export class PermissionComponent implements OnInit {
         lastName: {
           title: 'Last Name',
         },
+        role: {
+          title: 'Role',
+        },
         major: {
           title: 'Major',
         },
