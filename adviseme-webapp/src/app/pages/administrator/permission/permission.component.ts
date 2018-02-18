@@ -20,6 +20,9 @@ export class PermissionComponent implements OnInit {
       Configuration for the table
     */
     settings = {
+      edit: {
+        confirmSave: true,
+      },
       columns: {
         firstName: {
           title: 'First Name',
@@ -48,6 +51,15 @@ export class PermissionComponent implements OnInit {
         console.log(JSON.stringify(res));
         this.source.load(flattenObject(res));
       });
+  }
+
+  onSaveConfirm(event){
+    if (window.confirm('Are you sure you want to save?')) {
+      console.log('New Data: ' + JSON.stringify(event.newData));
+      event.confirm.resolve(event.newData);
+    } else {
+      event.confirm.reject();
+    }
   }
 
 }
