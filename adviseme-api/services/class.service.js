@@ -50,15 +50,16 @@ exports.updateClass = async function(aClass){
   }
 
   console.log(oldClass)
+  console.log(aClass)
 
   //edit the class object
   oldClass._id = aClass._id
-  oldClass.class.prefix = aClass.class.prefix
-  oldClass.class.courseNo = aClass.class.courseNo
-  oldClass.class.title = aClass.class.title
-  oldClass.requiredFor = aClass.requiredFor
+  oldClass.prerequisites = aClass.prerequisites
   oldClass.department = aClass.department
   oldClass.curriculum = aClass.curriculum
+  oldClass.class['title'] = aClass.class['title']
+  oldClass.class['CourseNo'] = aClass.class['CourseNo']
+  oldClass.class['prefix'] = aClass.class['prefix']
 
   console.log(oldClass)
 

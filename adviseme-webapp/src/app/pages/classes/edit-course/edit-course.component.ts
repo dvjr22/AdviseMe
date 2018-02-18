@@ -92,7 +92,7 @@ export class EditCourseComponent implements OnInit {
   onSaveConfirm(event): void {
 
     this.selectedClass._id = event.newData._id;
-    this.selectedClass.deapartment = event.newData.department;
+    this.selectedClass.department = event.newData.department;
 
     this.selectedClass.class = {
       title: String(event.newData.class_title),
@@ -122,6 +122,7 @@ export class EditCourseComponent implements OnInit {
     this.selectedClass.curriculum = this.curriculum_two;
 
     if (window.confirm('Are you sure you want to edit ' + event.data.class_title + ' ?')) {
+      this.classService.editClass(this.selectedClass).subscribe();
       alert('Changes made');
       event.confirm.resolve();
     } else {

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Class {
   _id: string;
-  deapartment: string;
+  department: string;
   title: string;
   class: {
     title: string;
