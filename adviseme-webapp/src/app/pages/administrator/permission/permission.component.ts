@@ -5,9 +5,6 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 
-import { User } from '../../../_shared/models/user';
-import { UserService } from '../../../_shared/services/user.service';
-
 import { flattenObject } from '../../classes/courses/flattenObject';
 
 @Component({
