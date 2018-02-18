@@ -7,6 +7,7 @@ var appointmentController = require('../../controllers/appointment.controller');
 
 // Map each API to the Controller FUnctions
 router.get('/', appointmentController.getAppointment)
+router.get('/:id', appointmentController.getAppointmentById)
 router.post('/', appointmentController.createAppointment)
 router.put('/', appointmentController.updateAppointment)
 router.delete('/:id',appointmentController.removeAppointment)

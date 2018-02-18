@@ -28,7 +28,7 @@ export class AppointmentViewComponent implements OnInit {
   */
   ngOnInit() {
     this.appointmentService.getAll().subscribe( res => {
-      this.appointment = res['data']['docs'];
+      this.appointment = res['data'];
     });
   }
 
