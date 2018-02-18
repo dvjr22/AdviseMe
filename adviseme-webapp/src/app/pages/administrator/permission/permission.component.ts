@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { Class } from '../../../_shared/models/class';
-import { ClassService } from '../../../_shared/services/class.service';
+import { User } from '../../../_shared/models/user';
+import { UserService } from '../../../_shared/services/user.service';
 
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
@@ -20,6 +20,9 @@ export class PermissionComponent implements OnInit {
       Configuration for the table
     */
     settings = {
+      edit: {
+        confirmSave: true,
+      },
       columns: {
         firstName: {
           title: 'First Name',
@@ -44,10 +47,36 @@ export class PermissionComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getAll()
-      .subscribe((res: Class[]) => {
-        console.log(JSON.stringify(res));
+      .subscribe((res: User[]) => {
         this.source.load(flattenObject(res));
       });
+  }
+
+  onSaveConfirm(event) {
+    if (window.confirm('Are you sure you want to save?')) {
+
+      // HACK: TODO: Move this to a pipe or something
+      var u = new User();
+      u._id = event.newData._id;
+      u.username = event.newData.username;
+      u.password = event.newData.password;
+      u.firstName = event.newData.firstName;
+      u.lastName = event.newData.lastName;
+      u.fullName = event.newData.fullName;
+      u.email = event.newData.email;
+      u.university = event.newData.university;
+      u.appointments = event.newData.appointments;
+      u.role = event.newData.role;
+      u.studentID = event.newData.studentID;
+      u.status = event.newData.status;
+      u.major = event.newData.major;
+      u.course = event.newData.course;
+      u.students = event.newData.students;
+      this.userService.update(u).subscribe();
+      event.confirm.resolve(event.newData);
+    } else {
+      event.confirm.reject();
+    }
   }
 
 }
