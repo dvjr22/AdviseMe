@@ -33,18 +33,19 @@ export class RequestClassesComponent implements OnInit {
           title: 'Course Title',
         },
         _id: {
-          title: 'Click me',
+          title: 'Class Info',
           type: 'custom',
+          filter: false,
           renderComponent: ClassViewRenderComponent,
         },
-        request: {
-          title: 'Request',
-          type: 'html',
-          valuePrepareFunction:(cell,row)=>{
-            return `<input id="checkBox" type="checkbox" checked>`
-          },
-          filter: false
-        },
+        // request: {
+        //   title: 'Request',
+        //   type: 'html',
+        //   valuePrepareFunction:(cell,row)=>{
+        //     return `<input id="checkBox" type="checkbox" checked>`
+        //   },
+        //   filter: false
+        // },
       },
     };
 

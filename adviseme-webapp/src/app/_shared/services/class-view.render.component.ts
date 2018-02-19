@@ -1,10 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ViewCell } from 'ng2-smart-table';
-import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
-
+import { Router } from '@angular/router';
 
 @Component({
-  template: `<div [innerHtml]="html"></div>`,
+  template: `
+    <div class="btn-group btn-group-full-width" role="group">
+          <button  (click)="goClassView()" type="button" class="btn btn-primary btn-group-icon btn-group-divider btn-fixed">
+            <i class="ion-information-circled"></i>
+          </button>
+          <button (click)="goClassView()" type="button" class="btn btn-primary">Class Info</button>
+  </div>
+  `,
 })
 export class ClassViewRenderComponent implements OnInit {
 
@@ -13,22 +19,14 @@ export class ClassViewRenderComponent implements OnInit {
 
   @Input() value;
 
-  constructor(private sanitizer: DomSanitizer) {  }
+  constructor(protected router: Router) {  }
 
   ngOnInit() {
     this.renderValue = this.value;
-    this.html = this.sanitizer.bypassSecurityTrustHtml(`
-      <div class="btn-group btn-group-full-width" role="group">
-            <button type="button" class="btn btn-primary btn-group-icon btn-group-divider btn-fixed">
-              <i class="ion-information-circled"></i>
-            </button>
-            <button type="button" class="btn btn-primary">${this.renderValue}</button>
-    </div>
-    `);
   }
 
-  example() {
-
+  goClassView() {
+    this.router.navigate(['/pages/class/class-view', this.renderValue]);
   }
 
 

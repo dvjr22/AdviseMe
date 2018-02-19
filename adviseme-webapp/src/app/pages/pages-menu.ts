@@ -27,7 +27,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Class (placeholder)',
     icon: 'nb-list',
-    link: '/pages/class/class-view',
+    link: '/pages/class/class-view/MATH141',
   },
   {
     title: 'Advisement',

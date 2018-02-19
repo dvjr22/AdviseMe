@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router';
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
 /**
@@ -15,7 +15,9 @@ export class ClassViewComponent implements OnInit {
   /**
     Initializes new names for the imports
   */
-  constructor() {
+
+  _id;
+  constructor(protected route: ActivatedRoute ) {
   }
 
   /**
@@ -23,5 +25,7 @@ export class ClassViewComponent implements OnInit {
     to get the users information
   */
   ngOnInit() {
+    this._id = this.route.snapshot.params['id'];
+    console.log(this._id);
   }
 }
