@@ -1,5 +1,5 @@
 import { APP_BASE_HREF } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -32,6 +32,7 @@ import { AuthenticationService, CanActivateUser } from './_shared/services/authe
 import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { NotificationService } from './_shared/services/notification.service';
+import { ClassViewRenderComponent } from './_shared/services/class-view.render.component';
 
 // Models
 import { User } from './_shared/models/user';
@@ -42,6 +43,7 @@ import { Class } from './_shared/models/class';
 @NgModule({
   declarations: [
     AppComponent,
+    ClassViewRenderComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,7 @@ import { Class } from './_shared/models/class';
     ToasterService,
     NotificationService,
   ],
+  entryComponents: [ClassViewRenderComponent ] ,
 })
 export class AppModule {
 }
