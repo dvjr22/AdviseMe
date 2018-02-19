@@ -6,14 +6,16 @@ _this = this
 exports.createClass = async function(req, res, next){
   //req.body contains form submit values
   var newClass = {
-    _id: req.body._id,
-    prefix: req.body.prefix,
-    courseNo: req.body.courseNo,
-    title: req.body.title,
-    requiredFor: req.body.requiredFor,
-    department: req.body.department,
-    curriculum: req.body.curriculum,
-  }
+      _id: req.body._id,
+      prerequisites: req.body.prerequisites,
+      department: req.body.department,
+      curriculum: req.body.curriculum,
+      class: {
+        title: req.body.class['title'],
+        courseNo: req.body.class['courseNo'],
+        prefix: req.body.class['prefix'],
+      }
+    }
 
   try{
     //calling service function with new object from request body
@@ -76,7 +78,7 @@ exports.updateClass = async function(req, res, next){
     curriculum: req.body.curriculum,
     class: {
       title: req.body.class['title'],
-      CourseNo: req.body.class['CourseNo'],
+      courseNo: req.body.class['courseNo'],
       prefix: req.body.class['prefix'],
     }
   }
