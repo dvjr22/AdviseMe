@@ -5,9 +5,6 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 
-import { User } from '../../../_shared/models/user';
-import { UserService } from '../../../_shared/services/user.service';
-
 import { flattenObject } from '../../classes/courses/flattenObject';
 
 @Component({
@@ -20,8 +17,21 @@ export class PermissionComponent implements OnInit {
       Configuration for the table
     */
     settings = {
+      add: {
+        addButtonContent: '<i class="nb-plus"></i>',
+        createButtonContent: '<i class="nb-checkmark"></i>',
+        cancelButtonContent: '<i class="nb-close"></i>',
+        confirmCreate: true,
+      },
       edit: {
+        editButtonContent: '<i class="nb-edit"></i>',
+        saveButtonContent: '<i class="nb-checkmark"></i>',
+        cancelButtonContent: '<i class="nb-close"></i>',
         confirmSave: true,
+      },
+      delete: {
+        deleteButtonContent: '<i class="nb-trash"></i>',
+        confirmDelete: true,
       },
       columns: {
         firstName: {
