@@ -26,6 +26,5 @@ export class ClassViewComponent implements OnInit {
   */
   ngOnInit() {
     this._id = this.route.snapshot.params['id'];
-    console.log(this._id);
   }
 }
