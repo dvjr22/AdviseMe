@@ -135,9 +135,9 @@ export class EditCourseComponent implements OnInit {
   }
 
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete' + event.data.class_title + ' ?')) {
+    if (window.confirm('Are you sure you want to delete ' + event.data.class_title + ' ?')) {
       this.classService.deleteClass(event.data._id).subscribe();
-      alert('Deleted' + event.data.class_title);
+      alert('Deleted ' + event.data.class_title);
       event.confirm.resolve();
     } else {
       alert('Aborted delete');
