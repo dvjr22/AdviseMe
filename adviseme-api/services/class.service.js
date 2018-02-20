@@ -48,9 +48,6 @@ exports.updateClass = async function(aClass){
     throw Error(e.message)
   }
 
-  console.log(oldClass)
-  console.log(aClass)
-
   //edit the class object
   oldClass._id = aClass._id
   oldClass.prerequisites = aClass.prerequisites
@@ -59,8 +56,6 @@ exports.updateClass = async function(aClass){
   oldClass.class['title'] = aClass.class['title']
   oldClass.class['courseNo'] = aClass.class['courseNo']
   oldClass.class['prefix'] = aClass.class['prefix']
-
-  console.log(oldClass)
 
   try {
     var savedClass = await oldClass.save()
