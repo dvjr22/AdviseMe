@@ -12,7 +12,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 
 @Injectable()
 export class AuthenticationService {
-
+  temp;
   constructor(private http: Http) { }
 
   // Method for logging in a user by posting the username and password
@@ -43,11 +43,9 @@ export class AuthenticationService {
         return token2;
       }).subscribe(val => {
         if (val.return === 'true' && val.status === '200') {
-          console.log("Got here");
-          return true;
+          this.temp = true;
         } else {
-          console.log("Got false");
-          return false;
+          this.temp = false;
         }
       });
   }
@@ -58,29 +56,8 @@ export class AuthenticationService {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     const apiReturn = '';
     if (currentUser !== null && apiReturn === '') {
-      let checkedToken: boolean;
-      // checkedToken = true;
-      // this.checkToken(currentUser.token).subscribe(val => {
-      //   if (val.return === 'true' && val.status === '200') {
-      //     console.log("Got here");
-      //     checkedToken = true;
-      //   } else {
-      //     console.log("Got false");
-      //     checkedToken = false;
-      //   }
-      // });
-      return this.checkToken(currentUser.token);
-      // return checkedToken
-      // do {
-      //   // nothing
-      // } while (done === false);
-      // if (checkedToken === true) {
-      //   console.log("Checked token === True");
-      //   return true;
-      // } else {
-      //   console.log("Checked token === False");
-      //   return false;
-      // }
+      const anytemp = this.checkToken(currentUser.token);
+      return this.temp;
     } else {
       return false;
     }

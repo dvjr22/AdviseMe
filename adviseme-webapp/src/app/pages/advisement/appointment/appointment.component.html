@@ -1,12 +1,27 @@
+<style>
+  .item-1 {
+  	float: left;
+  	width: 150px;
+  }
+  .item-2 {
+  	margin: 0;
+  	float: left;
+  	width: 300px;
+    line-height: 1.6;
+  }
+</style>
+
 <nb-card size="small">
   <nb-card-header>
     <span> Student Info </span>
   </nb-card-header>
   <nb-card-body>
-    <div class="picture" text-align="left">
-
+    <br>
+    <br>
+    <div class="item-1">
+      <img src="../../../../assets/images/batmanfb.jpg" style="width:128px;height:128px;">
     </div>
-    <div class="details">
+    <div class="item-2">
         <b>Student ID:</b> {{ currentUser.studentID }}
         <br>
         <b>Name:</b> {{ currentUser.firstName }} {{ currentUser.lastName}}

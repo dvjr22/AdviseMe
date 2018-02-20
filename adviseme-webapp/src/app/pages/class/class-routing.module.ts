@@ -10,7 +10,7 @@ const routes: Routes = [{
   path: '',
   component: ClassComponent,
   children: [{
-    path: 'class-view',
+    path: 'class-view/:id',
     component: ClassViewComponent,
   }],
 }];

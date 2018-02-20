@@ -46,14 +46,14 @@ export class UserService {
         return this.http.get('/api/users/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
 
-    /**
-      Calls api users service to create user
-      @param {User} user
-      @return {none}
-    */
-    create(user: User) {
-        return this.http.post('/api/users/register', user);
-    }
+    // /**
+    //   Calls api users service to create user
+    //   @param {User} user
+    //   @return {none}
+    // */
+    // create(user: User) {
+    //     return this.http.post('/api/users/register', user);
+    // }
 
     /**
       Calls api users service to update a user

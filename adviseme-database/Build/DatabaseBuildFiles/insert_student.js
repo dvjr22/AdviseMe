@@ -7,20 +7,21 @@
 var MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
 var url = "mongodb://localhost:27017/adviseMe";		// Database name
 
-let insertMany = []; // array to hold json
-let noOfStudents = 40; // Number of students to generate
+var insertMany = []; // array to hold json
+var noOfStudents = 40; // Number of students to generate
 
 insertMany.push(makeTyler()); // push Tyler to db
 
 // Create students
-for (var i = 0; i < noOfStudents; i++) {
+for (let i = 0; i < noOfStudents; i++) {
 
-	var obj = new Object(); // object to store JSON data
-	var id = makeid(); // get random id
-	var last = lastName(); // get random last name
+	let obj = new Object(); // object to store JSON data
+	let id = makeid(); // get random id
+	let last = lastName(); // get random last name
 
 	obj.firstName = firstName(); // get random first name
 	obj.lastName = last;
+	obj.role = "student"
 	obj.studentID = id;
 	obj.major = major(); // get major
 
@@ -32,7 +33,7 @@ for (var i = 0; i < noOfStudents; i++) {
 	obj.status = status(coursesArr); // set status based on course work
 	obj.course = coursesArr;
 
-	// console.log(JSON.stringify(obj)); // log to console
+	//console.log(JSON.stringify(obj)); // log to console
 
 	insertMany.push(obj); // add student to array
 }
@@ -46,7 +47,7 @@ MongoClient.connect(url, function(err, db) {
 
 		if (err) throw err;
 
-	 	console.log("Inserted");
+	 	console.log("Inserted " + insertMany.length + " students");
 	 	db.close();
 	});
 
@@ -61,6 +62,7 @@ function makeTyler() {
 
 	obj.firstName = "Tyler"; // get random first name
 	obj.lastName = "Hall"; // get random last name
+	obj.role = "student"
 	obj.studentID = "tHall01"
 	obj.major = major(); // get major
 
@@ -79,10 +81,10 @@ function makeTyler() {
 *	generate random id
 */
 function makeid() {
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let text = "";
+  let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  for (var i = 0; i < 5; i++)
+  for (let i = 0; i < 5; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
 
   return text;
@@ -127,13 +129,15 @@ function major() {
 */
 function course() {
 
+	// CS course work
 	let classes = [
-		// freshman 1 (4)
+		// freshman 1 (5)
 		["CSCE145", "B+"],
 		["CSCE190", "A"],
 		["ENGL101", "B"],
 		["MATH141", "B+"],
-		// freshman 2 (10)
+		["CORE001", "B"],
+		// freshman 2 (11)
 		["MATH142", "B"],
 		["ENGL102", "A"],
 		["CHEM111", "B"],
@@ -141,37 +145,81 @@ function course() {
 		["CSCE215", "A"],
 		["CSCE146", "A"],
 
-		// Sophmore 1 (15)
+		// Sophmore 1 (17)
 		["CSCE211", "B+"],
 		["CSCE240", "A"],
+		["MATH374", "B+"],
 		["SPCH140", "B"],
 		["CHEM112", "C"],
 		["CHEM112L", "A"],
-
-		// sophmore 2 (18)
+		// sophmore 2 (22)
 		["MATH241", "B"],
 		["CSCE212", "A"],
-		["MATH374", "B+"],
-
-		// junior 1 (length)
+		["SCIE001", "B"],
+		["CORE002", "B"],
+		["CORE003", "B"],
+		
+		// junior 1 (28)
 		["CSCE311", "A"],
+		["CSCE330", "A"],
 		["CSCE350", "B"],
 		["CSCE390", "A"],
-		["ENGL462", "A"]
+		["ENGL462", "A"],
+		["AREA001", "B"],
+		// junior 2 (34)
+		["CSCE416", "A"],
+		["STAT509", "B+"],
+		["CSCE311", "A"],
+		["LIBE001", "B"],
+		["LIBE002", "C"],
+		["AREA002", "B"],
+
+		// senior 1 (40)
+		["CSCE490", "A"],
+		["CSCE355", "C+"],
+		["CSEL001", "B+"],
+		["MATH344", "A"],
+		["MATH344L", "A"],
+		["AREA003", "B"],
+		// senior 2 (length)
+		["CSCE492", "A"],
+		["CSEL002", "B+"],
+		["CSEL003", "B+"],
+		["LIBE003", "B"]
+
 	];
 
-	let index = Math.floor(Math.random() * classes.length);
+	let index = Math.floor(Math.random() * classes.length); // random number
 
 	let courses = [];
 
-	for (let i = 0; i < index; i++) {
+	for (let i = 0; i < classes.length; i++) {
 
 		var course = new Object();
-		course.classID = classes[i][0];
-		course.grade = classes[i][1];
 
-		courses.push(course);
-		//console.log(JSON.stringify(course));
+		if ( i < index ) { // completed student course work
+
+			course.classID = classes[i][0];
+			course.grade = classes[i][1];
+
+			courses.push(course);
+			//console.log(JSON.stringify(course));
+		} else if ( i >= index && i < index+5 ) { // enrolled course work
+
+			course.classID = classes[i][0];
+			course.grade = 'enrolled';
+
+			courses.push(course);
+
+		} else { // to be completed course work
+
+			course.classID = classes[i][0];
+			course.grade = 'tbc';
+
+			courses.push(course);
+
+		}
+
 	}
 
 	return courses;
@@ -185,12 +233,19 @@ function status(coursesArray) {
 	let status = ["freshman", "sophmore", "junior", "senior"];
 	let check = coursesArray.length;
 
-	if (check < 15) {
+	for (let i = 0; i < coursesArray.length; i++ ){
+
+		if (coursesArray[i].grade == 'tbc') check--;
+	}
+
+	if (check < 12) { // freshman
 		return status[0];
-	} else if (check < 18) {
+	} else if (check < 23) { // sophmores
 		return status[1];
-	} else {
+	} else if (check < 35) { // junior
 		return status[2];
+	} else { // senior
+		return status[3];
 	}
 
 }

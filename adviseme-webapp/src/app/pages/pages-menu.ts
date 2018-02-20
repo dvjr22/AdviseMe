@@ -20,9 +20,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/classes/courses',
   },
   {
-    title: 'Class (placeholder)',
+    title: 'Edit Courses (placeholder)',
     icon: 'nb-list',
-    link: '/pages/class/class-view',
+    link: '/pages/classes/edit-course',
   },
   {
     title: 'Advisement',
@@ -35,6 +35,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'View Appointments',
         link: '/pages/advisement/view-appointment',
+      },
+      {
+        title: 'Request Classes (placeholder)',
+        link: '/pages/advisement/request-classes',
+      },
+    ],
+  },
+  {
+    title: 'Administration',
+    icon: 'nb-locked',
+    children: [
+      {
+        title: 'Edit Permissions',
+        link: '/pages/administrator/permission',
       },
     ],
   },

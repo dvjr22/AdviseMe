@@ -21,7 +21,7 @@ export class ClassService {
   constructor(private http: HttpClient) { }
   currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   headers = new HttpHeaders()
-        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .set('Content-Type', 'application/json')
         .set('Authorization', 'Bearer ' + this.currentUser.token )
         .set('Issuer', this.currentUser._id);
   /**
@@ -51,7 +51,7 @@ export class ClassService {
       },
     )
     .map(res  => {
-    return res['data'].docs as Class[];
+    return res['data'] as Class[];
     });
   }
 

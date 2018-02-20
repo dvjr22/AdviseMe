@@ -32,6 +32,10 @@ const routes: Routes = [{
     loadChildren: './class/class.module#ClassModule',
   },
   {
+    path: 'administrator',
+    loadChildren: './administrator/administrator.module#AdministratorModule',
+  },
+  {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',

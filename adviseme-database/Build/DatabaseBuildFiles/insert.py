@@ -1,6 +1,6 @@
 # insert.py
 # @author Diego Valdes
-# Nov. 20, 2016
+# Nov. 20, 2017
 # Reads csv files and converts to JSON format for db insertion
 
 import collections, os, sys, csv, linecache, json
@@ -24,12 +24,7 @@ client = pymongo.MongoClient('localhost', 27017)
 # Follows format client.dbName.collectionName
 db = client.adviseMe.classes
 
-# path = '/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Lab pc path
-path = '/home/diego/Capstone/AdviseMe/AdviseMe/adviseme-database/Data/SemiStructured' # Laptop path
-# path = '~/Documents/GitHub/AdviseMe/adviseme-database/Data/SemiStructered' ~ Ethan's Mac
-
 print("Inserting data to: %s" %(db))
-
 
 # Walk directory path for .csv files containing class data
 for root, subdirs, files in os.walk(path):
@@ -84,8 +79,8 @@ for root, subdirs, files in os.walk(path):
 					else:
 						break
 
-				print(data)
-				print(json.dumps(data))
+				#print(data)
+				#print(json.dumps(data))
 
 				# Insert data
 				#db.insert_one(data)

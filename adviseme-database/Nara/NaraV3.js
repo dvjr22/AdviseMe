@@ -1,13 +1,13 @@
 // NaraV2.js
 // @author Diego Valdes
-// Started - Jan 26, 2018
+// Started - Feb 14, 2018
 // Completed - TBD
-// Logic for class recomendation system
+// Logic for class recomendation system - use query to get recommendations
 
 "use strict";
+//db.users.findOne( { studentID: 'tHall01'}, {_id : 0, course : 1} )
 
-
-class NaraV2 {
+class NaraV3 {
 
 	/**********************************************************************************************
 	*
@@ -25,16 +25,20 @@ class NaraV2 {
 
 			assert.equal(err, null); // error check
 
-			console.log("connected NaraV2");
+			console.log("connected NaraV3");
 
 			// find student
-			db.collection('users').findOne( { studentID : studentId }, function(err, doc) {
-
+			db.collection('users').findOne( { studentID: studentId}, {_id : 0, course : 1}, function(err, doc) {
 
 				doc.course.forEach(function(element) {
 
-					console.log(element.classID);
-					console.log(element.grade);
+					//console.log(element.classID);
+					//console.log(element.grade);
+
+					if (element.grade == 'B+'){
+						console.log(element.classID)
+					}
+
 
 					classes.push(element.classID);
 
@@ -51,21 +55,11 @@ class NaraV2 {
 
 	}
 
-/*
-	getClassList() {
 
-		db.collection('classes').findOne( { '_id' : 'CSCE145' }, function(err, doc) {
-
-			console.log(doc);
-
-		});
-
-
-		db.close();
-
-	}
-*/
 }
 
-module.exports = NaraV2; //t export class
+module.exports = NaraV3; // export class
+
+
+
 
