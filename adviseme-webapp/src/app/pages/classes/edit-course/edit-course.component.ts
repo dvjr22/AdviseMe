@@ -169,6 +169,7 @@ export class EditCourseComponent implements OnInit {
     this.selectedClass.curriculum = this.curriculum_two;
 
     if (window.confirm('Are you sure you want to edit ' + event.data.class_title + ' ?')) {
+      this.classService.editClass(this.selectedClass).subscribe();
       alert('Changes made');
       event.confirm.resolve();
     } else {

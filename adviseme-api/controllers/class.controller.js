@@ -27,13 +27,10 @@ exports.createClass = async function(req, res, next){
 }
 
 //get Class
-exports.getClass = async function(req, res, next) {
-
-  var page = req.query.page ? req.query.page : 1
-  var limit = req.query.limit ? req.query.limit : 10;
+exports.getClass = async function(req, res) {
 
   try{
-    var classes = await classService.getClass({}, page, limit)
+    var classes = await classService.getClass({})
     return res.status(200).json({status: 200, data: classes, message: "Successfully found Class"})
   }catch(e){
     return res.status(400).json({status: 400, message: e.message})
@@ -42,7 +39,7 @@ exports.getClass = async function(req, res, next) {
 }
 
 //get Class by id
-exports.getClassById = async function (req, res, next) {
+exports.getClassById = async function (req, res) {
 
   if(!req.params.id) { //id is necessary for findById
     return res.status(400).json({status: 400, message: "Id must be present"})
@@ -62,14 +59,13 @@ exports.getClassById = async function (req, res, next) {
 }
 
 //update Class
-exports.updateClass = async function(req, res, next){
+exports.updateClass = async function(req, res){
 
   if(!req.body._id){//id is necessary for update
     return res.status(400).json({status: 400, message: "Id must be present"})
   }
 
   var _id = req.body._id;
-  console.log(req.body.class['prefix'])
 
   var Class = {
     _id,
@@ -92,7 +88,7 @@ exports.updateClass = async function(req, res, next){
 }
 
 //remove Class
-exports.removeClass = async function(req, res, next){
+exports.removeClass = async function(req, res){
   var id = req.params.id;
 
   try{
