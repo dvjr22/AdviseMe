@@ -8,11 +8,11 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { User } from '../models/user';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
-
+  validToken;
   constructor(private http: Http) { }
 
   // Method for logging in a user by posting the username and password
@@ -36,11 +36,30 @@ export class AuthenticationService {
     sessionStorage.removeItem('currentUser');
   }
 
+  checkToken(token: string) {
+    return this.http.post('/api/token/valid', { token: token})
+      .map((response: Response) => {
+        const token2 = response.json();
+        return token2;
+      }).subscribe(val => {
+        if (val.return === 'true' && val.status === '200') {
+          this.validToken = true;
+        } else {
+          this.validToken = false;
+        }
+      });
+  }
+
     // This method is used by components wanting to know if the
     // user is currently logged in or not
   checkForLocalUser(): boolean {
-    if (sessionStorage.getItem('currentUser') !== null) {
-      return true;
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    const apiReturn = '';
+    if (currentUser !== null && apiReturn === '') {
+      
+      //Need this variable set so that it will wait for the api call to finish
+      const doesNothing = this.checkToken(currentUser.token);
+      return this.validToken;
     } else {
       return false;
     }
@@ -51,12 +70,18 @@ export class AuthenticationService {
 // when there is not a valid user logged in
 @Injectable()
 export class CanActivateUser implements CanActivate {
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean>|Promise<boolean>|boolean {
-    return this.authenticationService.checkForLocalUser();
+    if (this.authenticationService.checkForLocalUser()) {
+      return true;
+    } else {
+      this.router.navigate(['/auth/login']);
+      return false;
+    }
   }
 }
