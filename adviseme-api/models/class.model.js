@@ -11,6 +11,8 @@ var ClassSchema = new mongoose.Schema({
       courseNo: { type: String, required: true },
       prefix: { type: String, required: true },
     },
+    hrs: { type: String, required: true},
+    description: { type: String, required: true},
 })
 
 ClassSchema.plugin(mongoosePaginate)

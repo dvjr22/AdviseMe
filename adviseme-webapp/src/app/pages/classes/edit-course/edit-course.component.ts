@@ -52,6 +52,12 @@ export class EditCourseComponent implements OnInit {
       class_title: {
         title: 'Course Title',
       },
+      hrs: {
+        title: 'Credit Hours',
+      },
+      description: {
+        title: 'Description',
+      },
       prerequisites_0: {
         title: 'Prerequisite 1',
       },
@@ -95,6 +101,9 @@ export class EditCourseComponent implements OnInit {
     this.selectedClass._id = (event.newData.class_prefix + event.newData.class_courseNo);
     this.selectedClass.department = event.newData.class_prefix;
 
+    this.selectedClass.hrs = event.newData.hrs;
+    this.selectedClass.description = event.newData.description;
+
     this.selectedClass.class = {
       title: String(event.newData.class_title),
       courseNo: String(event.newData.class_courseNo),
@@ -121,14 +130,14 @@ export class EditCourseComponent implements OnInit {
     });
     this.selectedClass.prerequisites = this.prerequisites;
     this.selectedClass.curriculum = [[]];
-    console.log(this.selectedClass);
     this.classService.createClass(this.selectedClass).subscribe();
+    event.confirm.resolve();
   }
 
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete' + event.data.class_title + ' ?')) {
+    if (window.confirm('Are you sure you want to delete ' + event.data.class_title + ' ?')) {
       this.classService.deleteClass(event.data._id).subscribe();
-      alert('Deleted' + event.data.class_title);
+      alert('Deleted ' + event.data.class_title);
       event.confirm.resolve();
     } else {
       alert('Aborted delete');
@@ -140,6 +149,9 @@ export class EditCourseComponent implements OnInit {
 
     this.selectedClass._id = event.newData._id;
     this.selectedClass.department = event.newData.class_prefix;
+
+    this.selectedClass.hrs = event.newData.hrs;
+    this.selectedClass.description = event.newData.description;
 
     this.selectedClass.class = {
       title: String(event.newData.class_title),
