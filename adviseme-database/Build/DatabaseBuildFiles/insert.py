@@ -76,16 +76,27 @@ for root, subdirs, files in os.walk(path):
 
 						data['curriculum'] = curriculumHolder
 
+					elif i == 5:
+						data['hrs'] = row[0].strip()
+
+
+					elif i == 6:
+						data['description'] = row[0].strip()
+
 					else:
 						break
 
-				#print(data)
-				#print(json.dumps(data))
+				print(data)
+				print(json.dumps(data))
 
 				# Insert data
-				#db.insert_one(data)
+				db.insert_one(data)
 
 				# Insert data
+
 				if db.insert_one(data):
 					print("Class: %s inserted" %(data['_id']))
 					# print(json.dumps(data)+'\n')
+				else:
+					print("ERROR: Class: %s wasn't inserted" %(data['_id']))
+
