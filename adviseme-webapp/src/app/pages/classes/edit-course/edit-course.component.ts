@@ -131,6 +131,7 @@ export class EditCourseComponent implements OnInit {
     this.selectedClass.prerequisites = this.prerequisites;
     this.selectedClass.curriculum = [[]];
     this.classService.createClass(this.selectedClass).subscribe();
+    event.confirm.resolve();
   }
 
   onDeleteConfirm(event): void {
