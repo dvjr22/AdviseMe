@@ -62,13 +62,12 @@ exports.updateCart = async function(req, res){
 
   var Cart = {
     _id,
-    classes: req.body.classes
-    }
+    classes: req.body.classes,
   }
 
   try{
     var updatedCart = await cartService.updateCart(Cart)
-    return res.status(200).json({status: 200, data: updatedCart, message: "Successfully Updated Cart"})
+    return res.status(200).json({status: 200, data: updatedCart, message: "Successfully Updated Class"})
   }catch(e){
     return res.status(400).json({status: 400, message: e.message})
   }
