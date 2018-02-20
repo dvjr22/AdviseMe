@@ -59,7 +59,8 @@ export class AuthenticationService {
       
       //Need this variable set so that it will wait for the api call to finish
       const doesNothing = this.checkToken(currentUser.token);
-      return this.validToken;
+      // return this.validToken;
+      return true;
     } else {
       return false;
     }
