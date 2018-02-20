@@ -24,6 +24,8 @@ exports.createClass = async function(aClass){
         department: aClass.department,
         curriculum: aClass.curriculum,
         prerequisites: aClass.prerequisites,
+        hrs: aClass.hrs,
+        description: aClass.description,
     })
     try{
         var savedClass = await newClass.save();
@@ -59,6 +61,8 @@ exports.updateClass = async function(aClass){
   oldClass.class['title'] = aClass.class['title']
   oldClass.class['courseNo'] = aClass.class['courseNo']
   oldClass.class['prefix'] = aClass.class['prefix']
+  oldClass.hrs = aClass.hrs
+  oldClass.description = aClass.description
 
   console.log(oldClass)
 

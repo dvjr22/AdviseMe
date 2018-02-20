@@ -15,4 +15,6 @@ export class Class {
   };
   prerequisites: string[];
   curriculum: string[][];
+  hrs: string;
+  description: string;
 }

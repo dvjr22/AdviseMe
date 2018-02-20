@@ -14,7 +14,9 @@ exports.createClass = async function(req, res, next){
         title: req.body.class['title'],
         courseNo: req.body.class['courseNo'],
         prefix: req.body.class['prefix'],
-      }
+      },
+      hrs: req.body.hrs,
+      description: req.body.description,
     }
 
   try{
@@ -80,7 +82,9 @@ exports.updateClass = async function(req, res, next){
       title: req.body.class['title'],
       courseNo: req.body.class['courseNo'],
       prefix: req.body.class['prefix'],
-    }
+    },
+    hrs: req.body.hrs,
+    description: req.body.description,
   }
 
   try{
