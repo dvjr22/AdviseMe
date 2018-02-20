@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { User } from '../../../_shared/models/user';
-import { UserService } from '../../../_shared/services/user.service';
-
+import { ActivatedRoute } from '@angular/router';
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
 /**
@@ -16,26 +13,11 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 })
 export class ClassViewComponent implements OnInit {
   /**
-    Getting the current user
-  */
-  currentUser: User;
-  /**
-    Array to split email by @
-  */
-  emailArray: any;
-  /**
-    Email before the @
-  */
-  emailBegin: string;
-  /**
-    Email starting at the @
-  */
-  emailEnding: string;
-
-  /**
     Initializes new names for the imports
   */
-  constructor(private userService: UserService) {
+
+  _id;
+  constructor(protected route: ActivatedRoute ) {
   }
 
   /**
@@ -43,13 +25,6 @@ export class ClassViewComponent implements OnInit {
     to get the users information
   */
   ngOnInit() {
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.userService.getById(this.currentUser._id)
-        .subscribe(res => {
-          this.currentUser = res;
-          this.emailArray = this.currentUser.email.split('@');
-          this.emailBegin = this.emailArray[0];
-          this.emailEnding = '@' + this.emailArray[1];
-  });
+    this._id = this.route.snapshot.params['id'];
   }
 }
