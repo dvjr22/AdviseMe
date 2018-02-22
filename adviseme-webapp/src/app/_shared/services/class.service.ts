@@ -56,6 +56,27 @@ export class ClassService {
   }
 
   /**
+    Get a class by id
+
+    @param {string} id
+    @returns {Class}
+  */
+  getClass(id: string): Observable<Class> {
+    /**
+      url to get class by id
+    */
+    const specificClassUrl = `${this.classUrl}/${id}`;
+    return this.http.get(specificClassUrl,
+      {
+          headers: this.headers,
+      },
+    )
+    .map(res  => {
+      return res['data'] as Class;
+    });
+  }
+
+  /**
     Edit Class
 
     @param {Class} class
@@ -78,7 +99,7 @@ export class ClassService {
   */
   deleteClass(id: string): any {
     /**
-      url to delete the user by id
+      url to delete the class by id
     */
     const deleteUrl = `${this.classUrl}/${id}`;
     return this.http.delete(deleteUrl,
