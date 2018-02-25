@@ -21,11 +21,11 @@ tr:nth-child(even) {
       <nb-card-header>Information</nb-card-header>
       <nb-card-body>
         <p><b>Class: </b>{{ Class.class.prefix }} {{ Class.class.courseNo }}</p>
-        <br><br>
+        <br>
         <p><b>Semester Offered: </b>(Not yet object in DB)</p>
-        <br><br>
+        <br>
         <p><b>Pre-Requisites: </b>(DB needs to include required grade)</p>
-        <br><br>
+        <br>
         <p><b>Credit Hours: </b>(Not yet object in DB)</p>
       </nb-card-body>
     </nb-card>
@@ -63,5 +63,6 @@ tr:nth-child(even) {
         </table> -->
       </nb-card-body>
     </nb-card>
+    <button (click)="goClassTableView()" type="button" class="btn btn-primary">Back</button>
   </nb-card-body>
 </nb-card>

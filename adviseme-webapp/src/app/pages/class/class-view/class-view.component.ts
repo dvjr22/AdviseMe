@@ -5,6 +5,8 @@ import { CapitalizePipe } from '../../../@theme/pipes/capitalize.pipe';
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
 
+import { Router } from '@angular/router';
+
 /**
   Component:
     Allows a user to look at an overview of their class
@@ -21,7 +23,7 @@ export class ClassViewComponent implements OnInit {
 
   _id;
   Class;
-  constructor(protected route: ActivatedRoute, private classService: ClassService) {
+  constructor(protected route: ActivatedRoute, private classService: ClassService, protected router: Router) {
   }
 
   /**
@@ -35,5 +37,9 @@ export class ClassViewComponent implements OnInit {
       .subscribe((res: Class) => {
         this.Class = res;
       });
+  }
+
+  goClassTableView() {
+    this.router.navigate(['/pages/advisement/request-classes']);
   }
 }
