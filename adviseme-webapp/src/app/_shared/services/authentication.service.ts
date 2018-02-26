@@ -8,12 +8,22 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { User } from '../models/user';
+import { UserService } from './user.service';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
   validToken;
-  constructor(private http: Http) { }
+  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  isAdmin: boolean;
+  constructor(private http: Http, private userService: UserService) {
+    this.userService.getById(this.currentUser._id).subscribe((res) => {
+      if (res.role === 'admin') {
+        console.log(res.role)
+        this.isAdmin = true;
+      }
+    });
+  }
 
   // Method for logging in a user by posting the username and password
   // to the rest api
@@ -56,7 +66,7 @@ export class AuthenticationService {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     const apiReturn = '';
     if (currentUser !== null && apiReturn === '') {
-      
+
       //Need this variable set so that it will wait for the api call to finish
       const doesNothing = this.checkToken(currentUser.token);
       // return this.validToken;
@@ -67,8 +77,10 @@ export class AuthenticationService {
   }
   checkForAdminUser(): boolean {
     if (sessionStorage.getItem('currentUser') !== null) {
-      return true;
+      return this.isAdmin;
+      //  return true;
     } else {
+      console.log("NOT ADMIN")
       return false;
     }
   }
