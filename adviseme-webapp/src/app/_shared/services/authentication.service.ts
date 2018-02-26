@@ -19,7 +19,6 @@ export class AuthenticationService {
   constructor(private http: Http, private userService: UserService) {
     this.userService.getById(this.currentUser._id).subscribe((res) => {
       if (res.role === 'admin') {
-        console.log(res.role)
         this.isAdmin = true;
       }
     });
