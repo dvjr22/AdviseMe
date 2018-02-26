@@ -9,6 +9,7 @@ services to access the Mongoose Models
 
 //get mongoose model
 var Class = require('../models/class.model')
+var User = require('../models/user.model')
 
 _this = this
 
@@ -90,6 +91,31 @@ exports.getClassById = async function(id) {
     return classes;
   }catch(e){
     throw Error(e.message, "Error while finding class by id")
+  }
+}
+
+exports.getCurrentClasses = async function(id) {
+
+  try{
+    var currentUser = await User.findById(id);
+    var userClasses = currentUser.course.filter(function (el) {
+      return el.grade === "enrolled"
+    });
+    return userClasses;
+  }catch(e){
+    throw Error(e.message, "Error while finding current classes")
+  }
+}
+
+exports.getGradedClasses = async function (id) {
+  try{
+    var currentUser = await User.findById(id);
+    var userClasses = currentUser.course.filter(function (el) {
+      return el.grade != "tbc" && el.grade != "enrolled"
+    });
+    return userClasses;
+  }catch(e){
+    throw Error(e.message, "Error while finding graded classes")
   }
 }
 

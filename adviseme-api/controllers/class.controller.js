@@ -60,6 +60,42 @@ exports.getClassById = async function (req, res) {
 
 }
 
+//get current user classes
+exports.getCurrentClasses = async function (req, res) {
+
+  if(!req.params.id) { //id is necessary for findById
+    return res.status(400).json({status: 400, message: "Id must be present"})
+  }
+
+  var id  = req.params.id;
+
+  try{
+    var currentClasses = await classService.getCurrentClasses(id)
+    //return list of current classes with HTTP status code and message
+    return res.status(200).json({status: 200, data: currentClasses, message: "Successfully received current classes."})
+  }catch(e){
+    return res.status(400).json({status: 400, message: e.message})
+  }
+}
+
+//get graded user classes
+exports.getGradedClasses = async function (req, res) {
+
+  if(!req.params.id) { //id is necessary for findById
+    return res.status(400).json({status: 400, message: "Id must be present"})
+  }
+
+  var id  = req.params.id;
+
+  try{
+    var gradedClasses = await classService.getGradedClasses(id)
+    //return list of graded classes with HTTP status code and message
+    return res.status(200).json({status: 200, data: gradedClasses, message: "Successfully received graded classes."})
+  }catch(e){
+    return res.status(400).json({status: 400, message: e.message})
+  }
+}
+
 //update Class
 exports.updateClass = async function(req, res){
 
