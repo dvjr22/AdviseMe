@@ -65,7 +65,6 @@ exports.updateAppointment = async function(req, res){
   }
 
   var id = req.body._id;
-  console.log(req.body)
 
   var Appointment = {
     id,

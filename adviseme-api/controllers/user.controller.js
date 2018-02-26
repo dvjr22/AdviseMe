@@ -52,7 +52,6 @@ exports.getUser = async function(req, res) {
 }
 
 exports.update = async function(req, res) {
-  console.log(req.body);
   userService.update(req.params._id, req.body)
     .then(function () {
       res.sendStatus(200);

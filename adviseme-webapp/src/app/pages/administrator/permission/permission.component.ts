@@ -10,7 +10,7 @@ import { flattenObject } from '../../classes/courses/flattenObject';
 @Component({
   selector: 'ngx-app-permission',
   templateUrl: './permission.component.html',
-  styleUrls: ['./permission.component.scss']
+  styleUrls: ['./permission.component.scss'],
 })
 export class PermissionComponent implements OnInit {
   /**
@@ -40,6 +40,9 @@ export class PermissionComponent implements OnInit {
         lastName: {
           title: 'Last Name',
         },
+        role: {
+          title: 'Role',
+        },
         major: {
           title: 'Major',
         },
@@ -66,7 +69,7 @@ export class PermissionComponent implements OnInit {
     if (window.confirm('Are you sure you want to save?')) {
 
       // HACK: TODO: Move this to a pipe or something
-      var u = new User();
+      const u = new User();
       u._id = event.newData._id;
       u.username = event.newData.username;
       u.password = event.newData.password;
