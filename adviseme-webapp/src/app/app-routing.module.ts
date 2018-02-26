@@ -12,6 +12,7 @@ import { NbResetPasswordComponent } from './@theme/components/auth/components/re
 // Services
 import { UserService } from './_shared/services/user.service';
 import { CanActivateUser } from './_shared/services/authentication.service';
+import { CanActivateAdmin } from './_shared/services/authentication.service';
 import { AlertService } from './_shared/services/alert.service';
 
 // Main Routes

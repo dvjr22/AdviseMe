@@ -9,16 +9,23 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {Subscription} from 'rxjs/Subscription';
 import { User } from '../models/user';
+import { UserService } from './user.service';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
-
+  validToken;
   allow: Observable<boolean>;
   private _userSub: Subscription;
-
-  constructor(private http: Http,
-              private router: Router) { }
+  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  isAdmin: boolean;
+  constructor(private http: Http, private userService: UserService, private router: Router) {
+    this.userService.getById(this.currentUser._id).subscribe((res) => {
+      if (res.role === 'admin') {
+        this.isAdmin = true;
+      }
+    });
+  }
 
   // Method for logging in a user by posting the username and password
   // to the rest api
@@ -92,6 +99,15 @@ export class AuthenticationService {
       return false;
     }
   }
+  checkForAdminUser(): boolean {
+    if (sessionStorage.getItem('currentUser') !== null) {
+      return this.isAdmin;
+      //  return true;
+    } else {
+      console.log("NOT ADMIN")
+      return false;
+    }
+  }
 }
 
 // This class restricts the router to only allowing login and registration
@@ -111,5 +127,17 @@ export class CanActivateUser implements CanActivate {
       this.router.navigate(['/auth/login']);
       return false;
     }
+  }
+}
+
+@Injectable()
+export class CanActivateAdmin implements CanActivate {
+  constructor(private authenticationService: AuthenticationService) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<boolean>|Promise<boolean>|boolean {
+    return this.authenticationService.checkForAdminUser();
   }
 }
