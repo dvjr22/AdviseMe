@@ -45,6 +45,13 @@ export class AuthenticationService {
       return false;
     }
   }
+  checkForAdminUser(): boolean {
+    if (sessionStorage.getItem('currentUser') !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 // This class restricts the router to only allowing login and registration
@@ -58,5 +65,17 @@ export class CanActivateUser implements CanActivate {
     state: RouterStateSnapshot,
   ): Observable<boolean>|Promise<boolean>|boolean {
     return this.authenticationService.checkForLocalUser();
+  }
+}
+
+@Injectable()
+export class CanActivateAdmin implements CanActivate {
+  constructor(private authenticationService: AuthenticationService) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<boolean>|Promise<boolean>|boolean {
+    return this.authenticationService.checkForAdminUser();
   }
 }

@@ -61,6 +61,7 @@ export class UserService {
       @return {none}
     */
     update(user: User) {
+        console.log(user);
         return this.http.put('/api/users/' + user._id, user, this.requestOptions);
     }
 
