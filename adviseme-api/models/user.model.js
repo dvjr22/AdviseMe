@@ -63,7 +63,7 @@ var UserSchema = new mongoose.Schema({
     advisor: Schema.ObjectId,
     course: [
       {
-        classID: { Schema.ObjectId, required: true },
+        classID: { type: String, required: true },
         grade:  { type: String, required: true}
       }
     ],

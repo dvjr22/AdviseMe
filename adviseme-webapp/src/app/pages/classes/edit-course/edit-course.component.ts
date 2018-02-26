@@ -30,7 +30,6 @@ export class EditCourseComponent implements OnInit {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
-      confirmCreate: true,
     },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
@@ -51,21 +50,6 @@ export class EditCourseComponent implements OnInit {
       },
       class_title: {
         title: 'Course Title',
-      },
-      hrs: {
-        title: 'Credit Hours',
-      },
-      description: {
-        title: 'Description',
-      },
-      prerequisites_0: {
-        title: 'Prerequisite 1',
-      },
-      prerequisites_1: {
-        title: 'Prerequisite 2',
-      },
-      prerequisites_2: {
-        title: 'Prerequisite 3',
       },
     },
   };
@@ -94,64 +78,20 @@ export class EditCourseComponent implements OnInit {
       .subscribe((res: Class[]) => {
         this.source.load(flattenObject(res));
       });
-
   }
-
-  onCreateConfirm(event): void {
-    this.selectedClass._id = (event.newData.class_prefix + event.newData.class_courseNo);
-    this.selectedClass.department = event.newData.class_prefix;
-
-    this.selectedClass.hrs = event.newData.hrs;
-    this.selectedClass.description = event.newData.description;
-
-    this.selectedClass.class = {
-      title: String(event.newData.class_title),
-      courseNo: String(event.newData.class_courseNo),
-      prefix: String(event.newData.class_prefix),
-    };
-
-    Object.entries(event.newData).forEach(([key, value]) => {
-
-      if (key.startsWith('prerequisites_')) {
-        this.prerequisites.push(value);
-      }
-
-      // if (key.startsWith('curriculum_')) {
-      //   this.curriculum_one.push(value);
-      //
-      //   if (this.curriculum_one.length === 2) {
-      //     this.curriculum_two.push([this.curriculum_one[0], this.curriculum_one[1]]);
-      //     this.curriculum_one.pop();
-      //     this.curriculum_one.pop();
-      //   }
-      //
-      // }
-
-    });
-    this.selectedClass.prerequisites = this.prerequisites;
-    this.selectedClass.curriculum = [[]];
-    this.classService.createClass(this.selectedClass).subscribe();
-    event.confirm.resolve();
-  }
-
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete ' + event.data.class_title + ' ?')) {
-      this.classService.deleteClass(event.data._id).subscribe();
-      alert('Deleted ' + event.data.class_title);
+    if (window.confirm('Are you sure you want to delete' + event.data.class_title + ' ?')) {
+      alert('Deleted' + event.data.class_title);
       event.confirm.resolve();
     } else {
       alert('Aborted delete');
       event.confirm.reject();
     }
   }
-
   onSaveConfirm(event): void {
 
     this.selectedClass._id = event.newData._id;
-    this.selectedClass.department = event.newData.class_prefix;
-
-    this.selectedClass.hrs = event.newData.hrs;
-    this.selectedClass.description = event.newData.description;
+    this.selectedClass.department = event.newData.department;
 
     this.selectedClass.class = {
       title: String(event.newData.class_title),
