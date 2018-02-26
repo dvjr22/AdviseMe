@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {Subscription} from 'rxjs/Subscription';
 import { User } from '../models/user';
 import { UserService } from './user.service';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
@@ -14,9 +15,11 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 @Injectable()
 export class AuthenticationService {
   validToken;
+  allow: Observable<boolean>;
+  private _userSub: Subscription;
   currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   isAdmin: boolean;
-  constructor(private http: Http, private userService: UserService) {
+  constructor(private http: Http, private userService: UserService, private router: Router) {
     this.userService.getById(this.currentUser._id).subscribe((res) => {
       if (res.role === 'admin') {
         this.isAdmin = true;
@@ -45,16 +48,42 @@ export class AuthenticationService {
     sessionStorage.removeItem('currentUser');
   }
 
+  getUser() {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (this.allow) {
+      this.allow = new Observable(observer => {
+          observer.next(true);
+          observer.complete();
+      });
+      return this.allow;
+    }
+    this.allow = new Observable( observer => {
+      if (this._userSub) {
+        this._userSub.unsubscribe();
+      }
+      this._userSub = this.checkToken(currentUser.token).subscribe(val => {
+          if (val === true) {
+            observer.next(true);
+          } else {
+            this.router.navigate(['/auth/login']);
+            observer.next(false);
+          }
+        },
+        () => {
+        observer.complete();
+        });
+    });
+    return this.allow;
+}
+
   checkToken(token: string) {
     return this.http.post('/api/token/valid', { token: token})
       .map((response: Response) => {
         const token2 = response.json();
-        return token2;
-      }).subscribe(val => {
-        if (val.return === 'true' && val.status === '200') {
-          this.validToken = true;
+        if (token2.return === 'true') {
+          return true;
         } else {
-          this.validToken = false;
+          return false;
         }
       });
   }
@@ -65,10 +94,6 @@ export class AuthenticationService {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     const apiReturn = '';
     if (currentUser !== null && apiReturn === '') {
-
-      //Need this variable set so that it will wait for the api call to finish
-      const doesNothing = this.checkToken(currentUser.token);
-      // return this.validToken;
       return true;
     } else {
       return false;
@@ -97,7 +122,7 @@ export class CanActivateUser implements CanActivate {
     state: RouterStateSnapshot,
   ): Observable<boolean>|Promise<boolean>|boolean {
     if (this.authenticationService.checkForLocalUser()) {
-      return true;
+      return this.authenticationService.getUser();
     } else {
       this.router.navigate(['/auth/login']);
       return false;
