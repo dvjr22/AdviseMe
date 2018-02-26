@@ -3,7 +3,7 @@ var AppointmentService = require('../services/appointment.service')
 _this = this
 
 //create AppointmentSchema
-exports.createAppointment = async function(req, res, next){
+exports.createAppointment = async function(req, res){
   //req.body contains form submit values
   var newAppointment = {
     studentID: req.body.studentID,
@@ -26,7 +26,7 @@ exports.createAppointment = async function(req, res, next){
 }
 
 //get Appointment
-exports.getAppointment = async function(req, res, next) {
+exports.getAppointment = async function(req, res) {
 
   try{
     var Appointments = await AppointmentService.getAppointment({})
@@ -38,7 +38,7 @@ exports.getAppointment = async function(req, res, next) {
 }
 
 //get Appointment by id
-exports.getAppointmentById = async function (req, res, next) {
+exports.getAppointmentById = async function (req, res) {
 
   if(!req.params.id) { //id is necessary for findById
     return res.status(400).json({status: 400, message: "Id must be present"})
@@ -58,7 +58,7 @@ exports.getAppointmentById = async function (req, res, next) {
 }
 
 //update Appointment
-exports.updateAppointment = async function(req, res, next){
+exports.updateAppointment = async function(req, res){
 
   if(!req.body._id){//id is necessary for update
     return res.status(400).json({status: 400, message: "Id must be present"})
@@ -88,7 +88,7 @@ exports.updateAppointment = async function(req, res, next){
 }
 
 //remove Appointment
-exports.removeAppointment = async function(req, res, next){
+exports.removeAppointment = async function(req, res){
   var id = req.params.id;
 
   try{

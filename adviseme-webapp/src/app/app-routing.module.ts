@@ -45,8 +45,8 @@ const routes: Routes = [
       ],
     },
   { path: 'pages', canActivate: [CanActivateUser], loadChildren: 'app/pages/pages.module#PagesModule'},
-  { path: '', redirectTo: '/auth/login', pathMatch: 'full'},
-  { path: '**', redirectTo: '/auth/login' },
+  { path: '', redirectTo: '/pages/dashboard', pathMatch: 'full'},
+  { path: '**', redirectTo: '/pages/dashboard' },
 ];
 
 /**

@@ -26,7 +26,6 @@ export class AppointmentService {
 
     /**
       Gat all appointments
-
       @returns {json}
     */
     getAll() {

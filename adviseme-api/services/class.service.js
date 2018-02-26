@@ -17,15 +17,16 @@ exports.createClass = async function(aClass){
     var newClass = new Class({
         _id: aClass._id,
         class: {
-          prefix: aClass.prefix,
-          courseNo: aClass.courseNo,
-          title: aClass.title,
+          prefix: aClass.class['prefix'],
+          courseNo: aClass.class['courseNo'],
+          title: aClass.class['title'],
         },
-        requiredFor: aClass.requiredFor,
         department: aClass.department,
         curriculum: aClass.curriculum,
+        prerequisites: aClass.prerequisites,
+        hrs: aClass.hrs,
+        description: aClass.description,
     })
-
     try{
         var savedClass = await newClass.save();
         return savedClass;
@@ -49,18 +50,16 @@ exports.updateClass = async function(aClass){
     throw Error(e.message)
   }
 
-  console.log(oldClass)
-
   //edit the class object
   oldClass._id = aClass._id
-  oldClass.class.prefix = aClass.class.prefix
-  oldClass.class.courseNo = aClass.class.courseNo
-  oldClass.class.title = aClass.class.title
-  oldClass.requiredFor = aClass.requiredFor
+  oldClass.prerequisites = aClass.prerequisites
   oldClass.department = aClass.department
   oldClass.curriculum = aClass.curriculum
-
-  console.log(oldClass)
+  oldClass.class['title'] = aClass.class['title']
+  oldClass.class['courseNo'] = aClass.class['courseNo']
+  oldClass.class['prefix'] = aClass.class['prefix']
+  oldClass.hrs = aClass.hrs
+  oldClass.description = aClass.description
 
   try {
     var savedClass = await oldClass.save()

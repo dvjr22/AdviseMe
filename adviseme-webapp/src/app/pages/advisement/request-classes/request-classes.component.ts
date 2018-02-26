@@ -1,10 +1,9 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../../_shared/models/user';
-import { UserService } from '../../../_shared/services/user.service';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
+import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
 import { flattenObject } from './flattenObject';
 
 /**
@@ -22,12 +21,7 @@ export class RequestClassesComponent implements OnInit {
     */
     settings = {
       selectMode: 'multi',
-      actions: {
-        delete: false,
-        add: false,
-        edit: false,
-        select: true,
-      },
+      actions: false,
       columns: {
         class_prefix: {
           title: 'Department',
@@ -38,14 +32,20 @@ export class RequestClassesComponent implements OnInit {
         class_title: {
           title: 'Course Title',
         },
-        request: {
-          title: 'Request',
-          type: 'html',
-          valuePrepareFunction:(cell,row)=>{
-            return `<input id="checkBox" type="checkbox" checked>`
-          },
-          filter: false
+        _id: {
+          title: 'Class Info',
+          type: 'custom',
+          filter: false,
+          renderComponent: ClassViewRenderComponent,
         },
+        // request: {
+        //   title: 'Request',
+        //   type: 'html',
+        //   valuePrepareFunction:(cell,row)=>{
+        //     return `<input id="checkBox" type="checkbox" checked>`
+        //   },
+        //   filter: false
+        // },
       },
     };
 
