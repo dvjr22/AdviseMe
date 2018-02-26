@@ -20,19 +20,19 @@ tr:nth-child(even) {
     <nb-card>
       <nb-card-header>Information</nb-card-header>
       <nb-card-body>
-        <p><b>Class: </b>{{ Class.class.prefix }} {{ Class.class.courseNo }}</p>
+        <p><b>Class: </b>{{ Class?.class.prefix }} {{ Class?.class.courseNo }}</p>
         <br>
         <p><b>Semester Offered: </b>(Not yet object in DB)</p>
         <br>
         <p><b>Pre-Requisites: </b>(DB needs to include required grade)</p>
         <br>
-        <p><b>Credit Hours: </b>(Not yet object in DB)</p>
+        <p><b>Credit Hours: </b>{{ Class?.hrs }}</p>
       </nb-card-body>
     </nb-card>
     <nb-card>
       <nb-card-header>Description</nb-card-header>
       <nb-card-body>
-        <p>(Not yet object in DB)</p>
+        <p>{{ Class?.description }}</p>
       </nb-card-body>
     </nb-card>
     <nb-card>
