@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
+import { CapitalizePipe } from '../../../@theme/pipes/capitalize.pipe';
+
+import { Class } from '../../../_shared/models/class';
+import { ClassService } from '../../../_shared/services/class.service';
+
+import { Router } from '@angular/router';
 
 /**
   Component:
@@ -17,7 +22,8 @@ export class ClassViewComponent implements OnInit {
   */
 
   _id;
-  constructor(protected route: ActivatedRoute ) {
+  Class;
+  constructor(protected route: ActivatedRoute, private classService: ClassService, protected router: Router) {
   }
 
   /**
@@ -26,5 +32,14 @@ export class ClassViewComponent implements OnInit {
   */
   ngOnInit() {
     this._id = this.route.snapshot.params['id'];
+
+    this.classService.getClass(this._id)
+      .subscribe((res: Class) => {
+        this.Class = res;
+      });
+  }
+
+  goClassTableView() {
+    this.router.navigate(['/pages/advisement/request-classes']);
   }
 }
