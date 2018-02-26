@@ -19,6 +19,7 @@ class NaraV3 {
 		var assert = require('assert'); // handle errors
 
 		var classes = []; // array of class ids to query and create graph
+		var recomendation = 0;
 
 		// connect to db
 		MongoClient.connect(url, function(err, db) {
@@ -35,17 +36,17 @@ class NaraV3 {
 					//console.log(element.classID);
 					//console.log(element.grade);
 
-					if (element.grade == 'B+'){
-						console.log(element.classID)
+					if (element.grade == 'tbc' && recomendation < 5){
+						console.log(element.classID);
+						classes.push(element.classID);
+						recomendation++;
 					}
 
-
-					classes.push(element.classID);
-
+					//classes.push(element.classID);
 				});
 
-				callback(doc); // return the document
-				//callback(classes); // return test array
+				//callback(doc); // return the document
+				callback(classes); // return test array
 
 			});
 
