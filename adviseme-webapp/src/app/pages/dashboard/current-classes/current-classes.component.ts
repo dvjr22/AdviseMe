@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { User, CurrentClasses } from '../../../_shared/models/user';
-import { Class } from '../../../_shared/models/class';
-import { UserService } from '../../../_shared/services/user.service';
+import { User } from '../../../_shared/models/user';
 import { ClassService } from '../../../_shared/services/class.service';
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
@@ -19,15 +17,6 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 })
 
 export class CurrentClassesComponent implements OnInit {
-
-  /**
-    Getting the current user
-  */
-  currentClasses: any;
-  /**
-    Array of courses
-  */
-  courses: any = [];
   /**
     Configuration for the table
   */

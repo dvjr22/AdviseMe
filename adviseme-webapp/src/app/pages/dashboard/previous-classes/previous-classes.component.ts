@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { User } from '../../../_shared/models/user';
-import { UserService } from '../../../_shared/services/user.service';
 import { ClassService } from '../../../_shared/services/class.service';
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
@@ -18,14 +17,6 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 })
 
 export class PreviousClassesComponent implements OnInit {
-  /**
-    Getting the current user
-  */
-  currentUser: User;
-  /**
-    Array of courses
-  */
-  courses: any = [];
   /**
     Configuration for the table
   */
