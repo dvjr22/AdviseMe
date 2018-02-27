@@ -17,15 +17,9 @@ export class AuthenticationService {
   validToken;
   allow: Observable<boolean>;
   private _userSub: Subscription;
-  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-  isAdmin: boolean;
-  constructor(private http: Http, private userService: UserService, private router: Router) {
-    this.userService.getById(this.currentUser._id).subscribe((res) => {
-      if (res.role === 'admin') {
-        this.isAdmin = true;
-      }
-    });
-  }
+//  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  // isAdmin: boolean;
+  constructor(private http: Http, private router: Router) {}
 
   // Method for logging in a user by posting the username and password
   // to the rest api
@@ -101,10 +95,8 @@ export class AuthenticationService {
   }
   checkForAdminUser(): boolean {
     if (sessionStorage.getItem('currentUser') !== null) {
-      return this.isAdmin;
-      //  return true;
+      return true; // this.isAdmin;
     } else {
-      console.log("NOT ADMIN")
       return false;
     }
   }

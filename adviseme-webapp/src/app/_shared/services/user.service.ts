@@ -16,16 +16,24 @@ export class UserService {
   /**
     Initializes new names for the imports
   */
-  constructor(private http: Http) {}
-  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-  headerDict = {
-    'Authorization': `Bearer ` + this.currentUser.token,
-    'Issuer': this.currentUser._id,
-  };
+  currentUser;
+  headerDict;
+  requestOptions;
+  constructor(private http: Http) {
+    // Check if there is a current user
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (this.currentUser !== null) {
+      // If there is a user then set the Authorization header, otherwise dont
+      this.headerDict = {
+        'Authorization': `Bearer ` + this.currentUser.token,
+        'Issuer': this.currentUser._id,
+      };
 
-  requestOptions = {
-    headers: new Headers(this.headerDict),
-  };
+      this.requestOptions = {
+        headers: new Headers(this.headerDict),
+      };
+    }
+  }
 
     /**
       Calls api users service to get all users
