@@ -77,6 +77,45 @@ export class ClassService {
   }
 
   /**
+    Get current user classes
+    @returns {Class[]}
+  */
+  getCurrentClasses(id: string): Observable<Class[]> {
+    /**
+    url to get current classes
+    */
+    const currentClassURL = `${this.classUrl}/current/${this.currentUser._id}`;
+    return this.http.get(currentClassURL,
+      {
+        headers: this.headers,
+      },
+    )
+    .map(res => {
+      return res['data'] as Class[];
+    });
+  }
+
+  /**
+    Get graded user classes
+    @returns {Class[]}
+  */
+  getGradedClasses(id: string): Observable<Class[]> {
+    /**
+    url to get current classes
+    */
+    const currentClassURL = `${this.classUrl}/graded/${this.currentUser._id}`;
+    return this.http.get(currentClassURL,
+      {
+        headers: this.headers,
+      },
+    )
+    .map(res => {
+      return res['data'] as Class[];
+    });
+  }
+
+
+  /**
     Edit Class
 
     @param {Class} class
