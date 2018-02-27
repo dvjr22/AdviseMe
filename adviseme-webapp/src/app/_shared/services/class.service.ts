@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Class } from '../models/class';
+import { User } from '../models/user';
 import 'rxjs/add/operator/map';
 
 /**
@@ -75,6 +76,45 @@ export class ClassService {
       return res['data'] as Class;
     });
   }
+
+  /**
+    Get current user classes
+    @returns {User['course']}
+  */
+  getCurrentClasses(): Observable<User['course']> {
+    /**
+    url to get current classes
+    */
+    const currentClassURL = `${this.classUrl}/current/${this.currentUser._id}`;
+    return this.http.get(currentClassURL,
+      {
+        headers: this.headers,
+      },
+    )
+    .map(res => {
+      return res['data'] as User['course'];
+    });
+  }
+
+  /**
+    Get graded user classes
+    @returns {User['course']}
+  */
+  getGradedClasses(): Observable<User['course']> {
+    /**
+    url to get current classes
+    */
+    const gradedClassURL = `${this.classUrl}/graded/${this.currentUser._id}`;
+    return this.http.get(gradedClassURL,
+      {
+        headers: this.headers,
+      },
+    )
+    .map(res => {
+      return res['data'] as User['course'];
+    });
+  }
+
 
   /**
     Edit Class
