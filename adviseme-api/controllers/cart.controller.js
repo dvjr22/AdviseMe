@@ -7,7 +7,7 @@ exports.createCart = async function(req, res){
   //req.body contains form submit values
   var newCart = {
       _id: req.body._id,
-      clases: req.body.classes
+      classes: req.body.classes
     }
 
   try{
