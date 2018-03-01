@@ -25,7 +25,7 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-    const cart = new Cart();
+  /*  const cart = new Cart();
     cart._id = '1';
     cart.classes = [
       {
@@ -40,13 +40,13 @@ export class CartComponent implements OnInit {
         },
       },
     ];
-    this.cartService.create(cart);
-    console.log("Created Cart");
-    /*this.cartService.getById('1')
+    this.cartService.create(cart);*/
+    // console.log("Created Cart");
+    this.cartService.getById('1')
     .subscribe((res: Cart[]) => {
       console.log(res);
       this.source.load(flattenObject(res));
-    });*/
+    });
   }
 
 }
