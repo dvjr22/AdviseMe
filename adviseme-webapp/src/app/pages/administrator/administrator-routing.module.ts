@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CanActivateAdmin } from '../../_shared/services/authentication.service';
 import { AdministratorComponent } from './administrator.component';
+import { EditcoursesComponent } from './editcourses/editcourses.component';
 import { PermissionComponent } from './permission/permission.component';
 
 const routes: Routes = [{
@@ -13,6 +14,10 @@ const routes: Routes = [{
   children: [{
     path: 'permission',
     component: PermissionComponent,
+  },
+  {
+    path: 'editcourses',
+    component: EditcoursesComponent,
   }],
 }];
 

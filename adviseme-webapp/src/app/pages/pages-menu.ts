@@ -106,6 +106,10 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
         title: 'Edit Permissions',
         link: '/pages/administrator/permission',
       },
+      {
+        title: 'Edit Courses',
+        link: '/pages/administrator/editcourses',
+      },
     ],
   },
   {

@@ -5,6 +5,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CanActivateAdmin } from '../../_shared/services/authentication.service';
 
 import { AdministratorRoutingModule, routedComponents } from './administrator-routing.module';
+import { EditcoursesComponent } from './editcourses/editcourses.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { AdministratorRoutingModule, routedComponents } from './administrator-ro
   ],
   declarations: [
     ...routedComponents,
+    EditcoursesComponent,
   ],
   providers: [
     CanActivateAdmin,
