@@ -20,11 +20,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/classes/courses',
   },
   {
-    title: 'Edit Courses (placeholder)',
-    icon: 'nb-list',
-    link: '/pages/classes/edit-course',
-  },
-  {
     title: 'Advisement',
     icon: 'nb-compose',
     children: [
@@ -74,11 +69,6 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
     title: 'Classes',
     icon: 'nb-list',
     link: '/pages/classes/courses',
-  },
-  {
-    title: 'Edit Courses (placeholder)',
-    icon: 'nb-list',
-    link: '/pages/classes/edit-course',
   },
   {
     title: 'Advisement',
