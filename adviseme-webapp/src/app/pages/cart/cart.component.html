@@ -1,3 +1,10 @@
 <nb-card>
-  <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+  <nb-card-header>
+    <span>Cart</span>
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+    <br/>
+    <button (click)="goClassTableView()" id="submitBtn" type="button" class="btn btn-primary">Send to Advisor</button>
+  </nb-card-body>
 </nb-card>
