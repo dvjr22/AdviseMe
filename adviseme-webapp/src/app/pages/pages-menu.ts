@@ -99,6 +99,11 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: 'Advisor',
+    icon: 'nb-plus',
+    link: '/pages/advisor',
+  },
+  {
     title: 'Administration',
     icon: 'nb-locked',
     children: [

@@ -37,6 +37,10 @@ const routes: Routes = [{
     loadChildren: './administrator/administrator.module#AdministratorModule',
   },
   {
+    path: 'advisor',
+    loadChildren: './advisor/advisor.module#AdvisorModule',
+  },
+  {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
