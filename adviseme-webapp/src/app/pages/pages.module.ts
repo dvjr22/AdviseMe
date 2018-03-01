@@ -6,6 +6,7 @@ import { ProfileModule } from './profile/profile.module';
 import { AdvisementModule } from './advisement/advisement.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
+import { AdvisorModule } from './advisor/advisor.module';
 
 /**
   All components for Pages
@@ -21,6 +22,7 @@ const PAGES_COMPONENTS = [
     DashboardModule,
     ProfileModule,
     AdvisementModule,
+    AdvisorModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

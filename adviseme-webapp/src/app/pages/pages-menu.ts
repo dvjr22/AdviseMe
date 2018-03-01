@@ -101,7 +101,16 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
   {
     title: 'Advisor',
     icon: 'nb-plus',
-    link: '/pages/advisor',
+    children: [
+      {
+        title: 'View Appointments',
+        link: '/pages/advisor/appointments',
+      },
+      {
+        title: 'View Class Requests',
+        link: '/pages/advisor/requests',
+      },
+    ],
   },
   {
     title: 'Administration',
