@@ -14,8 +14,14 @@ export class CartComponent implements OnInit {
   // configuration for the table
   settings= {
     columns: {
-      test: {
-        title: 'test',
+      title: {
+        title: 'Title',
+      },
+      courseNo: {
+        title: 'Course Number',
+      },
+      prefix: {
+        title: 'Prefix',
       },
     },
   };
@@ -25,27 +31,9 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-  /*  const cart = new Cart();
-    cart._id = '1';
-    cart.classes = [
-      {
-        _id: 'string',
-        prerequisites: [  'CSCE145', 'CSCE146'],
-        department: 'cs',
-        curriculum: [['cs']],
-        class: {
-          title: 'string',
-          courseNo: 'string',
-          prefix: 'string',
-        },
-      },
-    ];
-    this.cartService.create(cart);*/
-    // console.log("Created Cart");
     this.cartService.getById('1')
-    .subscribe((res: Cart[]) => {
-      console.log(res);
-      this.source.load(flattenObject(res));
+    .subscribe((res) => {
+      this.source.load(flattenObject(res.data.classes));
     });
   }
 

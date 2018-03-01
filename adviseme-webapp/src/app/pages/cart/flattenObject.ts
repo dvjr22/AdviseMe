@@ -3,7 +3,7 @@
 /**
   Var for requirement
 */
-declare var require: any
+declare var require: any;
 
 /**
   This script flattens json objects, and delimits them in
@@ -15,11 +15,11 @@ declare var require: any
 */
 export function flattenObject(ob) {
 
-  var flatten = require('flat');
-  var newOb = []
+  const flatten = require('flat');
+  const newOb = [];
 
-  for (var i = 0; i < ob.length; i++) {
-    newOb.push(flatten(ob[i], { delimiter: '_' }, { maxDepth: 2 }));
+  for (let i = 0; i < ob.length; i++) {
+    newOb.push(flatten(ob[i].class, { delimiter: '_' }, { maxDepth: 2 }));
   }
 
   return newOb;
