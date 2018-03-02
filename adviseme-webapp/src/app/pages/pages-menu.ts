@@ -125,24 +125,6 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
     link: '/pages/classes/courses',
   },
   {
-    title: 'Advisement',
-    icon: 'nb-compose',
-    children: [
-      {
-        title: 'Make an Appointment',
-        link: '/pages/advisement/appointment',
-      },
-      {
-        title: 'View Appointments',
-        link: '/pages/advisement/view-appointment',
-      },
-      {
-        title: 'Request Classes (placeholder)',
-        link: '/pages/advisement/request-classes',
-      },
-    ],
-  },
-  {
     title: 'Profile',
     icon: 'nb-person',
     children: [
