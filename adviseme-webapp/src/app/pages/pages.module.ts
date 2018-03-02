@@ -23,11 +23,8 @@ const PAGES_COMPONENTS = [
     DashboardModule,
     ProfileModule,
     AdvisementModule,
-<<<<<<< HEAD
     AdvisorModule,
-=======
     CartModule,
->>>>>>> dev
   ],
   declarations: [
     ...PAGES_COMPONENTS,

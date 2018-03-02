@@ -38,13 +38,12 @@ const routes: Routes = [{
     loadChildren: './administrator/administrator.module#AdministratorModule',
   },
   {
-<<<<<<< HEAD
     path: 'advisor',
     loadChildren: './advisor/advisor.module#AdvisorModule',
-=======
+  },
+  {
     path: 'cart',
     component: CartComponent,
->>>>>>> dev
   },
   {
     path: '',
