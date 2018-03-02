@@ -30,9 +30,8 @@ export class CartService {
       @returns {json}
     */
     getById(_id: string) {
-        return this.http.get('/api/cart/' + _id, this.requestOptions).map((response: Response) => response.json());
+        return this.http.get('/api/carts/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
-
     /**
       Create a new cart
 
@@ -40,7 +39,7 @@ export class CartService {
       @returns {none}
     */
     create(cart: Cart) {
-        return this.http.post('/api/cart', cart, this.requestOptions);
+        return this.http.post('/api/carts/', cart, this.requestOptions).subscribe();
     }
 
     /**
@@ -50,7 +49,7 @@ export class CartService {
       @returns {none}
     */
     update(cart: Cart) {
-        return this.http.put('/api/cart/' + cart._id, cart, this.requestOptions);
+        return this.http.put('/api/carts/' + cart._id, cart, this.requestOptions).subscribe();
     }
 
     /**
@@ -60,6 +59,6 @@ export class CartService {
       @returns {none}
     */
     delete(_id: string) {
-        return this.http.delete('/api/cart/' + _id, this.requestOptions);
+        return this.http.delete('/api/carts/' + _id, this.requestOptions).subscribe();
     }
 }

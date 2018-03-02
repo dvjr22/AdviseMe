@@ -75,7 +75,7 @@ exports.getCartById = async function(id) {
 
   //try-catch handle errors
   try{
-    var cart = await Class.findById({_id: id});
+    var cart = await Cart.findById({_id: id});
     return cart;
   }catch(e){
     throw Error(e.message, "Error while finding class by id")

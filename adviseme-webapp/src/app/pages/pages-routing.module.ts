@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CanActivateAdmin } from '../_shared/services/authentication.service';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CartComponent } from './cart/cart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdvisementComponent } from './advisement/advisement.component';
 
@@ -37,8 +38,13 @@ const routes: Routes = [{
     loadChildren: './administrator/administrator.module#AdministratorModule',
   },
   {
+<<<<<<< HEAD
     path: 'advisor',
     loadChildren: './advisor/advisor.module#AdvisorModule',
+=======
+    path: 'cart',
+    component: CartComponent,
+>>>>>>> dev
   },
   {
     path: '',
