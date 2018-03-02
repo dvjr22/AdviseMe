@@ -32,6 +32,14 @@ export class CartService {
     getById(_id: string) {
         return this.http.get('/api/carts/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
+
+    /**
+      Get all carts
+    */
+    get() {
+      return this.http.get('/api/carts/', this.requestOptions).map((response: Response) => response.json());
+    }
+
     /**
       Create a new cart
 
