@@ -7,7 +7,7 @@ exports.createCart = async function(req, res){
   //req.body contains form submit values
   var newCart = {
       _id: req.body._id,
-      clases: req.body.classes
+      classes: req.body.classes
     }
 
   try{
@@ -15,7 +15,7 @@ exports.createCart = async function(req, res){
     var createdCart = await cartService.createCart(newCart)
     return res.status(201).json({status:201, data: createCart, message: "Successfully Created Cart"})
   }catch(e){
-    return res.status(400).json({status: 400, message: e.message})
+    return res.status(500).json({status: 500, message: e.message})
   }
 }
 

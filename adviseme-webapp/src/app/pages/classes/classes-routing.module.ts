@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ClassesComponent } from './classes.component';
 import { CoursesComponent } from './courses/courses.component';
-import { EditCourseComponent } from './edit-course/edit-course.component';
 
 const routes: Routes = [{
   path: '',
@@ -11,9 +10,6 @@ const routes: Routes = [{
   children: [{
     path: 'courses',
     component: CoursesComponent,
-  },
-  { path: 'edit-course',
-    component: EditCourseComponent,
   }],
 }];
 
@@ -29,5 +25,4 @@ export class ClassesRoutingModule { }
 export const routedComponents = [
   ClassesComponent,
   CoursesComponent,
-  EditCourseComponent,
 ];
