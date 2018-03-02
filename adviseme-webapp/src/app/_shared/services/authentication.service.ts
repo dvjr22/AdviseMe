@@ -111,6 +111,23 @@ export class AuthenticationService {
     });
     return this.allow;
   }
+  checkForAdvisorUser() {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.allow = new Observable( observer => {
+      this._adminSub = this.userService.getById(currentUser._id).subscribe(val => {
+        if (val.role === 'advisor') {
+          observer.next(true);
+        } else {
+          this.router.navigate(['/auth/login']);
+          observer.next(false);
+        }
+      },
+      () => {
+        observer.complete();
+      });
+    });
+    return this.allow;
+  }
 }
 
 // This class restricts the router to only allowing login and registration
@@ -142,5 +159,17 @@ export class CanActivateAdmin implements CanActivate {
     state: RouterStateSnapshot,
   ): Observable<boolean>|Promise<boolean>|boolean {
     return this.authenticationService.checkForAdminUser();
+  }
+}
+
+@Injectable()
+export class CanActivateAdvisor implements CanActivate {
+  constructor(private authenticationService: AuthenticationService) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<boolean>|Promise<boolean>|boolean {
+    return this.authenticationService.checkForAdvisorUser();
   }
 }

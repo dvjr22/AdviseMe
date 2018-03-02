@@ -8,6 +8,8 @@ import { AdvisorRoutingModule, routedComponents } from './advisor-routing.module
 import { RequestsComponent } from './requests/requests.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 
+import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +19,9 @@ import { AppointmentsComponent } from './appointments/appointments.component';
   ],
   declarations: [
     ...routedComponents,
+  ],
+  providers: [
+    CanActivateAdvisor,
   ],
 })
 export class AdvisorModule { }

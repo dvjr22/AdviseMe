@@ -3,9 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdvisorComponent } from './advisor.component';
 import { RequestsComponent } from './requests/requests.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
+import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
 
 const routes: Routes = [{
   path: '',
+  canActivate: [
+    CanActivateAdvisor,
+  ],
   component: AdvisorComponent,
   children: [{
     path: 'requests',
