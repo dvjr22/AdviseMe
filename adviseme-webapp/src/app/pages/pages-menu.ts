@@ -45,10 +45,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Profile View',
         link: '/pages/profile/profile-view',
       },
-      {
-        title: 'Edit Profile',
-        link: '/pages/profile/edit-profile',
-      },
     ],
 
   },
@@ -66,29 +62,6 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: 'Classes',
-    icon: 'nb-list',
-    link: '/pages/classes/courses',
-  },
-  {
-    title: 'Advisement',
-    icon: 'nb-compose',
-    children: [
-      {
-        title: 'Make an Appointment',
-        link: '/pages/advisement/appointment',
-      },
-      {
-        title: 'View Appointments',
-        link: '/pages/advisement/view-appointment',
-      },
-      {
-        title: 'Request Classes (placeholder)',
-        link: '/pages/advisement/request-classes',
-      },
-    ],
-  },
-  {
     title: 'Administration',
     icon: 'nb-locked',
     children: [
@@ -103,16 +76,17 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: 'Classes',
+    icon: 'nb-list',
+    link: '/pages/classes/courses',
+  },
+  {
     title: 'Profile',
     icon: 'nb-person',
     children: [
       {
         title: 'Profile View',
         link: '/pages/profile/profile-view',
-      },
-      {
-        title: 'Edit Profile',
-        link: '/pages/profile/edit-profile',
       },
     ],
 
@@ -132,6 +106,20 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+    title: 'Advisor',
+    icon: 'nb-plus',
+    children: [
+      {
+        title: 'View Appointments',
+        link: '/pages/advisor/appointments',
+      },
+      {
+        title: 'View Class Requests',
+        link: '/pages/advisor/requests',
+      },
+    ],
+  },
+  {
     title: 'Classes',
     icon: 'nb-list',
     link: '/pages/classes/courses',
@@ -155,30 +143,12 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Advisor',
-    icon: 'nb-plus',
-    children: [
-      {
-        title: 'View Appointments',
-        link: '/pages/advisor/appointments',
-      },
-      {
-        title: 'View Class Requests',
-        link: '/pages/advisor/requests',
-      },
-    ],
-  },
-  {
     title: 'Profile',
     icon: 'nb-person',
     children: [
       {
         title: 'Profile View',
         link: '/pages/profile/profile-view',
-      },
-      {
-        title: 'Edit Profile',
-        link: '/pages/profile/edit-profile',
       },
     ],
 
