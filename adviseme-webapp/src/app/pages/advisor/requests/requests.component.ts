@@ -33,7 +33,7 @@ export class RequestsComponent implements OnInit {
   ngOnInit() {
     this.cartService.get()
     .subscribe((res) => {
-      this.source.load(flattenObject(res.data));
+      this.source.load(flattenObject(res.data.classes));
     });
   }
 

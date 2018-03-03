@@ -32,6 +32,8 @@ exports.createCart = async function(aCart){
 * to new cart info sent in request.
 */
 exports.updateCart = async function(aCart){
+  console.log('in updatecar in api')
+  console.log(aCart)
   var _id = aCart._id
 
   try{
@@ -41,14 +43,14 @@ exports.updateCart = async function(aCart){
     throw Error(e.message)
   }
 
-  console.log(oldCart)
-  console.log(aCart)
+  console.log("old" + JSON.stringify(oldCart))
+  console.log("a" + JSON.stringify(aCart))
 
   //edit the class object
   oldCart._id = aCart._id
   oldCart.classes = aCart.classes
+  oldCart.advisor = aCart.advisor
 
-  console.log(oldClass)
 
   try {
     var savedCart = await oldCart.save()

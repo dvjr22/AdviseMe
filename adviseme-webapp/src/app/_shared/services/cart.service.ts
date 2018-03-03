@@ -57,7 +57,9 @@ export class CartService {
       @returns {none}
     */
     update(cart: Cart) {
-        return this.http.put('/api/carts/' + cart._id, cart, this.requestOptions).subscribe();
+      console.log('in update')
+      console.log(cart);
+        return this.http.put('/api/carts/' /*+ cart._id*/, cart, this.requestOptions).subscribe();
     }
 
     /**

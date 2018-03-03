@@ -63,6 +63,7 @@ exports.updateCart = async function(req, res){
   var Cart = {
     _id,
     classes: req.body.classes,
+    advisor: req.body.advisor,
   }
 
   try{

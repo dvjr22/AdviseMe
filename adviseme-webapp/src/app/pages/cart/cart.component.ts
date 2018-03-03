@@ -10,7 +10,7 @@ import { flattenObject } from './flattenObject';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-
+  currentCart: Cart;
   // configuration for the table
   settings= {
     columns: {
@@ -33,12 +33,16 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.cartService.getById('1')
     .subscribe((res) => {
-      this.source.load(flattenObject(res.data.classes));
+      this.currentCart = res.data;
+      console.log(this.currentCart);
+      this.source.load(flattenObject(this.currentCart.classes));
     });
   }
 
   submitToAdvisor() {
-    console.log('Sending...');
+    this.currentCart.advisor = 'advisor01';
+    console.log(this.currentCart);
+    this.cartService.update(this.currentCart);
   }
 
 }
