@@ -10,7 +10,11 @@ var url = "mongodb://localhost:27017/adviseMe";		// Database name
 var insertMany = []; // array to hold json
 var noOfStudents = 40; // Number of students to generate
 
-insertMany.push(makeTyler()); // push Tyler to db
+// push sample data: Tyler, student, advisor, admin
+insertMany.push(makeTyler()); 
+insertMany.push(makeStudent()); 
+insertMany.push(makeAdvisor());
+insertMany.push(makeAdmin());
 
 // Create students
 for (let i = 0; i < noOfStudents; i++) {
@@ -47,7 +51,7 @@ MongoClient.connect(url, function(err, db) {
 
 		if (err) throw err;
 
-	 	console.log("Inserted " + insertMany.length + " students");
+	 	console.log("Inserted " + insertMany.length + " users");
 	 	db.close();
 	});
 
@@ -73,6 +77,70 @@ function makeTyler() {
 	coursesArr = course(); // get random course work
 	obj.status = status(coursesArr); // set status based on course work
 	obj.course = coursesArr;
+
+	return obj;
+}
+
+/**************************************************************************************************
+*	generate student
+*/
+function makeStudent() {
+
+	let obj = new Object(); // object to store JSON data
+
+	obj.firstName = "Student"; // get random first name
+	obj.lastName = "Student"; // get random last name
+	obj.role = "student"
+	obj.studentID = "student01"
+	obj.major = major(); // get major
+
+	obj.username = "student";
+	obj.email = "student@email.sc.edu";
+	obj.hash = "$2a$10$AYYlKAk7SFPzIwHCBAV8gu8FDwv/.RgNYvbfzN.k.Mfxwl.wcl8Sa";
+
+	coursesArr = course(); // get random course work
+	obj.status = status(coursesArr); // set status based on course work
+	obj.course = coursesArr;
+
+	return obj;
+}
+
+/**************************************************************************************************
+*	generate advisor
+*/
+function makeAdvisor() {
+
+	let obj = new Object(); // object to store JSON data
+
+	obj.firstName = "Advisor"; // get random first name
+	obj.lastName = "Advisor"; // get random last name
+	obj.role = "advisor"
+	obj.studentID = "advisor01"
+	obj.major = major(); // get major
+
+	obj.username = "advisor";
+	obj.email = "advisor@email.sc.edu";
+	obj.hash = "$2a$10$AYYlKAk7SFPzIwHCBAV8gu8FDwv/.RgNYvbfzN.k.Mfxwl.wcl8Sa";
+
+	return obj;
+}
+
+/**************************************************************************************************
+*	generate advisor
+*/
+function makeAdmin() {
+
+	let obj = new Object(); // object to store JSON data
+
+	obj.firstName = "Admin"; // get random first name
+	obj.lastName = "Admin"; // get random last name
+	obj.role = "admin"
+	obj.studentID = "admin01"
+	obj.major = major(); // get major
+
+	obj.username = "admin";
+	obj.email = "admin@email.sc.edu";
+	obj.hash = "$2a$10$AYYlKAk7SFPzIwHCBAV8gu8FDwv/.RgNYvbfzN.k.Mfxwl.wcl8Sa";
 
 	return obj;
 }
