@@ -32,6 +32,9 @@ export class AppointmentService {
        return this.http.get('/api/appointments/', this.requestOptions).map((response: Response) => response.json());
     }
 
+    getById(id: String) {
+      return this.http.get('/api/appointments/' + id, this.requestOptions).map((response: Response) => response.json());
+    }
     /**
       Create a new Appointment
 
