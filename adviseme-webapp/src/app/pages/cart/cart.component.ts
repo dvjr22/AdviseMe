@@ -37,4 +37,8 @@ export class CartComponent implements OnInit {
     });
   }
 
+  submitToAdvisor() {
+    console.log('Sending...');
+  }
+
 }
