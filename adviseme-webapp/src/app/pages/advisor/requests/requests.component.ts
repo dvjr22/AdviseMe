@@ -3,6 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
 import { flattenObject } from '../../cart/flattenObject';
+import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
 
 @Component({
   selector: 'ngx-app-requests',
@@ -14,14 +15,14 @@ export class RequestsComponent implements OnInit {
   // Config for the table
   settings= {
     columns: {
-      title: {
-        title: 'Title',
-      },
-      courseNo: {
+      classes_0_class_prefix: {
         title: 'Course Number',
       },
-      prefix: {
-        title: 'Prefix',
+      _id: {
+        title: 'Class Info',
+        type: 'custom',
+        filter: false,
+        renderComponent: ClassViewRenderComponent,
       },
     },
   };
@@ -32,8 +33,9 @@ export class RequestsComponent implements OnInit {
 
   ngOnInit() {
     this.cartService.get()
-    .subscribe((res) => {
-      this.source.load(flattenObject(res.data.classes));
+      .subscribe((res) => {
+      console.log(res.data);
+      this.source.load(flattenObject(res.data));
     });
   }
 
