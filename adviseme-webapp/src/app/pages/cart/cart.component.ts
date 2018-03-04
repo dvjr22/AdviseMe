@@ -28,7 +28,7 @@ export class CartComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private cartService: CartService, private alertService: AlertService) { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.cartService.getById('1')
