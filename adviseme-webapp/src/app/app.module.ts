@@ -33,6 +33,8 @@ import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { NotificationService } from './_shared/services/notification.service';
 import { ClassViewRenderComponent } from './_shared/services/class-view.render.component';
+import { CartViewRenderComponent } from './_shared/services/cart-view.render.component';
+
 
 // Models
 import { User } from './_shared/models/user';
@@ -44,6 +46,7 @@ import { Class } from './_shared/models/class';
   declarations: [
     AppComponent,
     ClassViewRenderComponent,
+    CartViewRenderComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ import { Class } from './_shared/models/class';
     ToasterService,
     NotificationService,
   ],
-  entryComponents: [ClassViewRenderComponent ] ,
+  entryComponents: [ClassViewRenderComponent,
+  CartViewRenderComponent ] ,
 })
 export class AppModule {
 }

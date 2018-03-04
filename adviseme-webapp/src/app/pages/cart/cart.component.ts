@@ -13,6 +13,7 @@ import { flattenObject } from './flattenObject';
 })
 export class CartComponent implements OnInit {
   currentCart: Cart;
+  currentUser: User;
   // configuration for the table
   settings= {
     columns: {
@@ -34,7 +35,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.cartService.getById(this.currentUser.studentID)
-    .subscribe((res) => {
+    .subscribe((res: any) => {
       this.currentCart = res.data;
       console.log(this.currentCart.advisor);
       if (this.currentCart.advisor === '') {
