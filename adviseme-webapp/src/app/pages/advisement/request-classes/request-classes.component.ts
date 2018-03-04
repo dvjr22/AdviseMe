@@ -24,6 +24,7 @@ export class RequestClassesComponent implements OnInit {
     currentUser: User;
     cart: Cart;
     selectedClasses;
+    userID;
     /**
       Configuration for the table
     */
@@ -62,7 +63,7 @@ export class RequestClassesComponent implements OnInit {
       console.log(this.cart);
       this.selectedClasses = event.selected;
       console.log(this.selectedClasses);
-      //console.log(this.cart._id.toString());
+      console.log(this.cart._id);
       //this.selected = event.selected;
       //console.log('selected list: ', this.selected);
     };
@@ -81,7 +82,7 @@ export class RequestClassesComponent implements OnInit {
     /**
       Initializes new names for the imports
     */
-    constructor(private classService: ClassService, private cartService: CartService) {
+    constructor(private classService: ClassService, private cartService: CartService, private userService: UserService) {
     }
 
     /**
@@ -90,7 +91,21 @@ export class RequestClassesComponent implements OnInit {
     */
     ngOnInit() {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      this.cartService.getById(this.currentUser.studentID).subscribe((res: Cart) => { this.cart = res });
+      let user: User;
+
+      console.log(this.currentUser._id);
+      this.userService.getById(this.currentUser._id).subscribe((res: User) => { user = res; console.log(res); });
+
+
+      console.log(user);
+      this.cartService.getById(user.studentID).subscribe((res: Cart) => {
+        this.cart = res;
+        if (this.cart._id === undefined) {
+          this.cart._id = user.studentID;
+          console.log("It worked wheee");
+          console.log(user.studentID)
+        }
+      });
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
