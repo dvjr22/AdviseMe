@@ -22,6 +22,8 @@ import { flattenObject } from './flattenObject';
 export class RequestClassesComponent implements OnInit {
 
     currentUser: User;
+    cart: Cart;
+    selectedClasses;
     /**
       Configuration for the table
     */
@@ -57,12 +59,18 @@ export class RequestClassesComponent implements OnInit {
 
     onUserRowSelect(event) {
       console.log('user row select: ', event.selected);
+      console.log(this.cart);
+      this.selectedClasses = event.selected;
+      console.log(this.selectedClasses);
+      //console.log(this.cart._id.toString());
       //this.selected = event.selected;
       //console.log('selected list: ', this.selected);
     };
 
-    addToCart() {
-      console.log(this.cartService.getById(this.currentUser.studentID).subscribe((res: Cart) => { res }).toString());
+    addToCart(event) {
+      //this.cart = this.cartService.getById(this.currentUser.studentID).subscribe((res: Cart) => { res });
+      this.cart.classes = this.selectedClasses;
+      this.cartService.update(this.cart);
     }
 
     /**
@@ -82,6 +90,7 @@ export class RequestClassesComponent implements OnInit {
     */
     ngOnInit() {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      this.cartService.getById(this.currentUser.studentID).subscribe((res: Cart) => { this.cart = res });
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
