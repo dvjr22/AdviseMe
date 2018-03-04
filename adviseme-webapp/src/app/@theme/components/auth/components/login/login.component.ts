@@ -94,7 +94,7 @@ import { NbAuthResult, NbAuthService } from '../../services/auth.service';
       </div>
 
       <small class="form-text">
-        Don't have an account? <a routerLink="../register"><strong>Sign Up</strong></a>
+        Don't have an account? <a routerLink="../register" id="signuplink"><strong>Sign Up</strong></a>
       </small>
     </div>
   </nb-auth-block>

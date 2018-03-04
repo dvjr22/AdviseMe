@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
@@ -21,13 +21,14 @@ export class HeaderComponent implements OnInit {
               private menuService: NbMenuService,
               private userService: UserService,
               private analyticsService: AnalyticsService,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private router: Router) {
   }
 
   userMenu = [{ title: 'Profile', link: '/pages/profile/profile-view' }, { title: 'Log out', link: '/auth/logout' }];
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id)
         .subscribe(res => {
           this.currentUser = res;
@@ -49,6 +50,9 @@ export class HeaderComponent implements OnInit {
     this.menuService.navigateHome();
   }
 
+  goToCart() {
+    this.router.navigate(['/pages/cart']);
+  }
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
     console.log("Searching");

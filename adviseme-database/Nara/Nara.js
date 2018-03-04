@@ -8,42 +8,68 @@
 "use strict";
 
 class Nara {
-
+	/**********************************************************************************************
+	*
+	*/
 	constructor(studentId){
-		this.studentId = studentId;
-		//this.MongoClient = require('mongodb').MongoClient;	// Mongo client to connect
-		this.url = "mongodb://localhost:27017/adviseMe";	
+
+		this.studentId = studentId; // student id
+		this.MongoClient = require('mongodb').MongoClient; // Mongo client to connect
+		this.url = "mongodb://localhost:27017/adviseMe"; // port and db 
+		this.assert = require('assert'); // handle errors
 	}
 
+	/**********************************************************************************************
+	*
+	*/
 	get studentId(){
-		//this.log(this.url)
+
 		return this._studentId;
 	}
 
+	/**********************************************************************************************
+	*
+	*/
 	set studentId(studentId) {
+
 		this._studentId = studentId;
 	}
 
-	getThatRec(){
-		
-		this.log("getting that recomendation for " + this.studentId);
+	/**********************************************************************************************
+	*
+	*/
+	getThatRec(callback){
 
-		//get the results here
+		var sI = this.studentId; // assign id to var to be accessed inside Mongo call
+		var assert = this.assert; // assign assert to hande errors inside Mongo call
 
-		var results = ["CSCE145", "CSCE146", "MATH141"];
+		// Connect to db
+		this.MongoClient.connect(this.url, function(err, db) {
 
-		return results;
-	}
+			assert.equal(err, null);
 
-	log(statement) {
-		console.log(statement);
+			console.log("connected NaraV1");
+
+			// find student
+			db.collection('users').findOne({ studentID : sI}, function(err, doc){
+
+				doc.course.forEach(function(element) {
+
+					console.log(element.classID);
+					console.log(element.grade);
+
+				});
+
+				callback(doc); // return the document
+				
+			});
+
+			db.close(); // close db
+
+		});
+
 	}
 
 }
 
-module.exports = Nara;
-
-
-
-
-//console.log(doWorkNara("A1234"));
+module.exports = Nara; // export class

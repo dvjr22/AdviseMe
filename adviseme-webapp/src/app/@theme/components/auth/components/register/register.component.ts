@@ -5,7 +5,7 @@ import { getDeepFromObject } from '../../helpers';
 
 import { NbAuthResult, NbAuthService } from '../../services/auth.service';
 
-import { UserService } from '../../../../../_shared/services/user.service';
+import { RegisterService } from '../../../../../_shared/services/register.service';
 import { AlertService } from '../../../../../_shared/services/alert.service';
 
 @Component({
@@ -140,7 +140,7 @@ import { AlertService } from '../../../../../_shared/services/alert.service';
             </small>
           </div>
           <div class="form-group accept-group col-sm-12" *ngIf="getConfigValue('forms.register.terms')">
-            <nb-checkbox name="terms" [(ngModel)]="user.terms" [required]="getConfigValue('forms.register.terms')">
+            <nb-checkbox name="terms" id="tocbox" [(ngModel)]="user.terms" [required]="getConfigValue('forms.register.terms')">
               Agree to <a href="#" target="_blank"><strong>Terms & Conditions</strong></a>
             </nb-checkbox>
           </div>
@@ -172,8 +172,8 @@ export class NbRegisterComponent {
   constructor(protected service: NbAuthService,
               @Inject(NB_AUTH_OPTIONS_TOKEN) protected config = {},
               protected router: Router,
-              private userService: UserService,
-              private alertService: AlertService
+              private registerService: RegisterService,
+              private alertService: AlertService,
             ) {
 
     this.redirectDelay = this.getConfigValue('forms.register.redirectDelay');
@@ -182,8 +182,8 @@ export class NbRegisterComponent {
   }
 
   register() {
-    this.user.fullName = this.user.firstName + " " + this.user.lastName;
-    this.userService.create(this.user)
+    this.user.fullName = this.user.firstName + ' ' + this.user.lastName;
+    this.registerService.create(this.user)
       .subscribe(
         data => {
           this.router.navigate(['auth/login']);

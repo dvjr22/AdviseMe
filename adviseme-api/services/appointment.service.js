@@ -39,11 +39,11 @@ exports.createAppointment = async function(aAppointment){
 * To new Appointment info sent in request.
 */
 exports.updateAppointment = async function(aAppointment){
-  var id = aAppointment.id
+  var _id = aAppointment._id
 
   try{
     //find by Id
-    var oldAppointment = await Appointment.findById(id);
+    var oldAppointment = await Appointment.findById(_id);
   }catch(e){
     throw Error(e.message)
   }
@@ -70,21 +70,27 @@ exports.updateAppointment = async function(aAppointment){
   }
 }
 
-//gets a Appointment mongoose object by ID
-exports.getAppointment = async function(query, page, limit) {
-
-  //options setup for the mongoose paginate
-  var options = {
-    page,
-    limit
-  }
+//gets a Appointment mongoose object
+exports.getAppointment = async function() {
 
   //try-catch handle errors
   try{
-    var appointments = await Appointment.paginate(query,options)
+    var appointments = await Appointment.find({})
     return appointments;
   }catch(e){
     throw Error(e.message)
+  }
+}
+
+//gets a appointment object by ID
+exports.getAppointmentById = async function(id) {
+
+  //try-catch handle errors
+  try{
+    var appointments = await Appointment.find({'studentID': id});
+    return appointments;
+  }catch(e){
+    throw Error(e.message, "Error while finding appointment by id")
   }
 }
 

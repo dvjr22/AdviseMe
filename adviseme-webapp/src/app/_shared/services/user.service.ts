@@ -13,11 +13,22 @@ import { User } from '../models/user';
 */
 @Injectable()
 export class UserService {
-
   /**
     Initializes new names for the imports
   */
-  constructor(private http: Http) { }
+  currentUser;
+  headerDict = null;
+  requestOptions = null;
+
+  constructor(private http: Http) {
+    // Check if there is a current user
+    if (this.headerDict !== null) {
+      this.headerDict = null;
+    }
+    if (this.requestOptions !== null) {
+      this.requestOptions = null;
+    }
+  }
 
     /**
       Calls api users service to get all users
@@ -25,7 +36,18 @@ export class UserService {
       @return {json}
     */
     getAll() {
-        return this.http.get('/users').map((response: Response) => response.json());
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      if (this.currentUser !== null) {
+          this.headerDict = {
+            'Authorization': `Bearer ` + this.currentUser.token,
+            'Issuer': this.currentUser._id,
+          };
+
+          this.requestOptions = {
+            headers: new Headers(this.headerDict),
+          };
+      }
+        return this.http.get('/api/users', this.requestOptions).map((response: Response) => response.json());
     }
 
     /**
@@ -35,17 +57,28 @@ export class UserService {
       @return {json}
     */
     getById(_id: string) {
-        return this.http.get('/users/' + _id).map((response: Response) => response.json());
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      if (this.currentUser !== null) {
+          this.headerDict = {
+            'Authorization': `Bearer ` + this.currentUser.token,
+            'Issuer': this.currentUser._id,
+          };
+
+          this.requestOptions = {
+            headers: new Headers(this.headerDict),
+          };
+      }
+        return this.http.get('/api/users/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
 
-    /**
-      Calls api users service to create user
-      @param {User} user
-      @return {none}
-    */
-    create(user: User) {
-        return this.http.post('/users/register', user);
-    }
+    // /**
+    //   Calls api users service to create user
+    //   @param {User} user
+    //   @return {none}
+    // */
+    // create(user: User) {
+    //     return this.http.post('/api/users/register', user);
+    // }
 
     /**
       Calls api users service to update a user
@@ -53,7 +86,18 @@ export class UserService {
       @return {none}
     */
     update(user: User) {
-        return this.http.put('/users/' + user._id, user);
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      if (this.currentUser !== null) {
+          this.headerDict = {
+            'Authorization': `Bearer ` + this.currentUser.token,
+            'Issuer': this.currentUser._id,
+          };
+
+          this.requestOptions = {
+            headers: new Headers(this.headerDict),
+          };
+      }
+        return this.http.put('/api/users/' + user._id, user, this.requestOptions);
     }
 
     /**
@@ -62,6 +106,18 @@ export class UserService {
       @return {none}
     */
     delete(_id: string) {
-        return this.http.delete('/users/' + _id);
+        this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+        if (this.currentUser !== null) {
+          this.headerDict = {
+            'Authorization': `Bearer ` + this.currentUser.token,
+            'Issuer': this.currentUser._id,
+          };
+
+          this.requestOptions = {
+            headers: new Headers(this.headerDict),
+          };
+      }
+
+        return this.http.delete('/api/users/' + _id, this.requestOptions);
     }
 }

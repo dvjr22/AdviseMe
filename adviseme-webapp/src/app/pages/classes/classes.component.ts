@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /**
-  Classes Component 
+  Classes Component
 */
 @Component({
   selector: 'ngx-editors',

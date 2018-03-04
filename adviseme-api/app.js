@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var bluebird = require('bluebird');
 var config = require('./config.json');
-var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
 
 // Get the API route ...
 var api = require('./routes/api.route')
@@ -34,6 +34,25 @@ app.use(require('express-session')({
     saveUninitialized: false
 }));
 
+
+//TODO: Do not allow the display of data... will have to be from issuer
+app.all('/api/*', function(req, res, next) {
+  //console.log(req.headers);
+  if(req.url === '/api/users/authenticate' || req.url === '/api/users/register' || req.url === '/api/token/valid') {
+    next();
+  } else {
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+      try {
+        var decoded = jwt.verify(req.headers.authorization.split(' ')[1], config.secret);
+      } catch(err) {
+        res.status(401).send({ error: 'Not valid token' })
+      }
+      next();
+    } else {
+      res.status(400).send({ error: 'No token' })
+    }
+  }
+});
 
 //Use the API routes in api.route.js
 app.use(api);

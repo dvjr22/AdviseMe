@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Appointment } from '../../../_shared/models/appointment';
 import { AppointmentService } from '../../../_shared/services/appointment.service';
+import { LocalDataSource } from 'ng2-smart-table';
 
 /**
   Component that allows the user to see their appointments
@@ -16,6 +17,32 @@ export class AppointmentViewComponent implements OnInit {
   */
   appointment: any;
 
+  settings = {
+    actions: false,
+    hideSubHeader: true,
+    columns: {
+      studentID: {
+        title: 'Student ID',
+      },
+      firstName: {
+        title: 'First Name',
+      },
+      lastName: {
+        title: 'Last Name',
+      },
+      advisor: {
+        title: 'Advisor',
+      },
+      roomNumber: {
+        title: 'Room Number',
+      },
+      date: {
+        title: 'Date',
+      },
+    },
+  };
+
+  source: LocalDataSource = new LocalDataSource();
   /**
     Initializes new names for the imports
   */
@@ -27,9 +54,8 @@ export class AppointmentViewComponent implements OnInit {
     @returns {none}
   */
   ngOnInit() {
-    this.appointmentService.getAll().subscribe( res => {
-      this.appointment = res['data']['docs'];
+    this.appointmentService.getById('student01').subscribe( res => {
+      this.source.load(res.data);
     });
   }
-
 }

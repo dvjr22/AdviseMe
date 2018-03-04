@@ -9,6 +9,7 @@ services to access the Mongoose Models
 
 //get mongoose model
 var Class = require('../models/class.model')
+var User = require('../models/user.model')
 
 _this = this
 
@@ -17,15 +18,16 @@ exports.createClass = async function(aClass){
     var newClass = new Class({
         _id: aClass._id,
         class: {
-          prefix: aClass.prefix,
-          courseNo: aClass.courseNo,
-          title: aClass.title,
+          prefix: aClass.class['prefix'],
+          courseNo: aClass.class['courseNo'],
+          title: aClass.class['title'],
         },
-        requiredFor: aClass.requiredFor,
         department: aClass.department,
         curriculum: aClass.curriculum,
+        prerequisites: aClass.prerequisites,
+        hrs: aClass.hrs,
+        description: aClass.description,
     })
-
     try{
         var savedClass = await newClass.save();
         return savedClass;
@@ -49,18 +51,16 @@ exports.updateClass = async function(aClass){
     throw Error(e.message)
   }
 
-  console.log(oldClass)
-
   //edit the class object
   oldClass._id = aClass._id
-  oldClass.class.prefix = aClass.class.prefix
-  oldClass.class.courseNo = aClass.class.courseNo
-  oldClass.class.title = aClass.class.title
-  oldClass.requiredFor = aClass.requiredFor
+  oldClass.prerequisites = aClass.prerequisites
   oldClass.department = aClass.department
   oldClass.curriculum = aClass.curriculum
-
-  console.log(oldClass)
+  oldClass.class['title'] = aClass.class['title']
+  oldClass.class['courseNo'] = aClass.class['courseNo']
+  oldClass.class['prefix'] = aClass.class['prefix']
+  oldClass.hrs = aClass.hrs
+  oldClass.description = aClass.description
 
   try {
     var savedClass = await oldClass.save()
@@ -70,23 +70,55 @@ exports.updateClass = async function(aClass){
   }
 }
 
-//gets a class mongoose object by ID
-exports.getClass = async function(query, page, limit) {
-
-  //options setup for the mongoose paginate
-  var options = {
-    page,
-    limit
-  }
+//get all class objects
+exports.getClass = async function() {
 
   //try-catch handle errors
   try{
-    var classes = await Class.paginate(query,options)
+    var classes = await Class.find({})
     return classes;
   }catch(e){
     throw Error(e.message)
   }
 }
+
+//gets a class object by ID
+exports.getClassById = async function(id) {
+
+  //try-catch handle errors
+  try{
+    var classes = await Class.findById({_id: id});
+    return classes;
+  }catch(e){
+    throw Error(e.message, "Error while finding class by id")
+  }
+}
+
+exports.getCurrentClasses = async function(id) {
+
+  try{
+    var currentUser = await User.findById(id);
+    var userClasses = currentUser.course.filter(function (el) {
+      return el.grade === "enrolled"
+    });
+    return userClasses;
+  }catch(e){
+    throw Error(e.message, "Error while finding current classes")
+  }
+}
+
+exports.getGradedClasses = async function (id) {
+  try{
+    var currentUser = await User.findById(id);
+    var userClasses = currentUser.course.filter(function (el) {
+      return el.grade != "tbc" && el.grade != "enrolled"
+    });
+    return userClasses;
+  }catch(e){
+    throw Error(e.message, "Error while finding graded classes")
+  }
+}
+
 
 //delete a class mongoose object by ID
 exports.deleteClass = async function(id) {

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdvisementComponent } from './advisement.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { AppointmentViewComponent } from './view-appointment/appointment-view.component';
+import { RequestClassesComponent } from './request-classes/request-classes.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,6 +15,9 @@ const routes: Routes = [{
   }, {
     path: 'view-appointment',
     component: AppointmentViewComponent,
+  }, {
+    path: 'request-classes',
+    component: RequestClassesComponent,
   }],
 }];
 
@@ -32,4 +36,5 @@ export const routedComponents = [
   AdvisementComponent,
   AppointmentComponent,
   AppointmentViewComponent,
+  RequestClassesComponent,
 ];

@@ -7,25 +7,32 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {Subscription} from 'rxjs/Subscription';
 import { User } from '../models/user';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { UserService } from './user.service';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
-
-  constructor(private http: Http) { }
+  validToken;
+  allow: Observable<boolean>;
+  private _userSub: Subscription;
+  private _adminSub: Subscription;
+//  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  // isAdmin: boolean;
+  constructor(private http: Http, private router: Router, private userService: UserService) {}
 
   // Method for logging in a user by posting the username and password
   // to the rest api
   login(username: string, password: string) {
-    return this.http.post('/users/authenticate', { username: username, password: password})
+    return this.http.post('/api/users/authenticate', { username: username, password: password})
       .map((response: Response) => {
         // login successful if there is a jwt token in the response
         const user = response.json();
         if (user && user.token) {
-          // Store the token in the localStorage so that other
+          // Store the token in the sessionStorage so that other
           // components can check the logged in user
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          sessionStorage.setItem('currentUser', JSON.stringify(user));
         }
         return user;
       });
@@ -33,17 +40,93 @@ export class AuthenticationService {
 
   logout() {
     // Remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser');
+  }
+
+  getUser() {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (this.allow) {
+      this.allow = new Observable(observer => {
+          observer.next(true);
+          observer.complete();
+      });
+      return this.allow;
+    }
+    this.allow = new Observable( observer => {
+      if (this._userSub) {
+        this._userSub.unsubscribe();
+      }
+      this._userSub = this.checkToken(currentUser.token).subscribe(val => {
+          if (val === true) {
+            observer.next(true);
+          } else {
+            this.router.navigate(['/auth/login']);
+            observer.next(false);
+          }
+        },
+        () => {
+        observer.complete();
+        });
+    });
+    return this.allow;
+}
+
+  checkToken(token: string) {
+    return this.http.post('/api/token/valid', { token: token})
+      .map((response: Response) => {
+        const token2 = response.json();
+        if (token2.return === 'true') {
+          return true;
+        } else {
+          return false;
+        }
+      });
   }
 
     // This method is used by components wanting to know if the
     // user is currently logged in or not
   checkForLocalUser(): boolean {
-    if (localStorage.getItem('currentUser') !== null) {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    const apiReturn = '';
+    if (currentUser !== null && apiReturn === '') {
       return true;
     } else {
       return false;
     }
+  }
+  checkForAdminUser() {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.allow = new Observable( observer => {
+      this._adminSub = this.userService.getById(currentUser._id).subscribe(val => {
+        if (val.role === 'admin') {
+          observer.next(true);
+        } else {
+          this.router.navigate(['/auth/login']);
+          observer.next(false);
+        }
+      },
+      () => {
+        observer.complete();
+      });
+    });
+    return this.allow;
+  }
+  checkForAdvisorUser() {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.allow = new Observable( observer => {
+      this._adminSub = this.userService.getById(currentUser._id).subscribe(val => {
+        if (val.role === 'advisor') {
+          observer.next(true);
+        } else {
+          this.router.navigate(['/auth/login']);
+          observer.next(false);
+        }
+      },
+      () => {
+        observer.complete();
+      });
+    });
+    return this.allow;
   }
 }
 
@@ -51,12 +134,42 @@ export class AuthenticationService {
 // when there is not a valid user logged in
 @Injectable()
 export class CanActivateUser implements CanActivate {
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<boolean>|Promise<boolean>|boolean {
+    if (this.authenticationService.checkForLocalUser()) {
+      return this.authenticationService.getUser();
+    } else {
+      this.router.navigate(['/auth/login']);
+      return false;
+    }
+  }
+}
+
+@Injectable()
+export class CanActivateAdmin implements CanActivate {
   constructor(private authenticationService: AuthenticationService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean>|Promise<boolean>|boolean {
-    return this.authenticationService.checkForLocalUser();
+    return this.authenticationService.checkForAdminUser();
+  }
+}
+
+@Injectable()
+export class CanActivateAdvisor implements CanActivate {
+  constructor(private authenticationService: AuthenticationService) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<boolean>|Promise<boolean>|boolean {
+    return this.authenticationService.checkForAdvisorUser();
   }
 }

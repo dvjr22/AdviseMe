@@ -25,12 +25,16 @@ import { NbResetPasswordComponent } from './@theme/components/auth/components/re
 
 // Services
 import { UserService } from './_shared/services/user.service';
+import { RegisterService } from './_shared/services/register.service';
 import { ClassService } from './_shared/services/class.service';
-import {AppointmentService } from './_shared/services/appointment.service';
+import { AppointmentService } from './_shared/services/appointment.service';
 import { AuthenticationService, CanActivateUser } from './_shared/services/authentication.service';
 import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { NotificationService } from './_shared/services/notification.service';
+import { ClassViewRenderComponent } from './_shared/services/class-view.render.component';
+import { CartViewRenderComponent } from './_shared/services/cart-view.render.component';
+
 
 // Models
 import { User } from './_shared/models/user';
@@ -41,6 +45,8 @@ import { Class } from './_shared/models/class';
 @NgModule({
   declarations: [
     AppComponent,
+    ClassViewRenderComponent,
+    CartViewRenderComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +68,7 @@ import { Class } from './_shared/models/class';
   ],
   bootstrap: [AppComponent],
   providers: [
+    RegisterService,
     UserService,
     ClassService,
     AppointmentService,
@@ -74,6 +81,8 @@ import { Class } from './_shared/models/class';
     ToasterService,
     NotificationService,
   ],
+  entryComponents: [ClassViewRenderComponent,
+  CartViewRenderComponent ] ,
 })
 export class AppModule {
 }

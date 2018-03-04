@@ -1,7 +1,8 @@
 
 import { Component } from '@angular/core';
+import { UserService } from '../_shared/services/user.service';
 
-import { MENU_ITEMS } from './pages-menu';
+import { MENU_ITEMS, ADMIN_ITEMS, ADVISOR_ITEMS } from './pages-menu';
 
 /**
   Component:
@@ -21,4 +22,25 @@ export class PagesComponent {
     Navigation bar menu
   */
   menu = MENU_ITEMS;
+  constructor(private userService: UserService) {
+    // Change the menu based off the role of the user
+    if (sessionStorage.getItem('currentUser') !== null) {
+      const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      this.userService.getById(currentUser._id).subscribe((res) => {
+        switch (res.role) {
+          case 'admin':
+            // User is an admin
+            this.menu = ADMIN_ITEMS;
+            break;
+          case 'advisor':
+            // User is an advisor
+            this.menu = ADVISOR_ITEMS;
+            break;
+          default:
+            // User is anything that isn't defined above
+            this.menu = MENU_ITEMS;
+        }
+      });
+    }
+  }
 }

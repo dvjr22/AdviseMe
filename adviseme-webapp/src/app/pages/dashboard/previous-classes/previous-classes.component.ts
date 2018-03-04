@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { User } from '../../../_shared/models/user';
-import { UserService } from '../../../_shared/services/user.service';
-
+import { ClassService } from '../../../_shared/services/class.service';
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
 /**
@@ -19,24 +18,13 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
 export class PreviousClassesComponent implements OnInit {
   /**
-    Getting the current user
-  */
-  currentUser: User;
-  /**
-    Array of courses
-  */
-  courses: any = [];
-  /**
     Configuration for the table
   */
   settings = {
     actions: false,
     columns: {
-      department: {
-        title: 'Department',
-      },
-      coNum: {
-        title: 'Course Number',
+      classID: {
+        title: 'Class',
       },
       grade: {
         title: 'Grade',
@@ -52,26 +40,16 @@ export class PreviousClassesComponent implements OnInit {
   /**
     Initializes new names for the imports
   */
-  constructor(private userService: UserService) {
+  constructor(private classService: ClassService) {
   }
 
     /**
       Gets the currents users classes they have took
     */
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.userService.getById(this.currentUser._id)
-        .subscribe(res => {
-          this.currentUser = res;
-          for (let i = 0; i < this.currentUser.course.length; i++) {
-            if (this.currentUser.course[i].classID != null) {
-              const department = this.currentUser.course[i].classID.slice(0, 4);
-              const coNum = this.currentUser.course[i].classID.slice(4);
-              const grade = this.currentUser.course[i].grade;
-              this.courses.push({department: department, coNum: coNum, grade: grade});
-            }
-          }
-          this.source.load(this.courses);
-        });
+    this.classService.getGradedClasses()
+      .subscribe((res: User['course']) => {
+         this.source.load(res);
+     });
   }
 }

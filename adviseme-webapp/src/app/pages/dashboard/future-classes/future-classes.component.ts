@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { User, FutureClasses } from '../../../_shared/models/user';
@@ -49,7 +49,7 @@ export class FutureClassesComponent implements OnInit {
   /**
     Initializes new names for the imports
   */
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   /**
@@ -59,5 +59,9 @@ export class FutureClassesComponent implements OnInit {
   */
   ngOnInit() {
     this.source.load(FutureClasses);
+  }
+
+  goToRequestClasses() {
+    this.router.navigate(['/pages/advisement/request-classes']);
   }
 }

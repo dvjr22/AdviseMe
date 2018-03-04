@@ -15,16 +15,33 @@ function iterate(list) {
 });
 }
 
+/*
 //Test v1
-const Nara = require('/home/diego/Nara.js');
-let nara = new Nara("A1234");
-//log(nara.studentId);
-let results_1 = nara.getThatRec();
-iterate(results_1);
+log("test 1")
+//const Nara = require('/home/diego/Nara.js'); // laptop
+const Nara = require('/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Nara/Nara.js'); // green machine
+let nara = new Nara("tHall01");
+nara.getThatRec(function(returnValue) {
+	log(returnValue);
+});
+
 
 
 //Test v2
-const NaraV2 = require('/home/diego/NaraV2.js');
+log("test 2")
+//const NaraV2 = require('/home/diego/NaraV2.js'); // laptop
+const NaraV2 = require('/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Nara/NaraV2.js'); // green machine
 let narav2 = new NaraV2();
-let results_2 = narav2.getThatRec("A5678");
-iterate(results_2);
+narav2.getThatRec("tHall01", function(returnValue) {
+	log(returnValue);
+});
+*/
+
+//Test v3
+log("test 3")
+//const NaraV2 = require('/home/diego/NaraV2.js'); // laptop
+const NaraV3 = require('/home/valdeslab/SeniorYear/AdviseMe/AdviseMe/adviseme-database/Nara/NaraV3.js'); // green machine
+let narav3 = new NaraV3();
+narav3.getThatRec("tHall01", function(returnValue) {
+	log(returnValue);
+});

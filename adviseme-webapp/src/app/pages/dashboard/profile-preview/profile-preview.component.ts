@@ -35,7 +35,7 @@ export class ProfilePreviewComponent implements OnInit {
     Gets the currents users to display info about them
   */
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id)
         .subscribe(res => this.currentUser = res);
   }
