@@ -17,9 +17,10 @@ export class AuthenticationService {
   validToken;
   allow: Observable<boolean>;
   private _userSub: Subscription;
+  private _adminSub: Subscription;
 //  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   // isAdmin: boolean;
-  constructor(private http: Http, private router: Router) {}
+  constructor(private http: Http, private router: Router, private userService: UserService) {}
 
   // Method for logging in a user by posting the username and password
   // to the rest api
@@ -93,12 +94,39 @@ export class AuthenticationService {
       return false;
     }
   }
-  checkForAdminUser(): boolean {
-    if (sessionStorage.getItem('currentUser') !== null) {
-      return true; // this.isAdmin;
-    } else {
-      return false;
-    }
+  checkForAdminUser() {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.allow = new Observable( observer => {
+      this._adminSub = this.userService.getById(currentUser._id).subscribe(val => {
+        if (val.role === 'admin') {
+          observer.next(true);
+        } else {
+          this.router.navigate(['/auth/login']);
+          observer.next(false);
+        }
+      },
+      () => {
+        observer.complete();
+      });
+    });
+    return this.allow;
+  }
+  checkForAdvisorUser() {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.allow = new Observable( observer => {
+      this._adminSub = this.userService.getById(currentUser._id).subscribe(val => {
+        if (val.role === 'advisor') {
+          observer.next(true);
+        } else {
+          this.router.navigate(['/auth/login']);
+          observer.next(false);
+        }
+      },
+      () => {
+        observer.complete();
+      });
+    });
+    return this.allow;
   }
 }
 
@@ -131,5 +159,17 @@ export class CanActivateAdmin implements CanActivate {
     state: RouterStateSnapshot,
   ): Observable<boolean>|Promise<boolean>|boolean {
     return this.authenticationService.checkForAdminUser();
+  }
+}
+
+@Injectable()
+export class CanActivateAdvisor implements CanActivate {
+  constructor(private authenticationService: AuthenticationService) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<boolean>|Promise<boolean>|boolean {
+    return this.authenticationService.checkForAdvisorUser();
   }
 }
