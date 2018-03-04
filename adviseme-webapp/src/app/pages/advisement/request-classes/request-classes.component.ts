@@ -82,6 +82,7 @@ export class RequestClassesComponent implements OnInit {
         }else{
           this.cart.classes[i] = res;
         }
+        this.cartService.update(this.cart);
         });
       }
       this.cartService.update(this.cart);
@@ -105,8 +106,6 @@ export class RequestClassesComponent implements OnInit {
     ngOnInit() {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       let user: User;
-
-      console.log(this.currentUser._id);
       this.userService.getById(this.currentUser._id).subscribe((res: User) => { user = res; console.log(res);
         this.cartService.getById(user.studentID).subscribe((res: Cart) => {
           this.cart = res;
@@ -116,9 +115,6 @@ export class RequestClassesComponent implements OnInit {
             console.log(user.studentID)
           }
         });});
-
-
-      console.log(user);
 
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
