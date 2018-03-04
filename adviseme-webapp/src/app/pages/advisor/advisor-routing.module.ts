@@ -4,6 +4,7 @@ import { AdvisorComponent } from './advisor.component';
 import { RequestsComponent } from './requests/requests.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
+import { RequestsClassComponent } from './requests-class/requests-class.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,6 +18,9 @@ const routes: Routes = [{
   } , {
     path: 'appointments',
     component: AppointmentsComponent,
+  } , {
+    path: 'requests-class',
+    component: RequestsClassComponent,
   }],
 }];
 

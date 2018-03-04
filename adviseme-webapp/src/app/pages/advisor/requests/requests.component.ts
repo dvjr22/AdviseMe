@@ -3,7 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
 import { flattenObject } from './flattenObject';
-import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
+import { CartViewRenderComponent } from '../../../_shared/services/cart-view.render.component';
 
 @Component({
   selector: 'ngx-app-requests',
@@ -22,7 +22,7 @@ export class RequestsComponent implements OnInit {
         title: 'Class Info',
         type: 'custom',
         filter: false,
-        renderComponent: ClassViewRenderComponent,
+        renderComponent: CartViewRenderComponent,
       },
     },
   };
