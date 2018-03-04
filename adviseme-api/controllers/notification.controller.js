@@ -7,11 +7,11 @@ exports.sendNotification = async function(req, res) {
   var date = req.body["message"]["date"];
   var advisor = req.body["message"]["advisor"]
   var roomNumber = req.body["message"]["roomNumber"]
-  var ReminderMessage = "This is a reminder of your advising appointment with " + advisor + " at " + date + " in room " + roomNumber;
+  var ReminderMessage = " " + JSON.stringify(req.body['message']['message'])// "This is a reminder of your advising appointment with " + advisor + " at " + date + " in room " + roomNumber;
 
   client.messages.create({
     // Whom to send tho message too
-    to: '',
+    to: '+18037922216',
     // The Twilio Phone number to send it from
     from: '+18036755450',
     // Parse a message out of the post request body

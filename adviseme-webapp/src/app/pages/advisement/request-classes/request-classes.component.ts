@@ -47,45 +47,25 @@ export class RequestClassesComponent implements OnInit {
           filter: false,
           renderComponent: ClassViewRenderComponent,
         },
-        // request: {
-        //   title: 'Request',
-        //   type: 'html',
-        //   valuePrepareFunction:(cell,row)=>{
-        //     return `<input id="checkBox" type="checkbox" checked>`
-        //   },
-        //   filter: false
-        // },
       },
     };
 
     onUserRowSelect(event) {
-      console.log('user row select: ', event.selected);
-      console.log(this.cart);
       this.selectedClasses = event.selected;
-      console.log(this.selectedClasses);
-      console.log(this.cart._id);
-      //this.selected = event.selected;
-      //console.log('selected list: ', this.selected);
     };
 
     addToCart(event) {
       // HACK: Redo all of this shit after beta
-      //this.cart = this.cartService.getById(this.currentUser.studentID).subscribe((res: Cart) => { res });
-      console.log('car before unflatten: ' + JSON.stringify(this.selectedClasses));
-      console.log(this.selectedClasses[0]._id)
-      //this.cart.classes = this.selectedClasses
-      for(var i = 0; i < this.selectedClasses.length; i++){
-      this.classService.getClass(this.selectedClasses[i]._id).subscribe((res: any) => {
-        console.log(res);
-        if(this.cart.classes === undefined){
-          this.cart.classes = [res];
-        }else{
-          this.cart.classes[i] = res;
+      for (let i = 0; i < this.selectedClasses.length; i++) {
+        this.classService.getClass(this.selectedClasses[i]._id).subscribe((res: any) => {
+            if (this.cart.classes === undefined) {
+              this.cart.classes = [res];
+            } else {
+              this.cart.classes[i] = res;
+            }
+            this.cartService.update(this.cart);
+          });
         }
-        this.cartService.update(this.cart);
-        });
-      }
-      this.cartService.update(this.cart);
     }
 
     /**
@@ -106,16 +86,15 @@ export class RequestClassesComponent implements OnInit {
     ngOnInit() {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       let user: User;
-      this.userService.getById(this.currentUser._id).subscribe((res: User) => { user = res; console.log(res);
+      this.userService.getById(this.currentUser._id).subscribe((res: User) => {
+        user = res;
         this.cartService.getById(user.studentID).subscribe((res: Cart) => {
           this.cart = res;
           if (this.cart._id === undefined) {
             this.cart._id = user.studentID;
-            console.log("It worked wheee");
-            console.log(user.studentID)
           }
-        });});
-
+        });
+      });
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
