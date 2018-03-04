@@ -17,4 +17,5 @@ export class Cart {
       prefix: string;
     };
   }];
+  advisor: string;
 }

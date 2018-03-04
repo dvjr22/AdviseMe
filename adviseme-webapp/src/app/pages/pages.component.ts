@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../_shared/services/user.service';
 
-import { MENU_ITEMS, ADMIN_ITEMS } from './pages-menu';
+import { MENU_ITEMS, ADMIN_ITEMS, ADVISOR_ITEMS } from './pages-menu';
 
 /**
   Component:
@@ -31,6 +31,10 @@ export class PagesComponent {
           case 'admin':
             // User is an admin
             this.menu = ADMIN_ITEMS;
+            break;
+          case 'advisor':
+            // User is an advisor
+            this.menu = ADVISOR_ITEMS;
             break;
           default:
             // User is anything that isn't defined above

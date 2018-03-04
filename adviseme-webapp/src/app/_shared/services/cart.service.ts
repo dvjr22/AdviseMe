@@ -34,6 +34,14 @@ export class CartService {
     getById(_id: string): Observable<Cart> {
         return this.http.get('/api/carts/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
+
+    /**
+      Get all carts
+    */
+    get() {
+      return this.http.get('/api/carts/', this.requestOptions).map((response: Response) => response.json());
+    }
+
     /**
       Create a new cart
 
@@ -51,7 +59,9 @@ export class CartService {
       @returns {none}
     */
     update(cart: Cart) {
-        return this.http.put('/api/carts/' + cart._id, cart, this.requestOptions).subscribe();
+      console.log('in update')
+      console.log(cart);
+        return this.http.put('/api/carts/' /*+ cart._id*/, cart, this.requestOptions).subscribe();
     }
 
     /**

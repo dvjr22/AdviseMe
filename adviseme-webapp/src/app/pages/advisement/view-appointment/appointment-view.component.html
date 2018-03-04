@@ -1,6 +1,6 @@
 <nb-card>
       <nb-card-header>Upcoming Appointments!</nb-card-header>
-      <nb-card-body>
+      <!-- <nb-card-body>
         <ul class="list-unstyled">
           <li *ngFor="let ap of appointment">
             <h6> studentID: {{ ap.studentID }} </h6>
@@ -15,5 +15,8 @@
             <br>
           </li>
         </ul>
+      </nb-card-body> -->
+      <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
       </nb-card-body>
 </nb-card>

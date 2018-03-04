@@ -3,15 +3,12 @@ import { Appointment } from '../../../_shared/models/appointment';
 import { AppointmentService } from '../../../_shared/services/appointment.service';
 import { LocalDataSource } from 'ng2-smart-table';
 
-/**
-  Component that allows the user to see their appointments
-*/
 @Component({
-  selector: 'ngx-app-appointment-view',
-  templateUrl: './appointment-view.component.html',
-  styleUrls: ['./appointment-view.component.scss'],
+  selector: 'ngx-app-appointments',
+  templateUrl: './appointments.component.html',
+  styleUrls: ['./appointments.component.scss'],
 })
-export class AppointmentViewComponent implements OnInit {
+export class AppointmentsComponent implements OnInit {
   /**
    Variable to store all the appointments for the user collected from the api
   */
@@ -19,7 +16,6 @@ export class AppointmentViewComponent implements OnInit {
 
   settings = {
     actions: false,
-    hideSubHeader: true,
     columns: {
       studentID: {
         title: 'Student ID',
@@ -50,12 +46,13 @@ export class AppointmentViewComponent implements OnInit {
   }
   /**
     Calling the appointment api gets all the appointments
-    TODO: Get only appointments for the user, still being able to sort
+    TODO: Get only appointments for the advisor, still being able to sort
     @returns {none}
   */
   ngOnInit() {
-    this.appointmentService.getById('student01').subscribe( res => {
+    this.appointmentService.getAll().subscribe( res => {
       this.source.load(res.data);
     });
   }
+
 }

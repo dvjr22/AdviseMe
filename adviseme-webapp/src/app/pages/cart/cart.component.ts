@@ -12,9 +12,7 @@ import { flattenObject } from './flattenObject';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-
-  currentUser: User;
-
+  currentCart: Cart;
   // configuration for the table
   settings= {
     columns: {
@@ -38,8 +36,18 @@ export class CartComponent implements OnInit {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.cartService.getById(this.currentUser.studentID)
     .subscribe((res) => {
-      this.source.load(flattenObject(res.classes));
+      this.currentCart = res.data;
+      console.log(this.currentCart.advisor);
+      if (this.currentCart.advisor === '') {
+        this.source.load(flattenObject(this.currentCart.classes));
+      }
     });
+  }
+
+  submitToAdvisor() {
+    // TODO: Take out this hardcoded string
+    this.currentCart.advisor = 'advisor01';
+    this.cartService.update(this.currentCart);
   }
 
 }

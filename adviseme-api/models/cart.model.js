@@ -14,6 +14,7 @@ var CartSchema = new mongoose.Schema({
           prefix: { type: String, required: true },
         },
     }],
+    advisor: { type: String },
   })
 
 const Cart = mongoose.model('Cart', CartSchema)

@@ -10,69 +10,74 @@
     line-height: 1.6;
   }
 </style>
-
-<nb-card size="small">
-  <nb-card-header>
-    <span> Student Info </span>
-  </nb-card-header>
-  <nb-card-body>
-    <br>
-    <br>
-    <div class="item-1">
-      <img src="../../../../assets/images/batmanfb.jpg" style="width:128px;height:128px;">
-    </div>
-    <div class="item-2">
-        <b>Student ID:</b> {{ currentUser.studentID }}
+<div class="row">
+  <div class="col-md-3">
+    <nb-card size="small">
+      <nb-card-header>
+        <span> Student Info </span>
+      </nb-card-header>
+      <nb-card-body>
         <br>
-        <b>Name:</b> {{ currentUser.firstName }} {{ currentUser.lastName}}
         <br>
-        <b>School:</b> {{ currentUser.university }}
-        <br>
-        <b>Major:</b> {{ currentUser.major | uppercase }}
-        <br>
-        <b>Year:</b> {{ currentUser.status | ngxCapitalize}}
-    </div>
-  </nb-card-body>
-  <nb-card-footer>
-  </nb-card-footer>
-</nb-card>
-<nb-card>
+        <div class="item-1">
+          <img src="../../../../assets/images/batmanfb.jpg" style="width:128px;height:128px;">
+        </div>
+        <div class="item-2">
+            <b>Student ID:</b> {{ currentUser.studentID }}
+            <br>
+            <b>Name:</b> {{ currentUser.firstName }} {{ currentUser.lastName}}
+            <br>
+            <b>School:</b> {{ currentUser.university }}
+            <br>
+            <b>Major:</b> {{ currentUser.major | uppercase }}
+            <br>
+            <b>Year:</b> {{ currentUser.status | ngxCapitalize}}
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+  <div class="col-md-9">
+    <nb-card>
       <nb-card-header>Make an Appointment</nb-card-header>
       <nb-card-body>
-        <div>
-          <h6>Pick a Day: </h6>
-          <ngb-datepicker #dp placeholder="yyyy-mm-dd" name="date" id="date" [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
-        </div>
-        <br>
-        <div>
-          <h6>Pick a Time: </h6>
-          <form (ngSubmit)="onSubmit()" #form="ngForm">
-            <div class="col-md-3">
-              <input type="text" name="advisor" id="advisor" [(ngModel)]="newAppointment.advisor" placeholder="Advisor" class="form-control">
-            </div>
-            <div class="col-md-3">
-              <input name="roomNumber" id="roomNumber" [(ngModel)]="newAppointment.roomNumber" placeholder="Room Number" class="form-control">
-            </div>
-         <form class="form-inline">
-           <div class="form-group col-md-3">
-             <div class="input-group">
-               <input class="form-control" placeholder="yyyy-mm-dd" name="date" id="date" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-                 <button class="input-group-addon" type="button">
-                   <i class="fa fa-calendar fa-2" aria-hidden="true"></i>
-                 </button>
-               </div>
-            </div>
+        <div class="row">
+          <div class="col-md-3">
+            <h6>Pick a Day: </h6>
+            <ngb-datepicker #dp placeholder="yyyy-mm-dd" name="date" id="date" [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+          </div>
+          <div class="col-md-9">
+            <h6>Pick a Time: </h6>
+            <form (ngSubmit)="onSubmit()" #form="ngForm">
+              <div class="col-md-3">
+                <input type="text" name="advisor" id="advisor" [(ngModel)]="newAppointment.advisor" placeholder="Advisor" class="form-control">
+              </div>
+              <div class="col-md-3">
+                <input name="roomNumber" id="roomNumber" [(ngModel)]="newAppointment.roomNumber" placeholder="Room Number" class="form-control">
+              </div>
+           <form class="form-inline">
+             <div class="form-group col-md-3">
+               <div class="input-group">
+                 <input class="form-control" placeholder="yyyy-mm-dd" name="date" id="date" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                   <button class="input-group-addon" type="button">
+                     <i class="fa fa-calendar fa-2" aria-hidden="true"></i>
+                   </button>
+                 </div>
+              </div>
+            </form>
+              <br>
+              <div class="btn-group btn-group col-md-3" role="group">
+                <button class="btn btn-success btn-group-icon btn-group-divider btn-fixed" type="button">
+                  <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                </button>
+                <button type="submit" class="btn btn-success">Send Appointment</button>
+                <!--- <button type="submit" class="btn btn-success" [disabled]="submitted || !form.valid || form.pristine">Send Appointment</button> -->
+              </div>
           </form>
-            <br>
-            <div class="btn-group btn-group col-md-3" role="group">
-              <button class="btn btn-success btn-group-icon btn-group-divider btn-fixed" type="button">
-                <i class="fa fa-paper-plane" aria-hidden="true"></i>
-              </button>
-              <button type="submit" class="btn btn-success">Send Appointment</button>
-              <!--- <button type="submit" class="btn btn-success" [disabled]="submitted || !form.valid || form.pristine">Send Appointment</button> -->
-            </div>
-        </form>
+          </div>
         </div>
-        <br>
       </nb-card-body>
-</nb-card>
+    </nb-card>
+  </div>
+</div>

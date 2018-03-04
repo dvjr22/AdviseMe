@@ -87,7 +87,7 @@ exports.getAppointmentById = async function(id) {
 
   //try-catch handle errors
   try{
-    var appointments = await Appointment.findById({_id: id});
+    var appointments = await Appointment.find({'studentID': id});
     return appointments;
   }catch(e){
     throw Error(e.message, "Error while finding appointment by id")
