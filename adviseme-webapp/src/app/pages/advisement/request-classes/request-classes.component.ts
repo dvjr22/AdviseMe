@@ -94,18 +94,19 @@ export class RequestClassesComponent implements OnInit {
       let user: User;
 
       console.log(this.currentUser._id);
-      this.userService.getById(this.currentUser._id).subscribe((res: User) => { user = res; console.log(res); });
+      this.userService.getById(this.currentUser._id).subscribe((res: User) => { user = res; console.log(res);
+        this.cartService.getById(user.studentID).subscribe((res: Cart) => {
+          this.cart = res;
+          if (this.cart._id === undefined) {
+            this.cart._id = user.studentID;
+            console.log("It worked wheee");
+            console.log(user.studentID)
+          }
+        });});
 
 
       console.log(user);
-      this.cartService.getById(user.studentID).subscribe((res: Cart) => {
-        this.cart = res;
-        if (this.cart._id === undefined) {
-          this.cart._id = user.studentID;
-          console.log("It worked wheee");
-          console.log(user.studentID)
-        }
-      });
+
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
