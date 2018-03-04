@@ -22,6 +22,9 @@ import { flattenObject } from './flattenObject';
 export class RequestClassesComponent implements OnInit {
 
     currentUser: User;
+    cart: Cart;
+    selectedClasses;
+    userID;
     /**
       Configuration for the table
     */
@@ -57,12 +60,31 @@ export class RequestClassesComponent implements OnInit {
 
     onUserRowSelect(event) {
       console.log('user row select: ', event.selected);
+      console.log(this.cart);
+      this.selectedClasses = event.selected;
+      console.log(this.selectedClasses);
+      console.log(this.cart._id);
       //this.selected = event.selected;
       //console.log('selected list: ', this.selected);
     };
 
-    addToCart() {
-      console.log(this.cartService.getById(this.currentUser.studentID).subscribe((res: Cart) => { res }).toString());
+    addToCart(event) {
+      // HACK: Redo all of this shit after beta
+      //this.cart = this.cartService.getById(this.currentUser.studentID).subscribe((res: Cart) => { res });
+      console.log('car before unflatten: ' + JSON.stringify(this.selectedClasses));
+      console.log(this.selectedClasses[0]._id)
+      //this.cart.classes = this.selectedClasses
+      for(var i = 0; i < this.selectedClasses.length; i++){
+      this.classService.getClass(this.selectedClasses[i]._id).subscribe((res: any) => {
+        console.log(res);
+        if(this.cart.classes === undefined){
+          this.cart.classes = [res];
+        }else{
+          this.cart.classes[i] = res;
+        }
+        });
+      }
+      this.cartService.update(this.cart);
     }
 
     /**
@@ -73,7 +95,7 @@ export class RequestClassesComponent implements OnInit {
     /**
       Initializes new names for the imports
     */
-    constructor(private classService: ClassService, private cartService: CartService) {
+    constructor(private classService: ClassService, private cartService: CartService, private userService: UserService) {
     }
 
     /**
@@ -82,6 +104,22 @@ export class RequestClassesComponent implements OnInit {
     */
     ngOnInit() {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      let user: User;
+
+      console.log(this.currentUser._id);
+      this.userService.getById(this.currentUser._id).subscribe((res: User) => { user = res; console.log(res);
+        this.cartService.getById(user.studentID).subscribe((res: Cart) => {
+          this.cart = res;
+          if (this.cart._id === undefined) {
+            this.cart._id = user.studentID;
+            console.log("It worked wheee");
+            console.log(user.studentID)
+          }
+        });});
+
+
+      console.log(user);
+
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
