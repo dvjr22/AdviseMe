@@ -33,44 +33,46 @@ exports.createCart = async function(aCart){
 * to new cart info sent in request.
 */
 exports.updateCart = async function(aCart){
-  console.log('aCart' + JSON.stringify(aCart))
-  var newCart = new Cart({
-    _id: aCart._id,
-    classes: aCart.classes,
-    studentID: aCart.studentID
-  })
-  try{
-    var savedCart = await newCart.save()
-    return savedCart;
-  }catch(e){
-    console.log(e)
-    throw Error(e.message);
-  }
-  //console.log('aCart' + JSON.stringify(aCart));
-  //var _id = aCart.studentID
 
-  // try{
-  //   //find by Id
-  //   var oldCart = await Cart.findById(_id);
-  // }catch(e){
-  //   throw Error(e.message)
-  // }
-  //
-  // console.log('old cart' + oldCart)
-  // console.log('a cart later ' + aCart)
-  //
-  // //edit the class object
-  // oldCart._id = aCart._id
-  // oldCart.classes = aCart.classes
-  //
-  // console.log(oldClass)
-  //
-  // try {
-  //   var savedCart = await oldCart.save()
-  //   return savedCart
-  // }catch(e){
-  //   throw Error(e.message)
-  // }
+  console.log('aCart' + JSON.stringify(aCart));
+  var _id = aCart._id
+  console.log("ID : " + _id)
+   try{
+     //find by Id
+     console.log(_id)
+     var oldCart = await Cart.findById(_id);
+   }catch(e){
+
+   }
+
+   console.log('old cart' + oldCart)
+   console.log('a cart later ' + aCart)
+
+   //edit the class object
+   if(oldCart === null){
+     console.log('no object')
+     var oldCart = new Cart({
+       _id: aCart._id,
+       classes: aCart.classes,
+       studentID: aCart.studentID
+     })
+      var savedCart = await oldCart.save();
+      return savedCart;
+   }else{
+     console.log('object found')
+     oldCart._id = aCart._id
+     oldCart.classes = aCart.classes
+     oldCart.studentID = aCart.studentID
+
+   try {
+      console.log("OLD CART " + JSON.stringify(oldCart))
+     var savedCart = await oldCart.save()
+     return savedCart
+   }catch(e){
+     throw Error(e.message)
+   }
+   }
+
 }
 
 //get all class objects
