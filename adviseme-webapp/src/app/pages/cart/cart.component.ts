@@ -32,28 +32,41 @@ export class CartComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private cartService: CartService, private userService: UserService, private router: Router) { }
+  constructor(private cartService: CartService,
+    private userService: UserService,
+    private router: Router) { }
+
   ngOnInit() {
     this.loadData();
   }
 
+  /**
+    Triggered when the send to advisor button is clicked. Marks the advisor field
+    with the advisors name which is how we are "sending" the cart
+    @return {none}
+  */
   submitToAdvisor() {
     // TODO: Take out this hardcoded string
     this.currentCart.advisor = 'advisor01';
-    console.log(this.currentCart);
+    // Update the cart
     this.cartService.update(this.currentCart);
+    // Reload the data in the table, should be blank if the cart is sent
     this.loadData();
   }
 
+  /**
+    Loads the cart data into the table
+    @return {none}
+  */
   loadData() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id).subscribe((res) => {
-      console.log(res);
+      // Get the current user to get the cart by the studentID
       this.cartService.getById(res.studentID)
       .subscribe((res2: any) => {
-        console.log(res2);
         this.currentCart = res2.data;
-        console.log(this.currentCart.advisor);
+        // If the advisor field is blank then show the cart.
+        // Otherwise it has been sent to the advisor
         if (this.currentCart.advisor === '' || this.currentCart.advisor === undefined) {
           this.source.load(flattenObject(this.currentCart.classes));
         } else {
