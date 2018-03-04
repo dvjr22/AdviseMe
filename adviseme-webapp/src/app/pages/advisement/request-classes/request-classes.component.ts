@@ -88,8 +88,8 @@ export class RequestClassesComponent implements OnInit {
       let user: User;
       this.userService.getById(this.currentUser._id).subscribe((res: User) => {
         user = res;
-        this.cartService.getById(user.studentID).subscribe((res: Cart) => {
-          this.cart = res;
+        this.cartService.getById(user.studentID).subscribe((res2: Cart) => {
+          this.cart = res2;
           if (this.cart._id === undefined) {
             this.cart._id = user.studentID;
           }
@@ -98,7 +98,6 @@ export class RequestClassesComponent implements OnInit {
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
-          console.log(flattenObject(res));
         });
     }
 }
