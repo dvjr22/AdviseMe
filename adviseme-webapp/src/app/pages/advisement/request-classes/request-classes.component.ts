@@ -32,13 +32,13 @@ export class RequestClassesComponent implements OnInit {
       selectMode: 'multi',
       actions: false,
       columns: {
-        class_prefix: {
+        class__prefix: {
           title: 'Department',
         },
-        class_courseNo: {
+        class__courseNo: {
           title: 'Course Number',
         },
-        class_title: {
+        class__title: {
           title: 'Course Title',
         },
         _id: {
@@ -98,6 +98,7 @@ export class RequestClassesComponent implements OnInit {
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
+          console.log(flattenObject(res));
         });
     }
 }
