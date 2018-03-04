@@ -8,7 +8,7 @@ import { UserService } from '../../../_shared/services/user.service';
 import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
 import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
-import { flattenObject } from './flattenObject';
+import { flattenObject, unflatten } from './flattenObject';
 
 /**
   Complete course catalog
@@ -70,7 +70,7 @@ export class RequestClassesComponent implements OnInit {
 
     addToCart(event) {
       //this.cart = this.cartService.getById(this.currentUser.studentID).subscribe((res: Cart) => { res });
-      this.cart.classes = this.selectedClasses;
+      this.cart.classes = unflatten(this.selectedClasses);
       this.cartService.update(this.cart);
     }
 

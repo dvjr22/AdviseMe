@@ -24,3 +24,13 @@ export function flattenObject(ob) {
 
   return newOb;
 }
+
+export function unflatten(ob) {
+
+  var unflatten = require('unflatten');
+  var newOb = []
+
+  newOb = unflatten(ob, { seperator: '_' , objectMode: true });
+
+  return newOb;
+}
