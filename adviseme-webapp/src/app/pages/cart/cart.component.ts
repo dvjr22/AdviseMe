@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Cart } from '../../_shared/models/cart';
+import { User } from '../../_shared/models/user';
+import { UserService } from '../../_shared/services/user.service';
 import { CartService } from '../../_shared/services/cart.service';
 import { flattenObject } from './flattenObject';
 
@@ -30,7 +32,8 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService) { }
   ngOnInit() {
-    this.cartService.getById('1')
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.cartService.getById(this.currentUser.studentID)
     .subscribe((res) => {
       this.currentCart = res.data;
       console.log(this.currentCart.advisor);
