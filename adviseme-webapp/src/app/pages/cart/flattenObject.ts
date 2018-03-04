@@ -19,8 +19,7 @@ export function flattenObject(ob) {
   const newOb = [];
 
   for (let i = 0; i < ob.length; i++) {
-    console.log(ob[i])
-    newOb.push(flatten(ob[i], { delimiter: '_' }, { maxDepth: 2 }));
+    newOb.push(flatten(ob[i].class, { delimiter: '_' }, { maxDepth: 2 }));
   }
 
   return newOb;

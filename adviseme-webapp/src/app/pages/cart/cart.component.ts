@@ -28,20 +28,22 @@ export class CartComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.cartService.getById('1')
     .subscribe((res) => {
       this.currentCart = res.data;
-      console.log(this.currentCart);
-      this.source.load(flattenObject(this.currentCart.classes));
+      console.log(this.currentCart.advisor);
+      if (this.currentCart.advisor === '') {
+        this.source.load(flattenObject(this.currentCart.classes));
+      }
     });
   }
 
   submitToAdvisor() {
+    // TODO: Take out this hardcoded string
     this.currentCart.advisor = 'advisor01';
-    console.log(this.currentCart);
     this.cartService.update(this.currentCart);
   }
 
