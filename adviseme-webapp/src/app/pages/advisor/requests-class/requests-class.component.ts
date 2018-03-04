@@ -10,9 +10,9 @@ import { NotificationService } from '../../../_shared/services/notification.serv
 
 declare var require: any;
 @Component({
-  selector: 'app-requests-class',
+  selector: 'ngx-app-requests-class',
   templateUrl: './requests-class.component.html',
-  styleUrls: ['./requests-class.component.scss']
+  styleUrls: ['./requests-class.component.scss'],
 })
 export class RequestsClassComponent implements OnInit {
 
@@ -31,13 +31,18 @@ export class RequestsClassComponent implements OnInit {
       },
     },
   };
+
   cart: Cart;
   source: LocalDataSource = new LocalDataSource();
+  comment: string;
+  requestButtonStatus = true;
+
   constructor(protected route: ActivatedRoute, private cartService: CartService,
     private notificationService: NotificationService, private router: Router) { }
 
   ngOnInit() {
     this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
+      // Get the cart data and flatten it, then load into the table
       this.cart = res.data;
       const ob = this.cart.classes;
       const flatten = require('flat');
@@ -51,15 +56,21 @@ export class RequestsClassComponent implements OnInit {
       this.source.load(newOb);
     });
   }
-  comment: string;
-  requestButtonStatus = true;
+
+  /**
+    Triggers on the Reqeust Changes button
+    @returns {none}
+  */
   requestOnClick() {
+    // Send an SMS notification
     this.notificationService.sendNotification(
       JSON.stringify(
         {'message': 'Your advisor has requested changes to your Class Request. \
         Please see the attached comment for details. ---' + this.comment}));
     this.comment = '';
+    // Navigate back to the request screen
     this.router.navigate(['/pages/advisor/requests']);
+    // Set the advisor field back to blank so that it will show up in the students profile
     this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
       this.cart = res.data;
       this.cart.advisor = '';
@@ -67,19 +78,34 @@ export class RequestsClassComponent implements OnInit {
     });
   }
 
+  /**
+    Captures the input field text
+    @returns {none}
+  */
   onKey(event: any) {
     this.comment = event.target.value;
     if (this.comment.length > 0) {
+      // If the length is greater than zero then enable to request button
       this.requestButtonStatus = false;
     }
   }
 
+  /**
+    Triggers on the approve button
+    @returns {none}
+  */
   approveOnClick() {
+    // Send an SMS notification to the student
     this.notificationService.sendNotification(JSON.stringify({'message': 'Your Class Request has been approved!'}));
+    // Navigate back to the requests screen
     this.router.navigate(['/pages/advisor/requests']);
   }
 
+  /**
+    Triggers on the back button press
+  */
   goBack() {
+    // Navigate back to the requests screen
     this.router.navigate(['/pages/advisor/requests']);
   }
 }
