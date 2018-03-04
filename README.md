@@ -1,5 +1,13 @@
 # AdviseMe
-A web app that will assist college students through the majority of advising requirements while in pursuit of a degree.
+A web app that will assist college students through the majority of advising requirements while in pursuit of a degree. The development version of AdviseMe is currently avaliable at [www.theadviseme.com]().
+
+Guest credentials are:
+
+| Role          | Username | Password |
+|---------------|----------|----------|
+| student       | student  | 1234     |
+| advisor       | advisor  | 1234     |
+| administrator | admin    | 1234     |
 
 ## Getting Started
 
@@ -44,7 +52,7 @@ A web app that will assist college students through the majority of advising req
   * ```$ mongorestore AdviseMe/adviseme-database/dump```
  * Troubleshooting assitance can be found [here](https://docs.mongodb.com/manual/tutorial/backup-and-restore-tools/)
 
-## Deployment
+## Local Deployment
 * 3 Terminal Setup
 * Terminal 1 : Runs the mongo database
   * ```mongod```
@@ -57,6 +65,25 @@ A web app that will assist college students through the majority of advising req
   * ```ng build --watch```
 * The AdviseMe application should now be available at http://localhost:3000
 
+## Server Deployment
+* Clone repository into new directory
+* Change into the API directory
+  * ```cd <path>/AdviseMe/adviseme-api/```
+* Install the NPM packages
+  * ```npm install```
+* Change into the Webapp directory
+  * ```cd <path>/AdviseMe/adviseme-webapp/```
+* Install the NPM packages
+  * ```npm install```
+* Build the Angular components
+  * ```ng build```
+* Install [pm2](https://github.com/Unitech/pm2)
+  * ```npm install pm2 -g```
+* Start up the daemonized process
+  * ```sudo pm2 start ./bin/www --name AdviseMe```
+* Make sure everything is working
+  * ```sudo pm2 logs AdviseMe```
+  
 ## Unit Tests
 AdviseMe has multiple unit testing systems for various parts of the project. There are unit tests in the API, the front end, and end to end integration tests.
 ### API Unit Tests
