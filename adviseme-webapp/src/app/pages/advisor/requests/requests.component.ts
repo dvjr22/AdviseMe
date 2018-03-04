@@ -4,6 +4,8 @@ import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
 import { flattenObject } from './flattenObject';
 import { CartViewRenderComponent } from '../../../_shared/services/cart-view.render.component';
+import { User } from '../../../_shared/models/user';
+import { UserService } from '../../../_shared/services/user.service';
 
 @Component({
   selector: 'ngx-app-requests',
@@ -14,10 +16,8 @@ export class RequestsComponent implements OnInit {
 
   // Config for the table
   settings= {
+    actions: false,
     columns: {
-      classes_0_class_prefix: {
-        title: 'Course Number',
-      },
       _id: {
         title: 'Class Info',
         type: 'custom',
@@ -29,12 +29,11 @@ export class RequestsComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private userService: UserService) { }
 
   ngOnInit() {
     this.cartService.get()
       .subscribe((res) => {
-      console.log(res.data);
       this.source.load(flattenObject(res.data));
     });
   }

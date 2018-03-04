@@ -19,7 +19,7 @@ const routes: Routes = [{
     path: 'appointments',
     component: AppointmentsComponent,
   } , {
-    path: 'requests-class',
+    path: 'requests-class/:id',
     component: RequestsClassComponent,
   }],
 }];
