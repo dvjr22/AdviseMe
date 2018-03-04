@@ -10,9 +10,9 @@ import { NotificationService } from '../../../_shared/services/notification.serv
 
 declare var require: any;
 @Component({
-  selector: 'app-requests-class',
+  selector: 'ngx-app-requests-class',
   templateUrl: './requests-class.component.html',
-  styleUrls: ['./requests-class.component.scss']
+  styleUrls: ['./requests-class.component.scss'],
 })
 export class RequestsClassComponent implements OnInit {
 
