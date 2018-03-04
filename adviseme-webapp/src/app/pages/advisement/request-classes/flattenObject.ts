@@ -19,7 +19,7 @@ export function flattenObject(ob) {
   var newOb = []
 
   for (var i = 0; i < ob.length; i++) {
-    newOb.push(flatten(ob[i], { delimiter: '_' }, { maxDepth: 2 }));
+    newOb.push(flatten(ob[i], { delimiter: '__' }, { maxDepth: 2 }));
   }
 
   return newOb;

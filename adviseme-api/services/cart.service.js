@@ -14,6 +14,7 @@ _this = this
 
 //create a new mongoose object
 exports.createCart = async function(aCart){
+
     var newCart = new Cart({
       _id: aCart._id,
       classes: aCart.classes
@@ -32,32 +33,46 @@ exports.createCart = async function(aCart){
 * to new cart info sent in request.
 */
 exports.updateCart = async function(aCart){
-  console.log('in updatecar in api')
-  console.log(aCart)
+
+  console.log('aCart' + JSON.stringify(aCart));
   var _id = aCart._id
+  console.log("ID : " + _id)
+   try{
+     //find by Id
+     console.log(_id)
+     var oldCart = await Cart.findById(_id);
+   }catch(e){
 
-  try{
-    //find by Id
-    var oldCart = await Cart.findById(_id);
-  }catch(e){
-    throw Error(e.message)
-  }
+   }
 
-  console.log("old" + JSON.stringify(oldCart))
-  console.log("a" + JSON.stringify(aCart))
+   console.log('old cart' + oldCart)
+   console.log('a cart later ' + aCart)
 
-  //edit the class object
-  oldCart._id = aCart._id
-  oldCart.classes = aCart.classes
-  oldCart.advisor = aCart.advisor
+   //edit the class object
+   if(oldCart === null){
+     console.log('no object')
+     var oldCart = new Cart({
+       _id: aCart._id,
+       classes: aCart.classes,
+       studentID: aCart.studentID
+     })
+      var savedCart = await oldCart.save();
+      return savedCart;
+   }else{
+     console.log('object found')
+     oldCart._id = aCart._id
+     oldCart.classes = aCart.classes
+     oldCart.studentID = aCart.studentID
 
+   try {
+      console.log("OLD CART " + JSON.stringify(oldCart))
+     var savedCart = await oldCart.save()
+     return savedCart
+   }catch(e){
+     throw Error(e.message)
+   }
+   }
 
-  try {
-    var savedCart = await oldCart.save()
-    return savedCart
-  }catch(e){
-    throw Error(e.message)
-  }
 }
 
 //get all class objects
