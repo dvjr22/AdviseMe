@@ -31,7 +31,6 @@ export class CartComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private cartService: CartService) { }
-
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.cartService.getById(this.currentUser.studentID)
