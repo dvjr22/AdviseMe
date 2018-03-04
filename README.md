@@ -1,5 +1,5 @@
 # AdviseMe
-A web app that will assist college students through the majority of advising requirements while in pursuit of a degree. The development version of AdviseMe is currently avaliable at [www.theadviseme.com]().
+A web app that will assist college students through the majority of advising requirements while in pursuit of a degree. The development version of AdviseMe is currently avaliable at [www.theadviseme.com](www.theadviseme.com).
 
 Guest credentials are:
 
