@@ -19,6 +19,7 @@ export class AppointmentViewComponent implements OnInit {
 
   settings = {
     actions: false,
+    hideSubHeader: true,
     columns: {
       studentID: {
         title: 'Student ID',
