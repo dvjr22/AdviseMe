@@ -18,6 +18,7 @@ export class RequestsClassComponent implements OnInit {
 
   // Config for the table
   settings= {
+    actions: false,
     columns: {
       courseNo: {
         title: 'Course Number',
@@ -50,13 +51,35 @@ export class RequestsClassComponent implements OnInit {
       this.source.load(newOb);
     });
   }
-
+  comment: string;
+  requestButtonStatus = true;
   requestOnClick() {
-    console.log("Not implemented yet");
+    this.notificationService.sendNotification(
+      JSON.stringify(
+        {'message': 'Your advisor has requested changes to your Class Request. \
+        Please see the attached comment for details. ---' + this.comment}));
+    this.comment = '';
+    this.router.navigate(['/pages/advisor/requests']);
+    this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
+      this.cart = res.data;
+      this.cart.advisor = '';
+      this.cartService.update(this.cart);
+    });
+  }
+
+  onKey(event: any) {
+    this.comment = event.target.value;
+    if (this.comment.length > 0) {
+      this.requestButtonStatus = false;
+    }
   }
 
   approveOnClick() {
     this.notificationService.sendNotification(JSON.stringify({'message': 'Your Class Request has been approved!'}));
+    this.router.navigate(['/pages/advisor/requests']);
   }
 
+  goBack() {
+    this.router.navigate(['/pages/advisor/requests']);
+  }
 }

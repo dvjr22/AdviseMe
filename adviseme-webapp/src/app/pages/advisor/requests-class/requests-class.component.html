@@ -8,15 +8,16 @@
   <nb-card-footer>
     <div class="row">
       <div class="col-md-2">
-        <button type="button" class="btn btn-danger" (click)="requestOnClick()" name="button">Request Changes</button>
+        <button type="button" (click)="goBack()" class="btn btn-primary" name="button">Back</button>
       </div>
       <div class="col-md-8">
-        <label for="basic-url">Your vanity URL</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">https://example.com/users/ </span>
+        <div class="row">
+          <div class="col-md-4">
+            <button style="float:right" type="button" [disabled]="requestButtonStatus"class="btn btn-danger" (click)="requestOnClick()" name="button">Request Changes</button>
           </div>
-          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+          <div class="col-md-6">
+            <input placeholder="Requested changes.."(keyup)="onKey($event)" type="text"class="form-control" id="basic-url" aria-describedby="basic-addon3">
+          </div>
         </div>
       </div>
       <div class="col-md-2">
