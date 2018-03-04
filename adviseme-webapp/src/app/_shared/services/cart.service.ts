@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { Observable } from 'rxjs/Observable'
+
 import { Cart } from '../models/cart';
 
 /**
@@ -29,7 +31,7 @@ export class CartService {
       @param {string} _id
       @returns {json}
     */
-    getById(_id: string) {
+    getById(_id: string): Observable<Cart> {
         return this.http.get('/api/carts/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
 

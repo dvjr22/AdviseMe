@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
+import { User } from '../../../_shared/models/user';
+import { UserService } from '../../../_shared/services/user.service';
+import { Cart } from '../../../_shared/models/cart';
+import { CartService } from '../../../_shared/services/cart.service';
 import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
 import { flattenObject } from './flattenObject';
 
@@ -16,6 +20,8 @@ import { flattenObject } from './flattenObject';
 })
 
 export class RequestClassesComponent implements OnInit {
+
+    currentUser: User;
     /**
       Configuration for the table
     */
@@ -49,6 +55,16 @@ export class RequestClassesComponent implements OnInit {
       },
     };
 
+    onUserRowSelect(event) {
+      console.log('user row select: ', event.selected);
+      //this.selected = event.selected;
+      //console.log('selected list: ', this.selected);
+    };
+
+    addToCart() {
+      console.log(this.cartService.getById(this.currentUser.studentID).subscribe((res: Cart) => { res }).toString());
+    }
+
     /**
       The data that will go into the table
     */
@@ -57,7 +73,7 @@ export class RequestClassesComponent implements OnInit {
     /**
       Initializes new names for the imports
     */
-    constructor(private classService: ClassService) {
+    constructor(private classService: ClassService, private cartService: CartService) {
     }
 
     /**
@@ -65,7 +81,7 @@ export class RequestClassesComponent implements OnInit {
         @returns {none}
     */
     ngOnInit() {
-
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
