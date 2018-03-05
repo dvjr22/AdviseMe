@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   template: `
     <div class="btn-group btn-group-full-width" role="group">
-          <button  (click)="goClassView()" type="button" class="btn btn-primary btn-group-icon btn-group-divider btn-fixed">
+          <button  (click)="goClassView()" type="button" class="btn btn-success btn-group-icon btn-group-divider btn-fixed">
             <i class="ion-information-circled"></i>
           </button>
   </div>
