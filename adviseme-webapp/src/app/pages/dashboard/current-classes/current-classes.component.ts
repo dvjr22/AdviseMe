@@ -28,6 +28,7 @@ export class CurrentClassesComponent implements OnInit {
       },
       grade: {
         title: 'Status',
+        filter: false,
       },
     },
   };
