@@ -53,6 +53,7 @@
     "normalize.css": "6.0.0",
     "pace-js": "^1.0.2",
     "popper.js": "^1.12.9",
+    "primeng": "^5.2.0",
     "roboto-fontface": "0.8.0",
     "rxjs": "^5.4.2",
     "socicon": "^3.0.5",

@@ -6,6 +6,7 @@ import { UserService } from '../../_shared/services/user.service';
 import { CartService } from '../../_shared/services/cart.service';
 import { flattenObject } from './flattenObject';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'ngx-app-cart',
@@ -34,7 +35,8 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService,
     private userService: UserService,
-    private router: Router) { }
+    private router: Router,
+    private messageService: MessageService) { }
 
   ngOnInit() {
     this.loadData();
@@ -52,6 +54,7 @@ export class CartComponent implements OnInit {
     this.cartService.update(this.currentCart);
     // Reload the data in the table, should be blank if the cart is sent
     this.loadData();
+    this.messageService.add({severity: 'success', summary: 'Cart Submit', detail: 'Successfully submitted your cart'});
   }
 
   /**
