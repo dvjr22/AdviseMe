@@ -7,6 +7,7 @@ import { AppointmentService } from '../../../_shared/services/appointment.servic
 import { NotificationService } from '../../../_shared/services/notification.service';
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 /**
  Component:
@@ -39,7 +40,8 @@ export class AppointmentComponent implements OnInit {
               private appointmentService: AppointmentService,
               private ngbDateParserFormatter: NgbDateParserFormatter,
               protected router: Router,
-              private notificationService: NotificationService) { }
+              private notificationService: NotificationService,
+              private messageService: MessageService) { }
 
 
   /**
@@ -65,9 +67,21 @@ export class AppointmentComponent implements OnInit {
     this.newAppointment.status = this.currentUser.status.toString();
     // have to use a formatter because ng date picker uses ISO format instead of the standard date format
     this.newAppointment.date = new Date(this.ngbDateParserFormatter.format(this.model));
-    this.appointmentService.create(this.newAppointment).subscribe();
+    try {
+      this.appointmentService.create(this.newAppointment).subscribe();
+    } catch (e) {
+      this.messageService.add({severity: 'error',
+      summary: 'Error Sending Appointment',
+      detail: 'An error has occured while sending your appointment'});
+    } finally {
+      this.messageService.add({severity: 'success',
+      summary: 'Successfully Submitted Appointment',
+      detail: 'Appointment was sent to your advisor'});
+    }
+
     this.notificationService.sendNotification(JSON.stringify(this.newAppointment));
-    this.router.navigate(['pages/advisement/view-appointment']);
+
+    // this.router.navigate(['pages/advisement/view-appointment']);
   }
 
 }
