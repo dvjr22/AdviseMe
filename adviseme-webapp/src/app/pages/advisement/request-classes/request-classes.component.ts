@@ -9,6 +9,8 @@ import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
 import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
 import { flattenObject } from './flattenObject';
+import { MessageService } from 'primeng/components/common/messageservice';
+
 
 /**
   Complete course catalog
@@ -61,7 +63,10 @@ export class RequestClassesComponent implements OnInit {
     /**
       Initializes new names for the imports
     */
-    constructor(private classService: ClassService, private cartService: CartService, private userService: UserService) {
+    constructor(private classService: ClassService,
+      private cartService: CartService,
+      private userService: UserService,
+      private messageService: MessageService) {
     }
 
     /**
@@ -77,19 +82,33 @@ export class RequestClassesComponent implements OnInit {
       @returns {none}
     */
     addToCart(event) {
-      // HACK: Redo all of this shit after beta
-      for (let i = 0; i < this.selectedClasses.length; i++) {
-        // For each of the selected classes get the course information and set it to the cart.
-        // Then update the cart model. This overwrites insead of updates it currently.
-        this.classService.getClass(this.selectedClasses[i]._id).subscribe((res: any) => {
-            if (this.cart.classes === undefined) {
-              this.cart.classes = [res];
-            } else {
-              this.cart.classes[i] = res;
+      // Make sure a class was selected
+      if (this.selectedClasses !== undefined) {
+        try {
+          // HACK: Redo all of this shit after beta
+          for (let i = 0; i < this.selectedClasses.length; i++) {
+            // For each of the selected classes get the course information and set it to the cart.
+            // Then update the cart model. This overwrites insead of updates it currently.
+            this.classService.getClass(this.selectedClasses[i]._id).subscribe((res: any) => {
+                if (this.cart.classes === undefined) {
+                  this.cart.classes = [res];
+                } else {
+                  this.cart.classes[i] = res;
+                }
+                this.cartService.update(this.cart);
+              });
             }
-            this.cartService.update(this.cart);
-          });
+        } catch (e) {
+          this.messageService.add({severity: 'error', summary: 'Error adding to Cart',
+            detail: 'An error has occured added those classes to your cart'});
+
+        } finally {
+          this.messageService.add({severity: 'success', summary: 'Added to Cart', detail: 'Classes were successfully added to your cart'});
         }
+      } else {
+        // No classes were selected
+        this.messageService.add({severity: 'warn', summary: 'No Classes Selected', detail: 'Please select a class to add to your cart'});
+      }
     }
     /**
         Gets all the classes flattens the object to add to the table

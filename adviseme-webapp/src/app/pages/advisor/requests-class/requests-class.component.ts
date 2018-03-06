@@ -6,6 +6,7 @@ import { flattenObject } from '../requests/flattenObject';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../_shared/services/notification.service';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 
 declare var require: any;
@@ -38,7 +39,8 @@ export class RequestsClassComponent implements OnInit {
   requestButtonStatus = true;
 
   constructor(protected route: ActivatedRoute, private cartService: CartService,
-    private notificationService: NotificationService, private router: Router) { }
+    private notificationService: NotificationService, private router: Router,
+    private messageService: MessageService) { }
 
   ngOnInit() {
     this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
@@ -67,9 +69,12 @@ export class RequestsClassComponent implements OnInit {
       JSON.stringify(
         {'message': 'Your advisor has requested changes to your Class Request. \
         Please see the attached comment for details. ---' + this.comment}));
+      this.messageService.add({severity: 'info',
+        summary: 'Changes Requested',
+        detail: 'Successfully sent comments to student'});
     this.comment = '';
     // Navigate back to the request screen
-    this.router.navigate(['/pages/advisor/requests']);
+    // this.router.navigate(['/pages/advisor/requests']);
     // Set the advisor field back to blank so that it will show up in the students profile
     this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
       this.cart = res.data;
@@ -97,8 +102,11 @@ export class RequestsClassComponent implements OnInit {
   approveOnClick() {
     // Send an SMS notification to the student
     this.notificationService.sendNotification(JSON.stringify({'message': 'Your Class Request has been approved!'}));
+    this.messageService.add({severity: 'success',
+      summary: 'Successfully Approved Request',
+      detail: 'The requested classes were succesfully approved'});
     // Navigate back to the requests screen
-    this.router.navigate(['/pages/advisor/requests']);
+    // this.router.navigate(['/pages/advisor/requests']);
   }
 
   /**
