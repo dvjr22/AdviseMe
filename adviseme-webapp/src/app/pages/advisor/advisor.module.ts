@@ -11,12 +11,15 @@ import { AppointmentsComponent } from './appointments/appointments.component';
 import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
 import { RequestsClassComponent } from './requests-class/requests-class.component';
 
+import { GrowlModule } from 'primeng/growl';
+
 @NgModule({
   imports: [
     CommonModule,
     ThemeModule,
     Ng2SmartTableModule,
     AdvisorRoutingModule,
+    GrowlModule,
   ],
   declarations: [
     ...routedComponents,
