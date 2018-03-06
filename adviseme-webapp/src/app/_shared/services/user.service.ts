@@ -71,6 +71,27 @@ export class UserService {
         return this.http.get('/api/users/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
 
+    /**
+      Calls api users service to get a current user
+
+      @param {string} id
+      @return {json}
+    */
+    getCurrentUser() {
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      if (this.currentUser !== null) {
+          this.headerDict = {
+            'Authorization': `Bearer ` + this.currentUser.token,
+            'Issuer': this.currentUser._id,
+          };
+
+          this.requestOptions = {
+            headers: new Headers(this.headerDict),
+          };
+      }
+        return this.http.get('/api/users/' + this.currentUser._id, this.requestOptions).map((response: Response) => response.json());
+    }
+
     // /**
     //   Calls api users service to create user
     //   @param {User} user
