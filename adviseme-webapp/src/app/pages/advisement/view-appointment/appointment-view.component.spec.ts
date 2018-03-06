@@ -8,7 +8,7 @@ describe('AppointmentViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppointmentViewComponent ]
+      declarations: [ AppointmentViewComponent ],
     })
     .compileComponents();
   }));
