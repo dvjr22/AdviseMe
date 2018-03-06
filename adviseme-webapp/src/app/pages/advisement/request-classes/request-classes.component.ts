@@ -9,6 +9,8 @@ import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
 import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
 import { flattenObject } from './flattenObject';
+import { MessageService } from 'primeng/components/common/messageservice';
+
 
 /**
   Complete course catalog
@@ -61,7 +63,10 @@ export class RequestClassesComponent implements OnInit {
     /**
       Initializes new names for the imports
     */
-    constructor(private classService: ClassService, private cartService: CartService, private userService: UserService) {
+    constructor(private classService: ClassService,
+      private cartService: CartService,
+      private userService: UserService,
+      private messageService: MessageService) {
     }
 
     /**
@@ -90,6 +95,7 @@ export class RequestClassesComponent implements OnInit {
             this.cartService.update(this.cart);
           });
         }
+        this.messageService.add({severity: 'success', summary: 'Added to Cart', detail: 'Classes were successfully added to your cart'});
     }
     /**
         Gets all the classes flattens the object to add to the table
