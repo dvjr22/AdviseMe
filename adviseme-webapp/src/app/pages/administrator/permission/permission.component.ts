@@ -7,6 +7,8 @@ import { UserService } from '../../../_shared/services/user.service';
 
 import { flattenObject } from '../../classes/courses/flattenObject';
 
+import { MessageService } from 'primeng/components/common/messageservice';
+
 @Component({
   selector: 'ngx-app-permission',
   templateUrl: './permission.component.html',
@@ -56,7 +58,8 @@ export class PermissionComponent implements OnInit {
     };
 
   source: LocalDataSource = new LocalDataSource();
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+    private messageService: MessageService) { }
 
   ngOnInit() {
     this.userService.getAll()
@@ -87,6 +90,9 @@ export class PermissionComponent implements OnInit {
       u.students = event.newData.students;
       this.userService.update(u).subscribe();
       event.confirm.resolve(event.newData);
+      this.messageService.add({severity: 'success',
+        summary: 'Success Updating User',
+        detail: 'Successfully updated user ' + event.newData.firstName + ' ' + event.newData.lastName + ' '});
     } else {
       event.confirm.reject();
     }

@@ -35,6 +35,9 @@ import { NotificationService } from './_shared/services/notification.service';
 import { ClassViewRenderComponent } from './_shared/services/class-view.render.component';
 import { CartViewRenderComponent } from './_shared/services/cart-view.render.component';
 
+// PrimeNG
+import { MessageService } from 'primeng/components/common/messageservice';
+import { GrowlModule } from 'primeng/growl';
 
 // Models
 import { User } from './_shared/models/user';
@@ -64,7 +67,7 @@ import { Class } from './_shared/models/class';
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-
+    GrowlModule,
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -80,6 +83,7 @@ import { Class } from './_shared/models/class';
     NbAuthService,
     ToasterService,
     NotificationService,
+    MessageService,
   ],
   entryComponents: [ClassViewRenderComponent,
   CartViewRenderComponent ] ,
