@@ -27,6 +27,7 @@ for (let i = 0; i < noOfStudents; i++) {
 	obj.lastName = last;
 	obj.role = "student"
 	obj.studentID = id;
+	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
 
 	obj.username = last + id; // unique user login
@@ -66,8 +67,9 @@ function makeTyler() {
 
 	obj.firstName = "Tyler"; // get random first name
 	obj.lastName = "Hall"; // get random last name
-	obj.role = "student"
-	obj.studentID = "tHall01"
+	obj.role = "student";
+	obj.studentID = "tHall01";
+	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
 
 	obj.username = "tbhall";
@@ -91,7 +93,8 @@ function makeStudent() {
 	obj.firstName = "Student"; // get random first name
 	obj.lastName = "Student"; // get random last name
 	obj.role = "student"
-	obj.studentID = "student01"
+	obj.studentID = "student01";
+	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
 
 	obj.username = "student";
@@ -114,9 +117,8 @@ function makeAdvisor() {
 
 	obj.firstName = "Advisor"; // get random first name
 	obj.lastName = "Advisor"; // get random last name
-	obj.role = "advisor"
-	obj.studentID = "advisor01"
-	obj.major = major(); // get major
+	obj.role = "advisor";
+	obj.studentID = "advisor01";
 
 	obj.username = "advisor";
 	obj.email = "advisor@email.sc.edu";
@@ -134,9 +136,8 @@ function makeAdmin() {
 
 	obj.firstName = "Admin"; // get random first name
 	obj.lastName = "Admin"; // get random last name
-	obj.role = "admin"
-	obj.studentID = "admin01"
-	obj.major = major(); // get major
+	obj.role = "admin";
+	obj.studentID = "admin01";
 
 	obj.username = "admin";
 	obj.email = "admin@email.sc.edu";
