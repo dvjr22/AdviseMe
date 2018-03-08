@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, ViewChild, NgModule, OnInit, AfterViewChecked, ChangeDetectorRef  } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
@@ -10,8 +10,8 @@ import { CartService } from '../../../_shared/services/cart.service';
 import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
 import { flattenObject } from './flattenObject';
 import { MessageService } from 'primeng/components/common/messageservice';
-
-
+import { Ng2SmartTableComponent } from 'ng2-smart-table/ng2-smart-table.component';
+import { Row } from 'ng2-smart-table/lib/data-set/row';
 /**
   Complete course catalog
 */
@@ -21,12 +21,14 @@ import { MessageService } from 'primeng/components/common/messageservice';
   styleUrls: ['./request-classes.component.scss'],
 })
 
-export class RequestClassesComponent implements OnInit {
+export class RequestClassesComponent implements OnInit, AfterViewChecked {
 
     // Class variables
     currentUser: User;
     cart: Cart;
-    selectedClasses;
+    selectedClasses: any[] = [];
+
+    @ViewChild('table') table: Ng2SmartTableComponent;
 
     /**
       Configuration for the table
@@ -66,7 +68,8 @@ export class RequestClassesComponent implements OnInit {
     constructor(private classService: ClassService,
       private cartService: CartService,
       private userService: UserService,
-      private messageService: MessageService) {
+      private messageService: MessageService,
+      private cdr: ChangeDetectorRef) {
     }
 
     /**
@@ -74,7 +77,17 @@ export class RequestClassesComponent implements OnInit {
       @returns {none}
     */
     onUserRowSelect(event) {
-      this.selectedClasses = event.selected;
+      console.log(event.selected);
+      for (let i = 0; i < event.selected.length; i++) {
+        console.log(event.selected[i]);
+        if (!this.selectedClasses.includes(event.selected[i])) {
+          this.selectedClasses.push(event.selected[i])
+        }
+
+      }
+      //this.selectedClasses = event.selected;
+      this.selectedClasses.concat(event.selected);
+      console.log(this.selectedClasses);
     }
 
     /**
@@ -120,8 +133,12 @@ export class RequestClassesComponent implements OnInit {
       // Get the current user model then get the cart by the associated studentID
       this.userService.getById(this.currentUser._id).subscribe((res: User) => {
         user = res;
-        this.cartService.getById(user.studentID).subscribe((res2: Cart) => {
+        this.cartService.getById(user.studentID).subscribe((res2: any) => {
           this.cart = res2;
+          const flatClasses = flattenObject(res2.data.classes);
+          this.selectedClasses = flatClasses;
+          console.log("Selectedclasses set");
+          console.log(this.selectedClasses)
           if (this.cart._id === undefined) {
             this.cart._id = user.studentID;
           }
@@ -129,7 +146,24 @@ export class RequestClassesComponent implements OnInit {
       });
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
+          console.log("classe");
+          console.log(res)
           this.source.load(flattenObject(res));
         });
+    }
+
+    ngAfterViewChecked(): void {
+      this.syncTable();
+    }
+
+    syncTable(): void {
+      this.table.grid.getRows().forEach((row) => {
+        console.log(row);
+        if (this.selectedClasses.find( r => r._id === row.getData()._id)) {
+          row.isSelected = true;
+        }
+      });
+
+      this.cdr.detectChanges();
     }
 }

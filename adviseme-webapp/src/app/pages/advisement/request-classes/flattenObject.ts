@@ -15,12 +15,12 @@ declare var require: any
 */
 export function flattenObject(ob) {
 
-  var flatten = require('flat');
-  var newOb = []
-
-  for (var i = 0; i < ob.length; i++) {
+  const flatten = require('flat');
+  const newOb = [];
+  for (let i = 0; i < ob.length; i++) {
     newOb.push(flatten(ob[i], { delimiter: '__' }, { maxDepth: 2 }));
   }
+
 
   return newOb;
 }
