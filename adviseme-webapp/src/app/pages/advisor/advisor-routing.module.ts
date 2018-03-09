@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdvisorComponent } from './advisor.component';
-import { RequestsComponent } from './requests/requests.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
+import { AllRequestsComponent } from './all-requests/all-requests.component';
+import { AdvisorAppointmentsComponent } from './advisor-appointments/advisor-appointments.component';
 import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
-import { RequestsClassComponent } from './requests-class/requests-class.component';
+import { StudentRequestComponent } from './student-requests/student-requests.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,13 +14,13 @@ const routes: Routes = [{
   component: AdvisorComponent,
   children: [{
     path: 'requests',
-    component: RequestsComponent,
+    component: AllRequestsComponent,
   } , {
     path: 'appointments',
-    component: AppointmentsComponent,
+    component: AdvisorAppointmentsComponent,
   } , {
-    path: 'requests-class/:id',
-    component: RequestsClassComponent,
+    path: 'student-request/:id',
+    component: StudentRequestComponent,
   }],
 }];
 
@@ -33,6 +33,7 @@ export class AdvisorRoutingModule { }
 
 export const routedComponents = [
   AdvisorComponent,
-  RequestsComponent,
-  AppointmentsComponent,
+  AllRequestsComponent,
+  StudentRequestComponent,
+  AdvisorAppointmentsComponent,
 ];

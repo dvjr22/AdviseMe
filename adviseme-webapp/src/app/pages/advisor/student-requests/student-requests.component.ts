@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
-import { flattenObject } from '../requests/flattenObject';
+import { flattenObject } from '../all-requests/flattenObject';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../_shared/services/notification.service';
@@ -12,10 +12,10 @@ import { MessageService } from 'primeng/components/common/messageservice';
 declare var require: any;
 @Component({
   selector: 'ngx-app-requests-class',
-  templateUrl: './requests-class.component.html',
-  styleUrls: ['./requests-class.component.scss'],
+  templateUrl: './student-requests.component.html',
+  styleUrls: ['./student-requests.component.scss'],
 })
-export class RequestsClassComponent implements OnInit {
+export class StudentRequestComponent implements OnInit {
 
   // Config for the table
   settings= {

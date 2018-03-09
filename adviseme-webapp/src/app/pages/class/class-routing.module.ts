@@ -30,6 +30,7 @@ export class ClassRoutingModule { }
   class and Children Components
 */
 export const routedComponents = [
+  CoursesComponent,
   ClassComponent,
   ClassViewComponent,
 ];
