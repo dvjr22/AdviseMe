@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ClassComponent } from './class.component';
 import { ClassViewComponent } from './class-view/class-view.component';
+import { CoursesComponent } from './courses/courses.component';
 
 // Children Routes of the class
 
@@ -12,6 +13,10 @@ const routes: Routes = [{
   children: [{
     path: 'class-view/:id',
     component: ClassViewComponent,
+  },
+  {
+    path: 'courses',
+    component: CoursesComponent,
   }],
 }];
 
