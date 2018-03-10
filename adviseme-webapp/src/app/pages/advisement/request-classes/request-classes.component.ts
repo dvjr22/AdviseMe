@@ -1,4 +1,5 @@
-import { Component, ViewChild, NgModule, OnInit, AfterViewChecked, ChangeDetectorRef  } from '@angular/core';
+import { Component, ViewChild, NgModule, OnInit, Input, SimpleChange,
+  OnChanges, AfterViewChecked, ChangeDetectorRef  } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
@@ -21,12 +22,12 @@ import { Row } from 'ng2-smart-table/lib/data-set/row';
   styleUrls: ['./request-classes.component.scss'],
 })
 
-export class RequestClassesComponent implements OnInit, AfterViewChecked {
+export class RequestClassesComponent implements OnInit, OnChanges {
 
     // Class variables
     currentUser: User;
     cart: Cart;
-    selectedClasses: any[] = [];
+    @Input() selectedClasses: any[] = [];
 
     @ViewChild('table') table: Ng2SmartTableComponent;
 
@@ -83,11 +84,11 @@ export class RequestClassesComponent implements OnInit, AfterViewChecked {
         if (!this.selectedClasses.includes(event.selected[i])) {
           this.selectedClasses.push(event.selected[i])
         }
-
       }
       //this.selectedClasses = event.selected;
       this.selectedClasses.concat(event.selected);
       console.log(this.selectedClasses);
+      this.syncTable();
     }
 
     /**
@@ -132,38 +133,49 @@ export class RequestClassesComponent implements OnInit, AfterViewChecked {
       let user: User;
       // Get the current user model then get the cart by the associated studentID
       this.userService.getById(this.currentUser._id).subscribe((res: User) => {
+        this.classService.getClasses()
+          .subscribe((res: Class[]) => {
+            this.source.load(flattenObject(res));
+            this.syncTable();
+          });
         user = res;
         this.cartService.getById(user.studentID).subscribe((res2: any) => {
           this.cart = res2;
           const flatClasses = flattenObject(res2.data.classes);
           this.selectedClasses = flatClasses;
-          console.log("Selectedclasses set");
-          console.log(this.selectedClasses)
+          //this.source.refresh();
+          this.syncTable();
           if (this.cart._id === undefined) {
             this.cart._id = user.studentID;
           }
         });
       });
-      this.classService.getClasses()
-        .subscribe((res: Class[]) => {
-          console.log("classe");
-          console.log(res)
-          this.source.load(flattenObject(res));
-        });
     }
+    timer = 100
+    /* ngAfterViewChecked(): void {
+       this.syncTable();
+     }*/
 
-    ngAfterViewChecked(): void {
-      this.syncTable();
+    ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+      console.log("Change is occuring");
+      for (let propName in changes) {
+        console.log(propName);
+      }
     }
 
     syncTable(): void {
-      this.table.grid.getRows().forEach((row) => {
-        console.log(row);
-        if (this.selectedClasses.find( r => r._id === row.getData()._id)) {
-          row.isSelected = true;
-        }
-      });
+      console.log("Syncing Table");
+      console.log(this.selectedClasses);
+      if (this.table.grid !== undefined) {
+        this.table.grid.getRows().forEach((row) => {
+          if (this.selectedClasses.find( r => r._id === row.getData()._id)) {
+            row.isSelected = true;
+            console.log('setting')
+          }
+        });
+        this.cdr.detectChanges();
 
-      this.cdr.detectChanges();
+      }
+      //console.log(this.table.grid.getRows().find( r => r.getData()._id === 'MATH141'));
     }
 }
