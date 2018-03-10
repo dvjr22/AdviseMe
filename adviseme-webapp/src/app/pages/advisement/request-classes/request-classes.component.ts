@@ -1,5 +1,5 @@
 import { Component, ViewChild, NgModule, OnInit, Input, SimpleChange,
-  OnChanges, AfterViewChecked, ChangeDetectorRef  } from '@angular/core';
+  OnChanges, AfterViewChecked, ChangeDetectorRef, AfterViewInit, AfterContentChecked  } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
@@ -22,7 +22,7 @@ import { Row } from 'ng2-smart-table/lib/data-set/row';
   styleUrls: ['./request-classes.component.scss'],
 })
 
-export class RequestClassesComponent implements OnInit, OnChanges {
+export class RequestClassesComponent implements OnInit, AfterContentChecked {
 
     // Class variables
     currentUser: User;
@@ -136,7 +136,7 @@ export class RequestClassesComponent implements OnInit, OnChanges {
         this.classService.getClasses()
           .subscribe((res: Class[]) => {
             this.source.load(flattenObject(res));
-            this.syncTable();
+        //    this.syncTable();
           });
         user = res;
         this.cartService.getById(user.studentID).subscribe((res2: any) => {
@@ -144,17 +144,24 @@ export class RequestClassesComponent implements OnInit, OnChanges {
           const flatClasses = flattenObject(res2.data.classes);
           this.selectedClasses = flatClasses;
           //this.source.refresh();
-          this.syncTable();
+        //  this.syncTable();
           if (this.cart._id === undefined) {
             this.cart._id = user.studentID;
           }
         });
       });
     }
-    timer = 100
+    /*ngAfterViewInit() {
+      this.syncTable();
+    }*/
+  //  timer = 100
     /* ngAfterViewChecked(): void {
        this.syncTable();
      }*/
+
+    ngAfterContentChecked(): void {
+      this.syncTable();
+    }
 
     ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
       console.log("Change is occuring");
