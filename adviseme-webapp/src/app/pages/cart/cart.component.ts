@@ -18,17 +18,10 @@ export class CartComponent implements OnInit {
   currentUser: User;
   // configuration for the table
   settings= {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-      confirmCreate: true,
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-      confirmSave: true,
+    mode: 'inline',
+    actions: {
+      add: false,
+      edit: false,
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
@@ -91,12 +84,31 @@ export class CartComponent implements OnInit {
         this.currentCart = res2.data;
         // If the advisor field is blank then show the cart.
         // Otherwise it has been sent to the advisor
-        if (this.currentCart.advisor === '' || this.currentCart.advisor === undefined) {
-          this.source.load(flattenObject(this.currentCart.classes));
+        if (this.currentCart !== null) {
+          if (this.currentCart.advisor === '' || this.currentCart.advisor === undefined) {
+            this.source.load(flattenObject(this.currentCart.classes));
+          } else {
+            this.source.load([]);
+          }
         } else {
           this.source.load([]);
         }
       });
     });
+  }
+
+  onDeleteConfirm(event) {
+    if (window.confirm('Are you sure you want to delete?')) {
+      console.log(event.data);
+      console.log(this.currentCart.classes)
+      const deletedItem = this.currentCart.classes.find(x => x._id === event.data.prefix + event.data.courseNo);
+      const index = this.currentCart.classes.findIndex(d => d._id === event.data.prefix + event.data.courseNo); //find index in your array
+      this.currentCart.classes.splice(index, 1);//remove element from array
+      console.log(this.currentCart.classes);
+      this.cartService.update(this.currentCart);
+      event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
   }
 }
