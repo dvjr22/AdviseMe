@@ -1,5 +1,4 @@
-import { Component, ViewChild, NgModule, OnInit, Input, SimpleChange,
-  OnChanges, AfterViewChecked, ChangeDetectorRef, AfterViewInit, AfterContentChecked  } from '@angular/core';
+import { Component, ViewChild, NgModule, OnInit, ChangeDetectorRef, AfterContentChecked  } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
@@ -27,8 +26,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
     // Class variables
     currentUser: User;
     cart: Cart;
-    @Input() selectedClasses: any[] = [];
-
+    selectedClasses: any[] = [];
     @ViewChild('table') table: Ng2SmartTableComponent;
 
     /**
@@ -74,21 +72,42 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
     }
 
     /**
+        Gets all the classes flattens the object to add to the table
+        @returns {none}
+    */
+    ngOnInit() {
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      let user: User;
+      // Get the current user model then get the cart by the associated studentID
+      this.userService.getById(this.currentUser._id).subscribe((res: User) => {
+        user = res;
+        this.cartService.getById(user.studentID).subscribe((res2: any) => {
+          this.cart = res2;
+          const flatClasses = flattenObject(res2.data.classes);
+          this.selectedClasses = flatClasses;
+          if (this.cart._id === undefined) {
+            this.cart._id = user.studentID;
+          }
+        });
+      });
+      this.classService.getClasses()
+        .subscribe((res2: Class[]) => {
+          this.source.load(flattenObject(res2));
+      });
+    }
+
+    /**
       Triggers when a checkbox is selected
       @returns {none}
     */
     onUserRowSelect(event) {
-      console.log(event.selected);
       for (let i = 0; i < event.selected.length; i++) {
-        console.log(event.selected[i]);
         if (!this.selectedClasses.includes(event.selected[i])) {
-          this.selectedClasses.push(event.selected[i])
+          this.selectedClasses.push(event.selected[i]);
         }
       }
-      //this.selectedClasses = event.selected;
       this.selectedClasses.concat(event.selected);
-      console.log(this.selectedClasses);
-      this.syncTable();
+    //  this.syncTable();
     }
 
     /**
@@ -124,65 +143,26 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
         this.messageService.add({severity: 'warn', summary: 'No Classes Selected', detail: 'Please select a class to add to your cart'});
       }
     }
-    /**
-        Gets all the classes flattens the object to add to the table
-        @returns {none}
-    */
-    ngOnInit() {
-      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      let user: User;
-      // Get the current user model then get the cart by the associated studentID
-      this.userService.getById(this.currentUser._id).subscribe((res: User) => {
-        this.classService.getClasses()
-          .subscribe((res: Class[]) => {
-            this.source.load(flattenObject(res));
-        //    this.syncTable();
-          });
-        user = res;
-        this.cartService.getById(user.studentID).subscribe((res2: any) => {
-          this.cart = res2;
-          const flatClasses = flattenObject(res2.data.classes);
-          this.selectedClasses = flatClasses;
-          //this.source.refresh();
-        //  this.syncTable();
-          if (this.cart._id === undefined) {
-            this.cart._id = user.studentID;
-          }
-        });
-      });
-    }
-    /*ngAfterViewInit() {
-      this.syncTable();
-    }*/
-  //  timer = 100
-    /* ngAfterViewChecked(): void {
-       this.syncTable();
-     }*/
 
+    /**
+     Setting the checkboxes when the content has changed
+     */
     ngAfterContentChecked(): void {
       this.syncTable();
     }
 
-    ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-      console.log("Change is occuring");
-      for (let propName in changes) {
-        console.log(propName);
-      }
-    }
-
+    /**
+     Syncing the table selected rows with the selectedClasses list
+     @returns {none}
+     */
     syncTable(): void {
-      console.log("Syncing Table");
-      console.log(this.selectedClasses);
       if (this.table.grid !== undefined) {
         this.table.grid.getRows().forEach((row) => {
           if (this.selectedClasses.find( r => r._id === row.getData()._id)) {
             row.isSelected = true;
-            console.log('setting')
           }
         });
         this.cdr.detectChanges();
-
       }
-      //console.log(this.table.grid.getRows().find( r => r.getData()._id === 'MATH141'));
     }
 }
