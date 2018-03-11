@@ -1,3 +1,4 @@
+<p-growl [(value)]="msgs"></p-growl>
 <nb-card>
       <nb-card-header>Profile</nb-card-header>
       <nb-card-body>
@@ -39,6 +40,15 @@
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-university" aria-hidden="true"></i></span>
             <span class="form-control">{{currentUser.major | uppercase}}</span>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="ion-ios-telephone" aria-hidden="true"></i></span>
+            <input class="form-control" placeholder="{{currentUser.phoneNumber}}" (keyup)="onKey($event)">
+            <span class="input-group-btn">
+              <span class="btn btn-success" (click)="updatePhoneNumber($event)">
+                Update Phone Number
+              </span>
+            </span>
           </div>
       </form>
       </nb-card-body>
