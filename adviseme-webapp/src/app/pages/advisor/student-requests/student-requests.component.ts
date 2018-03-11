@@ -65,13 +65,14 @@ export class StudentRequestComponent implements OnInit {
   */
   requestOnClick() {
     // Send an SMS notification
-    this.notificationService.sendNotification(
-      JSON.stringify(
-        {'message': 'Your advisor has requested changes to your Class Request. \
-        Please see the attached comment for details. ---' + this.comment}));
-      this.messageService.add({severity: 'info',
-        summary: 'Changes Requested',
-        detail: 'Successfully sent comments to student'});
+    // this.notificationService.sendNotification(
+    //   JSON.stringify(
+    //     {'Your advisor has requested changes to your Class Request. \
+    //     Please see the attached comment for details. ---' + this.comment},
+    //   ));
+    //   this.messageService.add({severity: 'info',
+    //     summary: 'Changes Requested',
+    //     detail: 'Successfully sent comments to student'});
     this.comment = '';
     // Navigate back to the request screen
     // this.router.navigate(['/pages/advisor/requests']);
@@ -101,7 +102,7 @@ export class StudentRequestComponent implements OnInit {
   */
   approveOnClick() {
     // Send an SMS notification to the student
-    this.notificationService.sendNotification(JSON.stringify({'message': 'Your Class Request has been approved!'}));
+  //  this.notificationService.sendNotification(JSON.stringify({'message': 'Your Class Request has been approved!'}));
     this.messageService.add({severity: 'success',
       summary: 'Successfully Approved Request',
       detail: 'The requested classes were succesfully approved'});

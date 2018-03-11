@@ -78,9 +78,9 @@ export class AppointmentComponent implements OnInit {
       summary: 'Successfully Submitted Appointment',
       detail: 'Appointment was sent to your advisor'});
     }
-
-    this.notificationService.sendNotification(JSON.stringify(this.newAppointment));
-
+    if (this.currentUser.phoneNumber !== null || this.currentUser.phoneNumber !== '' ) {
+      this.notificationService.sendNotification(JSON.stringify(this.newAppointment), this.currentUser.phoneNumber);
+    }
     // this.router.navigate(['pages/advisement/view-appointment']);
   }
 
