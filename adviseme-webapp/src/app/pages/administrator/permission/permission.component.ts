@@ -99,24 +99,27 @@ export class PermissionComponent implements OnInit {
     }
   }
   onCreateConfirm(event) {
-    if (window.confirm('Are you sure you want to save?')) {
-      console.log(event.newData);
-      const u = new User();
-      u.password = 'password'; // HACK: Figure out a better way to do this
-      u.firstName = event.newData.firstName;
-      u.lastName = event.newData.lastName;
-      u.email = event.newData.email;
-      u.role = event.newData.role;
-      u.status = event.newData.status;
-      u.major = event.newData.major;
-      this.userService.create(u).subscribe();
+    const u = new User();
+    u.password = 'password'; // HACK: Figure out a better way to do this
+    u.firstName = event.newData.firstName;
+    u.lastName = event.newData.lastName;
+    u.email = event.newData.email;
+    u.role = event.newData.role;
+    u.status = event.newData.status;
+    u.major = event.newData.major;
+    this.userService.create(u).subscribe();
+    event.confirm.resolve(event.newData);
+    this.messageService.add({severity: 'success',
+      summary: 'Success Creating User',
+      detail: 'Successfully created a new user ' + event.newData.firstName + ' ' + event.newData.lastName + ' '});
+  }
+  onDeleteConfirm(event) {
+    if (window.confirm('Are you user you want to delete this user?')) {
+      this.userService.delete(event.data._id).subscribe();
       event.confirm.resolve(event.newData);
-      this.messageService.add({severity: 'success',
-        summary: 'Success Creating User',
-        detail: 'Successfully created a new user ' + event.newData.firstName + ' ' + event.newData.lastName + ' '});
-      } else {
-        event.confirm.reject();
-      }
+    } else {
+      event.confirm.reject();
+    }
   }
 
 }
