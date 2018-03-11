@@ -5,6 +5,8 @@ import { UserService } from '../../../_shared/services/user.service';
 
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
+import { MessageService } from 'primeng/components/common/messageservice';
+
 /**
   Component:
     Allows a user to look at an overview of their profile
@@ -39,7 +41,8 @@ export class ProfileViewComponent implements OnInit {
   /**
     Initializes new names for the imports
   */
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+    private messageService: MessageService) {
   }
 
   /**
@@ -55,5 +58,17 @@ export class ProfileViewComponent implements OnInit {
           this.emailBegin = this.emailArray[0];
           this.emailEnding = '@' + this.emailArray[1];
   });
+  }
+
+  updatePhoneNumber(event) {
+    this.currentUser.phoneNumber = this.values;
+    this.userService.update(this.currentUser);
+    this.messageService.add({severity: 'success',
+      summary: 'Successful Update',
+      detail: 'Successfully updated your phone number to ' + this.values});
+  }
+  values = '';
+  onKey(event: any) { // without type info
+    this.values = event.target.value;
   }
 }
