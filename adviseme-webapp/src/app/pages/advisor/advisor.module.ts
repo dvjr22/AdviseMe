@@ -5,11 +5,11 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ThemeModule } from '../../@theme/theme.module';
 
 import { AdvisorRoutingModule, routedComponents } from './advisor-routing.module';
-import { RequestsComponent } from './requests/requests.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
+import { AllRequestsComponent } from './all-requests/all-requests.component';
+import { AdvisorAppointmentsComponent } from './advisor-appointments/advisor-appointments.component';
 
 import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
-import { RequestsClassComponent } from './requests-class/requests-class.component';
+import { StudentRequestComponent } from './student-requests/student-requests.component';
 
 import { GrowlModule } from 'primeng/growl';
 
@@ -23,7 +23,7 @@ import { GrowlModule } from 'primeng/growl';
   ],
   declarations: [
     ...routedComponents,
-    RequestsClassComponent,
+    StudentRequestComponent,
   ],
   providers: [
     CanActivateAdvisor,
