@@ -31,6 +31,10 @@ export class ProfileViewComponent implements OnInit {
     Email starting at the @
   */
   emailEnding: string;
+  /**
+    Phone Number
+  */
+  phoneNumber: string;
 
   /**
     Initializes new names for the imports

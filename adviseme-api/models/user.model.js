@@ -58,6 +58,9 @@ var UserSchema = new mongoose.Schema({
       required: true,
       trim: true,
     },
+    phoneNumber: {
+      type: String,
+    },
 
     //Student
     advisor: Schema.ObjectId,

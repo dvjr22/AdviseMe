@@ -25,6 +25,7 @@ export class User {
     classID: string;
     grade: string;
   }];
+  phoneNumber: string;
 
   // Advisor Role
   students: string[];
