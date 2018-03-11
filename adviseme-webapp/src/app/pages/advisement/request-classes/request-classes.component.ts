@@ -82,11 +82,20 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       this.userService.getById(this.currentUser._id).subscribe((res: User) => {
         user = res;
         this.cartService.getById(user.studentID).subscribe((res2: any) => {
-          this.cart = res2;
-          const flatClasses = flattenObject(res2.data.classes);
-          this.selectedClasses = flatClasses;
-          if (this.cart._id === undefined) {
-            this.cart._id = user.studentID;
+          console.log(res2);
+          if (res2.data !== null) {
+            this.cart = res2.data
+            const flatClasses = flattenObject(res2.data.classes);
+            this.selectedClasses = flatClasses;
+            if (this.cart._id === undefined) {
+              this.cart._id = user.studentID;
+            }
+          } else {
+            // Create the cart
+            const newCart: Cart = new Cart();
+            newCart._id = user.studentID;
+            this.cartService.create(newCart);
+            this.cart = newCart;
           }
         });
       });
