@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, ViewChild, NgModule, OnInit, ChangeDetectorRef, AfterContentChecked  } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
@@ -10,8 +10,8 @@ import { CartService } from '../../../_shared/services/cart.service';
 import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
 import { flattenObject } from './flattenObject';
 import { MessageService } from 'primeng/components/common/messageservice';
-
-
+import { Ng2SmartTableComponent } from 'ng2-smart-table/ng2-smart-table.component';
+import { Row } from 'ng2-smart-table/lib/data-set/row';
 /**
   Complete course catalog
 */
@@ -21,12 +21,13 @@ import { MessageService } from 'primeng/components/common/messageservice';
   styleUrls: ['./request-classes.component.scss'],
 })
 
-export class RequestClassesComponent implements OnInit {
+export class RequestClassesComponent implements OnInit, AfterContentChecked {
 
     // Class variables
     currentUser: User;
     cart: Cart;
-    selectedClasses;
+    selectedClasses: any[] = [];
+    @ViewChild('table') table: Ng2SmartTableComponent;
 
     /**
       Configuration for the table
@@ -70,7 +71,42 @@ export class RequestClassesComponent implements OnInit {
     constructor(private classService: ClassService,
       private cartService: CartService,
       private userService: UserService,
-      private messageService: MessageService) {
+      private messageService: MessageService,
+      private cdr: ChangeDetectorRef) {
+    }
+
+    /**
+        Gets all the classes flattens the object to add to the table
+        @returns {none}
+    */
+    ngOnInit() {
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      let user: User;
+      // Get the current user model then get the cart by the associated studentID
+      this.userService.getById(this.currentUser._id).subscribe((res: User) => {
+        user = res;
+        this.cartService.getById(user.studentID).subscribe((res2: any) => {
+          console.log(res2);
+          if (res2.data !== null) {
+            this.cart = res2.data
+            const flatClasses = flattenObject(res2.data.classes);
+            this.selectedClasses = flatClasses;
+            if (this.cart._id === undefined) {
+              this.cart._id = user.studentID;
+            }
+          } else {
+            // Create the cart
+            const newCart: Cart = new Cart();
+            newCart._id = user.studentID;
+            this.cartService.create(newCart);
+            this.cart = newCart;
+          }
+        });
+      });
+      this.classService.getClasses()
+        .subscribe((res2: Class[]) => {
+          this.source.load(flattenObject(res2));
+      });
     }
 
     /**
@@ -78,7 +114,13 @@ export class RequestClassesComponent implements OnInit {
       @returns {none}
     */
     onUserRowSelect(event) {
-      this.selectedClasses = event.selected;
+      for (let i = 0; i < event.selected.length; i++) {
+        if (!this.selectedClasses.includes(event.selected[i])) {
+          this.selectedClasses.push(event.selected[i]);
+        }
+      }
+      this.selectedClasses.concat(event.selected);
+    //  this.syncTable();
     }
 
     /**
@@ -114,26 +156,26 @@ export class RequestClassesComponent implements OnInit {
         this.messageService.add({severity: 'warn', summary: 'No Classes Selected', detail: 'Please select a class to add to your cart'});
       }
     }
+
     /**
-        Gets all the classes flattens the object to add to the table
-        @returns {none}
-    */
-    ngOnInit() {
-      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      let user: User;
-      // Get the current user model then get the cart by the associated studentID
-      this.userService.getById(this.currentUser._id).subscribe((res: User) => {
-        user = res;
-        this.cartService.getById(user.studentID).subscribe((res2: Cart) => {
-          this.cart = res2;
-          if (this.cart._id === undefined) {
-            this.cart._id = user.studentID;
+     Setting the checkboxes when the content has changed
+     */
+    ngAfterContentChecked(): void {
+      this.syncTable();
+    }
+
+    /**
+     Syncing the table selected rows with the selectedClasses list
+     @returns {none}
+     */
+    syncTable(): void {
+      if (this.table.grid !== undefined) {
+        this.table.grid.getRows().forEach((row) => {
+          if (this.selectedClasses.find( r => r._id === row.getData()._id)) {
+            row.isSelected = true;
           }
         });
-      });
-      this.classService.getClasses()
-        .subscribe((res: Class[]) => {
-          this.source.load(flattenObject(res));
-        });
+        this.cdr.detectChanges();
+      }
     }
 }

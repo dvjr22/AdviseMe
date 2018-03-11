@@ -15,6 +15,7 @@ exports.createCart = async function(req, res){
     var createdCart = await cartService.createCart(newCart)
     return res.status(201).json({status:201, data: createCart, message: "Successfully Created Cart"})
   }catch(e){
+    console.log('here')
     return res.status(500).json({status: 500, message: e.message})
   }
 }
@@ -46,7 +47,7 @@ exports.getCartById = async function (req, res) {
     return res.status(200).json({status: 200, data: cart, message: "Successfully received Cart"})
   }catch(e){
     //return error code response with error message
-    return res.status(400).json({status: 400, message: e.message})
+    return res.status(500).json({status: 500, message: e.message})
   }
 
 }
