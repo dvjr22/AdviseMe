@@ -1,9 +1,9 @@
 <p-growl [(value)]="msgs"></p-growl>
 <nb-card>
   <nb-card-header>
-    <span>Edit Permissions</span>
+    <span>Edit Permissins</span>
   </nb-card-header>
   <nb-card-body>
-    <ng2-smart-table (editConfirm)="onSaveConfirm($event)" [settings]="settings" [source]="source"></ng2-smart-table>
+    <ng2-smart-table (createConfirm)="onCreateConfirm($event)" (editConfirm)="onSaveConfirm($event)" [settings]="settings" [source]="source"></ng2-smart-table>
   </nb-card-body>
 </nb-card>
