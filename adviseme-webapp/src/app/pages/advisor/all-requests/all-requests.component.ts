@@ -9,10 +9,10 @@ import { UserService } from '../../../_shared/services/user.service';
 
 @Component({
   selector: 'ngx-app-requests',
-  templateUrl: './requests.component.html',
-  styleUrls: ['./requests.component.scss'],
+  templateUrl: './all-requests.component.html',
+  styleUrls: ['./all-requests.component.scss'],
 })
-export class RequestsComponent implements OnInit {
+export class AllRequestsComponent implements OnInit {
 
   // Config for the table
   settings= {

@@ -32,6 +32,10 @@ export class RequestClassesComponent implements OnInit {
       Configuration for the table
     */
     settings = {
+      pager: {
+        display: false,
+        // perPage: 20,
+      },
       selectMode: 'multi',
       actions: false,
       columns: {

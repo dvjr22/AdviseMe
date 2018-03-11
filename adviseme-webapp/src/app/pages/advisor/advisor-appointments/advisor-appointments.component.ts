@@ -5,10 +5,10 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
   selector: 'ngx-app-appointments',
-  templateUrl: './appointments.component.html',
-  styleUrls: ['./appointments.component.scss'],
+  templateUrl: './advisor-appointments.component.html',
+  styleUrls: ['./advisor-appointments.component.scss'],
 })
-export class AppointmentsComponent implements OnInit {
+export class AdvisorAppointmentsComponent implements OnInit {
   /**
    Variable to store all the appointments for the user collected from the api
   */

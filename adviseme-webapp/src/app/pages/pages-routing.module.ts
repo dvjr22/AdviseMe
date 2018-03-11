@@ -22,10 +22,6 @@ const routes: Routes = [{
     loadChildren: './profile/profile.module#ProfileModule',
   },
   {
-      path: 'classes',
-      loadChildren: './classes/classes.module#ClassesModule',
-  },
-  {
     path: 'advisement',
     loadChildren: './advisement/advisement.module#AdvisementModule',
   },

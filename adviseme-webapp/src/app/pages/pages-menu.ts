@@ -15,9 +15,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: 'Classes',
+    title: 'Request Classes',
     icon: 'nb-list',
-    link: '/pages/classes/courses',
+    link: '/pages/advisement/request-classes',
   },
   {
     title: 'Advisement',
@@ -30,10 +30,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'View Appointments',
         link: '/pages/advisement/view-appointment',
-      },
-      {
-        title: 'Request Classes (placeholder)',
-        link: '/pages/advisement/request-classes',
       },
     ],
   },
@@ -74,11 +70,6 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
         link: '/pages/administrator/editcourses',
       },
     ],
-  },
-  {
-    title: 'Classes',
-    icon: 'nb-list',
-    link: '/pages/classes/courses',
   },
   {
     title: 'Profile',
@@ -122,7 +113,7 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
   {
     title: 'Classes',
     icon: 'nb-list',
-    link: '/pages/classes/courses',
+    link: '/pages/class/courses',
   },
   {
     title: 'Profile',
