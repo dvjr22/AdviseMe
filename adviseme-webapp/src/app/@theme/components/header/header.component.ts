@@ -25,7 +25,17 @@ export class HeaderComponent implements OnInit {
               private router: Router) {
   }
 
-  userMenu = [{ title: 'Profile', link: '/pages/profile/profile-view' }, { title: 'Log out', link: '/auth/logout' }];
+  userMenu = [
+    {
+      title: 'Cart',
+      link: '/pages/cart',
+    }, {
+      title: 'Profile',
+      link: '/pages/profile/profile-view',
+    }, {
+      title: 'Log out',
+      link: '/auth/logout',
+    }];
 
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
