@@ -7,6 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('adviseme-api:server');
 var http = require('http');
+var https = require('https');
+var fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
@@ -15,11 +17,25 @@ var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+
+
 /**
  * Create HTTP server.
  */
 
 var server = http.createServer(app);
+
+/**
+ * Create HTTPS server.
+ */
+if(process.env.SSL){
+  var credentials = {key: privateKey, cert: certificate};
+  var privateKey = fs.readFileSync()
+  var httpsServer = https.createServer(credentials, app);
+  httpsServer.listen(443);
+  httpsServer.on('error', onError);
+  httpsServer.on('listening', onListening);
+}
 
 /**
  * Listen on provided port, on all network interfaces.
