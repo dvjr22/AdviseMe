@@ -72,7 +72,8 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       private cartService: CartService,
       private userService: UserService,
       private messageService: MessageService,
-      private cdr: ChangeDetectorRef) {
+      private cdr: ChangeDetectorRef,
+      private router: Router) {
     }
 
     /**
@@ -150,6 +151,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
 
         } finally {
           this.messageService.add({severity: 'success', summary: 'Added to Cart', detail: 'Classes were successfully added to your cart'});
+          this.router.navigate(['/pages/cart']);
         }
       } else {
         // No classes were selected
