@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../_shared/models/user';
 import { UserService } from '../../_shared/services/user.service';
@@ -12,5 +12,27 @@ import { UserService } from '../../_shared/services/user.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent  implements OnInit {
+  /**
+    Getting the current user
+  */
+  currentUser: User;
+  role: any;
+
+  /**
+    Initializes new names for the imports
+  */
+  constructor(private userService: UserService) {
+  }
+
+  ngOnInit() {
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.userService.getById(this.currentUser._id)
+        .subscribe(res => {
+          this.currentUser = res;
+          this.role = this.currentUser.role;
+        },
+        );
+  }
+
   }
