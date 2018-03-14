@@ -2,21 +2,21 @@ import { Component, OnInit } from '@angular/core';
 
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { User } from '../../../_shared/models/user';
-import { ClassService } from '../../../_shared/services/class.service';
-import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
+import { User } from '../../../../_shared/models/user';
+import { ClassService } from '../../../../_shared/services/class.service';
+import {CapitalizePipe} from '../../../../@theme/pipes/capitalize.pipe';
 
 /**
   Component:
-    For the past classes that the user is in
+    For the current classes that the user is in
 */
 @Component({
-  selector: 'ngx-previous-classes',
-  styleUrls: ['./previous-classes.component.scss'],
-  templateUrl: './previous-classes.component.html',
+  selector: 'ngx-current-classes',
+  styleUrls: ['./current-classes.component.scss'],
+  templateUrl: './current-classes.component.html',
 })
 
-export class PreviousClassesComponent implements OnInit {
+export class CurrentClassesComponent implements OnInit {
   /**
     Configuration for the table
   */
@@ -27,7 +27,8 @@ export class PreviousClassesComponent implements OnInit {
         title: 'Class',
       },
       grade: {
-        title: 'Grade',
+        title: 'Status',
+        filter: false,
       },
     },
   };
@@ -42,12 +43,8 @@ export class PreviousClassesComponent implements OnInit {
   */
   constructor(private classService: ClassService) {
   }
-
-    /**
-      Gets the currents users classes they have took
-    */
   ngOnInit() {
-    this.classService.getGradedClasses()
+    this.classService.getCurrentClasses()
       .subscribe((res: User['course']) => {
          this.source.load(res);
      });
