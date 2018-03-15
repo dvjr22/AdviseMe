@@ -7,6 +7,7 @@ exports.createCart = async function(req, res){
   //req.body contains form submit values
   var newCart = {
       _id: req.body._id,
+      studentID: req.body.studentID,
       classes: req.body.classes
     }
 
@@ -80,6 +81,7 @@ exports.updateCart = async function(req, res){
 
   var Cart = {
     _id,
+    studentID: req.body.studentID,
     classes: req.body.classes,
     advisor: req.body.advisor,
   }

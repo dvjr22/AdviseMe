@@ -19,6 +19,9 @@ export class AllRequestsComponent implements OnInit {
     actions: false,
     columns: {
       _id: {
+        title: 'Student ID',
+      },
+      advisor: {
         title: 'Class Info',
         type: 'custom',
         filter: false,
@@ -34,7 +37,14 @@ export class AllRequestsComponent implements OnInit {
   ngOnInit() {
     this.cartService.getByAdvisor('advisor01')
       .subscribe( (res) => {
-        this.source.load(flattenObject(res.data));
+        let flatData = flattenObject(res.data);
+        for (const d of flatData) {
+          console.log(d);
+          this.userService.getById(d._id).subscribe((userres) => {
+            console.log(userres);
+          });
+        }
+        this.source.load(flatData);
       });
     // this.cartService.get()
     //   .subscribe((res) => {

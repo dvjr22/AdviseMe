@@ -17,6 +17,7 @@ exports.createCart = async function(aCart){
 
     var newCart = new Cart({
       _id: aCart._id,
+      studentID: aCart.studentID,
       classes: aCart.classes
     })
     try{
