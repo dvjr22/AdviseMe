@@ -117,7 +117,6 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
         }else {
           this.selectedClasses.splice(index, 1);
         }
-      this.syncTable();
     }
 
     /**
