@@ -18,8 +18,11 @@ export class AllRequestsComponent implements OnInit {
   settings= {
     actions: false,
     columns: {
-      _id: {
+      studentID: {
         title: 'Student ID',
+      },
+      fullName: {
+        title: 'Name',
       },
       advisor: {
         title: 'Class Info',
@@ -38,10 +41,13 @@ export class AllRequestsComponent implements OnInit {
     this.cartService.getByAdvisor('advisor01')
       .subscribe( (res) => {
         let flatData = flattenObject(res.data);
-        for (const d of flatData) {
+        for (let i = 0; i < flatData.length; i++) {
+          let d = flatData[i];
           console.log(d);
           this.userService.getById(d._id).subscribe((userres) => {
-            console.log(userres);
+            console.log(userres.firstName + userres.lastName);
+            d.fullName = userres.firstName + ' ' + userres.lastName;
+            flatData[i] = d;
           });
         }
         this.source.load(flatData);
