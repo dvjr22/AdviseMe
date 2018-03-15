@@ -36,6 +36,15 @@ export class CartService {
     }
 
     /**
+      Get all carts by the Advisor id
+      @param {string} advisorid
+      @returns {json}
+    */
+    getByAdvisor(advisorid: string) {
+      return this.http.get('/api/carts/advisor/' + advisorid, this.requestOptions).map((response: Response) => response.json());
+    }
+
+    /**
       Get all carts
     */
     get() {

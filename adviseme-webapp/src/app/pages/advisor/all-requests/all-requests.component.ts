@@ -32,10 +32,14 @@ export class AllRequestsComponent implements OnInit {
   constructor(private cartService: CartService, private userService: UserService) { }
 
   ngOnInit() {
-    this.cartService.get()
-      .subscribe((res) => {
-      this.source.load(flattenObject(res.data));
-    });
+    this.cartService.getByAdvisor('advisor01')
+      .subscribe( (res) => {
+        this.source.load(flattenObject(res.data));
+      });
+    // this.cartService.get()
+    //   .subscribe((res) => {
+    //   this.source.load(flattenObject(res.data));
+    // });
   }
 
 }

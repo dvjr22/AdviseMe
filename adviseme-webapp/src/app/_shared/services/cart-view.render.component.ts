@@ -26,8 +26,7 @@ export class CartViewRenderComponent implements OnInit {
   }
 
   goClassView() {
-    console.log(this.renderValue);
-    this.router.navigate(['/pages/advisor/requests-class', this.value]);
+    this.router.navigate(['/pages/advisor/student-request', this.value]);
   }
 
 
