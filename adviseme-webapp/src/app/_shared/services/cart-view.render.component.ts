@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
           <button  (click)="goClassView()" type="button" class="btn btn-success btn-group-icon btn-group-divider btn-fixed">
             <i class="ion-information-circled"></i>
           </button>
-          <button (click)="goClassView()" type="button" class="btn btn-success">Class Request Information</button>
+          <button (click)="goClassView()" type="button" class="btn btn-success">View Requested Classes</button>
   </div>
   `,
 })
@@ -26,8 +26,7 @@ export class CartViewRenderComponent implements OnInit {
   }
 
   goClassView() {
-    console.log(this.renderValue);
-    this.router.navigate(['/pages/advisor/requests-class', this.value]);
+    this.router.navigate(['/pages/advisor/student-request', this.value]);
   }
 
 

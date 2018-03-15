@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Cart {
   _id: string;
+  studentID: string;
   classes: [{
     _id: string;
     prerequisites: [string];

@@ -17,6 +17,7 @@ exports.createCart = async function(aCart){
 
     var newCart = new Cart({
       _id: aCart._id,
+      studentID: aCart.studentID,
       classes: aCart.classes
     })
     try{
@@ -97,6 +98,16 @@ exports.getCartById = async function(id) {
     return cart;
   }catch(e){
     throw Error(e.message, "Error while finding class by id")
+  }
+}
+
+// Gets carts by advisor id
+exports.getCartByAdvisor = async function(advisorid) {
+  try{
+    var carts = await Cart.find({advisor: advisorid});
+    return carts;
+  } catch (e) {
+    throw Error(e.message, "error while finding classes by advisor id")
   }
 }
 

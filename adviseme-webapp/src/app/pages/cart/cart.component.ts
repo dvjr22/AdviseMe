@@ -79,7 +79,7 @@ export class CartComponent implements OnInit {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id).subscribe((res) => {
       // Get the current user to get the cart by the studentID
-      this.cartService.getById(res.studentID)
+      this.cartService.getById(this.currentUser._id)
       .subscribe((res2: any) => {
         this.currentCart = res2.data;
         // If the advisor field is blank then show the cart.

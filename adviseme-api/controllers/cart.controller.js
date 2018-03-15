@@ -7,6 +7,7 @@ exports.createCart = async function(req, res){
   //req.body contains form submit values
   var newCart = {
       _id: req.body._id,
+      studentID: req.body.studentID,
       classes: req.body.classes
     }
 
@@ -52,6 +53,23 @@ exports.getCartById = async function (req, res) {
 
 }
 
+// Get carts by advisor id
+exports.getCartByAdvisor = async function (req, res) {
+  if(!req.params.advisorid) {
+    return res.status(500).json({status: 500, message: 'AdvisorId must be present'})
+  }
+
+  var advisorid = req.params.advisorid;
+
+  try{
+    var carts = await cartService.getCartByAdvisor(advisorid);
+    console.log("FOUND: " + JSON.stringify(carts))
+    return res.status(200).json({status: 200, data: carts, message: "Successfully received carts"})
+  } catch (e) {
+    return res.status(500).json({status: 500, message: e.message})
+  }
+}
+
 //update Cart
 exports.updateCart = async function(req, res){
 
@@ -63,6 +81,7 @@ exports.updateCart = async function(req, res){
 
   var Cart = {
     _id,
+    studentID: req.body.studentID,
     classes: req.body.classes,
     advisor: req.body.advisor,
   }
