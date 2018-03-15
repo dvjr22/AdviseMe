@@ -33,10 +33,6 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       Configuration for the table
     */
     settings = {
-      pager: {
-        display: false,
-        // perPage: 20,
-      },
       selectMode: 'multi',
       actions: false,
       columns: {
@@ -86,8 +82,8 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       // Get the current user model then get the cart by the associated studentID
       this.userService.getById(this.currentUser._id).subscribe((res: User) => {
         user = res;
-        this.cartService.getById(user._id).subscribe((res2: any) => {
-          console.log(res2);
+
+        this.cartService.getById(user.studentID).subscribe((res2: any) => {
           if (res2.data !== null) {
             this.cart = res2.data;
             const flatClasses = flattenObject(res2.data.classes);
@@ -105,6 +101,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
             this.cartService.create(newCart);
             this.cart = newCart;
           }
+        //  this.selectedClasses = this.cart.classes;
         });
       });
       this.classService.getClasses()
@@ -118,13 +115,12 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       @returns {none}
     */
     onUserRowSelect(event) {
-      for (let i = 0; i < event.selected.length; i++) {
-        if (!this.selectedClasses.includes(event.selected[i])) {
-          this.selectedClasses.push(event.selected[i]);
+        const index = this.selectedClasses.findIndex( s => s._id === event.data._id);
+        if (index === -1) {
+          this.selectedClasses.push(event.data);
+        }else {
+          this.selectedClasses.splice(index, 1);
         }
-      }
-      this.selectedClasses.concat(event.selected);
-    //  this.syncTable();
     }
 
     /**
@@ -144,6 +140,11 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
                   this.cart.classes = [res];
                 } else {
                   this.cart.classes[i] = res;
+                }
+                if (this.selectedClasses.length < this.cart.classes.length) {
+                  for (let i2 = this.selectedClasses.length; i2 < this.cart.classes.length; i2++) {
+                    this.cart.classes.splice(i2, 1);
+                  }
                 }
                 this.cartService.update(this.cart);
               });
