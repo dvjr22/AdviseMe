@@ -8,6 +8,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { GrowlModule } from 'primeng/growl';
 
+import { FileSelectDirective } from 'ng2-file-upload';
+
 @NgModule({
   imports: [
     ThemeModule,
@@ -17,6 +19,7 @@ import { GrowlModule } from 'primeng/growl';
   ],
   declarations: [
     ...routedComponents,
+    FileSelectDirective,
   ],
 })
 export class ProfileModule { }

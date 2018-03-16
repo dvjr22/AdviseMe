@@ -17,5 +17,5 @@ router.use('/api/carts', carts)
 router.use('/api/users', user);
 router.use('/api/notify', notification);
 router.use('/api/token', token);
-router.use('/api/upload', upload);
+router.use('/upload', upload);
 module.exports = router;

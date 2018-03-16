@@ -7,6 +7,9 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
 import { MessageService } from 'primeng/components/common/messageservice';
 
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
+const URL = '/upload';
 /**
   Component:
     Allows a user to look at an overview of their profile
@@ -38,13 +41,15 @@ export class ProfileViewComponent implements OnInit {
   */
   phoneNumber: string;
 
+
+  public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo' });
+
   /**
     Initializes new names for the imports
   */
   constructor(private userService: UserService,
     private messageService: MessageService) {
   }
-
   /**
     Gets the currents users id from the local cache then uses the user service
     to get the users information
@@ -58,6 +63,12 @@ export class ProfileViewComponent implements OnInit {
           this.emailBegin = this.emailArray[0];
           this.emailEnding = '@' + this.emailArray[1];
   });
+
+    // File Upload stuff
+    this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log('ImageUpload:uploaded:', item, status, response);
+    };
   }
 
   updatePhoneNumber(event) {
@@ -71,4 +82,5 @@ export class ProfileViewComponent implements OnInit {
   onKey(event: any) { // without type info
     this.values = event.target.value;
   }
+
 }
