@@ -15,7 +15,15 @@ export class AdvisorAppointmentsComponent implements OnInit {
   appointment: any;
 
   settings = {
-    actions: false,
+    mode: 'inline',
+    actions: {
+      add: false,
+      edit: false,
+    },
+    delete: {
+      deleteButtonContent: '<i class="nb-trash"></i>',
+      confirmDelete: true,
+    },
     columns: {
       studentID: {
         title: 'Student ID',
@@ -55,4 +63,12 @@ export class AdvisorAppointmentsComponent implements OnInit {
     });
   }
 
+  onDeleteConfirm(event) {
+    if (window.confirm('Are you sure you want to delete this appointment?')) {
+      this.appointmentService.delete(event.data._id).subscribe();
+      event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
+  }
 }
