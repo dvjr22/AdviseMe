@@ -67,7 +67,14 @@ export class ProfileViewComponent implements OnInit {
     // File Upload stuff
     this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
+      const r = response.split('/')[1];
+      console.log(r);
+      this.currentUser.profilePicture = r;
+      console.log(this.currentUser);
+      this.userService.update(this.currentUser);
+      this.messageService.add({severity: 'success',
+        summary: 'Succesful Upload',
+        detail: 'Successfully uploaded a new profile picture'});
     };
   }
 

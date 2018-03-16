@@ -80,7 +80,8 @@ var UserSchema = new mongoose.Schema({
     //Other data
     appointments: [{ appointment: Schema.ObjectId}],
     created: Date,
-    updated: { type: Date, default: Date.now}
+    updated: { type: Date, default: Date.now},
+    profilePicture: String,
 })
 
 UserSchema.pre('save', function(next) {
