@@ -8,6 +8,7 @@ var carts = require('./api/cart.route')
 var user = require('./api/user.route')
 var notification = require('./api/notification.route')
 var token = require('./api/token.route')
+var upload = require('./api/upload.route')
 
 //add route modules here
 router.use('/api/classes', classes);
@@ -16,4 +17,5 @@ router.use('/api/carts', carts)
 router.use('/api/users', user);
 router.use('/api/notify', notification);
 router.use('/api/token', token);
+router.use('/upload', upload);
 module.exports = router;

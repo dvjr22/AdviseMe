@@ -60,6 +60,9 @@ app.use(api);
 // Angular DIST output folder
 app.use(express.static('../adviseme-webapp/dist'));
 
+// Serve user profile images
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 // Set all other requests to the Angular app
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../adviseme-webapp/dist/index.html'));

@@ -93,11 +93,9 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
             }
           } else {
             // Create the cart
-            console.log("creating new cart");
             const newCart: Cart = new Cart();
             newCart._id = user._id;
             newCart.studentID = user.studentID;
-            console.log(newCart);
             this.cartService.create(newCart);
             this.cart = newCart;
           }

@@ -50,6 +50,15 @@
               </span>
             </span>
           </div>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="ion-camera" aria-hidden="true"></i></span>
+            <input class="form-control" type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+            <span class="input-group-btn">
+              <span class="btn btn-success" (click)="uploader.uploadAll()">
+                Upload New Profile Picture
+              </span>
+            </span>
+          </div>
       </form>
       </nb-card-body>
     </nb-card>

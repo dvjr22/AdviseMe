@@ -43,7 +43,10 @@ export class HeaderComponent implements OnInit {
         .subscribe(res => {
           this.currentUser = res;
           this.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
-        });
+          if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
+            this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
+          }
+      });
   }
 
   toggleSidebar(): boolean {
