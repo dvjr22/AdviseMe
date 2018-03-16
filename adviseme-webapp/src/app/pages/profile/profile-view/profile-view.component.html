@@ -51,11 +51,13 @@
             </span>
           </div>
           <div class="input-group">
-            <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-
-            <button type="button" class="btn btn-success" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-              Upload
-            </button>
+            <span class="input-group-addon"><i class="ion-camera" aria-hidden="true"></i></span>
+            <input class="form-control" type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+            <span class="input-group-btn">
+              <span class="btn btn-success" (click)="uploader.uploadAll()">
+                Upload New Profile Picture
+              </span>
+            </span>
           </div>
       </form>
       </nb-card-body>

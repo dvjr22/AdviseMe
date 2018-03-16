@@ -99,12 +99,9 @@ export class CartComponent implements OnInit {
 
   onDeleteConfirm(event) {
     if (window.confirm('Are you sure you want to delete?')) {
-      console.log(event.data);
-      console.log(this.currentCart.classes)
       const deletedItem = this.currentCart.classes.find(x => x._id === event.data.prefix + event.data.courseNo);
       const index = this.currentCart.classes.findIndex(d => d._id === event.data.prefix + event.data.courseNo); //find index in your array
       this.currentCart.classes.splice(index, 1);//remove element from array
-      console.log(this.currentCart.classes);
       this.cartService.update(this.currentCart);
       event.confirm.resolve();
     } else {
