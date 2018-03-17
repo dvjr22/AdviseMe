@@ -60,9 +60,9 @@ export class AppointmentViewComponent implements OnInit {
     let userID = ''; // Initializes Variable
     this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
       userID = res['studentID'];
-    });
-    this.appointmentService.getById(userID).subscribe( res => {
-      this.source.load(res.data);
+      this.appointmentService.getById(userID).subscribe( res2 => {
+        this.source.load(res2.data);
+      });
     });
   }
 }
