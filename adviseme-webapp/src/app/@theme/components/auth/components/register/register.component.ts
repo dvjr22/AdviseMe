@@ -13,6 +13,10 @@ import { AlertService } from '../../../../../_shared/services/alert.service';
   styleUrls: ['./register.component.scss'],
   template: `
       <nb-auth-block>
+      <div style="width: 100%;">
+        <img src="/assets/images/AdviseMeLogo.png" style="display:block; margin: auto; height: 100px; width: 100px;">
+      </div>
+      <br/>
         <h2 class="title">AdviseMe</h2>
         <form (ngSubmit)="register()" #form="ngForm">
           <div *ngIf="showMessages.error && errors && errors.length > 0 && !submitted"
