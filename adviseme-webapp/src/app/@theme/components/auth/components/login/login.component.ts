@@ -20,6 +20,10 @@ import { NbAuthResult, NbAuthService } from '../../services/auth.service';
     <toaster-container></toaster-container>
   </nb-card-body>
   <nb-auth-block>
+    <div style="width: 100%;">
+      <img src="/assets/images/AdviseMeLogo.png" style="display:block; margin: auto; height: 100px; width: 100px;">
+    </div>
+    <br/>
     <h2 class="title">AdviseMe</h2>
     <small class="form-text sub-title">Hello! Sign in with your username</small>
 
@@ -85,18 +89,22 @@ import { NbAuthResult, NbAuthService } from '../../services/auth.service';
     </form>
 
     <div class="links">
-      <small class="form-text">Or connect with:</small>
+      <!--<small class="form-text">Or connect with:</small>
 
       <div class="socials">
         <a href="https://github.com/SCCapstone/AdviseMe" target="_blank" class="socicon-github"></a>
         <a href="https://www.facebook.com/" target="_blank" class="socicon-facebook"></a>
         <a href="https://twitter.com" target="_blank" class="socicon-twitter"></a>
-      </div>
+      </div>-->
 
       <small class="form-text">
         Don't have an account? <a routerLink="../register" id="signuplink"><strong>Sign Up</strong></a>
       </small>
     </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
   </nb-auth-block>
   `,
 })
