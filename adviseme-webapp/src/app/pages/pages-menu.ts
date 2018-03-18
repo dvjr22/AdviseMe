@@ -98,7 +98,7 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Advisor',
-    icon: 'nb-plus',
+    icon: 'nb-checkmark',
     children: [
       {
         title: 'View Appointments',
