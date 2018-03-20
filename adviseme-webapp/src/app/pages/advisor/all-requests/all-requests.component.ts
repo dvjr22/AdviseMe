@@ -22,7 +22,7 @@ export class AllRequestsComponent implements OnInit {
         title: 'Student ID',
       },
       fullName: {
-        title: 'Name',
+        title: 'Student Name',
       },
       advisor: {
         title: 'Class Info',
@@ -40,6 +40,7 @@ export class AllRequestsComponent implements OnInit {
   ngOnInit() {
     this.cartService.getByAdvisor('advisor01')
       .subscribe( (res) => {
+        console.log(res);
         let flatData = flattenObject(res.data);
         for (let i = 0; i < flatData.length; i++) {
           let d = flatData[i];

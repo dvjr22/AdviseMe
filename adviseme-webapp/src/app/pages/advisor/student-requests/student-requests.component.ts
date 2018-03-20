@@ -43,9 +43,10 @@ export class StudentRequestComponent implements OnInit {
     private messageService: MessageService) { }
 
   ngOnInit() {
-    this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
+    this.cartService.getById(this.route.snapshot.params['_id']).subscribe((res: any) => {
       // Get the cart data and flatten it, then load into the table
       this.cart = res.data;
+      console.log(this.route.snapshot.params['_id']);
       const ob = this.cart.classes;
       const flatten = require('flat');
       const newOb = [];
