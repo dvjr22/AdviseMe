@@ -1,21 +1,6 @@
 var chatService = require('../services/chat.service')
 var Chat = require('../models/chat.model');
 
-var io = require('socket.io')(server);
-server.listen(4000);
-
-// socket io
-io.on('connection', function (socket) {
-  console.log('User connected');
-  socket.on('disconnect', function() {
-    console.log('User disconnected');
-  });
-  socket.on('save-message', function (data) {
-    console.log(data);
-    io.emit('new-message', { message: data });
-  });
-});
-
 exports.getRoom = async function(req, res) {
   var chat = new Chat()
   chat.room = req.params.room;
