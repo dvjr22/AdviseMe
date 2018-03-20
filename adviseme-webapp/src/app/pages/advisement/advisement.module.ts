@@ -5,6 +5,7 @@ import { AdvisementRoutingModule, routedComponents } from './advisement-routing.
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { GrowlModule } from 'primeng/growl';
 import { ChatComponent } from './chat/chat.component';
+import { ChatService } from '../../_shared/services/chat.service';
 
 @NgModule({
   imports: [
@@ -13,6 +14,9 @@ import { ChatComponent } from './chat/chat.component';
     AdvisementRoutingModule,
     Ng2SmartTableModule,
     GrowlModule,
+  ],
+  providers: [
+    ChatService,
   ],
   declarations: [
     ...routedComponents,

@@ -29,6 +29,8 @@ io.on('connection', function (socket) {
   });
 });
 
+server.listen(4001);
+
 mongoose.Promise = bluebird
 mongoose.connect('mongodb://127.0.0.1:27017/adviseMe')
 .then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/adviseMe`)})
