@@ -29,8 +29,10 @@ exports.saveChat = async function(req, res) {
   chat.nickname = req.body.nickname;
   chat.message = req.body.message;
   chat._id = req.params.id;
+  console.log("chat", chat);
   try {
     var room = await chatService.saveChat(chat);
+    console.log("room", room)
     return res.status(200).json({status:200, data: room, message: "Successfully saved chat"})
   } catch (e) {
     return res.status(500).json({status:500, message: e.message})

@@ -48,12 +48,15 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
     // Recieve the new message push from the socket server
     this.socket.on('new-message', function (data) {
+      console.log('recieved message: ', data)
       // If the message belongs in this room then display it
-      if (data.message.room === user.room) {
+      // TODO: Check for the right room
+      //  if (data.message.room === user.room) {
         // Push the message onto the chats object
-        this.chats.push(data.message);
+        this.chats.push(data.message.data);
+        console.log('this.chats',this.chats)
         this.msgData = { room: user.room, nickname: user.nickname, message: '' };
-      }
+      //  }
     }.bind(this));
   }
 
