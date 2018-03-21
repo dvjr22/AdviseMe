@@ -15,10 +15,9 @@ exports.createCart = async function(req, res){
   try{
     //calling service function with new object from request body
     var createdCart = await cartService.createCart(newCart)
-    return res.status(200).json({status:201, data: createCart, message: "Successfully Created Cart"})
+    return res.status(201).json({status:200, data: createdCart, message: "Successfully Created Cart"})
   }catch(e){
-    console.log('here')
-    return res.status(500).json({status: 500, message: e.message})
+    return res.status(400).json({status: 400, message: e.message})
   }
 }
 
@@ -42,7 +41,6 @@ exports.getCartById = async function (req, res) {
   }
 
   var id = req.params.id;
-
   try{
     var cart = await cartService.getCartById(id)
     //return classes list with appropiate HTTP status code and message
@@ -79,6 +77,7 @@ exports.updateCart = async function(req, res){
   }
 
   var _id = req.body._id;
+  console.log(_id);
 
   var Cart = {
     _id,

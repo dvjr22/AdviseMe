@@ -14,7 +14,7 @@ var api = require('./routes/api.route')
 var app = express();
 
 mongoose.Promise = bluebird
-mongoose.connect('mongodb://127.0.0.1:27017/adviseMe', { useMongoClient: true})
+mongoose.connect('mongodb://127.0.0.1:27017/adviseMe')
 .then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/adviseMe`)})
 .catch(()=> { console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/adviseMe`)})
 
@@ -37,7 +37,7 @@ app.use(require('express-session')({
 
 //TODO: Do not allow the display of data... will have to be from issuer
 app.all('/api/*', function(req, res, next) {
-  //console.log(req.headers);
+
   if(req.url === '/api/users/authenticate' || req.url === '/api/users/register' || req.url === '/api/token/valid') {
     next();
   } else {
