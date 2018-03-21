@@ -8,13 +8,14 @@ exports.createCart = async function(req, res){
   var newCart = {
       _id: req.body._id,
       studentID: req.body.studentID,
-      classes: req.body.classes
+      classes: req.body.classes,
+      status: req.body.status,
     }
 
   try{
     //calling service function with new object from request body
     var createdCart = await cartService.createCart(newCart)
-    return res.status(201).json({status:201, data: createCart, message: "Successfully Created Cart"})
+    return res.status(200).json({status:201, data: createCart, message: "Successfully Created Cart"})
   }catch(e){
     console.log('here')
     return res.status(500).json({status: 500, message: e.message})
@@ -84,6 +85,7 @@ exports.updateCart = async function(req, res){
     studentID: req.body.studentID,
     classes: req.body.classes,
     advisor: req.body.advisor,
+    status: req.body.status,
   }
 
   try{

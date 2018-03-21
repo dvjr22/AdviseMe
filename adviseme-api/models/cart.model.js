@@ -4,7 +4,7 @@ var Class = require('../models/class.model')
 var CartSchema = new mongoose.Schema({
     _id: { type: String, required: true},
     studentID: { type: String, required: true},
-    status: {type: String, required: true }, 
+    status: {type: String}, // Created, Pending, Approved, Rejected
     classes: [{
         _id: { type: String, required: true},
         prerequisites: [String],
@@ -17,6 +17,7 @@ var CartSchema = new mongoose.Schema({
         },
     }],
     advisor: { type: String },
+
   })
 
 const Cart = mongoose.model('Cart', CartSchema)
