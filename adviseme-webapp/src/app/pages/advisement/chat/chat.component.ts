@@ -41,11 +41,13 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id).subscribe((res) => {
       this.currentUser = res;
+      if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
+        this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
+      }
+      console.log('current user ', this.currentUser)
       console.log(res)
 
       if (this.currentUser !== null && this.currentUser !== undefined) {
-        // Get the chat room for the current user
-        console.log(this.currentUser)
         // Set the message data with the current users information
         this.msgData = { room: /*this.currentUser.studentID + */ 'advisor01', nickname: this.currentUser.studentID, message: '' };
         // Trip the joinned flag
