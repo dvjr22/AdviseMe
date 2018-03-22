@@ -1,7 +1,9 @@
 # insert.py
-# @author Diego Valdes
 # Nov. 20, 2017
 # Reads csv files and converts to JSON format for db insertion
+
+__author__  = "Diego Valdes"
+__copyright__ = "Copyright 2017"
 
 import collections, os, sys, csv, linecache, json
 import pymongo
@@ -83,6 +85,9 @@ for root, subdirs, files in os.walk(path):
 					elif i == 6:
 						data['description'] = row[0].strip()
 
+					elif i ==7:
+						data['requiredGrade'] = {'cs' : row[0].strip(), 'ce' : row[0]}
+
 					else:
 						break
 
@@ -93,9 +98,11 @@ for root, subdirs, files in os.walk(path):
 				#db.insert_one(data)
 
 				# Insert data
+				
 				if db.insert_one(data):
 					print("Class: %s inserted" %(data['_id']))
 					# print(json.dumps(data)+'\n')
 				else:
 					print("ERROR: Class: %s wasn't inserted" %(data['_id']))
 
+				
