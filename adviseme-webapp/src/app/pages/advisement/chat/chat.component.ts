@@ -28,8 +28,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   // Connection to the socket server for realtime chat updates
   socket = io('http://localhost:4001');
 
-  joinned = true;
-
   currentUser: User;
 
   constructor(private chatService: ChatService, private userService: UserService) {}
@@ -114,7 +112,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       this.currentUser = res;
       this.getChatByRoom(this.room);
       this.msgData = { room: this.room, nickname: this.currentUser.firstName + ' ' + this.currentUser.lastName, message: '' };
-      this.joinned = true;
       this.socket.emit('save-message', { room: this.room,
         nickname: this.currentUser.firstName + ' ' + this.currentUser.lastName, message: 'Join this room', updated_at: date });
     });
