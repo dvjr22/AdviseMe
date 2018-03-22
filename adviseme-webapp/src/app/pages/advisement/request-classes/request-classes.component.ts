@@ -106,6 +106,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       this.classService.getClasses()
         .subscribe((res2: Class[]) => {
           this.source.load(flattenObject(res2));
+          console.log(flattenObject(res2));
       });
     }
 
@@ -119,7 +120,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
           this.selectedClasses.push(event.data);
         }else {
           this.selectedClasses.splice(index, 1);
-        }
+        }//.classes
     }
 
     /**

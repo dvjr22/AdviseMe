@@ -53,6 +53,7 @@ export class CoursesComponent implements OnInit {
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
+          console.log(flattenObject(res));
         });
     }
 }

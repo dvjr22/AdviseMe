@@ -8,10 +8,28 @@ var bluebird = require('bluebird');
 var config = require('./config.json');
 var jwt = require('jsonwebtoken');
 
+
 // Get the API route ...
 var api = require('./routes/api.route')
 
 var app = express();
+
+// socket io
+var server = require('http').createServer(app)
+var io = require('socket.io')(server);
+// socket io
+io.on('connection', function (socket) {
+  console.log('User connected');
+  socket.on('disconnect', function() {
+    console.log('User disconnected');
+  });
+  socket.on('save-message', function (data) {
+    console.log(data);
+    io.emit('new-message', { message: data });
+  });
+});
+
+server.listen(4001);
 
 mongoose.Promise = bluebird
 mongoose.connect('mongodb://127.0.0.1:27017/adviseMe')
