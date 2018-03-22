@@ -3,6 +3,7 @@ import { ChatService } from '../../../_shared/services/chat.service';
 import { UserService } from '../../../_shared/services/user.service';
 import { User } from '../../../_shared/models/user';
 import * as io from 'socket.io-client';
+import { Role } from '../../../_shared/models/constants';
 
 @Component({
   selector: 'ngx-chat',
@@ -41,7 +42,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       // Set the room id to a combination of the two user ids
       this.setRoom(this.currentUser);
       // Set the header name for the chat
-      this.setRoomName();
+      this.setRoomName(this.currentUser);
       // Assign message data for what is shown in the message input box
       this.assignMsgData('');
     });
@@ -57,12 +58,27 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
   }
   setRoom(user: User) {
-    // TODO: Change this based off the role
-    this.room = user._id + user.advisor;
+    switch (user.role.toString()) {
+      case 'student':
+        this.room = user._id + user.advisor;
+      break;
+      case 'advisor':
+        this.room = user.students[0] + user._id; // TODO: Replace this hardcoded index
+      break;
+    }
   }
-  setRoomName() {
-    this.userService.getById(this.currentUser.advisor).subscribe((advisorRes) => {
-      this.roomName = advisorRes.firstName + ' ' + advisorRes.lastName;
+  setRoomName(user: User) {
+    let searchId = '';
+    switch (user.role.toString()) {
+      case 'student':
+        searchId = user.advisor;
+      break;
+      case 'advisor':
+        searchId = user.students[0]; // TODO: Replace this hardcoded index
+      break;
+    }
+    this.userService.getById(searchId).subscribe((res) => {
+      this.roomName = res.firstName + ' ' + res.lastName;
     });
   }
    assignMsgData(message: string) {
@@ -77,16 +93,13 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   watchForMessages() {
     // Recieve the new message push from the socket server
     this.socket.on('new-message', function (data) {
-      console.log('recieved message: ', data)
+      console.log('data',data);
       // If the message belongs in this room then display it
-      // TODO: Check for the right room
-      console.log('userdata', this.currentUser, data.message)
-        if (data.message.data !== undefined && data.message.data.room === this.room) {
-          // Push the message onto the chats object
-          this.chats.push(data.message.data);
-          console.log('this.chats',this.chats)
-          this.msgData = { room: this.room, nickname: this.currentUser.firstName + ' ' + this.currentUser.lastName, message: '' };
-        }
+      if (data.message.data !== undefined && data.message.data.room === this.room) {
+        // Push the message onto the chats object
+        this.chats.push(data.message.data);
+        this.msgData = { room: this.room, nickname: this.currentUser.firstName + ' ' + this.currentUser.lastName, message: '' };
+      }
     }.bind(this));
   }
 
