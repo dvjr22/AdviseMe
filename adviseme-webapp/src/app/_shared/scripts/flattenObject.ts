@@ -13,18 +13,50 @@ declare var require: any;
   @param {object} ob
   @returns {object}
 */
+
+/**
+  This function flattens a regular class object from the AdviseMe database.
+  Returns an array of objects with the following field names:
+  * _id
+  * class__prefix
+  * class__courseNo
+  * class__title
+  * prerequisites__0..n   // To access, just call "res.data.prerequisites" of
+                             response that han't been flattened
+  * department
+  * curriculum__0__0      // See above
+  * hrs
+  * description
+ */
 export function flattenObject(ob) {
 
   const flatten = require('flat');
   const newOb = [];
 
   for (let i = 0; i < ob.length; i++) {
-    newOb.push(flatten(ob[i], { delimiter: '_' }, { maxDepth: 2 }));
+    newOb.push(flatten(ob[i], { delimiter: '__' }, { maxDepth: 2 }));
   }
 
   return newOb;
 }
 
+
+/**
+  This function dives into the cart object, and only flattens the classes array.
+  Note: this will only return information in the classes object, all other fields
+  from cart will be discarded.
+  Returns an array of objects with the following field names:
+  * _id
+  * class__prefix
+  * class__courseNo
+  * class__title
+  * prerequisites__0..n   // To access, just call "res.data.prerequisites" of
+                             response that han't been flattened
+  * department
+  * curriculum__0__0      // See above
+  * hrs
+  * description
+ */
 export function flattenClassesInCart(ob) {
 
   const flatten = require('flat');

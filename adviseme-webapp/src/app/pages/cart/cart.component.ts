@@ -4,7 +4,7 @@ import { Cart } from '../../_shared/models/cart';
 import { User } from '../../_shared/models/user';
 import { UserService } from '../../_shared/services/user.service';
 import { CartService } from '../../_shared/services/cart.service';
-import { flattenObject } from './flattenObject';
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
 
