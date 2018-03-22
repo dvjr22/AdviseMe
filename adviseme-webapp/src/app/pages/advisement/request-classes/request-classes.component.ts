@@ -83,7 +83,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       this.userService.getById(this.currentUser._id).subscribe((res: User) => {
         user = res;
 
-        this.cartService.getById(user.studentID).subscribe((res2: any) => {
+        this.cartService.getById(user._id).subscribe((res2: any) => {
           if (res2.data !== null) {
             this.cart = res2.data;
             const flatClasses = flattenObject(res2.data.classes);
@@ -96,6 +96,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
             const newCart: Cart = new Cart();
             newCart._id = user._id;
             newCart.studentID = user.studentID;
+            newCart.status = 'created';
             this.cartService.create(newCart);
             this.cart = newCart;
           }
@@ -144,6 +145,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
                     this.cart.classes.splice(i2, 1);
                   }
                 }
+                this.cart.status = 'pending';
                 this.cartService.update(this.cart);
               });
             }
