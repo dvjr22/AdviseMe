@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
-import { flattenObject } from './flattenObject';
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
 import { CartViewRenderComponent } from '../../../_shared/services/cart-view.render.component';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';

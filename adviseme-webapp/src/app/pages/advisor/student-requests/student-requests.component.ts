@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
-import { flattenObject, flattenClassesInCart } from './flattenObject';
+import { flattenObject, flattenClassesInCart } from '../../../_shared/scripts/flattenObject';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../_shared/services/notification.service';

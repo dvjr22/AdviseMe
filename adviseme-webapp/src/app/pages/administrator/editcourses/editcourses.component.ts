@@ -5,7 +5,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
 
-import {flattenObject } from '../../class/courses/flattenObject';
+import {flattenObject } from '../../../_shared/scripts/flattenObject';
 
 import { MessageService } from 'primeng/components/common/messageservice';
 
