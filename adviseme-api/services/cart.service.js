@@ -111,6 +111,15 @@ exports.getCartByAdvisor = async function(advisorid) {
   }
 }
 
+// Gets carts by advisor id
+exports.getCartByAdvisorAndStudent = async function(advisorid, studentid) {
+  try{
+    var carts = await Cart.find({advisor: advisorid, studentID: studentid});
+    return carts;
+  } catch (e) {
+    throw Error(e.message, "error while finding classes by advisor id")
+  }
+}
 
 //delete a class mongoose object by ID
 exports.deleteCart = async function(id) {

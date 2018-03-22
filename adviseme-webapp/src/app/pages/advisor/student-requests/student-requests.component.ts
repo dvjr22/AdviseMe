@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
-import { flattenObject } from '../all-requests/flattenObject';
+import { flattenObject, flattenClassesInCart } from './flattenObject';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../_shared/services/notification.service';
@@ -21,13 +21,13 @@ export class StudentRequestComponent implements OnInit {
   settings= {
     actions: false,
     columns: {
-      courseNo: {
-        title: 'Course Number',
-      },
-      prefix: {
+      class_prefix: {
         title: 'Prefix',
       },
-      title: {
+      class_courseNo: {
+        title: 'Course Number',
+      },
+      class_title: {
         title: 'Title',
       },
     },
@@ -43,19 +43,14 @@ export class StudentRequestComponent implements OnInit {
     private messageService: MessageService) { }
 
   ngOnInit() {
-    this.cartService.getById(this.route.snapshot.params['_id']).subscribe((res: any) => {
+    this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
       // Get the cart data and flatten it, then load into the table
       this.cart = res.data;
-      console.log(this.route.snapshot.params['_id']);
+      console.log(res);
       const ob = this.cart.classes;
-      const flatten = require('flat');
-      const newOb = [];
-
-      for (let i = 0; i < ob.length; i++) {
-        if (ob !== null) {
-          newOb.push(flatten(ob[i].class, { delimiter: '_' }, { maxDepth: 2 }));
-        }
-      }
+      console.log(ob)
+      let newOb = flattenObject(ob);
+      console.log(newOb);
       this.source.load(newOb);
     });
   }
