@@ -15,13 +15,14 @@ _this = this
 //create a new mongoose object
 exports.createCart = async function(aCart){
 
-    var newCart = new Cart({
+    var aCart = new Cart({
       _id: aCart._id,
       studentID: aCart.studentID,
-      classes: aCart.classes
+      classes: aCart.classes,
+      status: aCart.status,
     })
     try{
-        var savedCart = await newCart.save();
+        var savedCart = await aCart.save();
         return savedCart;
     }catch(e){
         throw Error(e.message)
@@ -40,8 +41,7 @@ exports.updateCart = async function(aCart){
   console.log("ID : " + _id)
    try{
      //find by Id
-     console.log(_id)
-     var oldCart = await Cart.findById(_id);
+     var oldCart = await Cart.findById({_id: _id});
    }catch(e){
 
    }
@@ -56,7 +56,8 @@ exports.updateCart = async function(aCart){
        _id: aCart._id,
        classes: aCart.classes,
        studentID: aCart.studentID,
-       advisor: aCart.advisor
+       advisor: aCart.advisor,
+       status: aCart.status,
      })
       var savedCart = await oldCart.save();
       return savedCart;
@@ -66,6 +67,7 @@ exports.updateCart = async function(aCart){
      oldCart.classes = aCart.classes
      oldCart.studentID = aCart.studentID
      oldCart.advisor = aCart.advisor
+     oldCart.status = aCart.status
    try {
       console.log("OLD CART " + JSON.stringify(oldCart))
      var savedCart = await oldCart.save()
@@ -91,7 +93,6 @@ exports.getCart = async function() {
 
 //gets a class object by ID
 exports.getCartById = async function(id) {
-
   //try-catch handle errors
   try{
     var cart = await Cart.findById({_id: id});
