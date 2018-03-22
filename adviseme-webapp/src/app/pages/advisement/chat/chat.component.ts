@@ -17,6 +17,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   // The list of chat messages
   chats: any;
 
+  room: string;
+
+  roomName: string;
+
   // Initialize objects for holding user and msg data
   newUser = { nickname: '', room: '' };
   msgData = { room: '', nickname: '', message: '' };
@@ -44,12 +48,18 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
         this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
       }
+      this.room = this.currentUser._id + this.currentUser.advisor;
+
+      this.userService.getById(this.currentUser.advisor).subscribe((advisorRes) => {
+        this.roomName = advisorRes.firstName + ' ' + advisorRes.lastName;
+        console.log('room: ', this.room, this.roomName);
+      });
+
       console.log('current user ', this.currentUser)
-      console.log(res)
 
       if (this.currentUser !== null && this.currentUser !== undefined) {
         // Set the message data with the current users information
-        this.msgData = { room: /*this.currentUser.studentID + */ 'advisor01', nickname: this.currentUser.studentID, message: '' };
+        this.msgData = { room: this.room, nickname: this.currentUser.studentID, message: '' };
         // Trip the joinned flag
         this.joinned = true;
         // Scroll the message view to the bottom
@@ -63,11 +73,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       // If the message belongs in this room then display it
       // TODO: Check for the right room
       console.log('userdata', this.currentUser, data.message)
-        if (data.message.data !== undefined && data.message.data.room === /*this.currentUser.studentID + */ 'advisor01') {
+        if (data.message.data !== undefined && data.message.data.room === this.room) {
           // Push the message onto the chats object
           this.chats.push(data.message.data);
           console.log('this.chats',this.chats)
-          this.msgData = { room: /*this.currentUser.studentID + */ 'advisor01', nickname: this.currentUser.studentID, message: '' };
+          this.msgData = { room: this.room, nickname: this.currentUser.studentID, message: '' };
         }
     }.bind(this));
   }
@@ -97,10 +107,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.userService.getById(this.currentUser._id).subscribe((res) => {
       this.currentUser = res;
       // if (this.currentUser !== undefined) {
-        this.getChatByRoom(this.currentUser.studentID + 'advisor01'); // TODO: Replace this with a user service call
-        this.msgData = { room: /*this.currentUser.studentID + */'advisor01', nickname: this.currentUser.studentID, message: '' };
+        this.getChatByRoom(this.room); // TODO: Replace this with a user service call
+        this.msgData = { room: this.room, nickname: this.currentUser.studentID, message: '' };
         this.joinned = true;
-        this.socket.emit('save-message', { room: /*this.currentUser.studentID + */ 'advisor01',
+        this.socket.emit('save-message', { room: this.room,
           nickname: this.currentUser.studentID, message: 'Join this room', updated_at: date });
       // }
     });

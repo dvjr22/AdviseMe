@@ -16,7 +16,7 @@ export class User {
   university: string;
   appointments: string[];
   role: Role;
-
+  advisor: string;
   // Student Role
   studentID: string;
   status: Status;
