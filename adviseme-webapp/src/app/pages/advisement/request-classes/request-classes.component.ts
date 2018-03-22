@@ -8,7 +8,7 @@ import { UserService } from '../../../_shared/services/user.service';
 import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
 import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
-import { flattenObject } from './flattenObject';
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Ng2SmartTableComponent } from 'ng2-smart-table/ng2-smart-table.component';
 import { Row } from 'ng2-smart-table/lib/data-set/row';
