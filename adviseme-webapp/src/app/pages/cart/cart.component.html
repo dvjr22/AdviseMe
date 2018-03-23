@@ -3,9 +3,15 @@
   <nb-card-header>
     <span>Cart</span>
   </nb-card-header>
-  <nb-card-body>
+  <nb-card-body *ngIf="this.currentState === 'yesCart'; else noCart">
     <ng2-smart-table [settings]="settings" (deleteConfirm)="onDeleteConfirm($event)" [source]="source"></ng2-smart-table>
     <br/>
     <button (click)="submitToAdvisor()" id="submitBtn" type="button" class="btn btn-success">Send to Advisor</button>
   </nb-card-body>
+  <ng-template #noCart>
+    <nb-card-body *ngIf="this.currentState === 'noCart'; else sentCart"> No cart has been created yet </nb-card-body>
+  </ng-template>
+  <ng-template #sentCart>
+    <nb-card-body> Your class request has been sent to your advisor </nb-card-body>
+  </ng-template>
 </nb-card>

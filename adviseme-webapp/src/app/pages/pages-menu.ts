@@ -23,7 +23,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/advisement/request-classes',
       },
       {
-        title: 'Request Preview',
+        title: 'Request Status',
         link: '/pages/student/cart-progress',
       },
     ],
