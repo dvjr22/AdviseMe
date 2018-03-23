@@ -38,6 +38,10 @@ const routes: Routes = [{
     loadChildren: './advisor/advisor.module#AdvisorModule',
   },
   {
+    path: 'student',
+    loadChildren: './student/student.module#StudentModule',
+  },
+  {
     path: 'cart',
     component: CartComponent,
   },

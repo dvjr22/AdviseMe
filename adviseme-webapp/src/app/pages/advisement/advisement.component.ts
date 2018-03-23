@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /**
-  Advisement Component 
+  Advisement Component
 */
 @Component({
   selector: 'ngx-advisement',
