@@ -29,7 +29,7 @@ for (let i = 0; i < noOfStudents; i++) {
 	obj.studentID = id;
 	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
-	obj.advisor = "Captain America"; // student advisor
+	obj.advisor = "advisor01"; // student advisor
 
 	obj.username = last + id; // unique user login
 	obj.email = "random.student@email.sc.edu";  // user email
@@ -72,7 +72,7 @@ function makeTyler() {
 	obj.studentID = "tHall01";
 	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
-	obj.advisor = "Captain America"; // student advisor
+	obj.advisor = "advisor01"; // student advisor
 
 	obj.username = "tbhall";
 	obj.email = "tbhall@email.sc.edu";
@@ -98,7 +98,7 @@ function makeStudent() {
 	obj.studentID = "student01";
 	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
-	obj.advisor = "Captain America"; // student advisor
+	obj.advisor = "advisor01"; // student advisor
 
 	obj.username = "student";
 	obj.email = "student@email.sc.edu";
@@ -118,8 +118,8 @@ function makeAdvisor() {
 
 	let obj = new Object(); // object to store JSON data
 
-	obj.firstName = "Advisor"; // get random first name
-	obj.lastName = "Advisor"; // get random last name
+	obj.firstName = "Steve"; // get random first name
+	obj.lastName = "Rogers"; // get random last name
 	obj.role = "advisor";
 	obj.studentID = "advisor01";
 
