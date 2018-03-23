@@ -15,6 +15,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+    title: 'Request Preview',
+    icon: 'nb-list',
+    link: '/pages/student/cart-progress',
+  },
+  {
     title: 'Request Classes',
     icon: 'nb-list',
     link: '/pages/advisement/request-classes',
