@@ -9,12 +9,17 @@ var url = "mongodb://localhost:27017/adviseMe";		// Database name
 
 var insertMany = []; // array to hold json
 var noOfStudents = 40; // Number of students to generate
+var advisedStudents = []; // array to hold student id to place in advisor doc
 
-// push sample data: Tyler, student, advisor, admin
-insertMany.push(makeTyler()); 
-insertMany.push(makeStudent()); 
-insertMany.push(makeAdvisor());
-insertMany.push(makeAdmin());
+// push sample data: Tyler, student
+var tyler = makeTyler();
+insertMany.push(tyler); 
+var student = makeStudent();
+insertMany.push(student); 
+
+// push Tyler and student id to array
+advisedStudents.push(tyler.studentID); 
+advisedStudents.push(student.studentID);
 
 // Create students
 for (let i = 0; i < noOfStudents; i++) {
@@ -22,6 +27,8 @@ for (let i = 0; i < noOfStudents; i++) {
 	let obj = new Object(); // object to store JSON data
 	let id = makeid(); // get random id
 	let last = lastName(); // get random last name
+
+	advisedStudents.push(id); // add student id to advisor array
 
 	obj.firstName = firstName(); // get random first name
 	obj.lastName = last;
@@ -43,6 +50,13 @@ for (let i = 0; i < noOfStudents; i++) {
 
 	insertMany.push(obj); // add student to array
 }
+
+var advisor = makeAdvisor(); // create advisor
+advisor.students = advisedStudents; // add array of student id
+
+// push advisor and admin
+insertMany.push(advisor); 
+insertMany.push(makeAdmin());
 
 // get connection
 MongoClient.connect(url, function(err, db) {
@@ -118,6 +132,7 @@ function makeAdvisor() {
 
 	let obj = new Object(); // object to store JSON data
 
+	obj._id = "advisor01" // make object id advisor id
 	obj.firstName = "Steve"; // get random first name
 	obj.lastName = "Rogers"; // get random last name
 	obj.role = "advisor";
