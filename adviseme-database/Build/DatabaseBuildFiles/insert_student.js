@@ -30,6 +30,7 @@ for (let i = 0; i < noOfStudents; i++) {
 
 	advisedStudents.push(id); // add student id to advisor array
 
+	obj._id = id;
 	obj.firstName = firstName(); // get random first name
 	obj.lastName = last;
 	obj.role = "student"
@@ -80,6 +81,7 @@ function makeTyler() {
 
 	let obj = new Object(); // object to store JSON data
 
+	obj._id = "tHall01"; // object id
 	obj.firstName = "Tyler"; // get random first name
 	obj.lastName = "Hall"; // get random last name
 	obj.role = "student";
@@ -106,6 +108,7 @@ function makeStudent() {
 
 	let obj = new Object(); // object to store JSON data
 
+	obj._id = "student01"; // object id
 	obj.firstName = "Student"; // get random first name
 	obj.lastName = "Student"; // get random last name
 	obj.role = "student"
@@ -152,6 +155,7 @@ function makeAdmin() {
 
 	let obj = new Object(); // object to store JSON data
 
+	obj._id = "admin01"; // object id
 	obj.firstName = "Admin"; // get random first name
 	obj.lastName = "Admin"; // get random last name
 	obj.role = "admin";
