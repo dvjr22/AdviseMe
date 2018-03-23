@@ -9,12 +9,17 @@ var url = "mongodb://localhost:27017/adviseMe";		// Database name
 
 var insertMany = []; // array to hold json
 var noOfStudents = 40; // Number of students to generate
+var advisedStudents = []; // array to hold student id to place in advisor doc
 
-// push sample data: Tyler, student, advisor, admin
-insertMany.push(makeTyler()); 
-insertMany.push(makeStudent()); 
-insertMany.push(makeAdvisor());
-insertMany.push(makeAdmin());
+// push sample data: Tyler, student
+var tyler = makeTyler();
+insertMany.push(tyler); 
+var student = makeStudent();
+insertMany.push(student); 
+
+// push Tyler and student id to array
+advisedStudents.push(tyler.studentID); 
+advisedStudents.push(student.studentID);
 
 // Create students
 for (let i = 0; i < noOfStudents; i++) {
@@ -23,13 +28,16 @@ for (let i = 0; i < noOfStudents; i++) {
 	let id = makeid(); // get random id
 	let last = lastName(); // get random last name
 
+	advisedStudents.push(id); // add student id to advisor array
+
+	obj._id = id;
 	obj.firstName = firstName(); // get random first name
 	obj.lastName = last;
 	obj.role = "student"
 	obj.studentID = id;
 	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
-	obj.advisor = "Captain America"; // student advisor
+	obj.advisor = "advisor01"; // student advisor
 
 	obj.username = last + id; // unique user login
 	obj.email = "random.student@email.sc.edu";  // user email
@@ -43,6 +51,13 @@ for (let i = 0; i < noOfStudents; i++) {
 
 	insertMany.push(obj); // add student to array
 }
+
+var advisor = makeAdvisor(); // create advisor
+advisor.students = advisedStudents; // add array of student id
+
+// push advisor and admin
+insertMany.push(advisor); 
+insertMany.push(makeAdmin());
 
 // get connection
 MongoClient.connect(url, function(err, db) {
@@ -66,13 +81,14 @@ function makeTyler() {
 
 	let obj = new Object(); // object to store JSON data
 
+	obj._id = "tHall01"; // object id
 	obj.firstName = "Tyler"; // get random first name
 	obj.lastName = "Hall"; // get random last name
 	obj.role = "student";
 	obj.studentID = "tHall01";
 	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
-	obj.advisor = "Captain America"; // student advisor
+	obj.advisor = "advisor01"; // student advisor
 
 	obj.username = "tbhall";
 	obj.email = "tbhall@email.sc.edu";
@@ -92,13 +108,14 @@ function makeStudent() {
 
 	let obj = new Object(); // object to store JSON data
 
+	obj._id = "student01"; // object id
 	obj.firstName = "Student"; // get random first name
 	obj.lastName = "Student"; // get random last name
 	obj.role = "student"
 	obj.studentID = "student01";
 	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
-	obj.advisor = "Captain America"; // student advisor
+	obj.advisor = "advisor01"; // student advisor
 
 	obj.username = "student";
 	obj.email = "student@email.sc.edu";
@@ -118,8 +135,9 @@ function makeAdvisor() {
 
 	let obj = new Object(); // object to store JSON data
 
-	obj.firstName = "Advisor"; // get random first name
-	obj.lastName = "Advisor"; // get random last name
+	obj._id = "advisor01" // make object id advisor id
+	obj.firstName = "Steve"; // get random first name
+	obj.lastName = "Rogers"; // get random last name
 	obj.role = "advisor";
 	obj.studentID = "advisor01";
 
@@ -137,6 +155,7 @@ function makeAdmin() {
 
 	let obj = new Object(); // object to store JSON data
 
+	obj._id = "admin01"; // object id
 	obj.firstName = "Admin"; // get random first name
 	obj.lastName = "Admin"; // get random last name
 	obj.role = "admin";
