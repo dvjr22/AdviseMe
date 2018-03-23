@@ -28,13 +28,13 @@ export class CartComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      title: {
+      class__title: {
         title: 'Title',
       },
-      courseNo: {
+      class__courseNo: {
         title: 'Course Number',
       },
-      prefix: {
+      class__prefix: {
         title: 'Prefix',
       },
     },
