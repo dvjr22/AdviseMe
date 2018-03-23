@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
               private router: Router) {
   }
 
-  userMenu = [
+  studentMenu = [
     {
       title: 'Cart',
       link: '/pages/cart',
@@ -36,6 +36,15 @@ export class HeaderComponent implements OnInit {
       title: 'Log out',
       link: '/auth/logout',
     }];
+
+    upperMenu = [
+      {
+        title: 'Profile',
+        link: '/pages/profile/profile-view',
+      }, {
+        title: 'Log out',
+        link: '/auth/logout',
+      }];
 
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -68,6 +77,6 @@ export class HeaderComponent implements OnInit {
   }
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
-    console.log("Searching");
+    // console.log("Searching");
   }
 }
