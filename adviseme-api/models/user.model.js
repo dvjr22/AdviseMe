@@ -6,6 +6,10 @@ var Schema = mongoose.Schema;
 //TODO: VALIDATION
 
 var UserSchema = new mongoose.Schema({
+    _id: {
+      type: String,
+      required: true
+    },
     username: {
       type: String,
       required: true,
