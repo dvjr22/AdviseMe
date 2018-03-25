@@ -52,7 +52,7 @@ exports.getUser = async function(req, res) {
 }
 
 exports.update = async function(req, res) {
-  userService.update(req.params.id, req.body)
+  userService.update(req.params._id, req.body)
     .then(function () {
       res.sendStatus(200);
     })
@@ -62,7 +62,7 @@ exports.update = async function(req, res) {
 }
 
 exports._delete = async function(req, res) {
-  userService.delete(req.params.id)
+  userService.delete(req.params._id)
     .then(function () {
       res.sendStatus(200);
     })
