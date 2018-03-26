@@ -145,7 +145,6 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
                     this.cart.classes.splice(i2, 1);
                   }
                 }
-                this.cart.status = 'pending';
                 this.cartService.update(this.cart);
               });
             }
@@ -155,7 +154,8 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
 
         } finally {
           this.messageService.add({severity: 'success', summary: 'Added to Cart', detail: 'Classes were successfully added to your cart'});
-          this.router.navigate(['/pages/cart']);
+          // TODO: Found out why it isn't updating the cart quick enough to pull the classes
+          // this.router.navigate(['/pages/cart']);
         }
       } else {
         // No classes were selected
