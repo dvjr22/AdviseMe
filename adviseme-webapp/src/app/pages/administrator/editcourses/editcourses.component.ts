@@ -44,13 +44,13 @@ export class EditcoursesComponent implements OnInit {
         confirmDelete: true,
       },
       columns: {
-        class_prefix: {
+        class__prefix: {
           title: 'Department',
         },
-        class_courseNo: {
+        class__courseNo: {
           title: 'Course Number',
         },
-        class_title: {
+        class__title: {
           title: 'Course Title',
         },
         hrs: {
@@ -59,13 +59,13 @@ export class EditcoursesComponent implements OnInit {
         description: {
           title: 'Description',
         },
-        prerequisites_0: {
+        prerequisites__0: {
           title: 'Prerequisite 1',
         },
-        prerequisites_1: {
+        prerequisites__1: {
           title: 'Prerequisite 2',
         },
-        prerequisites_2: {
+        prerequisites__2: {
           title: 'Prerequisite 3',
         },
       },
