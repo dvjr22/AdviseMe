@@ -38,7 +38,7 @@ exports.getAll = async function(req, res) {
 }
 
 exports.getUser = async function(req, res) {
-  userService.getById(req.params.id)
+  userService.getById(req.params._id)
     .then(function (user) {
       if(user) {
         res.send(user);
