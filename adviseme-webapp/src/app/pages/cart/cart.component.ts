@@ -67,6 +67,7 @@ export class CartComponent implements OnInit {
       this.advisorID = res['advisor'];
     });
     this.currentCart.advisor = this.advisorID;
+    this.currentCart.status = 'pending';
     // Update the cart
     this.cartService.update(this.currentCart);
     try {
