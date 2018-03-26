@@ -14,6 +14,8 @@ import { UserService } from '../../../_shared/services/user.service';
 })
 export class AllRequestsComponent implements OnInit {
 
+  advisorID: string;
+
   // Config for the table
   settings= {
     actions: false,
@@ -38,7 +40,11 @@ export class AllRequestsComponent implements OnInit {
   constructor(private cartService: CartService, private userService: UserService) { }
 
   ngOnInit() {
-    this.cartService.getByAdvisor('advisor01')
+    this.userService.getCurrentUser().subscribe( res => {
+      this.advisorID = res['advisor'];
+    });
+
+    this.cartService.getByAdvisor(this.advisorID)
       .subscribe( (res) => {
         console.log(res.data);
         let flatData = flattenObject(res.data);

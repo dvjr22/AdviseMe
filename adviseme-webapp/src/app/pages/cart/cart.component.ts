@@ -16,6 +16,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 export class CartComponent implements OnInit {
   currentCart: Cart;
   currentUser: User;
+  advisorID: string;
 
   currentState = 'yesCart';
 
@@ -61,7 +62,11 @@ export class CartComponent implements OnInit {
   */
   submitToAdvisor() {
     // TODO: Take out this hardcoded string
-    this.currentCart.advisor = 'advisor01';
+    // this.currentCart.advisor = 'advisor01';
+    this.userService.getCurrentUser().subscribe( res => {
+      this.advisorID = res['advisor'];
+    });
+    this.currentCart.advisor = this.advisorID;
     // Update the cart
     this.cartService.update(this.currentCart);
     try {
