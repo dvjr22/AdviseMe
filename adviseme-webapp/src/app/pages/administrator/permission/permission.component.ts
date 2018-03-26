@@ -73,6 +73,7 @@ export class PermissionComponent implements OnInit {
     if (window.confirm('Are you sure you want to save?')) {
 
       // HACK: TODO: Move this to a pipe or something
+      console.log(event.newData);
       const u = new User();
       u._id = event.newData._id;
       u.username = event.newData.username;
