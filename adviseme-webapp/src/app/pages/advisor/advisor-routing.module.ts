@@ -5,6 +5,7 @@ import { AllRequestsComponent } from './all-requests/all-requests.component';
 import { AdvisorAppointmentsComponent } from './advisor-appointments/advisor-appointments.component';
 import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
 import { StudentRequestComponent } from './student-requests/student-requests.component';
+import { AdvisorChatListComponent } from './advisor-chat-list/advisor-chat-list.component';
 
 const routes: Routes = [{
   path: '',
@@ -21,6 +22,9 @@ const routes: Routes = [{
   } , {
     path: 'student-request/:id',
     component: StudentRequestComponent,
+  } , {
+    path: 'advisor-chat-list',
+    component: AdvisorChatListComponent,
   }],
 }];
 
