@@ -4,7 +4,7 @@ import { Cart } from '../../_shared/models/cart';
 import { User } from '../../_shared/models/user';
 import { UserService } from '../../_shared/services/user.service';
 import { CartService } from '../../_shared/services/cart.service';
-import { flattenObject } from './flattenObject';
+import { flattenObject } from '../../_shared/scripts/flattenObject';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
 
@@ -16,6 +16,10 @@ import { MessageService } from 'primeng/components/common/messageservice';
 export class CartComponent implements OnInit {
   currentCart: Cart;
   currentUser: User;
+  advisorID: string;
+
+  currentState = 'yesCart';
+
   // configuration for the table
   settings= {
     mode: 'inline',
@@ -28,13 +32,13 @@ export class CartComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      title: {
+      class__title: {
         title: 'Title',
       },
-      courseNo: {
+      class__courseNo: {
         title: 'Course Number',
       },
-      prefix: {
+      class__prefix: {
         title: 'Prefix',
       },
     },
@@ -58,7 +62,11 @@ export class CartComponent implements OnInit {
   */
   submitToAdvisor() {
     // TODO: Take out this hardcoded string
-    this.currentCart.advisor = 'advisor01';
+    // this.currentCart.advisor = 'advisor01';
+    this.userService.getCurrentUser().subscribe( res => {
+      this.advisorID = res['advisor'];
+    });
+    this.currentCart.advisor = this.advisorID;
     // Update the cart
     this.cartService.update(this.currentCart);
     try {
@@ -77,31 +85,31 @@ export class CartComponent implements OnInit {
   */
   loadData() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.userService.getById(this.currentUser._id).subscribe((res) => {
       // Get the current user to get the cart by the studentID
       this.cartService.getById(this.currentUser._id)
-      .subscribe((res2: any) => {
-        this.currentCart = res2.data;
+      .subscribe((res: any) => {
+        this.currentCart = res.data;
         // If the advisor field is blank then show the cart.
         // Otherwise it has been sent to the advisor
         if (this.currentCart !== null) {
           if (this.currentCart.advisor === '' || this.currentCart.advisor === undefined) {
             this.source.load(flattenObject(this.currentCart.classes));
           } else {
+            this.currentState = 'sentCart';
             this.source.load([]);
           }
         } else {
+          this.currentState = 'noCart';
           this.source.load([]);
         }
       });
-    });
   }
 
   onDeleteConfirm(event) {
     if (window.confirm('Are you sure you want to delete?')) {
       const deletedItem = this.currentCart.classes.find(x => x._id === event.data.prefix + event.data.courseNo);
-      const index = this.currentCart.classes.findIndex(d => d._id === event.data.prefix + event.data.courseNo); //find index in your array
-      this.currentCart.classes.splice(index, 1);//remove element from array
+      const index = this.currentCart.classes.findIndex(d => d._id === event.data.prefix + event.data.courseNo); // find index in your array
+      this.currentCart.classes.splice(index, 1); // remove element from array
       this.cartService.update(this.currentCart);
       event.confirm.resolve();
     } else {

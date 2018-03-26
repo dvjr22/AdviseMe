@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
-import { flattenObject } from './flattenObject';
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
 import { CartViewRenderComponent } from '../../../_shared/services/cart-view.render.component';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
@@ -13,6 +13,8 @@ import { UserService } from '../../../_shared/services/user.service';
   styleUrls: ['./all-requests.component.scss'],
 })
 export class AllRequestsComponent implements OnInit {
+
+  advisorID: string;
 
   // Config for the table
   settings= {
@@ -38,7 +40,11 @@ export class AllRequestsComponent implements OnInit {
   constructor(private cartService: CartService, private userService: UserService) { }
 
   ngOnInit() {
-    this.cartService.getByAdvisor('advisor01')
+    this.userService.getCurrentUser().subscribe( res => {
+      this.advisorID = res['advisor'];
+    });
+
+    this.cartService.getByAdvisor(this.advisorID)
       .subscribe( (res) => {
         console.log(res.data);
         let flatData = flattenObject(res.data);

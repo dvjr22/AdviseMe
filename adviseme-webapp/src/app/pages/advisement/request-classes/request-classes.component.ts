@@ -8,7 +8,7 @@ import { UserService } from '../../../_shared/services/user.service';
 import { Cart } from '../../../_shared/models/cart';
 import { CartService } from '../../../_shared/services/cart.service';
 import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
-import { flattenObject } from './flattenObject';
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Ng2SmartTableComponent } from 'ng2-smart-table/ng2-smart-table.component';
 import { Row } from 'ng2-smart-table/lib/data-set/row';
@@ -106,7 +106,6 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       this.classService.getClasses()
         .subscribe((res2: Class[]) => {
           this.source.load(flattenObject(res2));
-          console.log(flattenObject(res2));
       });
     }
 
@@ -120,7 +119,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
           this.selectedClasses.push(event.data);
         }else {
           this.selectedClasses.splice(index, 1);
-        }//.classes
+        }
     }
 
     /**
