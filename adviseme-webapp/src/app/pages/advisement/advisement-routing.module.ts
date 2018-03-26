@@ -22,6 +22,9 @@ const routes: Routes = [{
   }, {
     path: 'chat',
     component: ChatComponent,
+  }, {
+    path: 'chat/:index',
+    component: ChatComponent,
   }],
 }];
 

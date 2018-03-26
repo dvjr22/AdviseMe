@@ -7,6 +7,8 @@ import { UserService } from '../../../_shared/services/user.service';
 
 import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
+import { AdvisorChatListRenderComponent } from '../../../_shared/services/advisor-chat-view.render.component';
+
 @Component({
   selector: 'ngx-advisor-chat-list',
   templateUrl: './advisor-chat-list.component.html',
@@ -25,6 +27,9 @@ export class AdvisorChatListComponent implements OnInit {
       },
       index: {
         title: 'index',
+        type: 'custom',
+        filter: false,
+        renderComponent: AdvisorChatListRenderComponent,
       },
     },
   };

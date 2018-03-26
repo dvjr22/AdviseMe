@@ -4,6 +4,8 @@ import { UserService } from '../../../_shared/services/user.service';
 import { User } from '../../../_shared/models/user';
 import * as io from 'socket.io-client';
 import { Role } from '../../../_shared/models/constants';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ngx-chat',
@@ -31,9 +33,20 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   currentUser: User;
 
-  constructor(private chatService: ChatService, private userService: UserService) {}
+  // Index of the student in the students array of the advisor user
+  index;
+
+  constructor(protected route: ActivatedRoute, private chatService: ChatService,
+    private userService: UserService) {}
 
   ngOnInit() {
+
+    // If the request has an index then capture it. It won't when the student enters
+    // the chat because they only have one advisor to communicate with. The advisor
+    // has multiple students so this index indicates which one.
+    try {
+      this.index = this.route.snapshot.params['index'];
+    } catch (e) {}
     // Get the current user information
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id).subscribe((res) => {
@@ -63,7 +76,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         this.room = user._id + user.advisor;
       break;
       case 'advisor':
-        this.room = user.students[0] + user._id; // TODO: Replace this hardcoded index
+        this.room = user.students[this.index] + user._id;
       break;
     }
   }
@@ -74,7 +87,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         searchId = user.advisor;
       break;
       case 'advisor':
-        searchId = user.students[0]; // TODO: Replace this hardcoded index
+        searchId = user.students[this.index];
       break;
     }
     this.userService.getById(searchId).subscribe((res) => {

@@ -32,8 +32,11 @@ import { AuthenticationService, CanActivateUser } from './_shared/services/authe
 import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { NotificationService } from './_shared/services/notification.service';
+
+// Render Components
 import { ClassViewRenderComponent } from './_shared/services/class-view.render.component';
 import { CartViewRenderComponent } from './_shared/services/cart-view.render.component';
+import { AdvisorChatListRenderComponent } from './_shared/services/advisor-chat-view.render.component';
 
 // PrimeNG
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -50,6 +53,7 @@ import { Class } from './_shared/models/class';
     AppComponent,
     ClassViewRenderComponent,
     CartViewRenderComponent,
+    AdvisorChatListRenderComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +90,8 @@ import { Class } from './_shared/models/class';
     MessageService,
   ],
   entryComponents: [ClassViewRenderComponent,
-  CartViewRenderComponent ] ,
+  CartViewRenderComponent,
+AdvisorChatListRenderComponent ] ,
 })
 export class AppModule {
 }
