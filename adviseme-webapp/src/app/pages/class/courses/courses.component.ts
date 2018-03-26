@@ -21,13 +21,13 @@ export class CoursesComponent implements OnInit {
     settings = {
       actions: false,
       columns: {
-        class_prefix: {
+        class__prefix: {
           title: 'Department',
         },
-        class_courseNo: {
+        class__courseNo: {
           title: 'Course Number',
         },
-        class_title: {
+        class__title: {
           title: 'Course Title',
         },
       },
@@ -53,7 +53,6 @@ export class CoursesComponent implements OnInit {
       this.classService.getClasses()
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
-          console.log(flattenObject(res));
         });
     }
 }

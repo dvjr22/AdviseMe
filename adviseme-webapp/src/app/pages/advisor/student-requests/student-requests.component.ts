@@ -21,13 +21,13 @@ export class StudentRequestComponent implements OnInit {
   settings= {
     actions: false,
     columns: {
-      class_prefix: {
+      class__prefix: {
         title: 'Prefix',
       },
-      class_courseNo: {
+      class__courseNo: {
         title: 'Course Number',
       },
-      class_title: {
+      class__title: {
         title: 'Title',
       },
     },
