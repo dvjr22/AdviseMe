@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LocalDataSource } from 'ng2-smart-table';
+
+import { User } from '../../../_shared/models/user';
+import { UserService } from '../../../_shared/services/user.service';
+
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
+
 @Component({
   selector: 'ngx-advisor-chat-list',
   templateUrl: './advisor-chat-list.component.html',
@@ -7,9 +14,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdvisorChatListComponent implements OnInit {
 
-  constructor() { }
+  /**
+    Configuration for the table
+  */
+  settings = {
+    actions: false,
+    columns: {
+      studentId: {
+        title: '_id',
+      },
+      index: {
+        title: 'index',
+      },
+    },
+  };
+
+  /**
+    The data that will go into the table
+  */
+  source: LocalDataSource = new LocalDataSource();
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    // Load the list of students
+    const currentAdvisor = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.userService.getById(currentAdvisor._id)
+      .subscribe((res: User) => {
+        const data = [];
+        for ( let i = 0; i < res.students.length; i++){
+          console.log(i)
+            const ob = {};
+            ob['studentId'] = res.students[i];
+            ob['index'] = i;
+            data.push(ob);
+        }
+
+        console.log('data',data)
+        console.log('res',res.students);
+        this.source.load(data);
+        console.log(flattenObject(res));
+      });
   }
 
 }
