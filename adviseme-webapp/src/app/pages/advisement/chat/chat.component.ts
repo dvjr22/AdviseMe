@@ -68,6 +68,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.currentUser = data;
     if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
       this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
+      console.log('set', this.currentUser.profilePicture)
     }
   }
   setRoom(user: User) {

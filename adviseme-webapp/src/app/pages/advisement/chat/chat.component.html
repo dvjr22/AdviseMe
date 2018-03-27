@@ -12,9 +12,14 @@
                   <ul class="chat">
                       <li *ngFor="let c of chats">
                         <div class="left clearfix" *ngIf="c.nickname===msgData.nickname; else rightchat">
-                          <span class="chat-img pull-left">
+                          <span class="chat-img pull-left" *ngIf="currentUser.profilePicture!==undefined; else defaultProfile">
                             <img class="img-circle" [src]="'/uploads/' + currentUser?.profilePicture" alt="User Avatar"  />
                           </span>
+                          <ng-template #defaultProfile>
+                            <span class="chat-img pull-left">
+                              <img class="img-circle" src="http://placehold.it/50/8899FF?text=%20" alt="User Avatar"  />
+                            </span>
+                          </ng-template>
                           <div class="chat-body clearfix">
                               <div class="header">
                                   <strong class="primary-font">{{ c.nickname }}</strong> <small class="pull-right text-muted">
