@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.userService.getById(this.currentUser._id)
+    this.userService.getCurrentUser()
         .subscribe(res => {
           this.currentUser = res;
           this.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;

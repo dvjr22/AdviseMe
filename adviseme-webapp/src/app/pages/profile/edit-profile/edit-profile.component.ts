@@ -63,8 +63,7 @@ export class EditProfileComponent implements OnInit {
     to get the users information
   */
   ngOnInit() {
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.userService.getById(this.currentUser._id)
+    this.userService.getCurrentUser()
         .subscribe((res: any) => {
           this.currentUser = res;
           this.emailArray = this.currentUser.email.split('@');

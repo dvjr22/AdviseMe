@@ -24,9 +24,7 @@ export class PagesComponent {
   menu = MENU_ITEMS;
   constructor(private userService: UserService) {
     // Change the menu based off the role of the user
-    if (sessionStorage.getItem('currentUser') !== null) {
-      const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      this.userService.getById(currentUser._id).subscribe((res) => {
+      this.userService.getCurrentUser().subscribe((res) => {
         switch (res.role) {
           case 'admin':
             // User is an admin
@@ -41,6 +39,5 @@ export class PagesComponent {
             this.menu = MENU_ITEMS;
         }
       });
-    }
   }
 }
