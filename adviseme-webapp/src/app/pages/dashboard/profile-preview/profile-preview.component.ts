@@ -35,8 +35,7 @@ export class ProfilePreviewComponent implements OnInit {
     Gets the currents users to display info about them
   */
   ngOnInit() {
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.userService.getById(this.currentUser._id)
+    this.userService.getCurrentUser()
         .subscribe((res) => {
             this.currentUser = res;
             if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
