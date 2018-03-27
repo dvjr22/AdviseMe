@@ -69,7 +69,6 @@ export class PermissionComponent implements OnInit {
     this.userService.getAll()
       .subscribe((res: User[]) => {
         for (let i = 0; i < res.length; i++ ) {
-          console.log(res[i])
           this.userService.getById(res[i].advisor).subscribe((advisorRes) => {
             res[i].advisor = advisorRes.firstName + ' ' + advisorRes.lastName;
             this.source.load(flattenObject(res));
@@ -82,7 +81,6 @@ export class PermissionComponent implements OnInit {
     if (window.confirm('Are you sure you want to save?')) {
 
       // HACK: TODO: Move this to a pipe or something
-      console.log(event.newData);
       const u = new User();
       u._id = event.newData._id;
       u.username = event.newData.username;

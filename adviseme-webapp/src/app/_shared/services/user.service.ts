@@ -16,7 +16,7 @@ export class UserService {
   /**
     Initializes new names for the imports
   */
-  currentUser;
+  currentUser: User;
   headerDict = null;
   requestOptions = null;
 
@@ -36,18 +36,8 @@ export class UserService {
       @return {json}
     */
     getAll() {
-      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      if (this.currentUser !== null) {
-          this.headerDict = {
-            'Authorization': `Bearer ` + this.currentUser.token,
-            'Issuer': this.currentUser._id,
-          };
-
-          this.requestOptions = {
-            headers: new Headers(this.headerDict),
-          };
-      }
-        return this.http.get('/api/users', this.requestOptions).map((response: Response) => response.json());
+      this.checkUser();
+      return this.http.get('/api/users', this.requestOptions).map((response: Response) => response.json());
     }
 
     /**
@@ -57,18 +47,8 @@ export class UserService {
       @return {json}
     */
     getById(_id: string) {
-      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      if (this.currentUser !== null) {
-          this.headerDict = {
-            'Authorization': `Bearer ` + this.currentUser.token,
-            'Issuer': this.currentUser._id,
-          };
-
-          this.requestOptions = {
-            headers: new Headers(this.headerDict),
-          };
-      }
-        return this.http.get('/api/users/' + _id, this.requestOptions).map((response: Response) => response.json());
+      this.checkUser();
+      return this.http.get('/api/users/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
 
     /**
@@ -78,18 +58,8 @@ export class UserService {
       @return {json}
     */
     getCurrentUser() {
-      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      if (this.currentUser !== null) {
-          this.headerDict = {
-            'Authorization': `Bearer ` + this.currentUser.token,
-            'Issuer': this.currentUser._id,
-          };
-
-          this.requestOptions = {
-            headers: new Headers(this.headerDict),
-          };
-      }
-        return this.http.get('/api/users/' + this.currentUser._id, this.requestOptions).map((response: Response) => response.json());
+      this.checkUser();
+      return  this.http.get('/api/users/' + this.currentUser._id, this.requestOptions).map((response: Response) => response.json());
     }
 
     /**
@@ -98,7 +68,8 @@ export class UserService {
       @return {none}
     */
     create(user: User) {
-        return this.http.post('/api/users/register', user);
+      this.checkUser();
+      return this.http.post('/api/users/register', user);
     }
 
     /**
@@ -107,18 +78,8 @@ export class UserService {
       @return {none}
     */
     update(user: User) {
-      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      if (this.currentUser !== null) {
-          this.headerDict = {
-            'Authorization': `Bearer ` + this.currentUser.token,
-            'Issuer': this.currentUser._id,
-          };
-
-          this.requestOptions = {
-            headers: new Headers(this.headerDict),
-          };
-      }
-        return this.http.put('/api/users/' + user._id, user, this.requestOptions);
+      this.checkUser();
+      return this.http.put('/api/users/' + user._id, user, this.requestOptions);
     }
 
     /**
@@ -127,8 +88,13 @@ export class UserService {
       @return {none}
     */
     delete(_id: string) {
-        this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-        if (this.currentUser !== null) {
+      this.checkUser();
+      return this.http.delete('/api/users/' + _id, this.requestOptions);
+    }
+
+    checkUser() {
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      if (this.currentUser !== null && this.currentUser !== undefined) {
           this.headerDict = {
             'Authorization': `Bearer ` + this.currentUser.token,
             'Issuer': this.currentUser._id,
@@ -138,7 +104,5 @@ export class UserService {
             headers: new Headers(this.headerDict),
           };
       }
-
-        return this.http.delete('/api/users/' + _id, this.requestOptions);
     }
 }

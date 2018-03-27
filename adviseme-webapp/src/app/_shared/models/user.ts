@@ -17,6 +17,7 @@ export class User {
   appointments: string[];
   role: Role;
   advisor: string;
+  token: string;
   // Student Role
   studentID: string;
   status: Status;
@@ -29,7 +30,6 @@ export class User {
   profilePicture: string;
   // Advisor Role
   students: string[];
-  advisor: string;
   // Admin Role
 
 }
