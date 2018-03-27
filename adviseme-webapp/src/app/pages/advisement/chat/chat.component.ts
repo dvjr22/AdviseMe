@@ -50,8 +50,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       this.index = this.route.snapshot.params['index'];
     } catch (e) {}
     // Get the current user information
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.userService.getById(this.currentUser._id).subscribe((res) => {
+    this.userService.getCurrentUser().subscribe((res) => {
       // Set the currentUser variable and format the profile picture url
       this.formatCurrentUser(res);
       // Set the room id to a combination of the two user ids
@@ -136,7 +135,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   joinRoom() {
     const date = new Date();
-    this.userService.getById(this.currentUser._id).subscribe((res) => {
+    this.userService.getCurrentUser().subscribe((res) => {
       this.currentUser = res;
       this.getChatByRoom(this.room);
       this.msgData = { room: this.room, nickname: this.currentUser.firstName + ' ' + this.currentUser.lastName, message: '' };

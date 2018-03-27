@@ -80,7 +80,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       let user: User;
       // Get the current user model then get the cart by the associated studentID
-      this.userService.getById(this.currentUser._id).subscribe((res: User) => {
+      this.userService.getCurrentUser().subscribe((res: User) => {
         user = res;
 
         this.cartService.getById(user._id).subscribe((res2: any) => {
