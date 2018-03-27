@@ -70,7 +70,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.currentUser = data;
     if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
       this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
-      console.log('set', this.currentUser.profilePicture)
     }
   }
   setRoom(user: User) {
@@ -110,7 +109,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   watchForMessages() {
     // Recieve the new message push from the socket server
     this.socket.on('new-message', function (data) {
-      console.log('data',data);
       // If the message belongs in this room then display it
       if (data.message.data !== undefined && data.message.data.room === this.room) {
         // Push the message onto the chats object
@@ -133,7 +131,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   getChatByRoom(room) {
     this.chatService.getChatByRoom(room).then((res) => {
       this.chats = res;
-    }, (err) => { console.log(err) });
+    }, (err) => {});
   }
 
   joinRoom() {

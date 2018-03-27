@@ -48,7 +48,6 @@ export class AdvisorChatListComponent implements OnInit {
       .subscribe((res: User) => {
         const data = [];
         for ( let i = 0; i < res.students.length; i++){
-          console.log(i)
             const ob = {};
             const studentID = res.students[i];
             this.userService.getById(studentID).subscribe((studentRes) => {
@@ -58,11 +57,7 @@ export class AdvisorChatListComponent implements OnInit {
             });
 
         }
-
-        console.log('data',data)
-        console.log('res',res.students);
         this.source.load(data);
-        console.log(flattenObject(res));
       });
   }
 
