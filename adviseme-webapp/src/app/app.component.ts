@@ -39,8 +39,7 @@ export class AppComponent implements OnInit {
       this.currentUser = res;
     });
     this.socket.on('new-message', function (data) {
-      console.log('routerCheck', this.router.url.indexOf('chat') === -1)
-      if (data.message.data !== undefined && this.router.url.indexOf('chat') === -1) {
+      if (data.message.data !== undefined) {
         if (data.message.data.room.indexOf(this.currentUser.studentID) >= 0) {
           const message = data.message.data.message;
           const otherUser = data.message.data.nickname;
