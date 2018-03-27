@@ -40,6 +40,7 @@ export class AllRequestsComponent implements OnInit {
   constructor(private cartService: CartService, private userService: UserService) { }
 
   ngOnInit() {
+    const currentAdvisor = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getCurrentUser().subscribe( res => {
       this.advisorID = res['advisor'];
     });
