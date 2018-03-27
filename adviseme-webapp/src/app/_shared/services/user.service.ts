@@ -88,8 +88,10 @@ export class UserService {
           this.requestOptions = {
             headers: new Headers(this.headerDict),
           };
+          return this.http.get('/api/users/' + this.currentUser._id, this.requestOptions).map((response: Response) => response.json());
+      } else {
+        return this.http.get('/api/users/0', this.requestOptions).map((res) => res.json());
       }
-        return this.http.get('/api/users/' + this.currentUser._id, this.requestOptions).map((response: Response) => response.json());
     }
 
     /**
