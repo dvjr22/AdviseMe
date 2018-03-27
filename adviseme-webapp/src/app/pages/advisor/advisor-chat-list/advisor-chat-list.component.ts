@@ -22,11 +22,11 @@ export class AdvisorChatListComponent implements OnInit {
   settings = {
     actions: false,
     columns: {
-      studentId: {
-        title: '_id',
+      studentName: {
+        title: 'Student',
       },
       index: {
-        title: 'index',
+        title: '',
         type: 'custom',
         filter: false,
         renderComponent: AdvisorChatListRenderComponent,
@@ -50,9 +50,13 @@ export class AdvisorChatListComponent implements OnInit {
         for ( let i = 0; i < res.students.length; i++){
           console.log(i)
             const ob = {};
-            ob['studentId'] = res.students[i];
-            ob['index'] = i;
-            data.push(ob);
+            const studentID = res.students[i];
+            this.userService.getById(studentID).subscribe((studentRes) => {
+              ob['studentName'] = studentRes.firstName + ' ' + studentRes.lastName
+              ob['index'] = i;
+              data.push(ob);
+            });
+
         }
 
         console.log('data',data)
