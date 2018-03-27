@@ -12,6 +12,7 @@ import { CanActivateAdvisor } from '../../_shared/services/authentication.servic
 import { StudentRequestComponent } from './student-requests/student-requests.component';
 
 import { GrowlModule } from 'primeng/growl';
+import { AdvisorChatListComponent } from './advisor-chat-list/advisor-chat-list.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { GrowlModule } from 'primeng/growl';
   declarations: [
     ...routedComponents,
     StudentRequestComponent,
+    AdvisorChatListComponent,
   ],
   providers: [
     CanActivateAdvisor,

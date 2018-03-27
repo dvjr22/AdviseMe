@@ -3,6 +3,9 @@ import { ChatService } from '../../../_shared/services/chat.service';
 import { UserService } from '../../../_shared/services/user.service';
 import { User } from '../../../_shared/models/user';
 import * as io from 'socket.io-client';
+import { Role } from '../../../_shared/models/constants';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ngx-chat',
@@ -17,7 +20,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   // The list of chat messages
   chats: any;
 
-  advisorID: string;
+  room: string;
+
+  roomName: string;
 
   // Initialize objects for holding user and msg data
   newUser = { nickname: '', room: '' };
@@ -26,55 +31,91 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   // Connection to the socket server for realtime chat updates
   socket = io('http://localhost:4001');
 
-  // Not sure what this is for :(k
-  joinned = true;
-
   currentUser: User;
 
-  constructor(private chatService: ChatService, private userService: UserService) {}
+  otherPicture: string;
+
+  // Index of the student in the students array of the advisor user
+  index;
+
+  constructor(protected route: ActivatedRoute, private chatService: ChatService,
+    private userService: UserService) {}
 
   ngOnInit() {
 
-    // TODO: Replace this with a user service call
-    const user = {
-      room: 'test',
-      nickname: 'batman',
-    };
+    // If the request has an index then capture it. It won't when the student enters
+    // the chat because they only have one advisor to communicate with. The advisor
+    // has multiple students so this index indicates which one.
+    try {
+      this.index = this.route.snapshot.params['index'];
+    } catch (e) {}
+    // Get the current user information
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getById(this.currentUser._id).subscribe((res) => {
-      this.currentUser = res;
-      this.advisorID = res['advisor'];
-      console.log(res)
-
-      if (this.currentUser !== null && this.currentUser !== undefined) {
-        // Get the chat room for the current user
-        console.log(this.currentUser)
-        // Set the message data with the current users information
-        this.msgData = { room: /*this.currentUser.studentID + */ this.advisorID, nickname: this.currentUser.studentID, message: '' };
-        // Trip the joinned flag
-        this.joinned = true;
-        // Scroll the message view to the bottom
-        this.scrollToBottom();
-      }
+      // Set the currentUser variable and format the profile picture url
+      this.formatCurrentUser(res);
+      // Set the room id to a combination of the two user ids
+      this.setRoom(this.currentUser);
+      // Set the header name for the chat
+      this.setRoomName(this.currentUser);
+      // Assign message data for what is shown in the message input box
+      this.assignMsgData('');
     });
-    this.joinRoom()
+    // Load all old chat messages
+    this.joinRoom();
+    // Set up the socket io watch for new messages from the advisor
+    this.watchForMessages();
+  }
+  formatCurrentUser(data: any) {
+    this.currentUser = data;
+    if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
+      this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
+    }
+  }
+  setRoom(user: User) {
+    switch (user.role.toString()) {
+      case 'student':
+        this.room = user._id + user.advisor;
+      break;
+      case 'advisor':
+        this.room = user.students[this.index] + user._id;
+      break;
+    }
+  }
+  setRoomName(user: User) {
+    let searchId = '';
+    switch (user.role.toString()) {
+      case 'student':
+        searchId = user.advisor;
+      break;
+      case 'advisor':
+        searchId = user.students[this.index];
+      break;
+    }
+    this.userService.getById(searchId).subscribe((res) => {
+      this.roomName = res.firstName + ' ' + res.lastName;
+      this.otherPicture = res.profilePicture;
+    });
+  }
+   assignMsgData(message: string) {
+     if (this.currentUser !== null && this.currentUser !== undefined) {
+       // Set the message data with the current users information
+       this.msgData = { room: this.room, nickname: this.currentUser.firstName + ' ' + this.currentUser.lastName, message: message };
+       // Scroll the message view to the bottom
+       this.scrollToBottom();
+     }
+   }
+
+  watchForMessages() {
     // Recieve the new message push from the socket server
     this.socket.on('new-message', function (data) {
-      console.log('recieved message: ', data)
       // If the message belongs in this room then display it
-      // TODO: Check for the right room
-      console.log('userdata', this.currentUser, data.message)
-        if (data.message.data !== undefined && data.message.data.room === /*this.currentUser.studentID + */ 'advisor01') {
-          // Push the message onto the chats object
-          this.chats.push(data.message.data);
-          console.log('this.chats',this.chats)
-          this.msgData = { room: /*this.currentUser.studentID + */ this.advisorID, nickname: this.currentUser.studentID, message: '' };
-        }
+      if (data.message.data !== undefined && data.message.data.room === this.room) {
+        // Push the message onto the chats object
+        this.chats.push(data.message.data);
+        this.msgData = { room: this.room, nickname: this.currentUser.firstName + ' ' + this.currentUser.lastName, message: '' };
+      }
     }.bind(this));
-  }
-
-  ngAfterInit() {
-
   }
 
   ngAfterViewChecked() {
@@ -90,21 +131,17 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   getChatByRoom(room) {
     this.chatService.getChatByRoom(room).then((res) => {
       this.chats = res;
-    }, (err) => { console.log(err) });
+    }, (err) => {});
   }
 
   joinRoom() {
     const date = new Date();
     this.userService.getById(this.currentUser._id).subscribe((res) => {
       this.currentUser = res;
-      this.advisorID = res['advisor'];
-      // if (this.currentUser !== undefined) {
-        this.getChatByRoom(this.currentUser.studentID + this.advisorID); // TODO: Replace this with a user service call
-        this.msgData = { room: /*this.currentUser.studentID + */this.advisorID, nickname: this.currentUser.studentID, message: '' };
-        this.joinned = true;
-        this.socket.emit('save-message', { room: /*this.currentUser.studentID + */ this.advisorID,
-          nickname: this.currentUser.studentID, message: 'Join this room', updated_at: date });
-      // }
+      this.getChatByRoom(this.room);
+      this.msgData = { room: this.room, nickname: this.currentUser.firstName + ' ' + this.currentUser.lastName, message: '' };
+      this.socket.emit('save-message', { room: this.room,
+        nickname: this.currentUser.firstName + ' ' + this.currentUser.lastName, message: 'Join this room', updated_at: date });
     });
   }
 
@@ -113,10 +150,4 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       this.socket.emit('save-message', result);
     }, (err) => { });
   }
-
-  // logout() {
-  //   const date = new Date();
-  //   this.socket.emit('save-message', { room: 'test', nickname: 'batman', message: 'Left this room', updated_at: date });
-  //   this.joinned = false;
-  // }
 }

@@ -125,6 +125,10 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
         title: 'View Class Requests',
         link: '/pages/advisor/requests',
       },
+      {
+        title: 'Student Messaging',
+        link: '/pages/advisor/advisor-chat-list',
+      },
     ],
   },
   {

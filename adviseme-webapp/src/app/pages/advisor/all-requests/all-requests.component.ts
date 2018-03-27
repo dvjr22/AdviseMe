@@ -46,23 +46,16 @@ export class AllRequestsComponent implements OnInit {
 
     this.cartService.getByAdvisor(this.advisorID)
       .subscribe( (res) => {
-        console.log(res.data);
         let flatData = flattenObject(res.data);
         for (let i = 0; i < flatData.length; i++) {
           let d = flatData[i];
-          console.log(d);
           this.userService.getById(d._id).subscribe((userres) => {
-            console.log(userres.firstName + userres.lastName);
             d.fullName = userres.firstName + ' ' + userres.lastName;
             flatData[i] = d;
           });
         }
         this.source.load(flatData);
       });
-    // this.cartService.get()
-    //   .subscribe((res) => {
-    //   this.source.load(flattenObject(res.data));
-    // });
   }
 
 }

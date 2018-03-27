@@ -21,7 +21,6 @@ export class ChatService {
       this.http.get('/api/chat/room/' + room, this.requestOptions)
         .map(res => res.json())
         .subscribe(res => {
-          console.log(res)
           resolve(res.data);
         }, (err) => {
           reject(err);

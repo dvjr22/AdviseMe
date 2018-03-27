@@ -46,11 +46,8 @@ export class StudentRequestComponent implements OnInit {
     this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
       // Get the cart data and flatten it, then load into the table
       this.cart = res.data;
-      console.log(res);
       const ob = this.cart.classes;
-      console.log(ob)
       let newOb = flattenObject(ob);
-      console.log(newOb);
       this.source.load(newOb);
     });
   }
