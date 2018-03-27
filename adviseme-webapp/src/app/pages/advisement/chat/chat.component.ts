@@ -33,6 +33,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   currentUser: User;
 
+  otherPicture: string;
+
   // Index of the student in the students array of the advisor user
   index;
 
@@ -93,6 +95,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
     this.userService.getById(searchId).subscribe((res) => {
       this.roomName = res.firstName + ' ' + res.lastName;
+      this.otherPicture = res.profilePicture;
     });
   }
    assignMsgData(message: string) {

@@ -30,9 +30,14 @@
                         </div>
                         <ng-template #rightchat>
                           <div class="left clearfix">
-                            <span class="chat-img pull-left">
-                              <img src="http://placehold.it/50/FA6F57/fff&text=U" alt="User Avatar" class="img-circle" />
+                            <span class="chat-img pull-left" *ngIf="otherPicture!==undefined; else otherProfile">
+                              <img class="img-circle" [src]="'/uploads/' + otherPicture" alt="User Avatar"  />
                             </span>
+                            <ng-template #otherProfile>
+                              <span class="chat-img pull-left">
+                                <img class="img-circle" src="http://placehold.it/50/CCCCCC?text=%20" alt="User Avatar"  />
+                              </span>
+                            </ng-template>
                             <div class="chat-body clearfix">
                               <div class="header">
                                   <strong class="primary-font">{{ c.nickname }}</strong> <small class="pull-right text-muted">
