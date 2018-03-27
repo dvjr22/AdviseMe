@@ -148,6 +148,7 @@ function update(_id, userParam) {
             status: userParam.status,
             major: userParam.major,
             role: userParam.role,
+            advisor: userParam.advisor,
         };
 
         // update password if it was entered

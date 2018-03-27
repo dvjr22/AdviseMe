@@ -49,6 +49,9 @@ export class PermissionComponent implements OnInit {
         major: {
           title: 'Major',
         },
+        advisor: {
+          title: 'Advisor',
+        },
         email: {
           title: 'Email',
         },
@@ -65,7 +68,13 @@ export class PermissionComponent implements OnInit {
   ngOnInit() {
     this.userService.getAll()
       .subscribe((res: User[]) => {
-        this.source.load(flattenObject(res));
+        for (let i = 0; i < res.length; i++ ) {
+          console.log(res[i])
+          this.userService.getById(res[i].advisor).subscribe((advisorRes) => {
+            res[i].advisor = advisorRes.firstName + ' ' + advisorRes.lastName;
+            this.source.load(flattenObject(res));
+          });
+        }
       });
   }
 
@@ -90,6 +99,7 @@ export class PermissionComponent implements OnInit {
       u.major = event.newData.major;
       u.course = event.newData.course;
       u.students = event.newData.students;
+      u.advisor = event.newData.advisor;
       this.userService.update(u).subscribe();
       event.confirm.resolve(event.newData);
       this.messageService.add({severity: 'success',
