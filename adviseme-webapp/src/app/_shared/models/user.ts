@@ -29,7 +29,7 @@ export class User {
   profilePicture: string;
   // Advisor Role
   students: string[];
-
+  advisor: string;
   // Admin Role
 
 }
