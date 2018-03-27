@@ -54,6 +54,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Profile View',
         link: '/pages/profile/profile-view',
       },
+      {
+        title: 'Cart',
+        link: '/pages/cart',
+      },
     ],
 
   },
