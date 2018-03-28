@@ -1,0 +1,83 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LocalDataSource } from 'ng2-smart-table';
+
+import { User, FutureClasses } from '../../../../_shared/models/user';
+import { UserService } from '../../../../_shared/services/user.service';
+
+<<<<<<< HEAD:adviseme-webapp/src/app/pages/dashboard/future-classes/future-classes.component.ts
+import { Class } from '../../../_shared/models/class';
+import { ClassService } from '../../../_shared/services/class.service';
+
+import { CapitalizePipe } from '../../../@theme/pipes/capitalize.pipe';
+
+import { recommendedClasses } from './recommendedClasses';
+=======
+import {CapitalizePipe} from '../../../../@theme/pipes/capitalize.pipe';
+>>>>>>> 0ea0cea30894f532aab8c3c0f3bde8b2b4eaa027:adviseme-webapp/src/app/pages/dashboard/student/future-classes/future-classes.component.ts
+
+/**
+  Component:
+    For the future classes that the user is in
+*/
+@Component({
+  selector: 'ngx-future-classes',
+  styleUrls: ['./future-classes.component.scss'],
+  templateUrl: './future-classes.component.html',
+})
+
+export class FutureClassesComponent implements OnInit {
+  /**
+    Getting the current user
+  */
+  currentUser: User;
+  /**
+    Array of courses
+  */
+  courses: any = [];
+  /**
+    Configuration for the table
+  */
+  settings = {
+    actions: false,
+    columns: {
+      department: {
+        title: 'Department',
+      },
+      coNum: {
+        title: 'Course Number',
+      },
+    },
+  };
+
+  /**
+    The data that will go into the table
+  */
+  source: LocalDataSource = new LocalDataSource();
+
+  /**
+    Initializes new names for the imports
+  */
+<<<<<<< HEAD:adviseme-webapp/src/app/pages/dashboard/future-classes/future-classes.component.ts
+  constructor(private userService: UserService, private classService: ClassService) {
+=======
+  constructor(private userService: UserService, private router: Router) {
+>>>>>>> 0ea0cea30894f532aab8c3c0f3bde8b2b4eaa027:adviseme-webapp/src/app/pages/dashboard/student/future-classes/future-classes.component.ts
+  }
+
+  /**
+    Gets the currents users classes they will be taking
+
+    TODO: Use the real current users future class data
+  */
+  ngOnInit() {
+    this.classService.getFutureClasses()
+      .subscribe((res: Class[]) => {
+        this.source.load(recommendedClasses(res));
+      });
+  }
+
+  goToRequestClasses() {
+    this.router.navigate(['/pages/advisement/request-classes']);
+  }
+}

@@ -65,8 +65,6 @@ export class CartComponent implements OnInit {
     // this.currentCart.advisor = 'advisor01';
     this.userService.getCurrentUser().subscribe( res => {
       this.advisorID = res['advisor'];
-      console.log(this.advisorID);
-      console.log(this.advisorID);
       this.currentCart.advisor = this.advisorID;
       this.currentCart.status = 'pending';
       // Update the cart
