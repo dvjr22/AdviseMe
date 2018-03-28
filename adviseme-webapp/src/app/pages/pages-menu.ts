@@ -15,20 +15,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: 'Request',
-    icon: 'nb-list',
-    children: [
-      {
-        title: 'Request Classes',
-        link: '/pages/advisement/request-classes',
-      },
-      {
-        title: 'Request Status',
-        link: '/pages/student/cart-progress',
-      },
-    ],
-    },
-  {
     title: 'Advisement',
     icon: 'nb-compose',
     children: [
@@ -47,6 +33,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: 'Cart',
+    icon: 'ion-ios-cart-outline',
+    children: [
+      {
+        title: 'View Cart',
+        link: '/pages/cart',
+      },
+    ],
+  },
+  {
     title: 'Profile',
     icon: 'nb-person',
     children: [
@@ -54,13 +50,23 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Profile View',
         link: '/pages/profile/profile-view',
       },
-      {
-        title: 'Cart',
-        link: '/pages/cart',
-      },
     ],
 
   },
+  {
+    title: 'Request',
+    icon: 'nb-list',
+    children: [
+      {
+        title: 'Request Classes',
+        link: '/pages/advisement/request-classes',
+      },
+      {
+        title: 'Request Status',
+        link: '/pages/student/cart-progress',
+      },
+    ],
+    },
 ];
 
 export const ADMIN_ITEMS: NbMenuItem[] = [
