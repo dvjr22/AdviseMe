@@ -4,6 +4,7 @@ import { AppointmentService } from '../../../_shared/services/appointment.servic
 import { UserService } from '../../../_shared/services/user.service';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Router } from '@angular/router';
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
 /**
   Component that allows the user to see their appointments
@@ -42,6 +43,9 @@ export class AppointmentViewComponent implements OnInit {
       date: {
         title: 'Date',
       },
+      timefull: {
+        title: 'Time',
+      },
     },
   };
 
@@ -69,6 +73,7 @@ export class AppointmentViewComponent implements OnInit {
         } else {
           this.source.load(res2.data);
         }
+        this.source.load(flattenObject(res2.data));
       });
     });
   }

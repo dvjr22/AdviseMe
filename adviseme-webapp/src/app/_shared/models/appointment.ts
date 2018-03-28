@@ -14,4 +14,9 @@ export class Appointment {
   advisor: string;
   roomNumber: string;
   date: Date;
+  time: {
+    hour: string;
+    minute: string;
+    second: string;
+  };
 }
