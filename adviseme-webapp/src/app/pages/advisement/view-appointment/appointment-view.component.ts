@@ -40,6 +40,9 @@ export class AppointmentViewComponent implements OnInit {
       date: {
         title: 'Date',
       },
+      time: {
+        title: 'Time',
+      },
     },
   };
 
