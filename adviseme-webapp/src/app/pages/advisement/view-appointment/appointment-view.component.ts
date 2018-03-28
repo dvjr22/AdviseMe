@@ -3,11 +3,15 @@ import { Appointment } from '../../../_shared/models/appointment';
 import { AppointmentService } from '../../../_shared/services/appointment.service';
 import { UserService } from '../../../_shared/services/user.service';
 import { LocalDataSource } from 'ng2-smart-table';
+<<<<<<< HEAD
 <<<<<<< 820954739b5e2e8aee7fdcf88b34be0a6d7c69ce
 import { Router } from '@angular/router';
 =======
 import { flattenObject } from '../../../_shared/scripts/flattenObject';
 >>>>>>> added time picker, displayed room number
+=======
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
+>>>>>>> bba8244b394544197ec50adc9949df31cc02a48f
 
 /**
   Component that allows the user to see their appointments
@@ -71,6 +75,7 @@ export class AppointmentViewComponent implements OnInit {
     this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
       userID = res['studentID'];
       this.appointmentService.getById(userID).subscribe( res2 => {
+<<<<<<< HEAD
 <<<<<<< 820954739b5e2e8aee7fdcf88b34be0a6d7c69ce
         if ( res2.data.length === 0) {
           this.noAppointment = true;
@@ -80,6 +85,9 @@ export class AppointmentViewComponent implements OnInit {
 =======
         this.source.load(flattenObject(res2.data));
 >>>>>>> added time picker, displayed room number
+=======
+        this.source.load(flattenObject(res2.data));
+>>>>>>> bba8244b394544197ec50adc9949df31cc02a48f
       });
     });
   }
