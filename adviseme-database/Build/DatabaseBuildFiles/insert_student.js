@@ -38,6 +38,7 @@ for (let i = 0; i < noOfStudents; i++) {
 	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
 	obj.advisor = "advisor01"; // student advisor
+	obj.advisorRoom = "331A"; // advisor room
 
 	obj.username = last + id; // unique user login
 	obj.email = "random.student@email.sc.edu";  // user email
@@ -89,6 +90,7 @@ function makeTyler() {
 	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
 	obj.advisor = "advisor01"; // student advisor
+	obj.advisorRoom = "331A"; // advisor room
 
 	obj.username = "tbhall";
 	obj.email = "tbhall@email.sc.edu";
@@ -116,6 +118,7 @@ function makeStudent() {
 	obj.university = "Univeristy of South Carolina";
 	obj.major = major(); // get major
 	obj.advisor = "advisor01"; // student advisor
+	obj.advisorRoom = "331A"; // advisor room
 
 	obj.username = "student";
 	obj.email = "student@email.sc.edu";
