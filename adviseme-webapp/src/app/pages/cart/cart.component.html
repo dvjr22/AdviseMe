@@ -17,7 +17,7 @@
   <nb-card-body>
     Please add classes to your cart to send a request to your advisor
 </nb-card-body>
-<nb-card-footer align-items="center">
+<nb-card-footer  >
   <button (click)="goToRequestClasses()" type="button" class="btn btn-success">Request Classes</button>
 </nb-card-footer>
 </ng-template>
@@ -28,7 +28,7 @@
     <nb-card-body>
       No cart has been created yet
     </nb-card-body>
-    <nb-card-footer align-items="center">
+    <nb-card-footer  >
       <button (click)="goToRequestClasses()" type="button" class="btn btn-success">Request Classes</button>
     </nb-card-footer>
   </ng-template>
@@ -42,7 +42,7 @@
       <br/>
       <b>Status</b>: {{ this.currentCart.status }}.
     </nb-card-body>
-    <nb-card-footer align-items="center">
+    <nb-card-footer >
       <button (click)="goToRequestProgress()" type="button" class="btn btn-success">Request Progress</button>
     </nb-card-footer>
   </ng-template>
