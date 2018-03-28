@@ -1,6 +1,17 @@
 <nb-card>
+    <ng-template [ngIf]="this.noAppointment === false">
       <nb-card-header>Upcoming Appointments!</nb-card-header>
       <nb-card-body>
         <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
       </nb-card-body>
+    </ng-template>
+    <ng-template [ngIf]="this.noAppointment === true">
+      <nb-card-header>Upcoming Appointments!</nb-card-header>
+      <nb-card-body>
+        There are no appointments made yet. Click the button below to make one.
+      </nb-card-body>
+      <nb-card-footer>
+        <button (click)="goToMakeAppointment()" type="button" class="btn btn-success">Make Appointment</button>
+      </nb-card-footer>
+    </ng-template>
 </nb-card>

@@ -3,6 +3,7 @@ import { Appointment } from '../../../_shared/models/appointment';
 import { AppointmentService } from '../../../_shared/services/appointment.service';
 import { UserService } from '../../../_shared/services/user.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { Router } from '@angular/router';
 
 /**
   Component that allows the user to see their appointments
@@ -17,6 +18,7 @@ export class AppointmentViewComponent implements OnInit {
    Variable to store all the appointments for the user collected from the api
   */
   appointment: any;
+  noAppointment = false;
 
   settings = {
     actions: false,
@@ -50,6 +52,7 @@ export class AppointmentViewComponent implements OnInit {
   constructor(
     private appointmentService: AppointmentService,
     private userService: UserService,
+    private router: Router,
              ) { }
   /**
     Calling the appointment api gets all the appointments
@@ -61,8 +64,17 @@ export class AppointmentViewComponent implements OnInit {
     this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
       userID = res['studentID'];
       this.appointmentService.getById(userID).subscribe( res2 => {
-        this.source.load(res2.data);
+        if ( res2.data.length === 0) {
+          this.noAppointment = true;
+        } else {
+          this.source.load(res2.data);
+        }
       });
     });
   }
+
+  goToMakeAppointment() {
+    this.router.navigate(['/pages/advisement/appointment']);
+  }
+
 }
