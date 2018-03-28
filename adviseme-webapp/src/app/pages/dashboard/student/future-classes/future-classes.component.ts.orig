@@ -5,16 +5,12 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { User, FutureClasses } from '../../../../_shared/models/user';
 import { UserService } from '../../../../_shared/services/user.service';
 
-<<<<<<< HEAD:adviseme-webapp/src/app/pages/dashboard/future-classes/future-classes.component.ts
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
 
 import { CapitalizePipe } from '../../../@theme/pipes/capitalize.pipe';
 
 import { recommendedClasses } from './recommendedClasses';
-=======
-import {CapitalizePipe} from '../../../../@theme/pipes/capitalize.pipe';
->>>>>>> 0ea0cea30894f532aab8c3c0f3bde8b2b4eaa027:adviseme-webapp/src/app/pages/dashboard/student/future-classes/future-classes.component.ts
 
 /**
   Component:
@@ -58,11 +54,7 @@ export class FutureClassesComponent implements OnInit {
   /**
     Initializes new names for the imports
   */
-<<<<<<< HEAD:adviseme-webapp/src/app/pages/dashboard/future-classes/future-classes.component.ts
   constructor(private userService: UserService, private classService: ClassService) {
-=======
-  constructor(private userService: UserService, private router: Router) {
->>>>>>> 0ea0cea30894f532aab8c3c0f3bde8b2b4eaa027:adviseme-webapp/src/app/pages/dashboard/student/future-classes/future-classes.component.ts
   }
 
   /**
