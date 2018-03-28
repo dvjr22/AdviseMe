@@ -65,6 +65,18 @@ export class CartComponent implements OnInit {
     // this.currentCart.advisor = 'advisor01';
     this.userService.getCurrentUser().subscribe( res => {
       this.advisorID = res['advisor'];
+      this.currentCart.advisor = this.advisorID;
+      this.currentCart.status = 'pending';
+      // Update the cart
+      this.cartService.update(this.currentCart);
+      try {
+        // Reload the data in the table, should be blank if the cart is sent
+        this.loadData();
+      } catch (e) {
+        this.messageService.add({severity: 'error', summary: 'Cart Submit Failed', detail: 'Error submitting cart'});
+      } finally {
+        this.messageService.add({severity: 'success', summary: 'Cart Submit', detail: 'Successfully submitted your cart'});
+      }
     });
     this.currentCart.advisor = this.advisorID;
     this.currentCart.status = 'pending';
