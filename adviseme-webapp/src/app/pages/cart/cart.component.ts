@@ -17,6 +17,7 @@ export class CartComponent implements OnInit {
   currentCart: Cart;
   currentUser: User;
   advisorID: string;
+  noClasses = false;
 
   currentState = 'yesCart';
 
@@ -105,12 +106,17 @@ export class CartComponent implements OnInit {
         // If the advisor field is blank then show the cart.
         // Otherwise it has been sent to the advisor
         if (this.currentCart !== null) {
-          if (this.currentCart.advisor === '' || this.currentCart.advisor === undefined) {
-            this.source.load(flattenObject(this.currentCart.classes));
+          if (this.currentCart.classes.length === 0) {
+            this.noClasses = true;
           } else {
-            this.currentState = 'sentCart';
-            this.source.load([]);
-          }
+            if (this.currentCart.advisor === '' || this.currentCart.advisor === undefined) {
+              this.source.load(flattenObject(this.currentCart.classes));
+
+            } else {
+              this.currentState = 'sentCart';
+              this.source.load([]);
+            }
+        }
         } else {
           this.currentState = 'noCart';
           this.source.load([]);

@@ -1,17 +1,31 @@
 <p-growl [(value)]="msgs"></p-growl>
 <nb-card>
-  <nb-card-header>
-    <span>Cart</span>
-  </nb-card-header>
-  <nb-card-body *ngIf="this.currentState === 'yesCart'; else noCart">
+  <ng-template [ngIf]="this.currentState === 'yesCart' && this.noClasses === false">
+    <nb-card-header>
+      <span>Cart</span>
+    </nb-card-header>
+  <nb-card-body>
     <ng2-smart-table [settings]="settings" (deleteConfirm)="onDeleteConfirm($event)" [source]="source"></ng2-smart-table>
     <br/>
     <button (click)="submitToAdvisor()" id="submitBtn" type="button" class="btn btn-success">Send to Advisor</button>
   </nb-card-body>
-  <ng-template #noCart>
-    <nb-card-body *ngIf="this.currentState === 'noCart'; else sentCart"> No cart has been created yet </nb-card-body>
+</ng-template>
+<ng-template [ngIf]="this.currentState === 'yesCart' && this.noClasses === true">
+  <nb-card-header>
+    <span>Cart</span>
+  </nb-card-header>
+  <nb-card-body> You need to add classes to your cart to send a request to your advisor </nb-card-body>
+</ng-template>
+  <ng-template [ngIf]="this.currentState === 'noCart'">
+    <nb-card-header>
+      <span>Cart</span>
+    </nb-card-header>
+    <nb-card-body> No cart has been created yet </nb-card-body>
   </ng-template>
-  <ng-template #sentCart>
+  <ng-template [ngIf]="this.currentState === 'sentCart'">
+    <nb-card-header>
+      <span>Cart</span>
+    </nb-card-header>
     <nb-card-body> Your class request has been sent to your advisor </nb-card-body>
   </ng-template>
 </nb-card>
