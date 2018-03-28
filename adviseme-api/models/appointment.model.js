@@ -41,6 +41,12 @@ var AppointmentSchema = new mongoose.Schema({
       type: Date,
       default: Date.now,
     },
+
+    time: {
+      type: Number,
+      required: true,
+      trim: true,
+    },
 })
 
 AppointmentSchema.plugin(mongoosePaginate)

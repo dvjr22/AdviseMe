@@ -32,6 +32,8 @@
             <b>Major:</b> {{ currentUser.major | uppercase }}
             <br>
             <b>Year:</b> {{ currentUser.status | ngxCapitalize}}
+            <br>
+            <b>Advisor:</b> {{ currentUser.advisor | ngxCapitalize}}
         </div>
       </nb-card-body>
       <nb-card-footer>
@@ -51,14 +53,9 @@
           <div class="col-md-8">
 
               <h6>Pick a Time: </h6>
+              <br>
               <form (ngSubmit)="onSubmit()" #form="ngForm">
-                <div class="input-group">
-                  <input type="text" name="advisor" id="advisor" [(ngModel)]="newAppointment.advisor" placeholder="Advisor" class="form-control">
-                </div>
-                <br>
-                <div class="input-group">
-                  <input name="roomNumber" id="roomNumber" [(ngModel)]="newAppointment.roomNumber" placeholder="Room Number" class="form-control">
-                </div>
+                <ngb-timepicker name="time" id="time" [(ngModel)]="time" [meridian]="meridian"></ngb-timepicker>
                 <br>
                 <div class="input-group">
                    <button class="input-group-addon" type="button">
