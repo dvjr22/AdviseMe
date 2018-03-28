@@ -124,6 +124,14 @@ export class CartComponent implements OnInit {
       });
   }
 
+  goToRequestClasses() {
+    this.router.navigate(['pages/advisement/request-classes']);
+  }
+
+  goToRequestProgress() {
+    this.router.navigate(['/pages/student/cart-progress']);
+  }
+
   onDeleteConfirm(event) {
     if (window.confirm('Are you sure you want to delete?')) {
       const deletedItem = this.currentCart.classes.find(x => x._id === event.data.class__prefix + event.data.class__courseNo);

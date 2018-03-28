@@ -14,18 +14,36 @@
   <nb-card-header>
     <span>Cart</span>
   </nb-card-header>
-  <nb-card-body> You need to add classes to your cart to send a request to your advisor </nb-card-body>
+  <nb-card-body>
+    Please add classes to your cart to send a request to your advisor
+</nb-card-body>
+<nb-card-footer align-items="center">
+  <button (click)="goToRequestClasses()" type="button" class="btn btn-success">Request Classes</button>
+</nb-card-footer>
 </ng-template>
   <ng-template [ngIf]="this.currentState === 'noCart'">
     <nb-card-header>
       <span>Cart</span>
     </nb-card-header>
-    <nb-card-body> No cart has been created yet </nb-card-body>
+    <nb-card-body>
+      No cart has been created yet
+    </nb-card-body>
+    <nb-card-footer align-items="center">
+      <button (click)="goToRequestClasses()" type="button" class="btn btn-success">Request Classes</button>
+    </nb-card-footer>
   </ng-template>
   <ng-template [ngIf]="this.currentState === 'sentCart'">
     <nb-card-header>
       <span>Cart</span>
     </nb-card-header>
-    <nb-card-body> Your class request has been sent to your advisor </nb-card-body>
+    <nb-card-body>
+      Your class request has been sent to your advisor.
+      <br/>
+      <br/>
+      <b>Status</b>: {{ this.currentCart.status }}.
+    </nb-card-body>
+    <nb-card-footer align-items="center">
+      <button (click)="goToRequestProgress()" type="button" class="btn btn-success">Request Progress</button>
+    </nb-card-footer>
   </ng-template>
 </nb-card>
