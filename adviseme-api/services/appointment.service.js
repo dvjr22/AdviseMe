@@ -26,10 +26,9 @@ exports.createAppointment = async function(aAppointment){
       time: {
         hour: aAppointment.time['hour'],
         minute: aAppointment.time['minute'],
-        second:aAppointment.time['second'],
       },
+      timefull: aAppointment.time['hour']+':'+aAppointment.time['minute'],
     })
-
     try{
         var savedAppointment = await newAppointment.save();
         return savedAppointment;
@@ -66,7 +65,6 @@ exports.updateAppointment = async function(aAppointment){
   oldAppointment.date = aAppointment.date,
   oldAppointment.time['hour'] = aAppointment.time['hour'],
   oldAppointment.time['minute'] = aAppointment.time['minute'],
-  oldAppointment.time['second'] = aAppointment.time['second'],
 
   console.log(oldAppointment)
 

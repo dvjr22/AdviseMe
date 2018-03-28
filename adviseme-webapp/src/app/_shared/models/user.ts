@@ -17,6 +17,7 @@ export class User {
   appointments: string[];
   role: Role;
   advisor: string;
+  advisorRoom: string;
   token: string;
   // Student Role
   studentID: string;

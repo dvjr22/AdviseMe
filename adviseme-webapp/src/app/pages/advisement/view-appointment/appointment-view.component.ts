@@ -3,7 +3,11 @@ import { Appointment } from '../../../_shared/models/appointment';
 import { AppointmentService } from '../../../_shared/services/appointment.service';
 import { UserService } from '../../../_shared/services/user.service';
 import { LocalDataSource } from 'ng2-smart-table';
+<<<<<<< 820954739b5e2e8aee7fdcf88b34be0a6d7c69ce
 import { Router } from '@angular/router';
+=======
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
+>>>>>>> added time picker, displayed room number
 
 /**
   Component that allows the user to see their appointments
@@ -42,7 +46,7 @@ export class AppointmentViewComponent implements OnInit {
       date: {
         title: 'Date',
       },
-      time: {
+      timefull: {
         title: 'Time',
       },
     },
@@ -67,11 +71,15 @@ export class AppointmentViewComponent implements OnInit {
     this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
       userID = res['studentID'];
       this.appointmentService.getById(userID).subscribe( res2 => {
+<<<<<<< 820954739b5e2e8aee7fdcf88b34be0a6d7c69ce
         if ( res2.data.length === 0) {
           this.noAppointment = true;
         } else {
           this.source.load(res2.data);
         }
+=======
+        this.source.load(flattenObject(res2.data));
+>>>>>>> added time picker, displayed room number
       });
     });
   }

@@ -42,11 +42,16 @@ var AppointmentSchema = new mongoose.Schema({
       default: Date.now,
     },
     time: {
-      hour: { type: Number, required: true },
-      minute: { type: Number, required: true },
-      second: { type: Number, required: true },
+      hour: { type: String, required: true },
+      minute: { type: String, required: true },
     },
+    timefull: {
+      type: String,
+      required: true,
+      trim: true,
+    }
 })
+
 
 AppointmentSchema.plugin(mongoosePaginate)
 const Appointment = mongoose.model('Appointment', AppointmentSchema)
