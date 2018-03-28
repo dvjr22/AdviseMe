@@ -3,6 +3,7 @@ import { Appointment } from '../../../_shared/models/appointment';
 import { AppointmentService } from '../../../_shared/services/appointment.service';
 import { UserService } from '../../../_shared/services/user.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
 /**
   Component that allows the user to see their appointments
@@ -40,7 +41,7 @@ export class AppointmentViewComponent implements OnInit {
       date: {
         title: 'Date',
       },
-      time: {
+      timefull: {
         title: 'Time',
       },
     },
@@ -64,7 +65,7 @@ export class AppointmentViewComponent implements OnInit {
     this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
       userID = res['studentID'];
       this.appointmentService.getById(userID).subscribe( res2 => {
-        this.source.load(res2.data);
+        this.source.load(flattenObject(res2.data));
       });
     });
   }

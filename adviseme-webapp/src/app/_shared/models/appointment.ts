@@ -15,8 +15,8 @@ export class Appointment {
   roomNumber: string;
   date: Date;
   time: {
-    hour: number;
-    minute: number;
-    second: number;
+    hour: string;
+    minute: string;
+    second: string;
   };
 }

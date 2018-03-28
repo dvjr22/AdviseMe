@@ -17,7 +17,6 @@ exports.createAppointment = async function(req, res){
     time: {
       hour: req.body.time['hour'],
       minute: req.body.time['minute'],
-      second: req.body.time['second'],
     },
   }
 
@@ -84,8 +83,8 @@ exports.updateAppointment = async function(req, res){
     time: {
       hour: req.body.time['hour'],
       minute: req.body.time['minute'],
-      second: req.body.time['second'],
     },
+    timefull: req.body.time['hour']+':'+req.body.time['minute'],
   }
 
   try{

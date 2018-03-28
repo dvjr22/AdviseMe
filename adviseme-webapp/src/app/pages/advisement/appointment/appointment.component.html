@@ -34,6 +34,8 @@
             <b>Year:</b> {{ currentUser.status | ngxCapitalize}}
             <br>
             <b>Advisor:</b> {{ currentUser.advisor | ngxCapitalize}}
+            <br>
+            <b>Advisor Room:</b> {{ currentUser.advisorRoom | ngxCapitalize}}
         </div>
       </nb-card-body>
       <nb-card-footer>
@@ -51,7 +53,7 @@
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-8">
-  
+
               <h6>Pick a Time: </h6>
               <br>
               <form (ngSubmit)="onSubmit()" #form="ngForm">
