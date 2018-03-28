@@ -64,6 +64,8 @@ export class AppointmentComponent implements OnInit {
     this.newAppointment.lastName = this.currentUser.lastName;
     this.newAppointment.major = this.currentUser.major.toString();
     this.newAppointment.status = this.currentUser.status.toString();
+    this.newAppointment.advisor = this.currentUser.advisor;
+    this.newAppointment.roomNumber = 'TODO';
     // have to use a formatter because ng date picker uses ISO format instead of the standard date format
     this.newAppointment.date = new Date(this.ngbDateParserFormatter.format(this.model));
 

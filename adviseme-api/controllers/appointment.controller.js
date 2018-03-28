@@ -14,7 +14,11 @@ exports.createAppointment = async function(req, res){
     advisor: req.body.advisor,
     roomNumber: req.body.roomNumber,
     date: req.body.date,
-    time: req.body.time,
+    time: {
+      hour: req.body.time['hour'],
+      minute: req.body.time['minute'],
+      second: req.body.time['second'],
+    },
   }
 
   try{
@@ -77,7 +81,11 @@ exports.updateAppointment = async function(req, res){
     advisor: req.body.advisor,
     roomNumber: req.body.roomNumber,
     date: req.body.date,
-    time: req.body.time,
+    time: {
+      hour: req.body.time['hour'],
+      minute: req.body.time['minute'],
+      second: req.body.time['second'],
+    },
   }
 
   try{
