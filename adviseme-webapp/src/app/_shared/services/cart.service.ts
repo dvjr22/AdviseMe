@@ -67,8 +67,8 @@ export class CartService {
       @param {Cart} cart
       @returns {none}
     */
-    update(cart: Cart) {
-        return this.http.put('/api/carts/', cart, this.requestOptions).subscribe();
+    update(cart: Cart): Observable<Cart> {
+        return this.http.put('/api/carts/', cart, this.requestOptions).map((response: Response) => response.json());
     }
 
     /**

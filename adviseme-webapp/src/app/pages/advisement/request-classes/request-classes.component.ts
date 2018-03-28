@@ -131,6 +131,8 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       if (this.selectedClasses !== undefined) {
         try {
           // HACK: Redo all of this shit after beta
+          // HACK: 3/28/2018 - Tyler Moon - I want to appologyize for this code. It is
+          // some wacky stuff for sure. However, it works :)
           for (let i = 0; i < this.selectedClasses.length; i++) {
             // For each of the selected classes get the course information and set it to the cart.
             // Then update the cart model. This overwrites insead of updates it currently.
@@ -145,9 +147,15 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
                     this.cart.classes.splice(i2, 1);
                   }
                 }
-                this.cartService.update(this.cart);
+                this.cartService.update(this.cart).subscribe(() => {
+                  if (i === this.selectedClasses.length - 1) {
+                    this.router.navigate(['/pages/cart']);
+                  }
+                });
               });
             }
+
+
         } catch (e) {
           this.messageService.add({severity: 'error', summary: 'Error adding to Cart',
             detail: 'An error has occured added those classes to your cart'});
@@ -155,7 +163,6 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
         } finally {
           this.messageService.add({severity: 'success', summary: 'Added to Cart', detail: 'Classes were successfully added to your cart'});
           // TODO: Found out why it isn't updating the cart quick enough to pull the classes
-          // this.router.navigate(['/pages/cart']);
         }
       } else {
         // No classes were selected
