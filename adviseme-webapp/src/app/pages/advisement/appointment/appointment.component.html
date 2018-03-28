@@ -23,15 +23,15 @@
           <img src="../../../../assets/images/batmanfb.jpg" style="width:128px;height:128px;">
         </div> -->
         <div class="item-2">
-            <b>Student ID:</b> {{ currentUser.studentID }}
+            <b>Student ID:</b> {{ currentUser?.studentID }}
             <br>
-            <b>Name:</b> {{ currentUser.firstName }} {{ currentUser.lastName}}
+            <b>Name:</b> {{ currentUser?.firstName }} {{ currentUser?.lastName}}
             <br>
-            <b>School:</b> {{ currentUser.university }}
+            <b>School:</b> {{ currentUser?.university }}
             <br>
-            <b>Major:</b> {{ currentUser.major | uppercase }}
+            <b>Major:</b> {{ currentUser?.major | uppercase }}
             <br>
-            <b>Year:</b> {{ currentUser.status | ngxCapitalize}}
+            <b>Year:</b> {{ currentUser?.status | ngxCapitalize}}
         </div>
       </nb-card-body>
       <nb-card-footer>
