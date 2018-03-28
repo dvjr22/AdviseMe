@@ -34,21 +34,22 @@ export class AppComponent implements OnInit {
   */
   ngOnInit(): void {
     this.analytics.trackPageViews();
+    if (sessionStorage.getItem('currentUser') !== undefined && sessionStorage.getItem('currentUser') !== null) {
+      this.userService.getCurrentUser().subscribe((res) => {
+        this.currentUser = res;
+      });
+      this.socket.on('new-message', function (data) {
+        if (data.message.data !== undefined) {
+          if (data.message.data.room.indexOf(this.currentUser.studentID) >= 0) {
+            const message = data.message.data.message;
+            const otherUser = data.message.data.nickname;
 
-    this.userService.getCurrentUser().subscribe((res) => {
-      this.currentUser = res;
-    });
-    this.socket.on('new-message', function (data) {
-      if (data.message.data !== undefined) {
-        if (data.message.data.room.indexOf(this.currentUser.studentID) >= 0) {
-          const message = data.message.data.message;
-          const otherUser = data.message.data.nickname;
-
-          this.messageService.add({severity: 'success',
-            summary: 'New Message',
-            detail: 'New message from ' + otherUser + ' saying: ' + message});
+            this.messageService.add({severity: 'success',
+              summary: 'New Message',
+              detail: 'New message from ' + otherUser + ' saying: ' + message});
+          }
         }
-      }
-    }.bind(this));
+      }.bind(this));
+    }
   }
 }
