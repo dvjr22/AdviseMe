@@ -23,7 +23,11 @@ exports.createAppointment = async function(aAppointment){
       advisor: aAppointment.advisor,
       roomNumber: aAppointment.roomNumber,
       date: aAppointment.date,
-      time: aAppointment.time,
+      time: {
+        hour: aAppointment.time['hour'],
+        minute: aAppointment.time['minute'],
+        second:aAppointment.time['second'],
+      },
     })
 
     try{
@@ -60,7 +64,9 @@ exports.updateAppointment = async function(aAppointment){
   oldAppointment.advisor = aAppointment.advisor,
   oldAppointment.roomNumber = aAppointment.roomNumber,
   oldAppointment.date = aAppointment.date,
-  oldAppointment.time = aAppointment.time,
+  oldAppointment.time['hour'] = aAppointment.time['hour'],
+  oldAppointment.time['minute'] = aAppointment.time['minute'],
+  oldAppointment.time['second'] = aAppointment.time['second'],
 
   console.log(oldAppointment)
 

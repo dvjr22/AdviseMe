@@ -41,11 +41,10 @@ var AppointmentSchema = new mongoose.Schema({
       type: Date,
       default: Date.now,
     },
-
     time: {
-      type: Number,
-      required: true,
-      trim: true,
+      hour: { type: Number, required: true },
+      minute: { type: Number, required: true },
+      second: { type: Number, required: true },
     },
 })
 
