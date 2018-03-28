@@ -145,9 +145,15 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
                     this.cart.classes.splice(i2, 1);
                   }
                 }
-                this.cartService.update(this.cart);
+                this.cartService.update(this.cart).subscribe(() => {
+                  if (i === this.selectedClasses.length - 1) {
+                    this.router.navigate(['/pages/cart']);
+                  }
+                });
               });
             }
+
+
         } catch (e) {
           this.messageService.add({severity: 'error', summary: 'Error adding to Cart',
             detail: 'An error has occured added those classes to your cart'});
@@ -155,7 +161,6 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
         } finally {
           this.messageService.add({severity: 'success', summary: 'Added to Cart', detail: 'Classes were successfully added to your cart'});
           // TODO: Found out why it isn't updating the cart quick enough to pull the classes
-          // this.router.navigate(['/pages/cart']);
         }
       } else {
         // No classes were selected

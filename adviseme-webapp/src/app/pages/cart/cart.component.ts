@@ -5,7 +5,7 @@ import { User } from '../../_shared/models/user';
 import { UserService } from '../../_shared/services/user.service';
 import { CartService } from '../../_shared/services/cart.service';
 import { flattenObject } from '../../_shared/scripts/flattenObject';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
 
 @Component({
@@ -50,7 +50,15 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService,
     private userService: UserService,
     private router: Router,
-    private messageService: MessageService) { }
+    private messageService: MessageService) {
+      router.events.subscribe((val) => {
+        if(val instanceof NavigationEnd) {
+        //  this.loadData();
+          this.source.load([]);
+        }
+        console.log(val instanceof NavigationEnd);
+      });
+  }
 
   ngOnInit() {
     this.loadData();
@@ -72,7 +80,7 @@ export class CartComponent implements OnInit {
       this.cartService.update(this.currentCart);
       try {
         // Reload the data in the table, should be blank if the cart is sent
-        this.loadData();
+        //this.loadData();
       } catch (e) {
         this.messageService.add({severity: 'error', summary: 'Cart Submit Failed', detail: 'Error submitting cart'});
       } finally {
@@ -90,6 +98,7 @@ export class CartComponent implements OnInit {
       this.messageService.add({severity: 'error', summary: 'Cart Submit Failed', detail: 'Error submitting cart'});
     } finally {
       this.messageService.add({severity: 'success', summary: 'Cart Submit', detail: 'Successfully submitted your cart'});
+      this.router.navigate(['/pages/student/cart-progress']);
     }
   }
 
@@ -98,7 +107,7 @@ export class CartComponent implements OnInit {
     @return {none}
   */
   loadData() {
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       // Get the current user to get the cart by the studentID
       this.cartService.getById(this.currentUser._id)
       .subscribe((res: any) => {
@@ -110,8 +119,8 @@ export class CartComponent implements OnInit {
             this.noClasses = true;
           } else {
             if (this.currentCart.advisor === '' || this.currentCart.advisor === undefined) {
+              console.log("loading: ", flattenObject(this.currentCart.classes));
               this.source.load(flattenObject(this.currentCart.classes));
-
             } else {
               this.currentState = 'sentCart';
               this.source.load([]);
