@@ -131,6 +131,8 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       if (this.selectedClasses !== undefined) {
         try {
           // HACK: Redo all of this shit after beta
+          // HACK: 3/28/2018 - Tyler Moon - I want to appologyize for this code. It is
+          // some wacky stuff for sure. However, it works :)
           for (let i = 0; i < this.selectedClasses.length; i++) {
             // For each of the selected classes get the course information and set it to the cart.
             // Then update the cart model. This overwrites insead of updates it currently.

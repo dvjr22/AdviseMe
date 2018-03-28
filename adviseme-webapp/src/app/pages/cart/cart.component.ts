@@ -51,13 +51,6 @@ export class CartComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private messageService: MessageService) {
-      router.events.subscribe((val) => {
-        if(val instanceof NavigationEnd) {
-        //  this.loadData();
-          this.source.load([]);
-        }
-        console.log(val instanceof NavigationEnd);
-      });
   }
 
   ngOnInit() {
@@ -76,30 +69,18 @@ export class CartComponent implements OnInit {
       this.advisorID = res['advisor'];
       this.currentCart.advisor = this.advisorID;
       this.currentCart.status = 'pending';
-      // Update the cart
-      this.cartService.update(this.currentCart);
       try {
         // Reload the data in the table, should be blank if the cart is sent
-        //this.loadData();
+        this.loadData();
       } catch (e) {
         this.messageService.add({severity: 'error', summary: 'Cart Submit Failed', detail: 'Error submitting cart'});
       } finally {
         this.messageService.add({severity: 'success', summary: 'Cart Submit', detail: 'Successfully submitted your cart'});
+        this.cartService.update(this.currentCart).subscribe(() => {
+          this.router.navigate(['/pages/student/cart-progress']);
+        });
       }
     });
-    this.currentCart.advisor = this.advisorID;
-    this.currentCart.status = 'pending';
-    // Update the cart
-    this.cartService.update(this.currentCart);
-    try {
-      // Reload the data in the table, should be blank if the cart is sent
-      this.loadData();
-    } catch (e) {
-      this.messageService.add({severity: 'error', summary: 'Cart Submit Failed', detail: 'Error submitting cart'});
-    } finally {
-      this.messageService.add({severity: 'success', summary: 'Cart Submit', detail: 'Successfully submitted your cart'});
-      this.router.navigate(['/pages/student/cart-progress']);
-    }
   }
 
   /**
@@ -119,7 +100,6 @@ export class CartComponent implements OnInit {
             this.noClasses = true;
           } else {
             if (this.currentCart.advisor === '' || this.currentCart.advisor === undefined) {
-              console.log("loading: ", flattenObject(this.currentCart.classes));
               this.source.load(flattenObject(this.currentCart.classes));
             } else {
               this.currentState = 'sentCart';
