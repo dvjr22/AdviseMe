@@ -23,7 +23,9 @@
         <br/>
       </div>
       <br/>
-      <img [src]="currentUser?.profilePicture" style="max-width: 200px; max-height: 200px;">
+      <div *ngIf="currentUser.profilePicture !== undefined">
+        <img [src]="currentUser?.profilePicture" style="max-width: 200px; max-height: 200px;">
+      </div>
     </div>
   </nb-card-body>
   <nb-card-footer>
