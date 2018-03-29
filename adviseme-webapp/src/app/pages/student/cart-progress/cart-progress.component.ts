@@ -41,6 +41,14 @@ export class CartProgressComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  receiveSource($event) {
+    this.loadData();
+  }
+
+  loadData() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.cartService.getById(this.currentUser._id)
     .subscribe((res: any) => {

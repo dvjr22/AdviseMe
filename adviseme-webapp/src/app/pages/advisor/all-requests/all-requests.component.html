@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header>
-    <ngx-refresh-button></ngx-refresh-button>
+    <ngx-refresh-button (messageEvent)="receiveSource($event)" ></ngx-refresh-button>
     <br>
     <br>
     <span>Student Class Requests</span>
