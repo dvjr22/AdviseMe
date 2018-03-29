@@ -77,7 +77,8 @@ export class StudentRequestComponent implements OnInit {
       this.cart = res.data;
       this.cart.advisor = '';
       this.cart.message = this.comment;
-      this.cartService.update(this.cart);
+      this.cart.status = "Changes Requested";
+      this.cartService.update(this.cart).subscribe();
     });
   }
 

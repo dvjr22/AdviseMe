@@ -69,7 +69,7 @@ exports.updateCart = async function(aCart){
      oldCart.studentID = aCart.studentID
      oldCart.advisor = aCart.advisor
      oldCart.status = aCart.status
-     oldCart.message = oldCart.message
+     oldCart.message = aCart.message
    try {
       console.log("OLD CART " + JSON.stringify(oldCart))
      var savedCart = await oldCart.save()
