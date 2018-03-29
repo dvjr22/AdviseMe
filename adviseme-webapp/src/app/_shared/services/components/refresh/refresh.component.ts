@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Input, Output,  EventEmitter} from '@angular/core';
 
 /**
   Component:
@@ -18,7 +18,12 @@ import { Component } from '@angular/core';
 
 export class RefreshButtonComponent {
 
+  @Output() messageEvent = new EventEmitter<null>();
+
+
+  constructor() {}
+
   refresh() {
-    window.location.reload(true);
+    this.messageEvent.emit();
   }
 }
