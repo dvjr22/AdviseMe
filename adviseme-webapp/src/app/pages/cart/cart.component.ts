@@ -64,12 +64,11 @@ export class CartComponent implements OnInit {
     @return {none}
   */
   submitToAdvisor() {
-    // TODO: Take out this hardcoded string
-    // this.currentCart.advisor = 'advisor01';
     this.userService.getCurrentUser().subscribe( res => {
       this.advisorID = res['advisor'];
       this.currentCart.advisor = this.advisorID;
       this.currentCart.status = 'pending';
+      this.currentCart.message = undefined;
       try {
         // Reload the data in the table, should be blank if the cart is sent
         this.loadData();
