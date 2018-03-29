@@ -37,6 +37,7 @@ export class StudentRequestComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   comment: string;
   requestButtonStatus = true;
+  message: string;
 
   constructor(protected route: ActivatedRoute, private cartService: CartService,
     private notificationService: NotificationService, private router: Router,
@@ -49,6 +50,8 @@ export class StudentRequestComponent implements OnInit {
       const ob = this.cart.classes;
       let newOb = flattenObject(ob);
       this.source.load(newOb);
+      this.message = '';
+      console.log(this.cart);
     });
   }
 
@@ -66,14 +69,16 @@ export class StudentRequestComponent implements OnInit {
     //   this.messageService.add({severity: 'info',
     //     summary: 'Changes Requested',
     //     detail: 'Successfully sent comments to student'});
-    this.comment = '';
+    //this.comment = '';
     // Navigate back to the request screen
     // this.router.navigate(['/pages/advisor/requests']);
     // Set the advisor field back to blank so that it will show up in the students profile
     this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
       this.cart = res.data;
       this.cart.advisor = '';
-      this.cartService.update(this.cart);
+      this.cart.message = this.comment;
+      this.cart.status = "Changes Requested";
+      this.cartService.update(this.cart).subscribe();
     });
   }
 

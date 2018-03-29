@@ -18,6 +18,7 @@ export class CartComponent implements OnInit {
   currentUser: User;
   advisorID: string;
   noClasses = false;
+  message = '';
 
   currentState = 'yesCart';
 
@@ -114,6 +115,9 @@ export class CartComponent implements OnInit {
         } else {
           this.currentState = 'noCart';
           this.source.load([]);
+        }
+        if (this.currentCart.message !== null) {
+          this.message = this.currentCart.message;
         }
       });
   }
