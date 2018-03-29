@@ -44,8 +44,8 @@ export class AllRequestsComponent implements OnInit {
     this.userService.getCurrentUser().subscribe( res => {
       this.advisorID = res['advisor'];
     });
-    console.log(curentAdvisor);
-    this.cartService.getByAdvisor(currentAdvisor)
+    
+    this.cartService.getByAdvisor(currentAdvisor._id)
       .subscribe( (res) => {
         let flatData = flattenObject(res.data);
         for (let i = 0; i < flatData.length; i++) {
