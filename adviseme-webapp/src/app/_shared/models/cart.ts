@@ -20,4 +20,5 @@ export class Cart {
     };
   }];
   advisor: string;
+  message: string;
 }

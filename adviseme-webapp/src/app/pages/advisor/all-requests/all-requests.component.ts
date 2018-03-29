@@ -45,10 +45,11 @@ export class AllRequestsComponent implements OnInit {
       this.advisorID = res['advisor'];
     });
 
-    this.cartService.getByAdvisor(this.advisorID)
+    this.cartService.getByAdvisor(currentAdvisor._id)
       .subscribe( (res) => {
         let flatData = flattenObject(res.data);
         for (let i = 0; i < flatData.length; i++) {
+          console.log(flatData);
           let d = flatData[i];
           this.userService.getById(d._id).subscribe((userres) => {
             d.fullName = userres.firstName + ' ' + userres.lastName;
