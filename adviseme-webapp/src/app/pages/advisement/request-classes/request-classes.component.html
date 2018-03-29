@@ -11,17 +11,26 @@
   }
 </style>
 <p-growl [(value)]="msgs"></p-growl>
-<nb-card>
-  <ng2-smart-table
-    [settings]="settings"
-    [source]="source"
-    (userRowSelect)="onUserRowSelect($event)"
-    #table>
-  </ng2-smart-table>
-</nb-card>
-<span *ngFor="let i of selectedClasses">
-  {{ i._id }}
-</span>
-<nb-card>
-  <button (click)="addToCart()" type="button" class="btn btn-success">Add To Cart</button>
-</nb-card>
+  <nb-card>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (userRowSelect)="onUserRowSelect($event)"
+      #table>
+    </ng2-smart-table>
+  </nb-card>
+  <span *ngFor="let i of selectedClasses">
+    {{ i._id }}
+  </span>
+
+<ng-template [ngIf]="this.cart?.status === 'created'">
+  <nb-card>
+    <button (click)="addToCart()" type="button" class="btn btn-success">Add To Cart</button>
+  </nb-card>
+</ng-template>
+
+<ng-template [ngIf]="this.cart?.status === 'pending'">
+  <nb-card>
+    <button (click)="updatedCart()" type="button" class="btn btn-success">Update Cart</button>
+  </nb-card>
+</ng-template>

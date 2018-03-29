@@ -1,5 +1,7 @@
 <p-growl [(value)]="msgs"></p-growl>
 <nb-card>
+
+
   <ng-template [ngIf]="this.currentState === 'yesCart' && this.noClasses === false">
     <nb-card-header>
       <span>Cart</span>
@@ -10,6 +12,8 @@
     <button (click)="submitToAdvisor()" id="submitBtn" type="button" class="btn btn-success">Send to Advisor</button>
   </nb-card-body>
 </ng-template>
+
+
 <ng-template [ngIf]="this.currentState === 'yesCart' && this.noClasses === true">
   <nb-card-header>
     <span>Cart</span>
@@ -21,6 +25,19 @@
   <button (click)="goToRequestClasses()" type="button" class="btn btn-success">Request Classes</button>
 </nb-card-footer>
 </ng-template>
+
+<ng-template [ngIf]="this.currentState === 'updatedCart'">
+  <nb-card-header>
+    <span>Cart</span>
+  </nb-card-header>
+<nb-card-body>
+  <ng2-smart-table [settings]="settings" (deleteConfirm)="onDeleteConfirm($event)" [source]="source"></ng2-smart-table>
+  <br/>
+  <button (click)="submitToAdvisor()" id="submitBtn" type="button" class="btn btn-success">Submit Updated Cart</button>
+</nb-card-body>
+</ng-template>
+
+
   <ng-template [ngIf]="this.currentState === 'noCart'">
     <nb-card-header>
       <span>Cart</span>
@@ -32,6 +49,8 @@
       <button (click)="goToRequestClasses()" type="button" class="btn btn-success">Request Classes</button>
     </nb-card-footer>
   </ng-template>
+
+
   <ng-template [ngIf]="this.currentState === 'sentCart'">
     <nb-card-header>
       <span>Cart</span>
@@ -46,4 +65,6 @@
       <button (click)="goToRequestProgress()" type="button" class="btn btn-success">Request Progress</button>
     </nb-card-footer>
   </ng-template>
+
+
 </nb-card>
