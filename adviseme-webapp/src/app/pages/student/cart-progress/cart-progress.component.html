@@ -1,5 +1,8 @@
 <nb-card>
   <nb-card-header>
+    <ngx-refresh-button></ngx-refresh-button>
+    <br>
+    <br>
     <span>Request Status</span>
   </nb-card-header>
   <nb-card-body *ngIf="currentCart; else noCart">
@@ -8,7 +11,7 @@
     <br>
     <ng2-smart-table [settings]="settings"  [source]="source"></ng2-smart-table>
   </nb-card-body>
-  <nb-card-footer> <ngx-refresh-button></ngx-refresh-button></nb-card-footer>
+  <nb-card-footer></nb-card-footer>
 
   <ng-template #noCart>
     <nb-card-body> No cart request made yet </nb-card-body>
