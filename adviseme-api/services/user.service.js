@@ -149,8 +149,9 @@ function update(_id, userParam) {
             major: userParam.major,
             role: userParam.role,
             advisor: userParam.advisor,
+            profilePicture: userParam.profilePicture,
+            phoneNumber: userParam.phoneNumber,
         };
-
         // update password if it was entered
         if (userParam.password) {
             set.hash = bcrypt.hashSync(userParam.password, 10);
