@@ -40,6 +40,10 @@ export class AllRequestsComponent implements OnInit {
   constructor(private cartService: CartService, private userService: UserService) { }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
     const currentAdvisor = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getCurrentUser().subscribe( res => {
       this.advisorID = res['advisor'];
@@ -47,10 +51,9 @@ export class AllRequestsComponent implements OnInit {
 
     this.cartService.getByAdvisor(currentAdvisor._id)
       .subscribe( (res) => {
-        let flatData = flattenObject(res.data);
+        const flatData = flattenObject(res.data);
         for (let i = 0; i < flatData.length; i++) {
-          console.log(flatData);
-          let d = flatData[i];
+          const d = flatData[i];
           this.userService.getById(d._id).subscribe((userres) => {
             d.fullName = userres.firstName + ' ' + userres.lastName;
             flatData[i] = d;
@@ -58,6 +61,9 @@ export class AllRequestsComponent implements OnInit {
         }
         this.source.load(flatData);
       });
+  }
+  receiveSource($event) {
+    this.loadData();
   }
 
 }
