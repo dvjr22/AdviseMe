@@ -95,7 +95,8 @@ export class EditProfileComponent implements OnInit {
   */
   update() {
     this.currentUser.email = this.emailBegin + this.emailEnding;
-    this.userService.update(this.currentUser).subscribe();
-    this.router.navigate(['pages/profile/profile-view']);
+    this.userService.update(this.currentUser).subscribe((res) => {
+    });
+    //this.router.navigate(['pages/profile/profile-view']);
   }
 }
