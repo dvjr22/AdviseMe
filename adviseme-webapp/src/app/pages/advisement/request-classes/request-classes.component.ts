@@ -170,11 +170,56 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       }
     }
 
+    updatedCart(event) {
+      // Make sure a class was selected
+      if (this.selectedClasses !== undefined) {
+        try {
+          // HACK: Redo all of this shit after beta
+          // HACK: 3/28/2018 - Tyler Moon - I want to appologyize for this code. It is
+          // some wacky stuff for sure. However, it works :)
+          for (let i = 0; i < this.selectedClasses.length; i++) {
+            // For each of the selected classes get the course information and set it to the cart.
+            // Then update the cart model. This overwrites insead of updates it currently.
+            this.classService.getClass(this.selectedClasses[i]._id).subscribe((res: any) => {
+                if (this.cart.classes === undefined) {
+                  this.cart.classes = [res];
+                } else {
+                  this.cart.classes[i] = res;
+                }
+                if (this.selectedClasses.length < this.cart.classes.length) {
+                  for (let i2 = this.selectedClasses.length; i2 < this.cart.classes.length; i2++) {
+                    this.cart.classes.splice(i2, 1);
+                  }
+                }
+                this.cart.status = 'updated';
+                this.cartService.update(this.cart).subscribe(() => {
+                  if (i === this.selectedClasses.length - 1) {
+                    this.router.navigate(['/pages/cart']);
+                  }
+                });
+              });
+            }
+
+
+        } catch (e) {
+          this.messageService.add({severity: 'error', summary: 'Error updating Cart',
+            detail: 'An error has occured updating those classes to your cart'});
+
+        } finally {
+          this.messageService.add({severity: 'success', summary: 'Update Cart', detail: 'Classes were successfully updated in your cart'});
+          // TODO: Found out why it isn't updating the cart quick enough to pull the classes
+        }
+      } else {
+        // No classes were selected
+        this.messageService.add({severity: 'warn', summary: 'No Classes Selected', detail: 'Please select a class to update in your cart'});
+      }
+    }
+
     /**
      Setting the checkboxes when the content has changed
      */
     ngAfterContentChecked(): void {
-      this.syncTable();
+        this.syncTable();
     }
 
     /**
@@ -182,13 +227,13 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
      @returns {none}
      */
     syncTable(): void {
-      if (this.table.grid !== undefined) {
-        this.table.grid.getRows().forEach((row) => {
-          if (this.selectedClasses.find( r => r._id === row.getData()._id)) {
-            row.isSelected = true;
-          }
-        });
-        this.cdr.detectChanges();
-      }
+        if (this.table.grid !== undefined ) {
+          this.table.grid.getRows().forEach((row) => {
+            if (this.selectedClasses.find( r => r._id === row.getData()._id)) {
+              row.isSelected = true;
+            }
+          });
+          this.cdr.detectChanges();
+        }
     }
 }
