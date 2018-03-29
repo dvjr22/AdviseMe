@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, Output,  EventEmitter} from '@angular/core';
+import { Component, Output,  EventEmitter} from '@angular/core';
 
 /**
   Component:
