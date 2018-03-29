@@ -115,7 +115,7 @@ export class CartComponent implements OnInit {
           this.currentState = 'noCart';
           this.source.load([]);
         }
-        if (this.currentCart.message !== null) {
+        if (this.currentCart.message !== undefined) {
           this.message = this.currentCart.message;
         }
       });
