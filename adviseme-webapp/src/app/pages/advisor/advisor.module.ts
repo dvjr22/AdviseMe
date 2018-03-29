@@ -14,6 +14,8 @@ import { StudentRequestComponent } from './student-requests/student-requests.com
 import { GrowlModule } from 'primeng/growl';
 import { AdvisorChatListComponent } from './advisor-chat-list/advisor-chat-list.component';
 
+import { ServiceComponentModule } from '../../_shared/services/components/service-components.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,6 +23,7 @@ import { AdvisorChatListComponent } from './advisor-chat-list/advisor-chat-list.
     Ng2SmartTableModule,
     AdvisorRoutingModule,
     GrowlModule,
+    ServiceComponentModule,
   ],
   declarations: [
     ...routedComponents,

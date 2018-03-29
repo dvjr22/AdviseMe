@@ -6,6 +6,8 @@ import { GrowlModule } from 'primeng/growl';
 import { CartProgressComponent } from './cart-progress/cart-progress.component';
 import { StudentRoutingModule, routedComponents } from './student-routing.module';
 
+import { ServiceComponentModule } from '../../_shared/services/components/service-components.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -13,6 +15,7 @@ import { StudentRoutingModule, routedComponents } from './student-routing.module
     Ng2SmartTableModule,
     GrowlModule,
     StudentRoutingModule,
+    ServiceComponentModule,
   ],
   declarations: [
     ...routedComponents,

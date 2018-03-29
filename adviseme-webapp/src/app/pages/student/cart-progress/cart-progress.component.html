@@ -8,7 +8,10 @@
     <br>
     <ng2-smart-table [settings]="settings"  [source]="source"></ng2-smart-table>
   </nb-card-body>
+  <nb-card-footer> <ngx-refresh-button></ngx-refresh-button></nb-card-footer>
+
   <ng-template #noCart>
     <nb-card-body> No cart request made yet </nb-card-body>
+    <nb-card-footer></nb-card-footer>
   </ng-template>
 </nb-card>
