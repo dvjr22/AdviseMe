@@ -60,16 +60,6 @@ export class StudentRequestComponent implements OnInit {
     @returns {none}
   */
   requestOnClick() {
-    // Send an SMS notification
-    // this.notificationService.sendNotification(
-    //   JSON.stringify(
-    //     {'Your advisor has requested changes to your Class Request. \
-    //     Please see the attached comment for details. ---' + this.comment},
-    //   ));
-    //   this.messageService.add({severity: 'info',
-    //     summary: 'Changes Requested',
-    //     detail: 'Successfully sent comments to student'});
-    //this.comment = '';
     // Navigate back to the request screen
     // this.router.navigate(['/pages/advisor/requests']);
     // Set the advisor field back to blank so that it will show up in the students profile
@@ -78,7 +68,7 @@ export class StudentRequestComponent implements OnInit {
       this.cart.advisor = '';
       this.cart.message = this.comment;
       this.cart.status = "Changes Requested";
-      this.cartService.update(this.cart).subscribe();
+      this.cartService.update(this.cart).subscribe(() => this.router.navigate(['/pages/advisor/requests']));
     });
   }
 
