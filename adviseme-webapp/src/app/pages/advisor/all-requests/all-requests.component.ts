@@ -26,6 +26,9 @@ export class AllRequestsComponent implements OnInit {
       fullName: {
         title: 'Student Name',
       },
+      status: {
+        title: 'Status',
+      },
       _id: {
         title: 'Class Info',
         type: 'custom',

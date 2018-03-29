@@ -105,7 +105,13 @@ export class StudentRequestComponent implements OnInit {
       summary: 'Successfully Approved Request',
       detail: 'The requested classes were succesfully approved'});
     // Navigate back to the requests screen
-    // this.router.navigate(['/pages/advisor/requests']);
+    //
+    this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
+      this.cart = res.data;
+      this.cart.status = 'approved';
+      this.cartService.update(this.cart).subscribe();
+      this.router.navigate(['/pages/advisor/requests']);
+    });
   }
 
   /**
