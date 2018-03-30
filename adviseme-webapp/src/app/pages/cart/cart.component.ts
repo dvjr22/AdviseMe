@@ -103,7 +103,7 @@ export class CartComponent implements OnInit {
               this.source.load(flattenObject(this.currentCart.classes));
             } else {
               this.currentState = 'sentCart';
-              if (this.currentCart.status === 'updated') {
+              if (this.currentCart.status === 'updated' || this.currentCart.status === 'rejected') {
                 this.currentState = 'updatedCart';
                 this.source.load(flattenObject(this.currentCart.classes));
               } else {
