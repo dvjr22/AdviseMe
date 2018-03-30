@@ -3,6 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { CartService } from '../../../_shared/services/cart.service';
 import { Cart } from '../../../_shared/models/cart';
 import { User } from '../../../_shared/models/user';
+import { Router } from '@angular/router';
 
 import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
@@ -38,7 +39,8 @@ export class CartProgressComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+              private router: Router) { }
 
   ngOnInit() {
     this.loadData();
@@ -64,5 +66,9 @@ export class CartProgressComponent implements OnInit {
         this.source.load([]);
       }
     });
+  }
+
+  goToCart() {
+    this.router.navigate(['pages/cart']);
   }
 }
