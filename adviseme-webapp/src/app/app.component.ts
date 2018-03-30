@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import * as io from 'socket.io-client';
 import { UserService } from './_shared/services/user.service';
 import { Router } from '@angular/router';
+import { NotificationService } from './_shared/services/notification.service';
 
 /**
   Component:
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit {
   constructor(private analytics: AnalyticsService,
     private messageService: MessageService,
     private userService: UserService,
-    private router: Router) {
+    private router: Router,
+    private notificationService: NotificationService) {
   }
   /**
     Tracking page analytics
@@ -43,7 +45,10 @@ export class AppComponent implements OnInit {
           if (data.message.data.room.indexOf(this.currentUser.studentID) >= 0) {
             const message = data.message.data.message;
             const otherUser = data.message.data.nickname;
-
+            // If opted in to sms notification send a text alerting to a new message
+            if (this.currentUser.phoneNumber !== null || this.currentUser.phoneNumber !== '') {
+              this.notificationService.sendNotification(JSON.stringify(data.message.data), this.currentUser.phoneNumber);
+            }
             this.messageService.add({severity: 'success',
               summary: 'New Message',
               detail: 'New message from ' + otherUser + ' saying: ' + message});
