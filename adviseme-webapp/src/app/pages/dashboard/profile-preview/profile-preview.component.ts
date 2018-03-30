@@ -19,9 +19,6 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
 export class ProfilePreviewComponent implements OnInit {
 
-  object = {
-  link: 'http://lorempixel.com/100/100',
-};
   /**
     Getting the current user
   */
@@ -45,7 +42,6 @@ export class ProfilePreviewComponent implements OnInit {
               this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
             }
             this.currentUser.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
-            console.log(this.currentUser.profilePicture);
         });
   }
 }

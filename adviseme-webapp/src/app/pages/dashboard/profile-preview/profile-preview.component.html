@@ -1,9 +1,6 @@
 <nb-card size="small">
   <nb-card-body>
-    <div class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
-    <div *ngIf="currentUser?.profilePicture !== undefined">
-    </div>
-
+    <div *ngIf="this.currentUser?.profilePicture !== undefined" class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
 
     <div class="details">
       <div class="title">
