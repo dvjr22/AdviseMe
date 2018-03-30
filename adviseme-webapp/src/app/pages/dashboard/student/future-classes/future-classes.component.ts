@@ -30,6 +30,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
       // Class variables
       currentUser: User;
       cart: Cart;
+      classes: any[] = [];
       selectedClasses: any[] = [];
       @ViewChild('table') table: Ng2SmartTableComponent;
 
@@ -37,7 +38,6 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
         Configuration for the table
       */
       settings = {
-        selectMode: 'multi',
         actions: false,
         columns: {
           class__prefix: {
@@ -110,6 +110,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
         this.classService.getClasses()
           .subscribe((res2: Class[]) => {
             this.source.load(flattenFiveObjects(res2));
+            this.classes = flattenFiveObjects(res2);
         });
       }
 
@@ -132,28 +133,28 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
       */
       addToCart(event) {
         // Make sure a class was selected
-        if (this.selectedClasses !== undefined) {
+        if (this.classes !== undefined) {
           try {
             // HACK: Redo all of this shit after beta
             // HACK: 3/28/2018 - Tyler Moon - I want to appologyize for this code. It is
             // some wacky stuff for sure. However, it works :)
-            for (let i = 0; i < this.selectedClasses.length; i++) {
+            for (let i = 0; i < this.classes.length; i++) {
               // For each of the selected classes get the course information and set it to the cart.
               // Then update the cart model. This overwrites insead of updates it currently.
-              this.classService.getClass(this.selectedClasses[i]._id).subscribe((res: any) => {
+              this.classService.getClass(this.classes[i]._id).subscribe((res: any) => {
                   if (this.cart.classes === undefined) {
                     this.cart.classes = [res];
                   } else {
                     this.cart.classes[i] = res;
                   }
-                  if (this.selectedClasses.length < this.cart.classes.length) {
-                    for (let i2 = this.selectedClasses.length; i2 < this.cart.classes.length; i2++) {
+                  if (this.classes.length < this.cart.classes.length) {
+                    for (let i2 = this.classes.length; i2 < this.cart.classes.length; i2++) {
                       this.cart.classes.splice(i2, 1);
                     }
                   }
                   this.cartService.update(this.cart).subscribe(() => {
-                    if (i === this.selectedClasses.length - 1) {
-                      this.router.navigate(['/pages/cart']);
+                    if (i === this.classes.length - 1) {
+                      this.router.navigate(['/pages/advisement/request-classes']);
                     }
                   });
                 });
@@ -239,5 +240,9 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
             });
             this.cdr.detectChanges();
           }
+      }
+
+      goToClasses(event) {
+        this.router.navigate(['/pages/advisement/request-classes']);
       }
 }
