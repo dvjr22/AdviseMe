@@ -1,8 +1,7 @@
 <nb-card size="small">
-  <nb-card-header>
-    <span> Profile Preview </span>
-  </nb-card-header>
   <nb-card-body>
+    <div *ngIf="this.currentUser?.profilePicture !== undefined" class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
+
     <div class="details">
       <div class="title">
         {{ this.currentUser?.fullName }}
@@ -23,9 +22,6 @@
         <br/>
       </div>
       <br/>
-      <div *ngIf="currentUser.profilePicture !== undefined">
-        <img [src]="currentUser?.profilePicture" style="max-width: 200px; max-height: 200px;">
-      </div>
     </div>
   </nb-card-body>
   <nb-card-footer>

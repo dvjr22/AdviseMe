@@ -22,8 +22,15 @@ export class AppointmentViewComponent implements OnInit {
   noAppointment = false;
 
   settings = {
-    actions: false,
+    actions: {
+      add: false,
+      edit: false,
+    },
     hideSubHeader: true,
+    delete: {
+      deleteButtonContent: '<i class="nb-trash"></i>',
+      confirmDelete: true,
+    },
     columns: {
       studentID: {
         title: 'Student ID',
@@ -82,4 +89,12 @@ export class AppointmentViewComponent implements OnInit {
     this.router.navigate(['/pages/advisement/appointment']);
   }
 
+  onDeleteConfirm(event) {
+    if(window.confirm('Are you sure you want to delete?')) {
+      this.appointmentService.delete(event.data._id);
+      event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
+  }
 }

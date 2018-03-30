@@ -10,7 +10,6 @@
     line-height: 1.6;
   }
 </style>
-<p-growl [(value)]="msgs"></p-growl>
 <div class="row">
   <div class="col-sm-4 col-md-4">
     <nb-card size="small">
@@ -42,17 +41,16 @@
       </nb-card-footer>
     </nb-card>
   </div>
-  <div class="col-sm-8 col-md-8">
     <nb-card>
       <nb-card-header>Make an Appointment</nb-card-header>
       <nb-card-body>
+        <div class="container">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col">
             <h6>Pick a Day: </h6>
             <ngb-datepicker #dp placeholder="yyyy-mm-dd" name="date" id="date" [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
           </div>
-          <div class="col-md-1"></div>
-          <div class="col-md-8">
+          <div class="col">
               <h6>Pick a Time: </h6>
               <br>
               <form (ngSubmit)="onSubmit()" #form="ngForm">
@@ -60,7 +58,7 @@
                 <br>
                 <br>
                 <br>
-                <div class="btn-group btn-group" role="group" style="float:left;">
+                <div class="btn-group btn-group" role="group">
                   <button class="btn btn-success btn-group-icon btn-group-divider btn-fixed" type="button">
                     <i class="fa fa-paper-plane" aria-hidden="true"></i>
                   </button>
@@ -69,7 +67,7 @@
               </form>
           </div><!-- end of col -->
         </div>
+      </div>
       </nb-card-body>
     </nb-card>
-  </div>
 </div>

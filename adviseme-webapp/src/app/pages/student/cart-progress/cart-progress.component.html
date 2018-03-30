@@ -1,4 +1,5 @@
 <nb-card>
+<<<<<<< HEAD
 
   <ng-template [ngIf]="this.currentCart?.status !== 'rejected'">
     <nb-card-header>
@@ -26,11 +27,27 @@
       <button (click)="goToCart()" id="submitBtn" type="button" class="btn btn-success">See Advisors Message</button>
     </nb-card-footer>
   </ng-template>
+=======
+  <nb-card-header>
+    <ngx-refresh-button (messageEvent)="receiveSource($event)" ></ngx-refresh-button>
+    <br>
+    <br>
+    <span>Request Status</span>
+  </nb-card-header>
+  <nb-card-body *ngIf="currentCart; else noCart">
+    <b> Status:</b>  {{ currentCart.status | ngxCapitalize }}
+    <br>
+    <br>
+    <ng2-smart-table [settings]="settings"  [source]="source"></ng2-smart-table>
+  </nb-card-body>
+  <nb-card-footer></nb-card-footer>
+>>>>>>> dev
 
   <ng-template #noCart>
     <nb-card-header>
       <span>Request Status</span>
     </nb-card-header>
     <nb-card-body> No cart request made yet </nb-card-body>
+    <nb-card-footer></nb-card-footer>
   </ng-template>
 </nb-card>
