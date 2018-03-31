@@ -57,6 +57,9 @@ export class AppComponent implements OnInit {
       }.bind(this));
       this.socket.on('cart-status', function (data) {
         this.notificationService.sendNotification(JSON.stringify(data), this.currentUser.phoneNumber);
+        this.messageService.add({severity: 'success',
+          summary: 'Cart Status Change',
+          detail: 'Your cart status has changed: ' + JSON.stringify(data.message)});
       }.bind(this));
     }
   }
