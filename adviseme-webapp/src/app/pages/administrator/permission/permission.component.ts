@@ -69,11 +69,13 @@ export class PermissionComponent implements OnInit {
     this.userService.getAll()
       .subscribe((res: User[]) => {
         for (let i = 0; i < res.length; i++ ) {
-          this.userService.getById(res[i].advisor).subscribe((advisorRes) => {
-            res[i].advisor = advisorRes.firstName + ' ' + advisorRes.lastName;
-            this.source.load(flattenObject(res));
-          });
+          if (res[i].advisor !== undefined) {
+            this.userService.getById(res[i].advisor).subscribe((advisorRes) => {
+              res[i].advisor = advisorRes.firstName + ' ' + advisorRes.lastName;
+            });
+          }
         }
+        this.source.load(flattenObject(res));
       });
   }
 
@@ -99,7 +101,6 @@ export class PermissionComponent implements OnInit {
       u.students = event.newData.students;
       u.advisor = event.newData.advisor;
       u.profilePicture = event.newData.profilePicture;
-      
       this.userService.update(u).subscribe();
       event.confirm.resolve(event.newData);
       this.messageService.add({severity: 'success',
@@ -109,6 +110,7 @@ export class PermissionComponent implements OnInit {
       event.confirm.reject();
     }
   }
+
   onCreateConfirm(event) {
     const u = new User();
     u.password = 'password'; // HACK: Figure out a better way to do this
@@ -124,6 +126,7 @@ export class PermissionComponent implements OnInit {
       summary: 'Success Creating User',
       detail: 'Successfully created a new user ' + event.newData.firstName + ' ' + event.newData.lastName + ' '});
   }
+
   onDeleteConfirm(event) {
     if (window.confirm('Are you user you want to delete this user?')) {
       this.userService.delete(event.data._id).subscribe();
