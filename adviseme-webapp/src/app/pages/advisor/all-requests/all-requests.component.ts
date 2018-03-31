@@ -15,6 +15,7 @@ import { UserService } from '../../../_shared/services/user.service';
 export class AllRequestsComponent implements OnInit {
 
   advisorID: string;
+  noRequest: boolean;
 
   // Config for the table
   settings= {
@@ -62,11 +63,19 @@ export class AllRequestsComponent implements OnInit {
             flatData[i] = d;
           });
         }
-        this.source.load(flatData);
+
+        if (flatData.length !== 0) {
+          this.noRequest = false;
+          this.source.load(flatData);
+        } else {
+          this.noRequest = true;
+        }
+
       });
   }
   receiveSource($event) {
     this.loadData();
+    console.log(this.noRequest);
   }
 
 }

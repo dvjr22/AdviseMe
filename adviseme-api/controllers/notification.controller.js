@@ -6,7 +6,8 @@ exports.sendNotification = async function(req, res) {
 // TODO: At some point change these hardcoded phone numbers so ppl will stop texting me
 // TODO: Add some error handling
   var phoneNumber = req.body["phoneNumber"]
-  var ReminderMessage = " " + JSON.stringify(req.body['message'])// "This is a reminder of your advising appointment with " + advisor + " at " + date + " in room " + roomNumber
+  var ReminderMessage = " " + JSON.stringify(req.body['message']['message'])// "This is a reminder of your advising appointment with " + advisor + " at " + date + " in room " + roomNumber
+  console.log("SMS: ", req.body)
   client.messages.create({
     // Whom to send tho message too
     to: '+1' + phoneNumber,

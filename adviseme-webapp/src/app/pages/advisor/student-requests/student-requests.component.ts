@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../_shared/services/notification.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-
+import * as io from 'socket.io-client';
 
 declare var require: any;
 @Component({
@@ -16,7 +16,8 @@ declare var require: any;
   styleUrls: ['./student-requests.component.scss'],
 })
 export class StudentRequestComponent implements OnInit {
-
+  // Connection to the socket server for realtime chat updates
+  socket = io('http://localhost:4001');
   // Config for the table
   settings= {
     actions: false,
@@ -68,6 +69,7 @@ export class StudentRequestComponent implements OnInit {
       this.cart.advisor = '';
       this.cart.message = this.comment;
       this.cart.status = "Changes Requested";
+      this.socket.emit('cart-status', 'Your advisor has requested that you: ' + this.cart.message + 'Please login to AdviseMe and look at the request.');
       this.cartService.update(this.cart).subscribe(() => this.router.navigate(['/pages/advisor/requests']));
     });
   }
@@ -90,7 +92,6 @@ export class StudentRequestComponent implements OnInit {
   */
   approveOnClick() {
     // Send an SMS notification to the student
-  //  this.notificationService.sendNotification(JSON.stringify({'message': 'Your Class Request has been approved!'}));
     this.messageService.add({severity: 'success',
       summary: 'Successfully Approved Request',
       detail: 'The requested classes were succesfully approved'});
@@ -100,6 +101,7 @@ export class StudentRequestComponent implements OnInit {
       this.cart = res.data;
       this.cart.status = 'approved';
       this.cartService.update(this.cart).subscribe();
+      this.socket.emit('cart-status', 'Your requested classes have been approved!');
       this.router.navigate(['/pages/advisor/requests']);
     });
   }

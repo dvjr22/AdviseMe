@@ -33,3 +33,9 @@
     <button (click)="updatedCart()" type="button" class="btn btn-success">Update Cart</button>
   </nb-card>
 </ng-template>
+
+<ng-template [ngIf]="this.cart?.status === 'rejected'">
+  <nb-card>
+    <button (click)="addToCart()" type="button" class="btn btn-success">Add Fixed Classes</button>
+  </nb-card>
+</ng-template>
