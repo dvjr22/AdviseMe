@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
       });
       this.socket.on('new-message', function (data) {
         if (data.message.data !== undefined) {
-          if (data.message.data.room.indexOf(this.currentUser.studentID) >= 0) {
+          if (data.message.data.room.indexOf(this.currentUser._id) >= 0) {
             const message = data.message.data.message;
             const otherUser = data.message.data.nickname;
             // If opted in to sms notification send a text alerting to a new message
@@ -54,6 +54,9 @@ export class AppComponent implements OnInit {
               detail: 'New message from ' + otherUser + ' saying: ' + message});
           }
         }
+      }.bind(this));
+      this.socket.on('cart-status', function (data) {
+        this.notificationService.sendNotification(JSON.stringify(data), this.currentUser.phoneNumber);
       }.bind(this));
     }
   }

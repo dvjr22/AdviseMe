@@ -31,7 +31,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   // Connection to the socket server for realtime chat updates
   socket = io('http://localhost:4001');
-
   currentUser: User;
 
   otherPicture: string;
@@ -149,7 +148,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   sendMessage() {
     this.chatService.saveChat(this.msgData).then((result) => {
-      this.socket.emit('save-message', result);
+      this.socket.emit('save-message', JSON.stringify(result));
     }, (err) => { });
   }
 }
