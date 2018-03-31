@@ -5,11 +5,17 @@
   </div>
   </nb-card-header>
   <nb-card-body>
-    <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (userRowSelect)="onUserRowSelect($event)"
+      #table>
+    </ng2-smart-table>
   </nb-card-body>
 
 
   <nb-card-footer align-items="center">
-    <button position="left" (click)="goToRequestClasses()" type="button" class="btn btn-success">Request Classes</button>
+    <button position="left" (click)="addToCart()" type="button" class="btn btn-success">Request these Classes</button>
+    <button position="right" (click)="goToClasses()" type="button" class="btn btn-success">Full Course List</button>
   </nb-card-footer>
 </nb-card>
