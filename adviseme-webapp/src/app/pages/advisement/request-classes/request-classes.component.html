@@ -11,12 +11,18 @@
   }
 </style>
   <nb-card>
-    <ng2-smart-table
-      [settings]="settings"
-      [source]="source"
-      (userRowSelect)="onUserRowSelect($event)"
-      #table>
-    </ng2-smart-table>
+    <nb-card-body>
+      <div class="description">Search classes by department, course number, and/or course title. Select
+        them by clicking on the check box and then add them to your cart. Once your
+        class selections are complete, navigate to the Cart for submission.</div>
+
+      <ng2-smart-table
+        [settings]="settings"
+        [source]="source"
+        (userRowSelect)="onUserRowSelect($event)"
+        #table>
+      </ng2-smart-table>
+    </nb-card-body>
   </nb-card>
   <span *ngFor="let i of selectedClasses">
     {{ i._id }}
