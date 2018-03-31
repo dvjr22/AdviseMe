@@ -139,11 +139,11 @@ export class CartComponent implements OnInit {
       const index = this.currentCart.classes.findIndex(d => d._id === event.data.class__prefix + event.data.class__courseNo);
       if (index <= 0) {
         this.currentCart.classes.splice(0, 1); // remove element from array
-        this.cartService.update(this.currentCart);
+        this.cartService.update(this.currentCart).subscribe(() => {});
         event.confirm.resolve();
       } else {
         //TODO: PUT ERROR MESSAGE HERE
-        event.confirm.resolve();
+        event.confirm.reject();
       }
     } else {
       event.confirm.reject();
