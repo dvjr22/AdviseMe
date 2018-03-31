@@ -15,6 +15,10 @@ import * as io from 'socket.io-client';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
+
+  description = `View classes that have been added to the cart. Make any last
+                minute edits before submitting to your advisor for approval.`;
+
   currentCart: Cart;
   currentUser: User;
   advisorID: string;

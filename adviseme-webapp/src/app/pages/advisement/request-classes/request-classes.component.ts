@@ -22,6 +22,9 @@ import { Row } from 'ng2-smart-table/lib/data-set/row';
 })
 
 export class RequestClassesComponent implements OnInit, AfterContentChecked {
+    description = `Search classes by department, course number, and/or course title. Select
+                   them by clicking on the check box and then add them to your cart. Once your
+                   class selections are complete, navigate to the Cart for submission.`;
 
     // Class variables
     currentUser: User;
