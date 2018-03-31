@@ -98,6 +98,8 @@ export class PermissionComponent implements OnInit {
       u.course = event.newData.course;
       u.students = event.newData.students;
       u.advisor = event.newData.advisor;
+      u.profilePicture = event.newData.profilePicture;
+      
       this.userService.update(u).subscribe();
       event.confirm.resolve(event.newData);
       this.messageService.add({severity: 'success',
