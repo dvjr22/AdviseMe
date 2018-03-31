@@ -9,12 +9,13 @@
     <button (click)="submitToAdvisor()" id="submitBtn" type="button" class="btn btn-success">Send to Advisor</button>
   </nb-card-body>
 </ng-template>
+
 <ng-template [ngIf]="this.currentState === 'yesCart' && this.noClasses === false && this.message !== ''">
   <nb-card-header>
     <span>Cart</span>
   </nb-card-header>
 <nb-card-body>
-  <div class="alert alert-danger" role="alert">
+  <div class="alert alert-danger" role="alert" *ngIf="this.currentCart?.status === 'rejected'">
     Message from advisor: <b>{{ this.message }}</b>
   </div>
   <ng2-smart-table [settings]="settings" (deleteConfirm)="onDeleteConfirm($event)" [source]="source"></ng2-smart-table>
@@ -44,7 +45,6 @@
   <button (click)="submitToAdvisor()" id="submitBtn" type="button" class="btn btn-success">Submit Updated Cart</button>
 </nb-card-body>
 </ng-template>
-
 
   <ng-template [ngIf]="this.currentState === 'noCart'">
     <nb-card-header>
