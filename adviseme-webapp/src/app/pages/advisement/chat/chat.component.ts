@@ -7,6 +7,7 @@ import { Role } from '../../../_shared/models/constants';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'ngx-chat',
   templateUrl: './chat.component.html',
@@ -30,7 +31,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   // Connection to the socket server for realtime chat updates
   socket = io('http://localhost:4001');
-
   currentUser: User;
 
   otherPicture: string;
@@ -38,7 +38,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   // Index of the student in the students array of the advisor user
   index;
 
-  constructor(protected route: ActivatedRoute, private chatService: ChatService,
+  constructor(protected route: ActivatedRoute,
+    private chatService: ChatService,
     private userService: UserService) {}
 
   ngOnInit() {
@@ -112,6 +113,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       if (data.message.data !== undefined && data.message.data.room === this.room) {
         // Push the message onto the chats object
         this.chats.push(data.message.data);
+
         this.msgData = { room: this.room, nickname: this.currentUser.firstName + ' ' + this.currentUser.lastName, message: '' };
       }
     }.bind(this));
@@ -146,7 +148,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   sendMessage() {
     this.chatService.saveChat(this.msgData).then((result) => {
-      this.socket.emit('save-message', result);
+      this.socket.emit('save-message', JSON.stringify(result));
     }, (err) => { });
   }
 }

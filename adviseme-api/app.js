@@ -27,6 +27,9 @@ io.on('connection', function (socket) {
     console.log(data);
     io.emit('new-message', { message: data });
   });
+  socket.on('cart-status', function (data) {
+    io.emit('cart-status', { message: data});
+  });
 });
 
 server.listen(4001);
