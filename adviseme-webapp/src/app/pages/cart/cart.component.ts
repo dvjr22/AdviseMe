@@ -7,7 +7,6 @@ import { CartService } from '../../_shared/services/cart.service';
 import { flattenObject } from '../../_shared/scripts/flattenObject';
 import { Router, NavigationEnd } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
-import * as io from 'socket.io-client';
 
 @Component({
   selector: 'ngx-app-cart',
@@ -23,8 +22,6 @@ export class CartComponent implements OnInit {
 
   currentState = 'yesCart';
 
-  // Connection to the socket server for realtime chat updates
-  socket = io('http://localhost:4001');
 
   // configuration for the table
   settings= {
