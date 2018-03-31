@@ -15,6 +15,7 @@ import { flattenObject } from '../../../_shared/scripts/flattenObject';
   styleUrls: ['./appointment-view.component.scss'],
 })
 export class AppointmentViewComponent implements OnInit {
+  description = `Shows all scheduled appointments between a student and advisor.`;
   /**
    Variable to store all the appointments for the user collected from the api
   */
