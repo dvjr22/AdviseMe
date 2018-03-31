@@ -52,7 +52,6 @@ export class StudentRequestComponent implements OnInit {
       let newOb = flattenObject(ob);
       this.source.load(newOb);
       this.message = '';
-      console.log(this.cart);
     });
   }
 
