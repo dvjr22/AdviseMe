@@ -110,7 +110,7 @@ AdviseMe has multiple unit testing systems for various parts of the project. The
 You will need two terminal sessions running. The first for the Selenium web server (webdriver-manager) and the second for the actual Protractor
   * Selenium Terminal
     * ```cd adviseme-webapp```
-    * ```webdriver-manager reload```
+    * ```webdriver-manager update```
     * ```webdriver-manager start```
   * Protractor Terminal
     * ```cd adviseme-webapp```

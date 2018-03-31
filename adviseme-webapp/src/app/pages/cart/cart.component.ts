@@ -7,7 +7,6 @@ import { CartService } from '../../_shared/services/cart.service';
 import { flattenObject } from '../../_shared/scripts/flattenObject';
 import { Router, NavigationEnd } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
-import * as io from 'socket.io-client';
 
 @Component({
   selector: 'ngx-app-cart',
@@ -23,8 +22,6 @@ export class CartComponent implements OnInit {
 
   currentState = 'yesCart';
 
-  // Connection to the socket server for realtime chat updates
-  socket = io('http://localhost:4001');
 
   // configuration for the table
   settings= {
@@ -139,11 +136,11 @@ export class CartComponent implements OnInit {
       const index = this.currentCart.classes.findIndex(d => d._id === event.data.class__prefix + event.data.class__courseNo);
       if (index <= 0) {
         this.currentCart.classes.splice(0, 1); // remove element from array
-        this.cartService.update(this.currentCart);
+        this.cartService.update(this.currentCart).subscribe(() => {});
         event.confirm.resolve();
       } else {
         //TODO: PUT ERROR MESSAGE HERE
-        event.confirm.resolve();
+        event.confirm.reject();
       }
     } else {
       event.confirm.reject();
