@@ -15,6 +15,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ChatComponent implements OnInit, AfterViewChecked {
 
+  description = '';
+
   // Keep track of the scroll container
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
@@ -95,6 +97,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.userService.getById(searchId).subscribe((res) => {
       this.roomName = res.firstName + ' ' + res.lastName;
       this.otherPicture = res.profilePicture;
+      this.description = 'Send a message to ' + this.roomName + ' and AdviseMe will notify you when they respond';
     });
   }
    assignMsgData(message: string) {

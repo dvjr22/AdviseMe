@@ -4,6 +4,7 @@
       <span>Cart</span>
     </nb-card-header>
   <nb-card-body>
+
     <ng2-smart-table [settings]="settings" (deleteConfirm)="onDeleteConfirm($event)" [source]="source"></ng2-smart-table>
     <br/>
     <button (click)="submitToAdvisor()" id="submitBtn" type="button" class="btn btn-success">Send to Advisor</button>
@@ -15,6 +16,9 @@
     <span>Cart</span>
   </nb-card-header>
 <nb-card-body>
+  <div class="description">
+    {{description}}
+  </div>
   <div class="alert alert-danger" role="alert" *ngIf="this.currentCart?.status === 'rejected'">
     Message from advisor: <b>{{ this.message }}</b>
   </div>
@@ -40,6 +44,9 @@
     <span>Cart</span>
   </nb-card-header>
 <nb-card-body>
+  <div class="description">
+    {{description}}
+  </div>
   <ng2-smart-table [settings]="settings" (deleteConfirm)="onDeleteConfirm($event)" [source]="source"></ng2-smart-table>
   <br/>
   <button (click)="submitToAdvisor()" id="submitBtn" type="button" class="btn btn-success">Submit Updated Cart</button>
@@ -51,7 +58,7 @@
       <span>Cart</span>
     </nb-card-header>
     <nb-card-body>
-      No cart has been created yet
+      No cart has been created yet. Please go to the request classes screen and select some classes that you want to take.
     </nb-card-body>
     <nb-card-footer  >
       <button (click)="goToRequestClasses()" type="button" class="btn btn-success">Request Classes</button>

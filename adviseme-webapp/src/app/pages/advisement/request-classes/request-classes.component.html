@@ -11,12 +11,18 @@
   }
 </style>
   <nb-card>
-    <ng2-smart-table
-      [settings]="settings"
-      [source]="source"
-      (userRowSelect)="onUserRowSelect($event)"
-      #table>
-    </ng2-smart-table>
+    <nb-card-body>
+      <div class="description">
+        {{description}}
+      </div>
+
+      <ng2-smart-table
+        [settings]="settings"
+        [source]="source"
+        (userRowSelect)="onUserRowSelect($event)"
+        #table>
+      </ng2-smart-table>
+    </nb-card-body>
   </nb-card>
   <span *ngIf="this.buttonDisabled === false">
     <span *ngFor="let i of selectedClasses">

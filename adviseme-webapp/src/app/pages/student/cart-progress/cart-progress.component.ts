@@ -14,6 +14,9 @@ import { flattenObject } from '../../../_shared/scripts/flattenObject';
   // styleUrls: ['./cart.component.scss'],
 })
 export class CartProgressComponent implements OnInit {
+
+  description = `View when your class request has been accepted, or if it has been sent back with feedback or suggestions`;
+
   currentUser: User;
   currentCart: Cart;
 
