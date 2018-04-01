@@ -4,13 +4,11 @@
     <div class="col-md-7">
       <nb-card>
         <nb-card-header>
-          <span class="glyphicon glyphicon-comment"></span> {{ roomName }}
+          <div> <span class="glyphicon glyphicon-comment"></span> {{ roomName }} </div>
+          <br>
+          <div class="subtitle">{{description}}</div>
         </nb-card-header>
         <nb-card-body>
-          <div class="description">
-            {{ description }}
-          </div>
-          <hr/>
           <div class="panel panel-primary">
               <div #scrollMe class="panel-body">
                   <ul class="chat">
