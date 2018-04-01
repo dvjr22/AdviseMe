@@ -2,15 +2,13 @@
 
   <ng-template [ngIf]="this.currentCart?.status !== 'rejected'">
     <nb-card-header>
-      <ngx-refresh-button (messageEvent)="receiveSource($event)" ></ngx-refresh-button>
+      <div> <ngx-refresh-button (messageEvent)="receiveSource($event)" ></ngx-refresh-button> </div>
       <br>
+      <div> <span>Request Status</span> </div>
       <br>
-      <span>Request Status</span>
+      <div class="subtitle">{{description}}</div>
     </nb-card-header>
       <nb-card-body *ngIf="currentCart; else noCart">
-      <div class="description">
-        {{ description }}
-      </div>
       <b> Status:</b>  {{ currentCart?.status | ngxCapitalize }}
       <br>
       <br>
