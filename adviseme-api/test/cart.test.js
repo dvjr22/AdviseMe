@@ -9,7 +9,7 @@ let should = chai.should();
 chai.use(chaiHttp);
 
 // Parent block
-describe('User', () => {
+describe('Cart', () => {
   beforeEach((done) => {
     // Actions to be done before each test
     console.log("Starting test");
@@ -19,10 +19,10 @@ describe('User', () => {
 /*
  * Test the /get route
  */
- describe(' /GET all users', () => {
-   it('it should GET all the users', (done) => {
+ describe(' /GET all carts', () => {
+   it('it should GET all the carts', (done) => {
      chai.request(server)
-      .get('/users')
+      .get('/carts')
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
