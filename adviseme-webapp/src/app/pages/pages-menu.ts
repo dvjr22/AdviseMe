@@ -148,7 +148,7 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Profile View',
-        link: '/pages/profile/profile-view',
+        link: '/pages/shared/profile-view',
       },
     ],
 
