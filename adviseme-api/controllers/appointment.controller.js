@@ -98,7 +98,6 @@ exports.updateAppointment = async function(req, res){
 //remove Appointment
 exports.removeAppointment = async function(req, res){
   var id = req.params.id;
-
   try{
     var deletedAppointment = await AppointmentService.deleteAppointment(id)
     return res.status(204).json({status:204, message: "Successfully Deleted Appointment"})

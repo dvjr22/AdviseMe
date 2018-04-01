@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Appointment } from '../../../_shared/models/appointment';
 import { AppointmentService } from '../../../_shared/services/appointment.service';
+import { UserService } from '../../../_shared/services/user.service';
 import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
@@ -13,6 +14,7 @@ export class AdvisorAppointmentsComponent implements OnInit {
    Variable to store all the appointments for the user collected from the api
   */
   appointment: any;
+  noAppointment = false;
 
   settings = {
     mode: 'inline',
@@ -50,7 +52,7 @@ export class AdvisorAppointmentsComponent implements OnInit {
   /**
     Initializes new names for the imports
   */
-  constructor(private appointmentService: AppointmentService) {
+  constructor(private appointmentService: AppointmentService, private userService: UserService) {
   }
   /**
     Calling the appointment api gets all the appointments
@@ -58,6 +60,7 @@ export class AdvisorAppointmentsComponent implements OnInit {
     @returns {none}
   */
   ngOnInit() {
+    this.checkNoAppointment();
     this.appointmentService.getAll().subscribe( res => {
       this.source.load(res.data);
     });
@@ -65,10 +68,21 @@ export class AdvisorAppointmentsComponent implements OnInit {
 
   onDeleteConfirm(event) {
     if (window.confirm('Are you sure you want to delete this appointment?')) {
-      this.appointmentService.delete(event.data._id).subscribe();
+      this.appointmentService.delete(event.data._id);
       event.confirm.resolve();
     } else {
       event.confirm.reject();
     }
+    this.checkNoAppointment();
+  }
+
+  checkNoAppointment() {
+      this.appointmentService.getAll().subscribe( res => {
+        if ( res.data.length === 0) {
+          this.noAppointment = true;
+        } else {
+          this.noAppointment = false;
+        }
+      });
   }
 }

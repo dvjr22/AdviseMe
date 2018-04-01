@@ -1,6 +1,14 @@
 <nb-card>
-      <nb-card-header>Upcoming Appointments!</nb-card-header>
+    <ng-template [ngIf]="this.noAppointment === false">
+      <nb-card-header>Upcoming Student Appointments!</nb-card-header>
       <nb-card-body>
           <ng2-smart-table (deleteConfirm)="onDeleteConfirm($event)" [settings]="settings" [source]="source"></ng2-smart-table>
       </nb-card-body>
+      </ng-template>
+      <ng-template [ngIf]="this.noAppointment === true">
+        <nb-card-header>Upcoming Student Appointments!</nb-card-header>
+        <nb-card-body>
+          There are no student appointments  yet.
+        </nb-card-body>
+      </ng-template>
 </nb-card>

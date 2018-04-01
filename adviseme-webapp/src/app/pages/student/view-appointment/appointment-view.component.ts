@@ -97,5 +97,20 @@ export class AppointmentViewComponent implements OnInit {
     } else {
       event.confirm.reject();
     }
+    this.checkNoAppointment();
+  }
+
+  checkNoAppointment() {
+    let userID = '';
+    this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
+      userID = res['studentID'];
+      this.appointmentService.getById(userID).subscribe( res2 => {
+        if ( res2.data.length === 0) {
+          this.noAppointment = true;
+        } else {
+          this.noAppointment = false;
+        }
+      });
+    });
   }
 }
