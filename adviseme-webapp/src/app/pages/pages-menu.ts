@@ -67,16 +67,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
     },
-    {
-      title: 'Shared',
-      icon: 'ion-ios-cart-outline',
-      children: [
-        {
-          title: 'View Cart',
-          link: '/pages/student/cart',
-        },
-      ],
-    },
 ];
 
 export const ADMIN_ITEMS: NbMenuItem[] = [
