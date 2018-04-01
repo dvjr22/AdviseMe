@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
       link: '/pages/student/cart',
     }, {
       title: 'Profile',
-      link: '/pages/profile/profile-view',
+      link: '/pages/shared/profile-view',
     }, {
       title: 'Log out',
       link: '/auth/logout',
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     upperMenu = [
       {
         title: 'Profile',
-        link: '/pages/profile/profile-view',
+        link: '/pages/shared/profile-view',
       }, {
         title: 'Log out',
         link: '/auth/logout',
