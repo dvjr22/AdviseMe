@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeModule } from '../../@theme/theme.module';
 import { AdvisementRoutingModule, routedComponents } from './advisement-routing.module';
@@ -22,5 +22,6 @@ import { ChatService } from '../../_shared/services/chat.service';
     ...routedComponents,
     ChatComponent,
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class AdvisementModule { }
