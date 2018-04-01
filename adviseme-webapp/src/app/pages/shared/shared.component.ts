@@ -5,11 +5,11 @@ import { Component } from '@angular/core';
     For the Profile
 */
 @Component({
-  selector: 'ngx-profile',
+  selector: 'ngx-shared',
   template: `
     <router-outlet></router-outlet>
   `,
 })
-export class ProfileComponent {
+export class SharedComponent {
 
 }

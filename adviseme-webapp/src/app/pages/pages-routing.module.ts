@@ -5,7 +5,6 @@ import { CanActivateAdmin } from '../_shared/services/authentication.service';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CartComponent } from './cart/cart.component';
-import { ProfileComponent } from './profile/profile.component';
 import { AdvisementComponent } from './advisement/advisement.component';
 
 // Routing for the Pages
@@ -16,10 +15,6 @@ const routes: Routes = [{
   children: [{
     path: 'dashboard',
     component: DashboardComponent,
-  },
-  {
-    path: 'profile',
-    loadChildren: './profile/profile.module#ProfileModule',
   },
   {
     path: 'advisement',
@@ -40,6 +35,10 @@ const routes: Routes = [{
   {
     path: 'student',
     loadChildren: './student/student.module#StudentModule',
+  },
+  {
+    path: 'shared',
+    loadChildren: './shared/shared.module#SharedModule',
   },
   {
     path: 'cart',
