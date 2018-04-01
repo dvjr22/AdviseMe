@@ -150,7 +150,7 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
   {
     title: 'Classes',
     icon: 'nb-list',
-    link: '/pages/class/courses',
+    link: '/pages/advisor/courses',
   },
   {
     title: 'Profile',

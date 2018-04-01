@@ -149,7 +149,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
                   }
                   this.cartService.update(this.cart).subscribe(() => {
                     if (i === this.classes.length - 1) {
-                      this.router.navigate(['/pages/advisement/request-classes']);
+                      this.router.navigate(['/pages/advisor/request-classes']);
                     }
                   });
                 });
@@ -231,6 +231,6 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
       }
 
       goToClasses(event) {
-        this.router.navigate(['/pages/advisement/request-classes']);
+        this.router.navigate(['/pages/student/request-classes']);
       }
 }

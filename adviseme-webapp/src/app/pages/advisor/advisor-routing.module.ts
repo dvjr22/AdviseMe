@@ -6,6 +6,8 @@ import { AdvisorAppointmentsComponent } from './advisor-appointments/advisor-app
 import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
 import { StudentRequestComponent } from './student-requests/student-requests.component';
 import { AdvisorChatListComponent } from './advisor-chat-list/advisor-chat-list.component';
+import { CoursesComponent } from './courses/courses.component';
+
 
 const routes: Routes = [{
   path: '',
@@ -25,6 +27,9 @@ const routes: Routes = [{
   } , {
     path: 'advisor-chat-list',
     component: AdvisorChatListComponent,
+  } , {
+    path: 'courses',
+    component: CoursesComponent,
   }],
 }];
 

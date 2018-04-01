@@ -15,10 +15,6 @@ const routes: Routes = [{
     component: DashboardComponent,
   },
   {
-    path: 'class',
-    loadChildren: './class/class.module#ClassModule',
-  },
-  {
     path: 'administrator',
     loadChildren: './administrator/administrator.module#AdministratorModule',
   },

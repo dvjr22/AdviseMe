@@ -127,7 +127,7 @@ export class CartComponent implements OnInit {
   }
 
   goToRequestClasses() {
-    this.router.navigate(['pages/advisement/request-classes']);
+    this.router.navigate(['pages/student/request-classes']);
   }
 
   goToRequestProgress() {
