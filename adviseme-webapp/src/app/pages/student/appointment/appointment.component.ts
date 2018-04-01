@@ -87,7 +87,6 @@ export class AppointmentComponent implements OnInit {
     if (this.currentUser.phoneNumber !== null || this.currentUser.phoneNumber !== '' ) {
       this.notificationService.sendNotification(JSON.stringify(this.newAppointment), this.currentUser.phoneNumber);
     }
-    // this.router.navigate(['pages/advisement/view-appointment']);
   }
 
 }
