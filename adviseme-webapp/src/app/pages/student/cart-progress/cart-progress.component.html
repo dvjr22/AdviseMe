@@ -5,7 +5,7 @@
       <ngx-refresh-button (messageEvent)="receiveSource($event)" ></ngx-refresh-button>
       <br>
       <br>
-      <span>Request Status</span>
+      <span id="requeststatus">Request Status</span>
     </nb-card-header>
       <nb-card-body *ngIf="currentCart; else noCart">
       <b> Status:</b>  {{ currentCart?.status | ngxCapitalize }}

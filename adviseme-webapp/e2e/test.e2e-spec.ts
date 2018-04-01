@@ -36,10 +36,18 @@ describe('Dashboard', () => {
     login('student', '1234');
   });
 
-  it('should have a cart', () => {
+  it('should submit a cart', () => {
     browser.get('/pages/cart');
+    browser.sleep(3000);
     element(by.id('submitBtn')).click();
-    expect(element(by.css('.btn-group-full-width')).isPresent()).toBeTruthy('Should be at the request status');
+    browser.sleep(3000);
+    expect(element(by.id('requeststatus')).isPresent()).toBeTruthy('Should be at the request status');
+    logout();
+    login('advisor', '1234');
+    browser.sleep(3000);
+    browser.get('/pages/advisor/requests');
+    element(by.css('.btn-group-icon')).click();
+    browser.sleep(10000);
   });
 });
 
@@ -49,6 +57,9 @@ describe('Dashboard', () => {
 function login(username: string, password: string) {
   element(by.id('input-username')).sendKeys(username);
   element(by.id('input-password')).sendKeys(password);
-  // browser.waitForAngularEnabled(true);
-  element(by.css('.btn-block')).click();
+  expect(element(by.css('.btn-block')).isPresent()).toBeTruthy('Should have a request');
+}
+
+function logout() {
+  browser.get('/auth/login');
 }
