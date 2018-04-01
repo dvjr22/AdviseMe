@@ -34,13 +34,6 @@ constructor(private userService: UserService) { }
 ngOnInit() {
   this.userService.getCurrentUser().subscribe(res => {
     const students = [];
-    const data = [
-      {
-        _id: '1',
-        firstName: 'l1',
-        lastName: 'l2',
-      },
-    ];
     if (res['role'] === 'advisor') {
       for (let i = 0; i < res['students'].length; i++) {
         this.userService.getById(res['students'][i]).subscribe(res2 => {
