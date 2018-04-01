@@ -108,8 +108,16 @@ export class StudentRequestComponent implements OnInit {
   /**
     Triggers on the back button press
   */
-  goBack() {
+  goBackToRequests() {
     // Navigate back to the requests screen
     this.router.navigate(['/pages/advisor/requests']);
+  }
+
+  /**
+    Triggers on the back button press
+  */
+  goBackToDashboard() {
+    // Navigate back to the requests screen
+    this.router.navigate(['/pages/dashboard']);
   }
 }
