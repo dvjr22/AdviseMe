@@ -32,6 +32,7 @@ import { AuthenticationService, CanActivateUser } from './_shared/services/authe
 import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { NotificationService } from './_shared/services/notification.service';
+import { CartService } from './_shared/services/cart.service';
 
 // Render Components
 import { ClassViewRenderComponent } from './_shared/services/class-view.render.component';
@@ -88,6 +89,7 @@ import { Class } from './_shared/models/class';
     ToasterService,
     NotificationService,
     MessageService,
+    CartService,
   ],
   entryComponents: [ClassViewRenderComponent,
   CartViewRenderComponent,

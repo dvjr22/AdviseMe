@@ -10,7 +10,7 @@ import { AdvisorAppointmentsComponent } from './advisor-appointments/advisor-app
 
 import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
 import { StudentRequestComponent } from './student-requests/student-requests.component';
-
+import { CoursesComponent } from './courses/courses.component';
 import { GrowlModule } from 'primeng/growl';
 import { AdvisorChatListComponent } from './advisor-chat-list/advisor-chat-list.component';
 
@@ -29,6 +29,7 @@ import { ServiceComponentModule } from '../../_shared/services/components/servic
     ...routedComponents,
     StudentRequestComponent,
     AdvisorChatListComponent,
+    CoursesComponent,
   ],
   providers: [
     CanActivateAdvisor,

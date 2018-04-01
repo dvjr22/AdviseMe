@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 
 /**
   Component:
-    For the class
+    For the Profile
 */
 @Component({
-  selector: 'ngx-class',
+  selector: 'ngx-shared',
   template: `
     <router-outlet></router-outlet>
   `,
 })
-export class ClassComponent {
+export class SharedComponent {
 
 }

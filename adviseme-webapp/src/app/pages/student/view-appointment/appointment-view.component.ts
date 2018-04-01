@@ -87,11 +87,11 @@ export class AppointmentViewComponent implements OnInit {
   }
 
   goToMakeAppointment() {
-    this.router.navigate(['/pages/advisement/appointment']);
+    this.router.navigate(['/pages/student/appointment']);
   }
 
   onDeleteConfirm(event) {
-    if(window.confirm('Are you sure you want to delete?')) {
+    if (window.confirm('Are you sure you want to delete?')) {
       this.appointmentService.delete(event.data._id);
       event.confirm.resolve();
     } else {
