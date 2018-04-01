@@ -4,7 +4,6 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { AdvisementRoutingModule, routedComponents } from './advisement-routing.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { GrowlModule } from 'primeng/growl';
-import { ChatComponent } from './chat/chat.component';
 import { ChatService } from '../../_shared/services/chat.service';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { ChatService } from '../../_shared/services/chat.service';
   ],
   declarations: [
     ...routedComponents,
-    ChatComponent,
   ],
 })
 export class AdvisementModule { }

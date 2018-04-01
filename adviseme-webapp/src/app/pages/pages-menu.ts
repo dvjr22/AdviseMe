@@ -28,7 +28,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Advisor Messaging',
-        link: '/pages/advisement/chat',
+        link: '/pages/shared/chat',
       },
     ],
   },

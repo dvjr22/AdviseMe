@@ -24,6 +24,6 @@ export class AdvisorChatListRenderComponent implements OnInit {
   }
 
   goClassView() {
-    this.router.navigate(['/pages/advisement/chat', this.renderValue]);
+    this.router.navigate(['/pages/shared/chat', this.renderValue]);
   }
 }

@@ -5,7 +5,6 @@ import { AdvisementComponent } from './advisement.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { AppointmentViewComponent } from './view-appointment/appointment-view.component';
 import { RequestClassesComponent } from './request-classes/request-classes.component';
-import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [{
   path: '',
@@ -19,12 +18,6 @@ const routes: Routes = [{
   }, {
     path: 'request-classes',
     component: RequestClassesComponent,
-  }, {
-    path: 'chat',
-    component: ChatComponent,
-  }, {
-    path: 'chat/:index',
-    component: ChatComponent,
   }],
 }];
 
