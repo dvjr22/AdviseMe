@@ -91,11 +91,26 @@ export class AppointmentViewComponent implements OnInit {
   }
 
   onDeleteConfirm(event) {
-    if(window.confirm('Are you sure you want to delete?')) {
+    if (window.confirm('Are you sure you want to delete?')) {
       this.appointmentService.delete(event.data._id);
       event.confirm.resolve();
     } else {
       event.confirm.reject();
     }
+    this.checkNoAppointment();
+  }
+
+  checkNoAppointment() {
+    let userID = '';
+    this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
+      userID = res['studentID'];
+      this.appointmentService.getById(userID).subscribe( res2 => {
+        if ( res2.data.length === 0) {
+          this.noAppointment = true;
+        } else {
+          this.noAppointment = false;
+        }
+      });
+    });
   }
 }
