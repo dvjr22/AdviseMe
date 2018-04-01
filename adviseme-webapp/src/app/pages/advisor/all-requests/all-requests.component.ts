@@ -14,6 +14,10 @@ import { UserService } from '../../../_shared/services/user.service';
 })
 export class AllRequestsComponent implements OnInit {
 
+  description = `Provides a list of all pending student class requests. Select
+                 one to view the classes a student is requesting. Approve the
+                 request, or provide feedback for the student to make changes.`;
+
   advisorID: string;
   noRequest: boolean;
 

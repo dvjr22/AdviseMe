@@ -7,6 +7,9 @@
       <span>Student Class Requests</span>
     </nb-card-header>
     <nb-card-body>
+      <div class="description">
+        {{ description }}
+      </div>
       <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
       <br/>
     </nb-card-body>

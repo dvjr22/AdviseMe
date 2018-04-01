@@ -22,12 +22,17 @@ import { Row } from 'ng2-smart-table/lib/data-set/row';
 })
 
 export class RequestClassesComponent implements OnInit, AfterContentChecked {
+    description = `Search classes by department, course number, and/or course title. Select
+                   them by clicking on the check box and then add them to your cart. Once your
+                   class selections are complete, navigate to the Cart for submission.`;
 
     // Class variables
     currentUser: User;
     cart: Cart;
     selectedClasses: any[] = [];
+    OGClasses = [];
     @ViewChild('table') table: Ng2SmartTableComponent;
+    buttonDisabled = true;
 
     /**
       Configuration for the table
@@ -77,6 +82,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
         @returns {none}
     */
     ngOnInit() {
+
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       let user: User;
       // Get the current user model then get the cart by the associated studentID
@@ -88,6 +94,11 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
             this.cart = res2.data;
             const flatClasses = flattenObject(res2.data.classes);
             this.selectedClasses = flatClasses;
+
+            flatClasses.forEach((x) => {
+              this.OGClasses.push(Object.assign({}, x));
+            });
+
             if (this.cart._id === undefined) {
               this.cart._id = user._id;
             }
@@ -114,12 +125,38 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       @returns {none}
     */
     onUserRowSelect(event) {
+
         const index = this.selectedClasses.findIndex( s => s._id === event.data._id);
         if (index === -1) {
           this.selectedClasses.push(event.data);
         }else {
           this.selectedClasses.splice(index, 1);
         }
+
+        let difference = false;
+
+        this.selectedClasses.forEach(function (valueSC) {
+          this.OGClasses.forEach(function (valueOG) {
+            if (valueOG._id !== valueSC._id && difference !== true) {
+              difference = true;
+            } else if (difference === true) {
+              difference = true;
+            }else {
+              difference = false;
+            }
+          });
+        }, this);
+
+        if (this.selectedClasses.length === 0 && this.OGClasses.length !== 0) {
+          difference = true;
+        }
+
+        if (difference) {
+          this.buttonDisabled = false;
+        } else {
+          this.buttonDisabled = true;
+        }
+
     }
 
     /**

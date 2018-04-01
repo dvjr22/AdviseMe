@@ -3,6 +3,11 @@
     <span>Requested Classes</span>
   </nb-card-header>
   <nb-card-body>
+    <div *ngIf="this.cart?.message !== '' && this.cart?.message !== undefined">
+      <span style="font-weight: bold;"> Past Message : </span> <span style="color:red;"> {{ this.cart?.message}} </span>
+      <br>
+      <br>
+    </div>
     <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
   </nb-card-body>
   <nb-card-footer>

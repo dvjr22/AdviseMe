@@ -15,6 +15,9 @@ import { flattenObject } from '../../../_shared/scripts/flattenObject';
   templateUrl: './courses.component.html',
 })
 export class CoursesComponent implements OnInit {
+
+    description = `Provides a list of all the classes offered at the university.`;
+
     /**
       Configuration for the table
     */
