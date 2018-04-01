@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { CartModule } from './cart/cart.module';
-import { ProfileModule } from './profile/profile.module';
-import { AdvisementModule } from './advisement/advisement.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { AdvisorModule } from './advisor/advisor.module';
@@ -21,10 +18,7 @@ const PAGES_COMPONENTS = [
     PagesRoutingModule,
     ThemeModule,
     DashboardModule,
-    ProfileModule,
-    AdvisementModule,
     AdvisorModule,
-    CartModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

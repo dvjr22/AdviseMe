@@ -10,6 +10,8 @@ import { PreviousClassesComponent } from './student/previous-classes/previous-cl
 import { CurrentClassesComponent } from './student/current-classes/current-classes.component';
 import { FutureClassesComponent } from './student/future-classes/future-classes.component';
 
+import { UnderlingsComponent } from './advisor/underlings/underlings.component';
+
 @NgModule({
   imports: [
     ThemeModule,
@@ -23,6 +25,7 @@ import { FutureClassesComponent } from './student/future-classes/future-classes.
     PreviousClassesComponent,
     CurrentClassesComponent,
     FutureClassesComponent,
+    UnderlingsComponent,
   ],
 })
 export class DashboardModule { }

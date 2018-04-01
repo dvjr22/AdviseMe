@@ -17,6 +17,5 @@ export class Appointment {
   time: {
     hour: string;
     minute: string;
-    second: string;
   };
 }

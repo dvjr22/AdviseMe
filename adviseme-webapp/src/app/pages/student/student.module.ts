@@ -5,7 +5,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { GrowlModule } from 'primeng/growl';
 import { CartProgressComponent } from './cart-progress/cart-progress.component';
 import { StudentRoutingModule, routedComponents } from './student-routing.module';
-
+import { CartService } from '../../_shared/services/cart.service';
 import { ServiceComponentModule } from '../../_shared/services/components/service-components.module';
 
 @NgModule({
@@ -20,6 +20,9 @@ import { ServiceComponentModule } from '../../_shared/services/components/servic
   declarations: [
     ...routedComponents,
     CartProgressComponent,
+  ],
+  providers: [
+    CartService,
   ],
 })
 

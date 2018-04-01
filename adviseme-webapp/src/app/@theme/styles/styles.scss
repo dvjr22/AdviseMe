@@ -18,3 +18,13 @@
   // loading progress bar
   @include ngx-pace-theme();
 };
+
+.description {
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  font-weight: normal;
+
+}

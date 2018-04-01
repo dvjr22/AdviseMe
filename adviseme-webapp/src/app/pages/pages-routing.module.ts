@@ -4,9 +4,6 @@ import { NgModule } from '@angular/core';
 import { CanActivateAdmin } from '../_shared/services/authentication.service';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CartComponent } from './cart/cart.component';
-import { ProfileComponent } from './profile/profile.component';
-import { AdvisementComponent } from './advisement/advisement.component';
 
 // Routing for the Pages
 
@@ -16,18 +13,6 @@ const routes: Routes = [{
   children: [{
     path: 'dashboard',
     component: DashboardComponent,
-  },
-  {
-    path: 'profile',
-    loadChildren: './profile/profile.module#ProfileModule',
-  },
-  {
-    path: 'advisement',
-    loadChildren: './advisement/advisement.module#AdvisementModule',
-  },
-  {
-    path: 'class',
-    loadChildren: './class/class.module#ClassModule',
   },
   {
     path: 'administrator',
@@ -42,8 +27,8 @@ const routes: Routes = [{
     loadChildren: './student/student.module#StudentModule',
   },
   {
-    path: 'cart',
-    component: CartComponent,
+    path: 'shared',
+    loadChildren: './shared/shared.module#SharedModule',
   },
   {
     path: '',

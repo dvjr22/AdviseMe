@@ -20,15 +20,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Make an Appointment',
-        link: '/pages/advisement/appointment',
+        link: '/pages/student/appointment',
       },
       {
         title: 'View Appointments',
-        link: '/pages/advisement/view-appointment',
+        link: '/pages/student/view-appointment',
       },
       {
         title: 'Advisor Messaging',
-        link: '/pages/advisement/chat',
+        link: '/pages/shared/chat',
       },
     ],
   },
@@ -38,7 +38,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'View Cart',
-        link: '/pages/cart',
+        link: '/pages/student/cart',
       },
     ],
   },
@@ -48,7 +48,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Profile View',
-        link: '/pages/profile/profile-view',
+        link: '/pages/shared/profile-view',
       },
     ],
 
@@ -59,7 +59,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Request Classes',
-        link: '/pages/advisement/request-classes',
+        link: '/pages/student/request-classes',
       },
       {
         title: 'Request Status',
@@ -100,7 +100,7 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Profile View',
-        link: '/pages/profile/profile-view',
+        link: '/pages/shared/profile-view',
       },
     ],
 
@@ -140,7 +140,7 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
   {
     title: 'Classes',
     icon: 'nb-list',
-    link: '/pages/class/courses',
+    link: '/pages/advisor/courses',
   },
   {
     title: 'Profile',
@@ -148,7 +148,7 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Profile View',
-        link: '/pages/profile/profile-view',
+        link: '/pages/shared/profile-view',
       },
     ],
 

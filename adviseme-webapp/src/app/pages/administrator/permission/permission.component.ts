@@ -15,6 +15,9 @@ import { MessageService } from 'primeng/components/common/messageservice';
   styleUrls: ['./permission.component.scss'],
 })
 export class PermissionComponent implements OnInit {
+
+  description = `Provides a list of all the users on the AdviseMe system and allows edits to be made to displayed fields.`;
+
   /**
       Configuration for the table
     */

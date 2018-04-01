@@ -11,9 +11,12 @@ import { flattenObject } from '../../../_shared/scripts/flattenObject';
 @Component({
   selector: 'ngx-app-cart',
   templateUrl: './cart-progress.component.html',
-  // styleUrls: ['./cart.component.scss'],
+  styleUrls: ['./cart-progress.component.scss'],
 })
 export class CartProgressComponent implements OnInit {
+
+  description = `View when your class request has been accepted, or if it has been sent back with feedback or suggestions`;
+
   currentUser: User;
   currentCart: Cart;
 
