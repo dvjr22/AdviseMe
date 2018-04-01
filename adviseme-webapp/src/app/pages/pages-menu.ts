@@ -20,11 +20,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Make an Appointment',
-        link: '/pages/advisement/appointment',
+        link: '/pages/student/appointment',
       },
       {
         title: 'View Appointments',
-        link: '/pages/advisement/view-appointment',
+        link: '/pages/student/view-appointment',
       },
       {
         title: 'Advisor Messaging',

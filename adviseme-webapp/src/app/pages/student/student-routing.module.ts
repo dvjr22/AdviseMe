@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { StudentComponent } from './student.component';
 import { CartProgressComponent } from './cart-progress/cart-progress.component';
 import { CartComponent } from './cart/cart.component';
+import { AppointmentViewComponent } from './view-appointment/appointment-view.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,6 +16,12 @@ const routes: Routes = [{
   }, {
     path: 'cart',
     component: CartComponent,
+  }, {
+    path: 'view-appointment',
+    component: AppointmentViewComponent,
+  }, {
+    path: 'appointment',
+    component: AppointmentComponent,
   }],
 }];
 
@@ -28,4 +36,6 @@ export const routedComponents = [
   StudentComponent,
   CartProgressComponent,
   CartComponent,
+  AppointmentViewComponent,
+  AppointmentComponent,
 ];

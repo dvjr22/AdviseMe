@@ -89,7 +89,7 @@ import { Class } from './_shared/models/class';
     ToasterService,
     NotificationService,
     MessageService,
-    CartService
+    CartService,
   ],
   entryComponents: [ClassViewRenderComponent,
   CartViewRenderComponent,
