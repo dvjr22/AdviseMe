@@ -90,11 +90,6 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
           this.cartService.getById(user._id).subscribe((res2: any) => {
             if (res2.data !== null) {
               this.cart = res2.data;
-              const flatClasses = flattenFiveObjects(res2.data.classes);
-              this.selectedClasses = flatClasses;
-              if (this.cart._id === undefined) {
-                this.cart._id = user._id;
-              }
             } else {
               // Create the cart
               const newCart: Cart = new Cart();
@@ -191,11 +186,6 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
                   } else {
                     this.cart.classes[i] = res;
                   }
-                  if (this.selectedClasses.length < this.cart.classes.length) {
-                    for (let i2 = this.selectedClasses.length; i2 < this.cart.classes.length; i2++) {
-                      this.cart.classes.splice(i2, 1);
-                    }
-                  }
                   this.cart.status = 'updated';
                   this.cartService.update(this.cart).subscribe(() => {
                     if (i === this.selectedClasses.length - 1) {
@@ -204,8 +194,6 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
                   });
                 });
               }
-
-
           } catch (e) {
             this.messageService.add({severity: 'error', summary: 'Error updating Cart',
               detail: 'An error has occured updating those classes to your cart'});
