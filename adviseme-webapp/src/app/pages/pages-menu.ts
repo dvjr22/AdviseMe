@@ -38,7 +38,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'View Cart',
-        link: '/pages/cart',
+        link: '/pages/student/cart',
       },
     ],
   },
@@ -73,7 +73,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       children: [
         {
           title: 'View Cart',
-          link: '/pages/shared',
+          link: '/pages/student/cart',
         },
       ],
     },

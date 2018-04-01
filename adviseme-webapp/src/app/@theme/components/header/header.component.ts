@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   studentMenu = [
     {
       title: 'Cart',
-      link: '/pages/cart',
+      link: '/pages/student/cart',
     }, {
       title: 'Profile',
       link: '/pages/profile/profile-view',
@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToCart() {
-    this.router.navigate(['/pages/cart']);
+    this.router.navigate(['/pages/student/cart']);
   }
   startSearch() {
     this.analyticsService.trackEvent('startSearch');

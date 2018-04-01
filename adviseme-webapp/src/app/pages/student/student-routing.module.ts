@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { StudentComponent } from './student.component';
 import { CartProgressComponent } from './cart-progress/cart-progress.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [{
   path: '',
@@ -10,6 +11,9 @@ const routes: Routes = [{
   children: [{
     path: 'cart-progress',
     component: CartProgressComponent,
+  }, {
+    path: 'cart',
+    component: CartComponent,
   }],
 }];
 
@@ -23,4 +27,5 @@ export class StudentRoutingModule { }
 export const routedComponents = [
   StudentComponent,
   CartProgressComponent,
+  CartComponent,
 ];

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { Cart } from '../../_shared/models/cart';
-import { User } from '../../_shared/models/user';
-import { UserService } from '../../_shared/services/user.service';
-import { CartService } from '../../_shared/services/cart.service';
-import { flattenObject } from '../../_shared/scripts/flattenObject';
+import { Cart } from '../../../_shared/models/cart';
+import { User } from '../../../_shared/models/user';
+import { UserService } from '../../../_shared/services/user.service';
+import { CartService } from '../../../_shared/services/cart.service';
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
 import { Router, NavigationEnd } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
 
@@ -143,7 +143,6 @@ export class CartComponent implements OnInit {
         this.cartService.update(this.currentCart).subscribe(() => {});
         event.confirm.resolve();
       } else {
-        //TODO: PUT ERROR MESSAGE HERE
         event.confirm.reject();
       }
     } else {
