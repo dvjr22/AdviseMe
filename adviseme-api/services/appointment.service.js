@@ -103,8 +103,8 @@ exports.getAppointmentById = async function(id) {
 //delete a appointment mongoose object by ID
 exports.deleteAppointment = async function(id) {
   try{
-    var deleted = await Appointment.findByIdAndRemove({_id: id})
-    return deleted
+    var deleted = await Appointment.findByIdAndRemove({_id: id});
+    return deleted;
   }catch(e){
     throw Error(e.message)
   }
