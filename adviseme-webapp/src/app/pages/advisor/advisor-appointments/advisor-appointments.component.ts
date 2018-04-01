@@ -65,7 +65,7 @@ export class AdvisorAppointmentsComponent implements OnInit {
 
   onDeleteConfirm(event) {
     if (window.confirm('Are you sure you want to delete this appointment?')) {
-      this.appointmentService.delete(event.data._id).subscribe();
+      this.appointmentService.delete(event.data._id);
       event.confirm.resolve();
     } else {
       event.confirm.reject();
