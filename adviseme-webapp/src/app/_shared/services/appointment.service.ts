@@ -64,8 +64,6 @@ export class AppointmentService {
     /**
       Delete appointment by id
 
-      TODO: LOOK INTO THIS.... Do not think that this works
-
       @param {string} _id
       @returns {none}
     */
