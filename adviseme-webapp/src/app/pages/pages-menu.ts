@@ -59,7 +59,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Request Classes',
-        link: '/pages/shared/request-classes',
+        link: '/pages/student/request-classes',
       },
       {
         title: 'Request Status',

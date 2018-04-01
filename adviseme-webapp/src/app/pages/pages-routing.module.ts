@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { CanActivateAdmin } from '../_shared/services/authentication.service';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AdvisementComponent } from './advisement/advisement.component';
 
 // Routing for the Pages
 
@@ -14,10 +13,6 @@ const routes: Routes = [{
   children: [{
     path: 'dashboard',
     component: DashboardComponent,
-  },
-  {
-    path: 'advisement',
-    loadChildren: './advisement/advisement.module#AdvisementModule',
   },
   {
     path: 'class',
