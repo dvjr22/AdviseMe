@@ -20,6 +20,10 @@ import { MessageService } from 'primeng/components/common/messageservice';
 })
 
 export class AppointmentComponent implements OnInit {
+  description = `Use the calendar to select a day and time you would like to
+                schedule an appointment with your advisor. Once your advisor
+                accepts, it will appear in the View Appointments section.`;
+
   /**
     User initialized from ngOnInit
   */
