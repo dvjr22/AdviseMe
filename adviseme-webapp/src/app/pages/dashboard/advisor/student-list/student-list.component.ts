@@ -5,8 +5,8 @@ import { User } from '../../../../_shared/models/user';
 import { UserService } from '../../../../_shared/services/user.service';
 
 @Component({
-  selector: 'ngx-studentlist',
-  templateUrl: './studentlist.component.html',
+  selector: 'ngx-student-list',
+  templateUrl: './student-list.component.html',
 })
 export class StudentlistComponent implements OnInit {
 

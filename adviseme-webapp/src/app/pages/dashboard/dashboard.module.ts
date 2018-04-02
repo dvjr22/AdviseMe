@@ -11,7 +11,7 @@ import { CurrentClassesComponent } from './student/current-classes/current-class
 import { FutureClassesComponent } from './student/future-classes/future-classes.component';
 
 import { UnderlingsComponent } from './advisor/underlings/underlings.component';
-import { StudentlistComponent } from './advisor/studentlist/studentlist.component';
+import { StudentlistComponent } from './advisor/student-list/student-list.component';
 
 @NgModule({
   imports: [
