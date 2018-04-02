@@ -11,6 +11,7 @@ import { CurrentClassesComponent } from './student/current-classes/current-class
 import { FutureClassesComponent } from './student/future-classes/future-classes.component';
 
 import { UnderlingsComponent } from './advisor/underlings/underlings.component';
+import { StudentlistComponent } from './advisor/student-list/student-list.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { UnderlingsComponent } from './advisor/underlings/underlings.component';
     CurrentClassesComponent,
     FutureClassesComponent,
     UnderlingsComponent,
+    StudentlistComponent,
   ],
 })
 export class DashboardModule { }
