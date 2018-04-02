@@ -29,7 +29,7 @@ describe('Login System', () => {
   // });
 });
 
-describe('Dashboard', () => {
+describe('Cart System', () => {
   beforeEach(() => {
     browser.waitForAngularEnabled(false);
     browser.get('/');
@@ -37,17 +37,20 @@ describe('Dashboard', () => {
   });
 
   it('should submit a cart', () => {
-    browser.get('/pages/cart');
-    browser.sleep(3000);
+    browser.get('/pages/student/cart');
     element(by.id('submitBtn')).click();
-    browser.sleep(3000);
+    browser.sleep(2000);
     expect(element(by.id('requeststatus')).isPresent()).toBeTruthy('Should be at the request status');
     logout();
     login('advisor', '1234');
-    browser.sleep(3000);
     browser.get('/pages/advisor/requests');
-    element(by.css('.btn-group-icon')).click();
-    browser.sleep(10000);
+    element(by.id('requestClassButton')).click();
+    element(by.id('basic-url')).click().then(() => {
+      element(by.id('basic-url')).sendKeys('Testing Change');
+    });
+    element(by.id('requestedChangeButton')).click();
+    browser.sleep(2000);
+    expect(element(by.id('noRequests')).isPresent()).toBeTruthy('No student requests displayed');
   });
 });
 
@@ -57,7 +60,7 @@ describe('Dashboard', () => {
 function login(username: string, password: string) {
   element(by.id('input-username')).sendKeys(username);
   element(by.id('input-password')).sendKeys(password);
-  expect(element(by.css('.btn-block')).isPresent()).toBeTruthy('Should have a request');
+  element(by.css('.btn-block')).click();
 }
 
 function logout() {

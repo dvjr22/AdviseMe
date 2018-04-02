@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
           <button  (click)="goClassView()" type="button" class="btn btn-info btn-group-icon btn-group-divider btn-fixed">
             <i class="ion-information-circled"></i>
           </button>
-          <button (click)="goClassView()" type="button" class="btn btn-info">View Requested Classes</button>
+          <button (click)="goClassView()" id="requestClassButton" type="button" class="btn btn-info">View Requested Classes</button>
   </div>
   `,
 })
