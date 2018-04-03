@@ -8,6 +8,8 @@ import { flattenObject } from '../../../_shared/scripts/flattenObject';
 import { Router, NavigationEnd } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
 
+import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
+
 @Component({
   selector: 'ngx-app-cart',
   templateUrl: './cart.component.html',
