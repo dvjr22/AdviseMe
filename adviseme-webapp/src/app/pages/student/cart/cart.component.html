@@ -1,7 +1,13 @@
 <nb-card>
   <ng-template [ngIf]="this.currentState === 'yesCart' && this.noClasses === false && this.message ===''">
     <nb-card-header>
-      <span>Cart</span>
+      <div><span>Cart</span></div>
+
+      <br>
+
+      <div class="subtitle">
+        {{description}}
+      </div>
     </nb-card-header>
   <nb-card-body>
 
@@ -13,15 +19,20 @@
 
 <ng-template [ngIf]="this.currentState === 'yesCart' && this.noClasses === false && this.message !== ''">
   <nb-card-header>
-    <span>Cart</span>
+    <div><span>Cart</span></div>
+
+    <br>
+
+    <div class="subtitle">
+      {{description}}
+    </div>
   </nb-card-header>
 <nb-card-body>
-  <div class="description">
-    {{description}}
-  </div>
+
   <div class="alert alert-danger" role="alert" *ngIf="this.currentCart?.status === 'rejected'">
-    Message from advisor: <b>{{ this.message }}</b>
+    Message from advisor: <b>{{ this.message | ngxCapitalize}}</b>
   </div>
+
   <ng2-smart-table [settings]="settings" (deleteConfirm)="onDeleteConfirm($event)" [source]="source"></ng2-smart-table>
   <br/>
   <button (click)="submitToAdvisor()" id="submitBtn" type="button" class="btn btn-success">Send to Advisor</button>
@@ -29,7 +40,13 @@
 </ng-template>
 <ng-template [ngIf]="this.currentState === 'yesCart' && this.noClasses === true">
   <nb-card-header>
-    <span>Cart</span>
+    <div><span>Cart</span></div>
+
+    <br>
+
+    <div class="subtitle">
+      {{description}}
+    </div>
   </nb-card-header>
   <nb-card-body>
     Please add classes to your cart to send a request to your advisor
@@ -41,12 +58,15 @@
 
 <ng-template [ngIf]="this.currentState === 'updatedCart'">
   <nb-card-header>
-    <span>Cart</span>
+    <div><span>Cart</span></div>
+
+    <br>
+
+    <div class="subtitle">
+      {{description}}
+    </div>
   </nb-card-header>
 <nb-card-body>
-  <div class="description">
-    {{description}}
-  </div>
   <ng2-smart-table [settings]="settings" (deleteConfirm)="onDeleteConfirm($event)" [source]="source"></ng2-smart-table>
   <br/>
   <button (click)="submitToAdvisor()" id="submitBtn" type="button" class="btn btn-success">Submit Updated Cart</button>
@@ -55,7 +75,13 @@
 
   <ng-template [ngIf]="this.currentState === 'noCart'">
     <nb-card-header>
-      <span>Cart</span>
+      <div><span>Cart</span></div>
+
+      <br>
+
+      <div class="subtitle">
+        {{description}}
+      </div>
     </nb-card-header>
     <nb-card-body>
       No cart has been created yet. Please go to the request classes screen and select some classes that you want to take.
@@ -68,13 +94,19 @@
 
   <ng-template [ngIf]="this.currentState === 'sentCart'">
     <nb-card-header>
-      <span>Cart</span>
+      <div><span>Cart</span></div>
+
+      <br>
+
+      <div class="subtitle">
+        {{description}}
+      </div>
     </nb-card-header>
     <nb-card-body>
       Your class request has been sent to your advisor.
       <br/>
       <br/>
-      <b>Status</b>: {{ this.currentCart.status }}.
+      <b>Status</b>: {{ this.currentCart?.status | ngxCapitalize }}.
     </nb-card-body>
     <nb-card-footer >
       <button (click)="goToRequestProgress()" type="button" class="btn btn-success">Request Progress</button>
