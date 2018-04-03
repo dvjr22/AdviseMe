@@ -37,6 +37,7 @@ import { CartService } from './_shared/services/cart.service';
 // Render Components
 import { ClassViewRenderComponent } from './_shared/services/class-view.render.component';
 import { CartViewRenderComponent } from './_shared/services/cart-view.render.component';
+import { AdvisorViewRenderComponent } from './_shared/services/render/advisor-view.render.component';
 import { AdvisorChatListRenderComponent } from './_shared/services/advisor-chat-view.render.component';
 
 // PrimeNG
@@ -55,6 +56,7 @@ import { Class } from './_shared/models/class';
     ClassViewRenderComponent,
     CartViewRenderComponent,
     AdvisorChatListRenderComponent,
+    AdvisorViewRenderComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,7 +95,8 @@ import { Class } from './_shared/models/class';
   ],
   entryComponents: [ClassViewRenderComponent,
   CartViewRenderComponent,
-AdvisorChatListRenderComponent ] ,
+AdvisorChatListRenderComponent,
+AdvisorViewRenderComponent, ] ,
 })
 export class AppModule {
 }

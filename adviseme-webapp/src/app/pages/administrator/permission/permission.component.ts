@@ -9,6 +9,8 @@ import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
 import { MessageService } from 'primeng/components/common/messageservice';
 
+import { AdvisorViewRenderComponent } from '../../../_shared/services/render/advisor-view.render.component';
+
 @Component({
   selector: 'ngx-app-permission',
   templateUrl: './permission.component.html',
@@ -54,6 +56,8 @@ export class PermissionComponent implements OnInit {
         },
         advisor: {
           title: 'Advisor',
+          type: 'custom',
+          renderComponent: AdvisorViewRenderComponent,
         },
         email: {
           title: 'Email',
