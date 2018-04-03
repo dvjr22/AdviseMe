@@ -39,7 +39,6 @@ import { ClassViewRenderComponent } from './_shared/services/class-view.render.c
 import { CartViewRenderComponent } from './_shared/services/cart-view.render.component';
 import { AdvisorViewRenderComponent } from './_shared/services/render/advisor-view.render.component';
 import { AdvisorChatListRenderComponent } from './_shared/services/advisor-chat-view.render.component';
-import { CourseDescriptionRenderComponent } from './_shared/services/render/course-description.render.component';
 
 // PrimeNG
 import { MessageService } from 'primeng/components/common/messageservice';
