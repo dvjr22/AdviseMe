@@ -72,6 +72,6 @@ export class CartProgressComponent implements OnInit {
   }
 
   goToCart() {
-    this.router.navigate(['pages/cart']);
+    this.router.navigate(['pages/student/cart']);
   }
 }
