@@ -26,6 +26,8 @@
       </div>
       <b> Status:</b>  {{ currentCart?.status | ngxCapitalize }}
       <br>
+      <b> Advisor Message:</b> {{ currentCart?.message | ngxCapitalize }}
+      <br>
       <br>
       <ng2-smart-table [settings]="settings"  [source]="source"></ng2-smart-table>
     </nb-card-body>
