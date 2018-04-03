@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { ChatComponent } from './chat/chat.component';
+import { ClassViewComponent } from './class-view/class-view.component';
 import { SharedComponent } from './shared.component';
 // Children Routes of the Profile
 
@@ -18,7 +19,11 @@ const routes: Routes = [{
   }, {
     path: 'chat/:index',
     component: ChatComponent,
-  }],
+  },
+  {
+      path: 'class-view/:id',
+      component: ClassViewComponent,
+    }],
 }];
 
 @NgModule({
@@ -33,4 +38,5 @@ export class ProfileRoutingModule { }
 export const routedComponents = [
   SharedComponent,
   ProfileViewComponent,
+  ClassViewComponent,
 ];

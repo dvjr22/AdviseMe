@@ -25,7 +25,7 @@ export class ClassViewRenderComponent implements OnInit {
   }
 
   goClassView() {
-    this.router.navigate(['/pages/class/class-view', this.renderValue]);
+    this.router.navigate(['/pages/shared/class-view', this.renderValue]);
   }
 
 
