@@ -186,7 +186,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
                 }
                 this.cartService.update(this.cart).subscribe(() => {
                   if (i === this.selectedClasses.length - 1) {
-                    this.router.navigate(['/pages/cart']);
+                    this.router.navigate(['/pages/student/cart']);
                   }
                 });
               });
