@@ -42,7 +42,7 @@ import { UserService } from '../../../_shared/services/user.service';
     </div>
     </ng-template>
 
-    <button class="btn btn-md btn-outline-info" (click)="open(content)">jkl;jk;j</button>
+    <button class="btn btn-md btn-outline-info" (click)="open(content)">Description</button>
   `,
 })
 export class CourseDescriptionRenderComponent extends DefaultEditor implements ViewCell, OnInit {
