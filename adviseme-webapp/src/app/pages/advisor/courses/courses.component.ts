@@ -4,7 +4,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
-
+import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
 import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
 /**
@@ -32,6 +32,12 @@ export class CoursesComponent implements OnInit {
         },
         class__title: {
           title: 'Course Title',
+        },
+        _id: {
+          title: 'Class Info',
+          type: 'custom',
+          filter: false,
+          renderComponent: ClassViewRenderComponent,
         },
       },
     };
