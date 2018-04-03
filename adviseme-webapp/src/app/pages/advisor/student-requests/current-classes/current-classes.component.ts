@@ -25,6 +25,10 @@ export class CurrentClassesComponent implements OnInit {
   */
   settings = {
     actions: false,
+    pager: {
+      display: true,
+      perPage: 5,
+    },
     columns: {
       classID: {
         title: 'Class',
