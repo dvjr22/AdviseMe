@@ -95,8 +95,8 @@ import { Class } from './_shared/models/class';
   ],
   entryComponents: [ClassViewRenderComponent,
   CartViewRenderComponent,
-AdvisorChatListRenderComponent,
-AdvisorViewRenderComponent, ] ,
+  AdvisorChatListRenderComponent,
+  AdvisorViewRenderComponent ] ,
 })
 export class AppModule {
 }
