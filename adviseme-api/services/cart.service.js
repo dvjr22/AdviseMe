@@ -15,12 +15,14 @@ _this = this
 //create a new mongoose object
 exports.createCart = async function(aCart){
 
-    var newCart = new Cart({
+    var aCart = new Cart({
       _id: aCart._id,
-      classes: aCart.classes
+      studentID: aCart.studentID,
+      classes: aCart.classes,
+      status: aCart.status,
     })
     try{
-        var savedCart = await newCart.save();
+        var savedCart = await aCart.save();
         return savedCart;
     }catch(e){
         throw Error(e.message)
@@ -39,8 +41,7 @@ exports.updateCart = async function(aCart){
   console.log("ID : " + _id)
    try{
      //find by Id
-     console.log(_id)
-     var oldCart = await Cart.findById(_id);
+     var oldCart = await Cart.findById({_id: _id});
    }catch(e){
 
    }
@@ -55,7 +56,9 @@ exports.updateCart = async function(aCart){
        _id: aCart._id,
        classes: aCart.classes,
        studentID: aCart.studentID,
-       advisor: aCart.advisor
+       advisor: aCart.advisor,
+       status: aCart.status,
+       message: aCart.message,
      })
       var savedCart = await oldCart.save();
       return savedCart;
@@ -65,6 +68,8 @@ exports.updateCart = async function(aCart){
      oldCart.classes = aCart.classes
      oldCart.studentID = aCart.studentID
      oldCart.advisor = aCart.advisor
+     oldCart.status = aCart.status
+     oldCart.message = aCart.message
    try {
       console.log("OLD CART " + JSON.stringify(oldCart))
      var savedCart = await oldCart.save()
@@ -90,7 +95,6 @@ exports.getCart = async function() {
 
 //gets a class object by ID
 exports.getCartById = async function(id) {
-
   //try-catch handle errors
   try{
     var cart = await Cart.findById({_id: id});
@@ -100,6 +104,25 @@ exports.getCartById = async function(id) {
   }
 }
 
+// Gets carts by advisor id
+exports.getCartByAdvisor = async function(advisorid) {
+  try{
+    var carts = await Cart.find({advisor: advisorid});
+    return carts;
+  } catch (e) {
+    throw Error(e.message, "error while finding classes by advisor id")
+  }
+}
+
+// Gets carts by advisor id
+exports.getCartByAdvisorAndStudent = async function(advisorid, studentid) {
+  try{
+    var carts = await Cart.find({advisor: advisorid, studentID: studentid});
+    return carts;
+  } catch (e) {
+    throw Error(e.message, "error while finding classes by advisor id")
+  }
+}
 
 //delete a class mongoose object by ID
 exports.deleteCart = async function(id) {

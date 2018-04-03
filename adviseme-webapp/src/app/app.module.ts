@@ -32,9 +32,17 @@ import { AuthenticationService, CanActivateUser } from './_shared/services/authe
 import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { NotificationService } from './_shared/services/notification.service';
+import { CartService } from './_shared/services/cart.service';
+
+// Render Components
 import { ClassViewRenderComponent } from './_shared/services/class-view.render.component';
 import { CartViewRenderComponent } from './_shared/services/cart-view.render.component';
+import { AdvisorViewRenderComponent } from './_shared/services/render/advisor-view.render.component';
+import { AdvisorChatListRenderComponent } from './_shared/services/advisor-chat-view.render.component';
 
+// PrimeNG
+import { MessageService } from 'primeng/components/common/messageservice';
+import { GrowlModule } from 'primeng/growl';
 
 // Models
 import { User } from './_shared/models/user';
@@ -47,6 +55,8 @@ import { Class } from './_shared/models/class';
     AppComponent,
     ClassViewRenderComponent,
     CartViewRenderComponent,
+    AdvisorChatListRenderComponent,
+    AdvisorViewRenderComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +74,7 @@ import { Class } from './_shared/models/class';
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-
+    GrowlModule,
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -80,9 +90,13 @@ import { Class } from './_shared/models/class';
     NbAuthService,
     ToasterService,
     NotificationService,
+    MessageService,
+    CartService,
   ],
   entryComponents: [ClassViewRenderComponent,
-  CartViewRenderComponent ] ,
+  CartViewRenderComponent,
+  AdvisorChatListRenderComponent,
+  AdvisorViewRenderComponent] ,
 })
 export class AppModule {
 }

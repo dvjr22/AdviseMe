@@ -16,7 +16,9 @@ export class User {
   university: string;
   appointments: string[];
   role: Role;
-
+  advisor: string;
+  advisorRoom: string;
+  token: string;
   // Student Role
   studentID: string;
   status: Status;
@@ -25,10 +27,10 @@ export class User {
     classID: string;
     grade: string;
   }];
-
+  phoneNumber: string;
+  profilePicture: string;
   // Advisor Role
   students: string[];
-
   // Admin Role
 
 }

@@ -6,6 +6,10 @@ var Schema = mongoose.Schema;
 //TODO: VALIDATION
 
 var UserSchema = new mongoose.Schema({
+    _id: {
+      type: String,
+      required: true
+    },
     username: {
       type: String,
       required: true,
@@ -58,6 +62,9 @@ var UserSchema = new mongoose.Schema({
       required: true,
       trim: true,
     },
+    phoneNumber: {
+      type: String,
+    },
 
     //Student
     advisor: Schema.ObjectId,
@@ -77,7 +84,8 @@ var UserSchema = new mongoose.Schema({
     //Other data
     appointments: [{ appointment: Schema.ObjectId}],
     created: Date,
-    updated: { type: Date, default: Date.now}
+    updated: { type: Date, default: Date.now},
+    profilePicture: String,
 })
 
 UserSchema.pre('save', function(next) {

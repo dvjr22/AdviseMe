@@ -5,9 +5,13 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
 import { StatusCardComponent } from './status-card/status-card.component';
 import { ProfilePreviewComponent } from './profile-preview/profile-preview.component';
-import { PreviousClassesComponent } from './previous-classes/previous-classes.component';
-import { CurrentClassesComponent } from './current-classes/current-classes.component';
-import { FutureClassesComponent } from './future-classes/future-classes.component';
+
+import { PreviousClassesComponent } from './student/previous-classes/previous-classes.component';
+import { CurrentClassesComponent } from './student/current-classes/current-classes.component';
+import { FutureClassesComponent } from './student/future-classes/future-classes.component';
+
+import { UnderlingsComponent } from './advisor/underlings/underlings.component';
+import { StudentlistComponent } from './advisor/student-list/student-list.component';
 
 @NgModule({
   imports: [
@@ -22,6 +26,8 @@ import { FutureClassesComponent } from './future-classes/future-classes.componen
     PreviousClassesComponent,
     CurrentClassesComponent,
     FutureClassesComponent,
+    UnderlingsComponent,
+    StudentlistComponent,
   ],
 })
 export class DashboardModule { }

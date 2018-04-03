@@ -1,0 +1,30 @@
+<nb-card>
+  <ng-template [ngIf]="this.noRequest === false">
+    <nb-card-header>
+      <ngx-refresh-button (messageEvent)="receiveSource($event)" ></ngx-refresh-button>
+      <br>
+      <br>
+      <span>Student Class Requests</span>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="description">
+        {{ description }}
+      </div>
+      <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+      <br/>
+    </nb-card-body>
+    <nb-card-footer>
+    </nb-card-footer>
+</ng-template>
+<ng-template [ngIf]="this.noRequest === true">
+  <nb-card-header>
+    <ngx-refresh-button (messageEvent)="receiveSource($event)" ></ngx-refresh-button>
+    <br>
+    <br>
+    <span>Student Class Requests</span>
+  </nb-card-header>
+    <nb-card-body> <div id="noRequests">No requests in</div> </nb-card-body>
+  <nb-card-footer>
+  </nb-card-footer>
+</ng-template>
+</nb-card>

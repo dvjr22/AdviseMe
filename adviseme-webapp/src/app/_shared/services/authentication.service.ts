@@ -97,7 +97,7 @@ export class AuthenticationService {
   checkForAdminUser() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.allow = new Observable( observer => {
-      this._adminSub = this.userService.getById(currentUser._id).subscribe(val => {
+      this._adminSub = this.userService.getCurrentUser().subscribe(val => {
         if (val.role === 'admin') {
           observer.next(true);
         } else {
@@ -114,7 +114,7 @@ export class AuthenticationService {
   checkForAdvisorUser() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.allow = new Observable( observer => {
-      this._adminSub = this.userService.getById(currentUser._id).subscribe(val => {
+      this._adminSub = this.userService.getCurrentUser().subscribe(val => {
         if (val.role === 'advisor') {
           observer.next(true);
         } else {

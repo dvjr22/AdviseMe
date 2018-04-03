@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Cart {
   _id: string;
+  studentID: string;
+  status: string;
   classes: [{
     _id: string;
     prerequisites: [string];
@@ -18,4 +20,5 @@ export class Cart {
     };
   }];
   advisor: string;
+  message: string;
 }

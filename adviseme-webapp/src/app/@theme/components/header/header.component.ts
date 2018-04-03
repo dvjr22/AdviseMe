@@ -25,15 +25,37 @@ export class HeaderComponent implements OnInit {
               private router: Router) {
   }
 
-  userMenu = [{ title: 'Profile', link: '/pages/profile/profile-view' }, { title: 'Log out', link: '/auth/logout' }];
+  studentMenu = [
+    {
+      title: 'Cart',
+      link: '/pages/student/cart',
+    }, {
+      title: 'Profile',
+      link: '/pages/shared/profile-view',
+    }, {
+      title: 'Log out',
+      link: '/auth/logout',
+    }];
+
+    upperMenu = [
+      {
+        title: 'Profile',
+        link: '/pages/shared/profile-view',
+      }, {
+        title: 'Log out',
+        link: '/auth/logout',
+      }];
 
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.userService.getById(this.currentUser._id)
+    this.userService.getCurrentUser()
         .subscribe(res => {
           this.currentUser = res;
           this.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
-        });
+          if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
+            this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
+          }
+      });
   }
 
   toggleSidebar(): boolean {
@@ -51,10 +73,9 @@ export class HeaderComponent implements OnInit {
   }
 
   goToCart() {
-    this.router.navigate(['/pages/cart']);
+    this.router.navigate(['/pages/student/cart']);
   }
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
-    console.log("Searching");
   }
 }

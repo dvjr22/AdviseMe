@@ -1,27 +1,27 @@
 <nb-card size="small">
-  <nb-card-header>
-    <span> Profile Preview </span>
-  </nb-card-header>
   <nb-card-body>
+    <div *ngIf="this.currentUser?.profilePicture !== undefined" class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
+
     <div class="details">
       <div class="title">
-        {{ currentUser.fullName }}
+        {{ this.currentUser?.fullName }}
       </div>
       <div class="description">
         <br>
-        <b>School:</b> {{ currentUser.university }}
+        <b>School:</b> {{ this.currentUser?.university }}
         <br>
         <br>
-        <b>Major:</b> {{ currentUser.major | uppercase }}
+        <b>Major:</b> {{ this.currentUser?.major | uppercase }}
         <br>
         <br>
-        <b>Year:</b> {{ currentUser.status | ngxCapitalize}}
+        <b>Year:</b> {{ this.currentUser?.status | ngxCapitalize}}
         <br/>
         <br/>
-        <b>Role:</b> {{ currentUser.role | ngxCapitalize }}
+        <b>Role:</b> {{ this.currentUser?.role | ngxCapitalize }}
         <br/>
         <br/>
       </div>
+      <br/>
     </div>
   </nb-card-body>
   <nb-card-footer>

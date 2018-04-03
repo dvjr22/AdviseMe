@@ -1,8 +1,12 @@
 <nb-card>
   <nb-card-header>
-    <span>Edit Permissions</span>
+    <div><span>Edit Permissions / User Information</span></div>
+    <br>
+    <div class="subtitle">
+      {{ description }}
+    </div>
   </nb-card-header>
   <nb-card-body>
-    <ng2-smart-table (editConfirm)="onSaveConfirm($event)" [settings]="settings" [source]="source"></ng2-smart-table>
+    <ng2-smart-table (deleteConfirm)="onDeleteConfirm($event)" (createConfirm)="onCreateConfirm($event)" (editConfirm)="onSaveConfirm($event)" [settings]="settings" [source]="source"></ng2-smart-table>
   </nb-card-body>
 </nb-card>

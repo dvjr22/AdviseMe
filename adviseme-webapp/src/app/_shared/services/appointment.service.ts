@@ -32,8 +32,14 @@ export class AppointmentService {
        return this.http.get('/api/appointments/', this.requestOptions).map((response: Response) => response.json());
     }
 
-    getById(id: String) {
-      return this.http.get('/api/appointments/' + id, this.requestOptions).map((response: Response) => response.json());
+    /**
+      Get an appointment by id
+
+      @param {string} _id
+      @returns {json}
+    */
+    getById(_id: string) {
+      return this.http.get('/api/appointments/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
     /**
       Create a new Appointment
@@ -58,13 +64,11 @@ export class AppointmentService {
     /**
       Delete appointment by id
 
-      TODO: LOOK INTO THIS.... Do not think that this works
-
       @param {string} _id
       @returns {none}
     */
     delete(_id: string) {
-        return this.http.delete('/api/appointments/' + _id, this.requestOptions);
+        return this.http.delete('/api/appointments/' + _id, this.requestOptions).subscribe();
     }
 }
 

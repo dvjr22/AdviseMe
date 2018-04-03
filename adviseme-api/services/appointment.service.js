@@ -23,8 +23,12 @@ exports.createAppointment = async function(aAppointment){
       advisor: aAppointment.advisor,
       roomNumber: aAppointment.roomNumber,
       date: aAppointment.date,
+      time: {
+        hour: aAppointment.time['hour'],
+        minute: aAppointment.time['minute'],
+      },
+      timefull: aAppointment.time['hour']+':'+aAppointment.time['minute'],
     })
-
     try{
         var savedAppointment = await newAppointment.save();
         return savedAppointment;
@@ -59,6 +63,8 @@ exports.updateAppointment = async function(aAppointment){
   oldAppointment.advisor = aAppointment.advisor,
   oldAppointment.roomNumber = aAppointment.roomNumber,
   oldAppointment.date = aAppointment.date,
+  oldAppointment.time['hour'] = aAppointment.time['hour'],
+  oldAppointment.time['minute'] = aAppointment.time['minute'],
 
   console.log(oldAppointment)
 
@@ -97,11 +103,8 @@ exports.getAppointmentById = async function(id) {
 //delete a appointment mongoose object by ID
 exports.deleteAppointment = async function(id) {
   try{
-    var deleted = await Appointment.remove({_id: id})
-    if(deleted.result.n === 0){
-      throw Error("Appointment could not be deleted")
-    }
-    return deleted
+    var deleted = await Appointment.findByIdAndRemove({_id: id});
+    return deleted;
   }catch(e){
     throw Error(e.message)
   }

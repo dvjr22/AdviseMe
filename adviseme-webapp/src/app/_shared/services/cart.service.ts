@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
 
 import { Cart } from '../models/cart';
 
@@ -36,6 +36,15 @@ export class CartService {
     }
 
     /**
+      Get all carts by the Advisor id
+      @param {string} advisorid
+      @returns {json}
+    */
+    getByAdvisor(advisorid: string) {
+      return this.http.get('/api/carts/advisor/' + advisorid, this.requestOptions).map((response: Response) => response.json());
+    }
+
+    /**
       Get all carts
     */
     get() {
@@ -58,8 +67,8 @@ export class CartService {
       @param {Cart} cart
       @returns {none}
     */
-    update(cart: Cart) {
-        return this.http.put('/api/carts/', cart, this.requestOptions).subscribe();
+    update(cart: Cart): Observable<Cart> {
+        return this.http.put('/api/carts/', cart, this.requestOptions).map((response: Response) => response.json());
     }
 
     /**

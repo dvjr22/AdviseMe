@@ -1,0 +1,21 @@
+<nb-card size="large">
+  <nb-card-header>
+    <div class="header">
+      <div class="name bold">Future Classes</div>
+  </div>
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (userRowSelect)="onUserRowSelect($event)"
+      #table>
+    </ng2-smart-table>
+  </nb-card-body>
+
+
+  <nb-card-footer align-items="center">
+    <button position="left" (click)="addToCart()" type="button" class="btn btn-success">Add Classes To Cart</button>
+    <button position="right" (click)="goToClasses()" type="button" class="btn btn-success">Full Course List</button>
+  </nb-card-footer>
+</nb-card>

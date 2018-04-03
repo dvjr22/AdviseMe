@@ -15,25 +15,30 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: 'Classes',
-    icon: 'nb-list',
-    link: '/pages/classes/courses',
-  },
-  {
     title: 'Advisement',
     icon: 'nb-compose',
     children: [
       {
         title: 'Make an Appointment',
-        link: '/pages/advisement/appointment',
+        link: '/pages/student/appointment',
       },
       {
         title: 'View Appointments',
-        link: '/pages/advisement/view-appointment',
+        link: '/pages/student/view-appointment',
       },
       {
-        title: 'Request Classes (placeholder)',
-        link: '/pages/advisement/request-classes',
+        title: 'Advisor Messaging',
+        link: '/pages/shared/chat',
+      },
+    ],
+  },
+  {
+    title: 'Cart',
+    icon: 'ion-ios-cart-outline',
+    children: [
+      {
+        title: 'View Cart',
+        link: '/pages/student/cart',
       },
     ],
   },
@@ -43,11 +48,25 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Profile View',
-        link: '/pages/profile/profile-view',
+        link: '/pages/shared/profile-view',
       },
     ],
 
   },
+  {
+    title: 'Request',
+    icon: 'nb-list',
+    children: [
+      {
+        title: 'Request Classes',
+        link: '/pages/student/request-classes',
+      },
+      {
+        title: 'Request Status',
+        link: '/pages/student/cart-progress',
+      },
+    ],
+    },
 ];
 
 export const ADMIN_ITEMS: NbMenuItem[] = [
@@ -76,17 +95,12 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Classes',
-    icon: 'nb-list',
-    link: '/pages/classes/courses',
-  },
-  {
     title: 'Profile',
     icon: 'nb-person',
     children: [
       {
         title: 'Profile View',
-        link: '/pages/profile/profile-view',
+        link: '/pages/shared/profile-view',
       },
     ],
 
@@ -107,7 +121,7 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Advisor',
-    icon: 'nb-plus',
+    icon: 'nb-checkmark',
     children: [
       {
         title: 'View Appointments',
@@ -117,12 +131,16 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
         title: 'View Class Requests',
         link: '/pages/advisor/requests',
       },
+      {
+        title: 'Student Messaging',
+        link: '/pages/advisor/advisor-chat-list',
+      },
     ],
   },
   {
     title: 'Classes',
     icon: 'nb-list',
-    link: '/pages/classes/courses',
+    link: '/pages/advisor/courses',
   },
   {
     title: 'Profile',
@@ -130,7 +148,7 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Profile View',
-        link: '/pages/profile/profile-view',
+        link: '/pages/shared/profile-view',
       },
     ],
 

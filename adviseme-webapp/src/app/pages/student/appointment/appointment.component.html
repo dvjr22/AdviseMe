@@ -1,0 +1,33 @@
+<nb-card>
+  <nb-card-header>
+    <div>Make an Appointment</div>
+    <br>
+    <div class="subtitle">{{description}}</div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h6>Pick a Day: </h6>
+          <ngb-datepicker #dp placeholder="yyyy-mm-dd" name="date" id="date" [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+        </div>
+        <div class="col">
+            <h6>Pick a Time: </h6>
+            <br>
+            <form (ngSubmit)="onSubmit()" #form="ngForm">
+              <ngb-timepicker name="time" id="time" [(ngModel)]="newAppointment.time" [meridian]="meridian"></ngb-timepicker>
+              <br>
+              <br>
+              <br>
+              <div class="btn-group btn-group" role="group">
+                <button class="btn btn-success btn-group-icon btn-group-divider btn-fixed" type="button">
+                  <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                </button>
+                <button type="submit" class="btn btn-success">Send Appointment</button>
+              </div>
+            </form>
+        </div><!-- end of col -->
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

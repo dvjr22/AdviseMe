@@ -1,19 +1,45 @@
-<!-- Top row -->
-<div class="row">
-  <div class="col-md-3">
-    <ngx-profile-preview></ngx-profile-preview>
-  </div>
-  <div class="col-md-9">
-    <ngx-future-classes></ngx-future-classes>
-  </div>
+<!-- Student-->
+<div *ngIf="role == 'student'">
+  <div class="row">
+    <div class="col-md-3">
+      <ngx-profile-preview></ngx-profile-preview>
+    </div>
+    <div class="col-md-9">
+      <ngx-future-classes></ngx-future-classes>
+    </div>
 
-</div>
-<!-- Bottom row -->
-<div class="row">
-  <div class="col-md-6">
-      <ngx-current-classes></ngx-current-classes>
   </div>
-  <div class="col-md-6">
-    <ngx-previous-classes></ngx-previous-classes>
+  <!-- Bottom row -->
+  <div class="row">
+    <div class="col-md-6">
+        <ngx-current-classes></ngx-current-classes>
+    </div>
+    <div class="col-md-6">
+      <ngx-previous-classes></ngx-previous-classes>
+    </div>
+  </div>
+</div>
+
+<!-- Advisor-->
+<div *ngIf="role == 'advisor'">
+  <div class="row">
+    <div class="col-md-3">
+      <ngx-profile-preview></ngx-profile-preview>
+    </div>
+    <div class="col-md-9">
+      <ngx-underlings></ngx-underlings>
+    </div>
+    <div class="col-md-12">
+      <ngx-student-list></ngx-student-list>
+    </div>
+  </div>
+</div>
+
+<!-- Admin-->
+<div *ngIf="role == 'admin'">
+  <div class="row">
+    <div class="col-md-3">
+      <ngx-profile-preview></ngx-profile-preview>
+    </div>
   </div>
 </div>

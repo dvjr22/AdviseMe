@@ -60,7 +60,7 @@ function getAll() {
 
 function getById(_id) {
     var deferred = Q.defer();
-    db.users.findOne(mongo.helper.toObjectID(_id), function (err, user) {
+    db.users.findOne({_id: _id}, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user) {
@@ -147,15 +147,17 @@ function update(_id, userParam) {
             status: userParam.status,
             major: userParam.major,
             role: userParam.role,
+            advisor: userParam.advisor,
+            profilePicture: userParam.profilePicture,
+            phoneNumber: userParam.phoneNumber,
         };
-
         // update password if it was entered
         if (userParam.password) {
             set.hash = bcrypt.hashSync(userParam.password, 10);
         }
 
         db.users.update(
-            { _id: mongo.helper.toObjectID(_id) },
+            { _id: _id },
             { $set: set },
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
@@ -171,7 +173,7 @@ function _delete(_id) {
     var deferred = Q.defer();
 
     db.users.remove(
-        { _id: mongo.helper.toObjectID(_id) },
+        { _id: _id },
         function (err) {
             if (err) deferred.reject(err.name + ': ' + err.message);
 

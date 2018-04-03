@@ -1,5 +1,5 @@
 # AdviseMe
-A web app that will assist college students through the majority of advising requirements while in pursuit of a degree. The development version of AdviseMe is currently avaliable at [www.theadviseme.com](http://www.theadviseme.com).
+A web app that will assist college students through the majority of advising requirements while in pursuit of a degree. The development version of AdviseMe is currently avaliable at [www.theadviseme.com](https://www.theadviseme.com).
 
 Guest credentials are:
 
@@ -110,7 +110,7 @@ AdviseMe has multiple unit testing systems for various parts of the project. The
 You will need two terminal sessions running. The first for the Selenium web server (webdriver-manager) and the second for the actual Protractor
   * Selenium Terminal
     * ```cd adviseme-webapp```
-    * ```webdriver-manager reload```
+    * ```webdriver-manager update```
     * ```webdriver-manager start```
   * Protractor Terminal
     * ```cd adviseme-webapp```

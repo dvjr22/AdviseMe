@@ -5,8 +5,9 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
 
-import {flattenObject } from '../../classes/courses/flattenObject';
+import {flattenObject } from '../../../_shared/scripts/flattenObject';
 
+import { MessageService } from 'primeng/components/common/messageservice';
 
 /**
   Complete course catalog
@@ -43,13 +44,13 @@ export class EditcoursesComponent implements OnInit {
         confirmDelete: true,
       },
       columns: {
-        class_prefix: {
+        class__prefix: {
           title: 'Department',
         },
-        class_courseNo: {
+        class__courseNo: {
           title: 'Course Number',
         },
-        class_title: {
+        class__title: {
           title: 'Course Title',
         },
         hrs: {
@@ -57,14 +58,17 @@ export class EditcoursesComponent implements OnInit {
         },
         description: {
           title: 'Description',
+          editor: {
+            type: 'textarea',
+          },
         },
-        prerequisites_0: {
+        prerequisites__0: {
           title: 'Prerequisite 1',
         },
-        prerequisites_1: {
+        prerequisites__1: {
           title: 'Prerequisite 2',
         },
-        prerequisites_2: {
+        prerequisites__2: {
           title: 'Prerequisite 3',
         },
       },
@@ -78,7 +82,9 @@ export class EditcoursesComponent implements OnInit {
     /**
       Initializes new names for the imports
     */
-    constructor(private classService: ClassService, private selectedClass: Class) {
+    constructor(private classService: ClassService,
+      private selectedClass: Class,
+      private messageService: MessageService) {
       this.prerequisites = [];
       this.curriculum_one = [];
       this.curriculum_two = [];
@@ -137,10 +143,11 @@ export class EditcoursesComponent implements OnInit {
     onDeleteConfirm(event): void {
       if (window.confirm('Are you sure you want to delete ' + event.data.class_title + ' ?')) {
         this.classService.deleteClass(event.data._id).subscribe();
-        alert('Deleted ' + event.data.class_title);
+        this.messageService.add({severity: 'success',
+          summary: 'Success Deleted Class',
+          detail: 'Successfully deleted class ' + event.data.class_title});
         event.confirm.resolve();
       } else {
-        alert('Aborted delete');
         event.confirm.reject();
       }
     }
@@ -182,10 +189,11 @@ export class EditcoursesComponent implements OnInit {
 
       if (window.confirm('Are you sure you want to edit ' + event.data.class_title + ' ?')) {
         this.classService.editClass(this.selectedClass).subscribe();
-        alert('Changes made');
+        this.messageService.add({severity: 'success',
+          summary: 'Success Updating Class',
+          detail: 'Successfully updated class ' + event.newData.class_title});
         event.confirm.resolve();
       } else {
-        alert('Aborted changes');
         event.confirm.reject();
       }
     }

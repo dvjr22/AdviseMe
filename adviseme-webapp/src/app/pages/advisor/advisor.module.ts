@@ -5,11 +5,20 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ThemeModule } from '../../@theme/theme.module';
 
 import { AdvisorRoutingModule, routedComponents } from './advisor-routing.module';
-import { RequestsComponent } from './requests/requests.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
+import { AllRequestsComponent } from './all-requests/all-requests.component';
+import { AdvisorAppointmentsComponent } from './advisor-appointments/advisor-appointments.component';
 
 import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
-import { RequestsClassComponent } from './requests-class/requests-class.component';
+
+import { StudentRequestComponent } from './student-requests/student-requests.component';
+import { PreviousClassesComponent } from './student-requests/previous-classes/previous-classes.component';
+import { CurrentClassesComponent } from './student-requests/current-classes/current-classes.component';
+
+import { CoursesComponent } from './courses/courses.component';
+import { GrowlModule } from 'primeng/growl';
+import { AdvisorChatListComponent } from './advisor-chat-list/advisor-chat-list.component';
+
+import { ServiceComponentModule } from '../../_shared/services/components/service-components.module';
 
 @NgModule({
   imports: [
@@ -17,10 +26,16 @@ import { RequestsClassComponent } from './requests-class/requests-class.componen
     ThemeModule,
     Ng2SmartTableModule,
     AdvisorRoutingModule,
+    GrowlModule,
+    ServiceComponentModule,
   ],
   declarations: [
     ...routedComponents,
-    RequestsClassComponent,
+    StudentRequestComponent,
+    AdvisorChatListComponent,
+    CoursesComponent,
+    CurrentClassesComponent,
+    PreviousClassesComponent,
   ],
   providers: [
     CanActivateAdvisor,
