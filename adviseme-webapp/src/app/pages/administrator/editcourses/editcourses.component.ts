@@ -9,8 +9,6 @@ import {flattenObject } from '../../../_shared/scripts/flattenObject';
 
 import { MessageService } from 'primeng/components/common/messageservice';
 
-import { CourseDescriptionRenderComponent } from '../../../_shared/services/render/course-description.render.component';
-
 /**
   Complete course catalog
 */
@@ -60,8 +58,9 @@ export class EditcoursesComponent implements OnInit {
         },
         description: {
           title: 'Description',
-          type: 'custom',
-          renderComponent: CourseDescriptionRenderComponent,
+          editor: {
+            type: 'textarea',
+          },
         },
         prerequisites__0: {
           title: 'Prerequisite 1',
