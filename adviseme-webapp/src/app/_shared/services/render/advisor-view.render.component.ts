@@ -44,7 +44,7 @@ import { UserService } from '../../../_shared/services/user.service';
     </div>
     </ng-template>
 
-    <button class="btn btn-md btn-outline-info" (click)="open(content)">{{this.renderValue}}</button>
+    <button class="btn btn-md btn-outline-info" (click)="open(content)" *ngIf="renderValue.length !== 0">{{this.renderValue}}</button>
   `,
 })
 export class AdvisorViewRenderComponent extends DefaultEditor implements ViewCell, OnInit {
@@ -63,21 +63,21 @@ export class AdvisorViewRenderComponent extends DefaultEditor implements ViewCel
 
   ngOnInit() {
     this.renderValue = this.value.toString();
-
   }
 
   open(content) {
+    if (this.renderValue.length !== 0) {
+      this.userService.getById(this.renderValue)
+        .subscribe((res: User) => {
+          this.advisor = Object.assign({}, res);
+        });
 
-    this.userService.getById(this.renderValue)
-      .subscribe((res: User) => {
-        this.advisor = Object.assign({}, res);
+      this.modalService.open(content, {windowClass: 'center-modal'}).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
-
-    this.modalService.open(content, {windowClass: 'center-modal'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    }
   }
 
   private getDismissReason(reason: any): string {
