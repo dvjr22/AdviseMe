@@ -9,7 +9,11 @@ import { AllRequestsComponent } from './all-requests/all-requests.component';
 import { AdvisorAppointmentsComponent } from './advisor-appointments/advisor-appointments.component';
 
 import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
+
 import { StudentRequestComponent } from './student-requests/student-requests.component';
+import { PreviousClassesComponent } from './student-requests/previous-classes/previous-classes.component';
+import { CurrentClassesComponent } from './student-requests/current-classes/current-classes.component';
+
 import { CoursesComponent } from './courses/courses.component';
 import { GrowlModule } from 'primeng/growl';
 import { AdvisorChatListComponent } from './advisor-chat-list/advisor-chat-list.component';
@@ -30,6 +34,8 @@ import { ServiceComponentModule } from '../../_shared/services/components/servic
     StudentRequestComponent,
     AdvisorChatListComponent,
     CoursesComponent,
+    CurrentClassesComponent,
+    PreviousClassesComponent,
   ],
   providers: [
     CanActivateAdvisor,
