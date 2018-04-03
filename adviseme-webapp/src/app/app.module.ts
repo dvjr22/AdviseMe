@@ -57,7 +57,6 @@ import { Class } from './_shared/models/class';
     CartViewRenderComponent,
     AdvisorChatListRenderComponent,
     AdvisorViewRenderComponent,
-    CourseDescriptionRenderComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,8 +96,7 @@ import { Class } from './_shared/models/class';
   entryComponents: [ClassViewRenderComponent,
   CartViewRenderComponent,
   AdvisorChatListRenderComponent,
-  AdvisorViewRenderComponent,
-  CourseDescriptionRenderComponent ] ,
+  AdvisorViewRenderComponent] ,
 })
 export class AppModule {
 }
