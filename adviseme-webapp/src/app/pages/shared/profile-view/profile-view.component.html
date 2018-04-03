@@ -1,3 +1,5 @@
+
+<ng-template [ngIf]="this.currentUser?.role === 'student'">
 <nb-card>
       <nb-card-header>Profile</nb-card-header>
       <nb-card-body>
@@ -7,15 +9,21 @@
             <span class="form-control">{{currentUser.username}}</span>
           </div>
 
+
+
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-person" aria-hidden="true"></i></span>
             <span class="form-control">{{currentUser.firstName | ngxCapitalize}}</span>
           </div>
 
+
+
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-person" aria-hidden="true"></i></span>
             <span class="form-control">{{currentUser.lastName | ngxCapitalize}}</span>
           </div>
+
+
 
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-email" aria-hidden="true"></i></span>
@@ -27,19 +35,29 @@
             </span>
           </div>
 
+
+
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-university" aria-hidden="true"></i></span>
             <span class="form-control">{{currentUser.university}}</span>
           </div>
 
+
+
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-university" aria-hidden="true"></i></span>
             <span class="form-control">{{currentUser.status | ngxCapitalize}}</span>
           </div>
+
+
+
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-university" aria-hidden="true"></i></span>
             <span class="form-control">{{currentUser.major | uppercase}}</span>
           </div>
+
+
+
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-ios-telephone" aria-hidden="true"></i></span>
             <input class="form-control" placeholder="{{currentUser.phoneNumber}}" (keyup)="onKey($event)">
@@ -49,6 +67,9 @@
               </span>
             </span>
           </div>
+
+
+
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-camera" aria-hidden="true"></i></span>
             <input class="form-control" type="file" name="photo" ng2FileSelect [uploader]="uploader" />
@@ -61,3 +82,67 @@
       </form>
       </nb-card-body>
     </nb-card>
+  </ng-template>
+  <ng-template [ngIf]="this.currentUser?.role !== 'student'">
+  <nb-card>
+        <nb-card-header>Profile</nb-card-header>
+        <nb-card-body>
+          <form (ngSubmit)="update()" #form="ngForm">
+            <div class="input-group has-person-icon">
+              <span class="input-group-addon">@</span>
+              <span class="form-control">{{currentUser.username}}</span>
+            </div>
+
+
+
+            <div class="input-group">
+              <span class="input-group-addon"><i class="ion-person" aria-hidden="true"></i></span>
+              <span class="form-control">{{currentUser.firstName | ngxCapitalize}}</span>
+            </div>
+
+
+
+            <div class="input-group">
+              <span class="input-group-addon"><i class="ion-person" aria-hidden="true"></i></span>
+              <span class="form-control">{{currentUser.lastName | ngxCapitalize}}</span>
+            </div>
+
+
+
+            <div class="input-group">
+              <span class="input-group-addon"><i class="ion-email" aria-hidden="true"></i></span>
+              <span class="form-control">{{emailBegin | ngxCapitalize}}</span>
+              <span class="input-group-btn">
+                <span class="btn btn-success disabled">
+                  {{emailEnding}}
+                </span>
+              </span>
+            </div>
+
+            
+
+            <div class="input-group">
+              <span class="input-group-addon"><i class="ion-ios-telephone" aria-hidden="true"></i></span>
+              <input class="form-control" placeholder="{{currentUser.phoneNumber}}" (keyup)="onKey($event)">
+              <span class="input-group-btn">
+                <span class="btn btn-success" (click)="updatePhoneNumber($event)">
+                  Update Phone Number
+                </span>
+              </span>
+            </div>
+
+
+
+            <div class="input-group">
+              <span class="input-group-addon"><i class="ion-camera" aria-hidden="true"></i></span>
+              <input class="form-control" type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+              <span class="input-group-btn">
+                <span class="btn btn-success" (click)="uploader.uploadAll()">
+                  Upload New Profile Picture
+                </span>
+              </span>
+            </div>
+        </form>
+        </nb-card-body>
+      </nb-card>
+    </ng-template>
