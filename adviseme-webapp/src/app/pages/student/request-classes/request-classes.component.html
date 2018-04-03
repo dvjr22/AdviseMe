@@ -26,7 +26,7 @@
   </nb-card>
 </ng-template>
 
-<ng-template [ngIf]="this.cart?.status === 'pending'">
+<ng-template [ngIf]="this.cart?.status === 'pending' || this.cart?.status === 'updated'">
   <nb-card>
     <button [disabled]="buttonDisabled" (click)="updatedCart()" type="button" class="btn btn-success">Update Cart</button>
   </nb-card>

@@ -147,7 +147,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
           });
         }, this);
 
-        if (this.selectedClasses.length === 0 && this.OGClasses.length !== 0) {
+        if (this.selectedClasses.length === 0 && this.OGClasses.length !== 0 || this.selectedClasses.length !== 0 && this.OGClasses.length === 0 ) {
           difference = true;
         }
 
