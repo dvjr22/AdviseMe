@@ -14,6 +14,7 @@ import { UserService } from '../../../../_shared/services/user.service';
 export class  UnderlingsComponent implements OnInit {
 
   advisorID: string;
+  emptyTable: boolean;
 
   // Config for the table
   settings= {
@@ -54,6 +55,12 @@ export class  UnderlingsComponent implements OnInit {
     this.cartService.getByAdvisor(currentAdvisor._id)
       .subscribe( (res) => {
         const flatData = flattenObject(res.data);
+
+        if (flatData.length === 0) {
+          this.emptyTable = true;
+        } else {
+          this.emptyTable = false;
+        }
         for (let i = 0; i < flatData.length; i++) {
           const d = flatData[i];
           this.userService.getById(d._id).subscribe((userres) => {
