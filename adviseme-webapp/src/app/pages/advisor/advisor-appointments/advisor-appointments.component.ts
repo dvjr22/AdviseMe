@@ -45,6 +45,9 @@ export class AdvisorAppointmentsComponent implements OnInit {
       date: {
         title: 'Date',
       },
+      timefull: {
+        title: 'Time',
+      },
     },
   };
 
