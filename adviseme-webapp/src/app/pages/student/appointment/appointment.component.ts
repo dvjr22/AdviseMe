@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
@@ -35,7 +35,14 @@ export class AppointmentComponent implements OnInit {
   /**
     Variable to hold ISO date format from date picker
   */
-  model;
+  dateObj = new Date();
+  model = {year: this.dateObj.getUTCFullYear(), month: this.dateObj.getUTCMonth() + 1, day: this.dateObj.getUTCDate()};
+  /**
+    timepicker meridian set
+  */
+  time = { hour: 12, minute: 0 };
+  meridian = true;
+
 
   /**
     Initializes new names for the imports
@@ -72,6 +79,11 @@ export class AppointmentComponent implements OnInit {
     this.newAppointment.roomNumber = this.currentUser.advisorRoom;
     // have to use a formatter because ng date picker uses ISO format instead of the standard date format
     this.newAppointment.date = new Date(this.ngbDateParserFormatter.format(this.model));
+    if (this.time.minute < 10) {
+      this.newAppointment.time = { hour: '' + this.time.hour , minute: '0' + this.time.minute};
+    } else {
+      this.newAppointment.time = { hour: '' + this.time.hour , minute: '' + this.time.minute};
+    }
 
     try {
       this.appointmentService.create(this.newAppointment).subscribe();
