@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col">
           <h6>Pick a Day: </h6>
-          <ngb-datepicker #dp placeholder="yyyy-mm-dd" name="date" id="date" [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+          <ngb-datepicker  #d1 [(ngModel)]="model" #c1="ngModel"></ngb-datepicker>
         </div>
         <div class="col">
             <h6>Pick a Time: </h6>

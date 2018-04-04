@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
@@ -35,7 +35,8 @@ export class AppointmentComponent implements OnInit {
   /**
     Variable to hold ISO date format from date picker
   */
-  model;
+  dateObj = new Date();
+  model = {year: this.dateObj.getUTCFullYear(), month: this.dateObj.getUTCMonth() + 1, day: this.dateObj.getUTCDate()};
   /**
     timepicker meridian set
   */
