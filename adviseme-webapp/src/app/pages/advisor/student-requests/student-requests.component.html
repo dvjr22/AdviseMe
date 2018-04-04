@@ -1,7 +1,8 @@
 <nb-card>
   <nb-card-header>
     <div><span>Requested Classes</span></div>
-    <br>
+  </nb-card-header>
+  <nb-card-body>
     <div class="subtitle">
         <b>Name:</b> {{ this.studentUser?.firstName }} {{ this.studentUser?.lastName }}
       <br>
@@ -9,8 +10,7 @@
       <br>
         <b>Year:</b> {{ this.studentUser?.status | ngxCapitalize }}
     </div>
-  </nb-card-header>
-  <nb-card-body>
+    <hr>
     <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
   </nb-card-body>
   <nb-card-footer>
