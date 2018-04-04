@@ -12,7 +12,7 @@
       <b> Status:</b>  {{ currentCart?.status | ngxCapitalize }}
       <br>
       <br>
-      
+
       <ng2-smart-table [settings]="settings"  [source]="source" *ngIf="this.currentCart?.classes.length !== 0"></ng2-smart-table>
       <span *ngIf="this.currentCart?.classes.length === 0"> Please add classes to your cart to submit to your advisor </span>
 
@@ -37,7 +37,7 @@
       <ng2-smart-table [settings]="settings"  [source]="source"></ng2-smart-table>
     </nb-card-body>
     <nb-card-footer>
-      <button (click)="goToCart()" id="submitBtn" type="button" class="btn btn-success">See Advisors Message</button>
+      <button (click)="goToCart()" id="submitBtn" type="button" class="btn btn-success">Make Changes</button>
     </nb-card-footer>
   </ng-template>
 
