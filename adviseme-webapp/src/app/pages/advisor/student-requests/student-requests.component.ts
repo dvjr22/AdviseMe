@@ -9,6 +9,9 @@ import { NotificationService } from '../../../_shared/services/notification.serv
 import { MessageService } from 'primeng/components/common/messageservice';
 import * as io from 'socket.io-client';
 
+import { User } from '../../../_shared/models/user';
+import { UserService } from '../../../_shared/services/user.service';
+
 declare var require: any;
 @Component({
   selector: 'ngx-app-requests-class',
@@ -18,6 +21,8 @@ declare var require: any;
 export class StudentRequestComponent implements OnInit {
   // Connection to the socket server for realtime chat updates
   socket = io('http://localhost:4001');
+
+  studentUser: User;
   // Config for the table
   settings= {
     actions: false,
@@ -42,17 +47,23 @@ export class StudentRequestComponent implements OnInit {
 
   constructor(protected route: ActivatedRoute, private cartService: CartService,
     private notificationService: NotificationService, private router: Router,
-    private messageService: MessageService) { }
+    private messageService: MessageService, private userService: UserService) { }
 
   ngOnInit() {
     this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
       // Get the cart data and flatten it, then load into the table
       this.cart = res.data;
       const ob = this.cart.classes;
-      let newOb = flattenObject(ob);
+      const newOb = flattenObject(ob);
       this.source.load(newOb);
       this.message = '';
     });
+
+    this.userService.getById(this.route.snapshot.params['id'])
+      .subscribe((res: User) => {
+        this.studentUser = Object.assign({}, res);
+      });
+
   }
 
   /**
