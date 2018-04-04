@@ -12,7 +12,10 @@
       <b> Status:</b>  {{ currentCart?.status | ngxCapitalize }}
       <br>
       <br>
-      <ng2-smart-table [settings]="settings"  [source]="source"></ng2-smart-table>
+      
+      <ng2-smart-table [settings]="settings"  [source]="source" *ngIf="this.currentCart?.classes.length !== 0"></ng2-smart-table>
+      <span *ngIf="this.currentCart?.classes.length === 0"> Please add classes to your cart to submit to your advisor </span>
+
     </nb-card-body>
   </ng-template>
 
