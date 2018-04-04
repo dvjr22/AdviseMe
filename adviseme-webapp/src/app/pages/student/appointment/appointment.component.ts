@@ -36,6 +36,12 @@ export class AppointmentComponent implements OnInit {
     Variable to hold ISO date format from date picker
   */
   model;
+  /**
+    timepicker meridian set
+  */
+  time = { hour: 12, minute: 0 };
+  meridian = true;
+
 
   /**
     Initializes new names for the imports
@@ -72,6 +78,11 @@ export class AppointmentComponent implements OnInit {
     this.newAppointment.roomNumber = this.currentUser.advisorRoom;
     // have to use a formatter because ng date picker uses ISO format instead of the standard date format
     this.newAppointment.date = new Date(this.ngbDateParserFormatter.format(this.model));
+    if (this.time.minute < 10) {
+      this.newAppointment.time = { hour: '' + this.time.hour , minute: '0' + this.time.minute};
+    } else {
+      this.newAppointment.time = { hour: '' + this.time.hour , minute: '' + this.time.minute};
+    }
 
     try {
       this.appointmentService.create(this.newAppointment).subscribe();

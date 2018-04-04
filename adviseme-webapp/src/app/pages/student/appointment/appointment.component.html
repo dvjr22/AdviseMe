@@ -15,7 +15,8 @@
             <h6>Pick a Time: </h6>
             <br>
             <form (ngSubmit)="onSubmit()" #form="ngForm">
-              <ngb-timepicker name="time" id="time" [(ngModel)]="newAppointment.time" [meridian]="meridian"></ngb-timepicker>
+
+              <ngb-timepicker name="time" id="time" [(ngModel)]="time"[meridian]="meridian"></ngb-timepicker>
               <br>
               <br>
               <br>
