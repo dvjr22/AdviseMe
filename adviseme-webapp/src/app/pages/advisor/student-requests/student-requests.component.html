@@ -6,30 +6,18 @@
     <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
   </nb-card-body>
   <nb-card-footer>
-    <div class="row">
-      <div class="col-md-2">
-        <button type="button" (click)="goBackToDashboard()" class="btn btn-info" name="button">Dashboard</button>
-      </div>
-      <div class="col-md-2">
-        <button type="button" (click)="goBackToRequests()" class="btn btn-info" name="button">All Requests</button>
-      </div>
-      <div class="col-md-2">
-        <button type="button" style="float:right"class="btn btn-success" (click)="approveOnClick()" name="button">Approve</button>
-      </div>
-    </div>
+        <button type="button" class="btn btn-success" (click)="approveOnClick()" name="button">Approve</button>
     </nb-card-footer>
 </nb-card>
 <nb-card>
   <nb-card-body>
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-md-4">
-          <button id="requestedChangeButton" style="float:right" type="button" [disabled]="requestButtonStatus"class="btn btn-danger" (click)="requestOnClick()" name="button">Request Changes</button>
-        </div>
-        <div class="col-md-6">
-          <input id="requstedChangeTextbox" placeholder="Requested changes.."(keyup)="onKey($event)" type="text"class="form-control" id="basic-url" aria-describedby="basic-addon3">
-        </div>
-      </div>
+    <div class="input-group">
+      <input id="requstedChangeTextbox" style="float:left" placeholder="Requested changes.."(keyup)="onKey($event)" type="text"class="form-control" id="basic-url" aria-describedby="basic-addon3">
+      <span class="input-group-append">
+        <button id="requestedChangeButton" type="button" [disabled]="requestButtonStatus" (click)="requestOnClick()" name="button" class="btn btn-danger input-group-text">
+          Request Changes
+        </button>
+      </span>
     </div>
   </nb-card-body>
 </nb-card>
