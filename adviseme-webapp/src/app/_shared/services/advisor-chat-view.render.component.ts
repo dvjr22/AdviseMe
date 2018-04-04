@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   template: `
     <div class="btn-group btn-group-full-width" role="group">
         <button  (click)="goClassView()" type="button" class="btn btn-info btn-group-icon btn-group-divider btn-fixed">
-          <i class="ion-information-circled"></i>
+          <i class="ion-chatbubbles"></i>
         </button>
     </div>
   `,
