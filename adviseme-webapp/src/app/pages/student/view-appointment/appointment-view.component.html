@@ -1,10 +1,11 @@
 <nb-card>
     <ng-template [ngIf]="this.noAppointment === false">
-      <nb-card-header>Upcoming Appointments!</nb-card-header>
+      <nb-card-header>
+        <div>Upcoming Appointments!</div>
+        <br>
+        <div class="subtitle">{{description}}</div>
+      </nb-card-header>
       <nb-card-body>
-        <div class="description">
-          {{description}}
-        </div>
         <ng2-smart-table [settings]="settings" (deleteConfirm)="onDeleteConfirm($event)" [source]="source"></ng2-smart-table>
       </nb-card-body>
     </ng-template>
