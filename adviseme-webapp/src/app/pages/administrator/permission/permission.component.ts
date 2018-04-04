@@ -65,6 +65,9 @@ export class PermissionComponent implements OnInit {
         status: {
           title: 'Status',
         },
+        _id: {
+          title: 'id',
+        },
       },
     };
 
