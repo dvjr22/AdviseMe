@@ -109,6 +109,7 @@ export class StudentRequestComponent implements OnInit {
     //
     this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
       this.cart = res.data;
+      this.cart.advisor = '';
       this.cart.status = 'approved';
       this.cartService.update(this.cart).subscribe();
       this.socket.emit('cart-status', 'Your requested classes have been approved!');
