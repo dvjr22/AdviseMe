@@ -18,6 +18,7 @@ var CartSchema = new mongoose.Schema({
     }],
     advisor: { type: String },
     message: { type: String },
+    pastMessage: { type: String },
 
   })
 

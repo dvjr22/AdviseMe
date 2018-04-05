@@ -21,4 +21,5 @@ export class Cart {
   }];
   advisor: string;
   message: string;
+  pastMessage: string;
 }

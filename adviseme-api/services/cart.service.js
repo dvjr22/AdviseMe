@@ -59,6 +59,7 @@ exports.updateCart = async function(aCart){
        advisor: aCart.advisor,
        status: aCart.status,
        message: aCart.message,
+       pastMessage: aCart.pastMessage,
      })
       var savedCart = await oldCart.save();
       return savedCart;
@@ -70,6 +71,7 @@ exports.updateCart = async function(aCart){
      oldCart.advisor = aCart.advisor
      oldCart.status = aCart.status
      oldCart.message = aCart.message
+     oldCart.pastMessage = aCart.pastMessage
    try {
       console.log("OLD CART " + JSON.stringify(oldCart))
      var savedCart = await oldCart.save()
