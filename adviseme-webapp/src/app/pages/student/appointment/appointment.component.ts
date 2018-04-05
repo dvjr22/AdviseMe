@@ -28,7 +28,6 @@ export class AppointmentComponent implements OnInit {
     User initialized from ngOnInit
   */
   currentUser: User;
-  advisorName: String;
   /**
     Blank appointment
   */
@@ -64,12 +63,8 @@ export class AppointmentComponent implements OnInit {
       @returns {none}
   */
   ngOnInit() {
-    this.userService.getCurrentUser().subscribe(res => {
-        this.currentUser = res
-        this.userService.getById(this.currentUser.advisor).subscribe( res2 => {
-          this.advisorName = res2['firstName'];
-        });
-      });
+    this.userService.getCurrentUser()
+        .subscribe(res => this.currentUser = res);
   }
 
   /**
@@ -82,7 +77,7 @@ export class AppointmentComponent implements OnInit {
     this.newAppointment.lastName = this.currentUser.lastName;
     this.newAppointment.major = this.currentUser.major.toString();
     this.newAppointment.status = this.currentUser.status.toString();
-    this.newAppointment.advisor = this.advisorName;
+    this.newAppointment.advisor = this.currentUser.advisor;
     this.newAppointment.roomNumber = this.currentUser.advisorRoom;
     // have to use a formatter because ng date picker uses ISO format instead of the standard date format
     this.newAppointment.date = new Date(this.ngbDateParserFormatter.format(this.model));
