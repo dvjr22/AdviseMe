@@ -11,7 +11,7 @@
         <b>Year:</b> {{ this.studentUser?.status | ngxCapitalize }}
     </div>
     <br>
-    <div class="alert alert-danger" role="alert" *ngIf="this.cart?.pastMessage">
+    <div class="alert alert-info" role="alert" *ngIf="this.cart?.pastMessage">
         Past Message: <b>{{ this.cart?.pastMessage | ngxCapitalize }}</b>
     </div>
     <hr>
