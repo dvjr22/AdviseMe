@@ -27,6 +27,10 @@ export class User {
     classID: string;
     grade: string;
   }];
+  registered: {
+    semester: string;
+    year: string;
+  };
   phoneNumber: string;
   profilePicture: string;
   // Advisor Role

@@ -60,12 +60,19 @@ export class AllRequestsComponent implements OnInit {
     this.cartService.getByAdvisor(currentAdvisor._id)
       .subscribe( (res) => {
         const flatData = flattenObject(res.data);
-        for (let i = 0; i < flatData.length; i++) {
+        for (let i = flatData.length - 1; i >= 0; i--) {
           const d = flatData[i];
-          this.userService.getById(d._id).subscribe((userres) => {
-            d.fullName = userres.firstName + ' ' + userres.lastName;
-            flatData[i] = d;
-          });
+          if (d.status !== 'approved') {
+            this.userService.getById(d._id).subscribe((userres) => {
+              d.fullName = userres.firstName + ' ' + userres.lastName;
+              flatData[i] = d;
+            });
+          } else {
+            const index = flatData.indexOf(d, 0);
+            if (index > -1) {
+               flatData.splice(index, 1);
+            }
+          }
         }
 
         if (flatData.length !== 0) {
@@ -79,7 +86,6 @@ export class AllRequestsComponent implements OnInit {
   }
   receiveSource($event) {
     this.loadData();
-    console.log(this.noRequest);
   }
 
 }
