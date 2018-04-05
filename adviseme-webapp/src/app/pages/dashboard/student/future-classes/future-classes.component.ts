@@ -99,7 +99,6 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
               this.cartService.create(newCart);
               this.cart = newCart;
             }
-            console.log(this.cart.status);
           //  this.selectedClasses = this.cart.classes;
           });
         });
