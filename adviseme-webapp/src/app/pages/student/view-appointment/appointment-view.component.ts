@@ -76,12 +76,16 @@ export class AppointmentViewComponent implements OnInit {
     this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
       userID = res['studentID'];
       this.appointmentService.getById(userID).subscribe( res2 => {
-        if ( res2.data.length === 0) {
+        if (res2.data.length === 0) {
           this.noAppointment = true;
         } else {
-          this.source.load(res2.data);
+          res2.data.forEach(function (value, index) {
+            this.userService.getById(value.advisor).subscribe((user) => {
+              res2.data[index].advisor = user.firstName + ' ' + user.lastName;
+              this.source.load(res2.data);
+            });
+          }, this);
         }
-        this.source.load(flattenObject(res2.data));
       });
     });
   }

@@ -5,11 +5,17 @@
     <div class="subtitle">{{description}}</div>
   </nb-card-header>
   <nb-card-body>
+
+    <div>
+    <span style="font-weight: bold"> Todays Date: </span> {{ this.ngbDateParserFormatter.format(this.currentDate)}}
+    <hr>
+    </div>
+    <br>
     <div class="container">
       <div class="row">
         <div class="col">
           <h6>Pick a Day: </h6>
-          <ngb-datepicker  #d1 [(ngModel)]="model" #c1="ngModel"></ngb-datepicker>
+          <ngb-datepicker  #d1 [(ngModel)]="model" #c1="ngModel" [minDate]="minDate"></ngb-datepicker>
         </div>
         <div class="col">
             <h6>Pick a Time: </h6>
