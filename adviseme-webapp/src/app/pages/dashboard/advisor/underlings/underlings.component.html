@@ -5,9 +5,9 @@
   <nb-card-body>
     <ng2-smart-table *ngIf="this.emptyTable === false" [settings]="settings" [source]="source"></ng2-smart-table>
     <ng-template [ngIf]="this.emptyTable === true">
+      <br>
       <p> You do not currently have any request from your students </p>
     </ng-template>
-    <br/>
   </nb-card-body>
   <nb-card-footer>
   </nb-card-footer>

@@ -74,14 +74,6 @@ export class AllRequestsComponent implements OnInit {
             }
           }
         }
-
-        if (flatData.length !== 0) {
-          this.noRequest = false;
-          this.source.load(flatData);
-        } else {
-          this.noRequest = true;
-        }
-
       });
   }
   receiveSource($event) {
