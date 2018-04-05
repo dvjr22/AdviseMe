@@ -36,12 +36,14 @@ export class AppointmentComponent implements OnInit {
     Variable to hold ISO date format from date picker
   */
   dateObj = new Date();
-  model = {year: this.dateObj.getUTCFullYear(), month: this.dateObj.getUTCMonth() + 1, day: this.dateObj.getUTCDate()};
+  model = {year: this.dateObj.getUTCFullYear(), month: this.dateObj.getUTCMonth() + 1, day: this.dateObj.getUTCDate() + 1};
   /**
     timepicker meridian set
   */
   time = { hour: 12, minute: 0 };
   meridian = true;
+  currentDate = {year: this.dateObj.getUTCFullYear(), month: this.dateObj.getUTCMonth() + 1, day: this.dateObj.getUTCDate()};
+  minDate = {year: this.dateObj.getUTCFullYear(), month: this.dateObj.getUTCMonth() + 1, day: this.dateObj.getUTCDate() + 1};
 
 
   /**
