@@ -62,6 +62,10 @@ var UserSchema = new mongoose.Schema({
       required: true,
       trim: true,
     },
+    registered: {
+      semester: { type: String, required: true, trim: true},
+      year: { type: String, required: true, trim: true},
+    },
     phoneNumber: {
       type: String,
     },

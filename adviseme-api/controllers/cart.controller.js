@@ -62,7 +62,6 @@ exports.getCartByAdvisor = async function (req, res) {
 
   try{
     var carts = await cartService.getCartByAdvisor(advisorid);
-    console.log("FOUND: " + JSON.stringify(carts))
     return res.status(200).json({status: 200, data: carts, message: "Successfully received carts"})
   } catch (e) {
     return res.status(500).json({status: 500, message: e.message})
@@ -77,7 +76,6 @@ exports.updateCart = async function(req, res){
   }
 
   var _id = req.body._id;
-  console.log(_id);
 
   var Cart = {
     _id,
@@ -86,6 +84,7 @@ exports.updateCart = async function(req, res){
     advisor: req.body.advisor,
     status: req.body.status,
     message: req.body.message,
+    approvedDate: req.body.approvedDate,
   }
 
   try{
