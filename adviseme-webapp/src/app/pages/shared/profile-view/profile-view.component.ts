@@ -41,6 +41,10 @@ export class ProfileViewComponent implements OnInit {
   */
   phoneNumber: string;
 
+  /**
+    SMS Opt In Flag
+  */
+  smsChecked = false;
 
   public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo' });
 
