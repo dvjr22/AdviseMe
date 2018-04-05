@@ -104,12 +104,13 @@ export class PermissionComponent implements OnInit {
       u.university = event.newData.university;
       u.appointments = event.newData.appointments;
       u.role = event.newData.role;
-      u.studentID = event.newData.studentID;
+      u.studentID = event.newData._id;
       u.status = event.newData.status;
       u.major = event.newData.major;
       u.course = event.newData.course;
       u.students = event.newData.students;
       u.advisor = event.newData.advisor;
+      u.registered = { semester: event.newData.registered__semester, year: event.newData.registered__year};
       u.profilePicture = event.newData.profilePicture;
       this.userService.update(u).subscribe();
       event.confirm.resolve(event.newData);
@@ -123,6 +124,8 @@ export class PermissionComponent implements OnInit {
 
   onCreateConfirm(event) {
     const u = new User();
+    u._id = event.newData._id;
+    u.studentID = event.newData._id;
     u.password = 'password'; // HACK: Figure out a better way to do this
     u.firstName = event.newData.firstName;
     u.lastName = event.newData.lastName;

@@ -112,7 +112,6 @@ function create(userParam) {
 
 function update(_id, userParam) {
     var deferred = Q.defer();
-
     // validation
     db.users.findById(_id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
@@ -138,6 +137,7 @@ function update(_id, userParam) {
 
     function updateUser() {
         // fields to update
+
         var set = {
             username: userParam.username,
             firstName: userParam.firstName,
@@ -148,6 +148,7 @@ function update(_id, userParam) {
             major: userParam.major,
             role: userParam.role,
             advisor: userParam.advisor,
+            registered: userParam.registered,
             profilePicture: userParam.profilePicture,
             phoneNumber: userParam.phoneNumber,
         };

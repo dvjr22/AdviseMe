@@ -36,9 +36,7 @@ exports.createCart = async function(aCart){
 */
 exports.updateCart = async function(aCart){
 
-  console.log('aCart' + JSON.stringify(aCart));
   var _id = aCart._id
-  console.log("ID : " + _id)
    try{
      //find by Id
      var oldCart = await Cart.findById({_id: _id});
@@ -46,12 +44,8 @@ exports.updateCart = async function(aCart){
 
    }
 
-   console.log('old cart' + oldCart)
-   console.log('a cart later ' + aCart)
-
    //edit the class object
    if(oldCart === null){
-     console.log('no object')
      var oldCart = new Cart({
        _id: aCart._id,
        classes: aCart.classes,
@@ -59,21 +53,21 @@ exports.updateCart = async function(aCart){
        advisor: aCart.advisor,
        status: aCart.status,
        message: aCart.message,
+       approvedDate: aCart.approvedDate,
        pastMessage: aCart.pastMessage,
      })
       var savedCart = await oldCart.save();
       return savedCart;
    }else{
-     console.log('object found')
      oldCart._id = aCart._id
      oldCart.classes = aCart.classes
      oldCart.studentID = aCart.studentID
      oldCart.advisor = aCart.advisor
      oldCart.status = aCart.status
      oldCart.message = aCart.message
+     oldCart.approvedDate = aCart.approvedDate 
      oldCart.pastMessage = aCart.pastMessage
    try {
-      console.log("OLD CART " + JSON.stringify(oldCart))
      var savedCart = await oldCart.save()
      return savedCart
    }catch(e){

@@ -8,6 +8,8 @@ import { AppointmentViewComponent } from './view-appointment/appointment-view.co
 import { AppointmentComponent } from './appointment/appointment.component';
 import { RequestClassesComponent } from './request-classes/request-classes.component';
 
+import { CanActivateAdvisement } from '../../_shared/services/advisement.service';
+
 const routes: Routes = [{
   path: '',
   component: StudentComponent,
@@ -16,6 +18,7 @@ const routes: Routes = [{
     component: CartProgressComponent,
   }, {
     path: 'cart',
+    canActivate: [CanActivateAdvisement],
     component: CartComponent,
   }, {
     path: 'view-appointment',
@@ -25,6 +28,7 @@ const routes: Routes = [{
     component: AppointmentComponent,
   }, {
     path: 'request-classes',
+    canActivate: [CanActivateAdvisement],
     component: RequestClassesComponent,
   }],
 }];
