@@ -11,6 +11,7 @@ import * as io from 'socket.io-client';
 
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
+import { AdvisementService } from '../../../_shared/services/advisement.service';
 
 declare var require: any;
 @Component({
@@ -47,7 +48,8 @@ export class StudentRequestComponent implements OnInit {
 
   constructor(protected route: ActivatedRoute, private cartService: CartService,
     private notificationService: NotificationService, private router: Router,
-    private messageService: MessageService, private userService: UserService) { }
+    private messageService: MessageService, private userService: UserService,
+    private advisementService: AdvisementService) { }
 
   ngOnInit() {
     this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
@@ -78,6 +80,7 @@ export class StudentRequestComponent implements OnInit {
       this.cart = res.data;
       this.cart.advisor = '';
       this.cart.message = this.comment;
+      this.cart.pastMessage = this.comment;
       this.cart.status = 'rejected';
       this.socket.emit('cart-status', 'Your advisor has requested that you: ' + this.cart.message + '. Please login to AdviseMe and look at the request.');
       this.cartService.update(this.cart).subscribe(() => this.router.navigate(['/pages/advisor/requests']));
@@ -101,6 +104,7 @@ export class StudentRequestComponent implements OnInit {
     @returns {none}
   */
   approveOnClick() {
+    const today = new Date();
     // Send an SMS notification to the student
     this.messageService.add({severity: 'success',
       summary: 'Successfully Approved Request',
@@ -111,7 +115,10 @@ export class StudentRequestComponent implements OnInit {
       this.cart = res.data;
       this.cart.advisor = '';
       this.cart.status = 'approved';
+      this.cart.approvedDate = this.advisementService.getCurrentSemester();
       this.cartService.update(this.cart).subscribe();
+      this.studentUser.registered = this.advisementService.getCurrentSemester();
+      this.userService.update(this.studentUser).subscribe();
       this.socket.emit('cart-status', 'Your requested classes have been approved!');
       this.router.navigate(['/pages/advisor/requests']);
     });

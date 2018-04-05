@@ -1,8 +1,9 @@
 
 import { Component } from '@angular/core';
 import { UserService } from '../_shared/services/user.service';
+import { AdvisementService, CanActivateAdvisement } from '../_shared/services/advisement.service';
 
-import { MENU_ITEMS, ADMIN_ITEMS, ADVISOR_ITEMS } from './pages-menu';
+import { MENU_ITEMS, ADMIN_ITEMS, ADVISOR_ITEMS, ADVISED_STUDENTS_ITEMS } from './pages-menu';
 
 /**
   Component:
@@ -22,7 +23,9 @@ export class PagesComponent {
     Navigation bar menu
   */
   menu = MENU_ITEMS;
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private advisementService: AdvisementService,
+              private canActivateAdvisement: CanActivateAdvisement) {
     // Change the menu based off the role of the user
       this.userService.getCurrentUser().subscribe((res) => {
         switch (res.role) {
@@ -36,7 +39,14 @@ export class PagesComponent {
             break;
           default:
             // User is anything that isn't defined above
-            this.menu = MENU_ITEMS;
+          this.advisementService.checkAdvisedSemester().subscribe(unAdvised => {
+            if (unAdvised === false) {
+              this.menu = ADVISED_STUDENTS_ITEMS;
+            } else {
+              this.menu = MENU_ITEMS;
+            }
+          });
+
         }
       });
   }

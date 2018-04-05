@@ -69,6 +69,58 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
 ];
 
+export const ADVISED_STUDENTS_ITEMS: NbMenuItem[] = [
+  {
+    title: 'Dashboard',
+    icon: 'nb-home',
+    link: '/pages/dashboard',
+    home: true,
+  },
+  {
+    title: 'FEATURES',
+    group: true,
+  },
+  {
+    title: 'Advisement',
+    icon: 'nb-compose',
+    children: [
+      {
+        title: 'Make an Appointment',
+        link: '/pages/student/appointment',
+      },
+      {
+        title: 'View Appointments',
+        link: '/pages/student/view-appointment',
+      },
+      {
+        title: 'Advisor Messaging',
+        link: '/pages/shared/chat',
+      },
+    ],
+  },
+  {
+    title: 'Profile',
+    icon: 'nb-person',
+    children: [
+      {
+        title: 'Profile View',
+        link: '/pages/shared/profile-view',
+      },
+    ],
+
+  },
+  {
+    title: 'Request',
+    icon: 'nb-list',
+    children: [
+      {
+        title: 'Request Status',
+        link: '/pages/student/cart-progress',
+      },
+    ],
+    },
+];
+
 export const ADMIN_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
