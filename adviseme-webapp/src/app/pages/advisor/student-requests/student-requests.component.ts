@@ -80,6 +80,7 @@ export class StudentRequestComponent implements OnInit {
       this.cart = res.data;
       this.cart.advisor = '';
       this.cart.message = this.comment;
+      this.cart.pastMessage = this.comment;
       this.cart.status = 'rejected';
       this.socket.emit('cart-status', 'Your advisor has requested that you: ' + this.cart.message + '. Please login to AdviseMe and look at the request.');
       this.cartService.update(this.cart).subscribe(() => this.router.navigate(['/pages/advisor/requests']));

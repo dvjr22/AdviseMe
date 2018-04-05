@@ -22,7 +22,7 @@ var CartSchema = new mongoose.Schema({
       semester: String,
       year: String
     },
-
+    pastMessage: { type: String },
   })
 
 const Cart = mongoose.model('Cart', CartSchema)

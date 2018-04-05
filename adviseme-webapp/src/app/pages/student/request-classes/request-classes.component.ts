@@ -111,7 +111,6 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
             this.cartService.create(newCart);
             this.cart = newCart;
           }
-        //  this.selectedClasses = this.cart.classes;
         });
       });
       this.classService.getClasses()
