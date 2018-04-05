@@ -79,7 +79,6 @@ export class AllRequestsComponent implements OnInit {
   }
   receiveSource($event) {
     this.loadData();
-    console.log(this.noRequest);
   }
 
 }
