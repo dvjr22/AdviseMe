@@ -1,5 +1,5 @@
 <ng-template [ngIf]="this.currentUser?.role === 'student'">
-<nb-card size="small">
+<nb-card size="large">
   <nb-card-body>
     <div *ngIf="this.currentUser?.profilePicture !== undefined" class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
 
@@ -31,7 +31,7 @@
 </nb-card>
 </ng-template>
 <ng-template [ngIf]="this.currentUser?.role !== 'student'">
-<nb-card size="small">
+<nb-card size="large">
   <nb-card-body>
     <div *ngIf="this.currentUser?.profilePicture !== undefined" class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
 
