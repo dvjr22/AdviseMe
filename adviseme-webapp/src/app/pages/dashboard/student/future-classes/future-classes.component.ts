@@ -87,6 +87,19 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
         this.userService.getCurrentUser().subscribe((res: User) => {
           user = res;
 
+          const cir = res.course;
+          let recomendation = 0;
+          const data = [];
+          for (const c of cir) {
+            if (c.grade === 'tbc' && recomendation < 5) {
+              this.classes.push(c);
+              this.classService.getClass(c.classID).subscribe((classRes) => {
+                data.push(classRes);
+                this.source.load(flattenFiveObjects(data));
+              });
+              recomendation ++;
+            }
+          }
           this.cartService.getById(user._id).subscribe((res2: any) => {
             if (res2.data !== null) {
               this.cart = res2.data;
@@ -101,11 +114,6 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
             }
           //  this.selectedClasses = this.cart.classes;
           });
-        });
-        this.classService.getClasses()
-          .subscribe((res2: Class[]) => {
-            this.source.load(flattenFiveObjects(res2));
-            this.classes = flattenFiveObjects(res2);
         });
       }
 
