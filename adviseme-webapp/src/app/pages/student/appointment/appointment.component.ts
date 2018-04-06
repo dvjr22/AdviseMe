@@ -102,6 +102,7 @@ export class AppointmentComponent implements OnInit {
       this.notificationService.sendNotification(JSON.stringify(this.newAppointment), this.currentUser.phoneNumber);
     }
     this.router.navigate(['/pages/student/view-appointment']);
+    console.log(this.router.url);
   }
 
 }
