@@ -5,6 +5,7 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { ChatComponent } from './chat/chat.component';
 import { ClassViewComponent } from './class-view/class-view.component';
 import { SharedComponent } from './shared.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 // Children Routes of the Profile
 
 const routes: Routes = [{
@@ -20,6 +21,10 @@ const routes: Routes = [{
     path: 'chat/:index',
     component: ChatComponent,
   },
+  {
+      path: 'password',
+      component: UpdatePasswordComponent,
+    },
   {
       path: 'class-view/:id',
       component: ClassViewComponent,
@@ -39,4 +44,5 @@ export const routedComponents = [
   SharedComponent,
   ProfileViewComponent,
   ClassViewComponent,
+  UpdatePasswordComponent,
 ];
