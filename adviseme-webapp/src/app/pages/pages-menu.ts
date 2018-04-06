@@ -50,6 +50,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Profile View',
         link: '/pages/shared/profile-view',
       },
+      {
+        title: 'Change Password',
+        link: '/pages/shared/password',
+      },
     ],
 
   },
@@ -106,6 +110,10 @@ export const ADVISED_STUDENTS_ITEMS: NbMenuItem[] = [
         title: 'Profile View',
         link: '/pages/shared/profile-view',
       },
+      {
+        title: 'Change Password',
+        link: '/pages/shared/password',
+      },
     ],
 
   },
@@ -154,6 +162,10 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
         title: 'Profile View',
         link: '/pages/shared/profile-view',
       },
+      {
+        title: 'Change Password',
+        link: '/pages/shared/password',
+      },
     ],
 
   },
@@ -201,6 +213,10 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
       {
         title: 'Profile View',
         link: '/pages/shared/profile-view',
+      },
+      {
+        title: 'Change Password',
+        link: '/pages/shared/password',
       },
     ],
 
