@@ -43,6 +43,9 @@ export class EditcoursesComponent implements OnInit {
         deleteButtonContent: '<i class="nb-trash"></i>',
         confirmDelete: true,
       },
+      pager: {
+        display: false,
+      },
       columns: {
         class__prefix: {
           title: 'Department',

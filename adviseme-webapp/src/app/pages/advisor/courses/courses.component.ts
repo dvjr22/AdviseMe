@@ -23,6 +23,9 @@ export class CoursesComponent implements OnInit {
     */
     settings = {
       actions: false,
+      paging: {
+        display: false,
+      },
       columns: {
         class__prefix: {
           title: 'Department',

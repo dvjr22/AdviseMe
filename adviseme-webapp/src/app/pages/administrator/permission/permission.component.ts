@@ -25,6 +25,9 @@ export class PermissionComponent implements OnInit {
     */
     settings = {
       mode: 'inline',
+      pager: {
+        display: false,
+      },
       add: {
         addButtonContent: '<i class="nb-plus"></i>',
         createButtonContent: '<i class="nb-checkmark"></i>',
