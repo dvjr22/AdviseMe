@@ -3,7 +3,7 @@
 <nb-card>
       <nb-card-header>Profile</nb-card-header>
       <nb-card-body>
-        <form (ngSubmit)="update()" #form="ngForm">
+        <form #form="ngForm">
           <div class="input-group has-person-icon">
             <span class="input-group-addon">@</span>
             <span class="form-control">{{currentUser.username}}</span>
