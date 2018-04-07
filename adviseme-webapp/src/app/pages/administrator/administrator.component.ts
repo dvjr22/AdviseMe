@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+  Admin Component
+**/
 @Component({
   selector: 'ngx-app-administrator',
   templateUrl: './administrator.component.html',
