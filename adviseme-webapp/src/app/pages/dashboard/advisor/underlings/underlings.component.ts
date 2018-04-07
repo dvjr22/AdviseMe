@@ -7,6 +7,9 @@ import { CartViewRenderComponent } from '../../../../_shared/services/cart-view.
 import { User } from '../../../../_shared/models/user';
 import { UserService } from '../../../../_shared/services/user.service';
 
+/**
+  List of student requests that are in
+**/
 @Component({
   selector: 'ngx-underlings',
   templateUrl: './underlings.component.html',
