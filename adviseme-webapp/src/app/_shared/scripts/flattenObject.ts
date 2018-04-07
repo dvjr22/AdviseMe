@@ -59,7 +59,7 @@ export function flattenFiveObjects(ob) {
   const flatten = require('flat');
   const newOb = [];
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < ob.length; i++) {
     newOb.push(flatten(ob[i], { delimiter: '__' }, { maxDepth: 2 }));
   }
 
