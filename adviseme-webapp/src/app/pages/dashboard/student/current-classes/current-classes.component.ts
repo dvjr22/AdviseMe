@@ -7,8 +7,8 @@ import { ClassService } from '../../../../_shared/services/class.service';
 import {CapitalizePipe} from '../../../../@theme/pipes/capitalize.pipe';
 
 /**
-  Component:
-    For the current classes that the user is in
+Component:
+For the current classes that the user is in
 */
 @Component({
   selector: 'ngx-current-classes',
@@ -17,14 +17,18 @@ import {CapitalizePipe} from '../../../../@theme/pipes/capitalize.pipe';
 })
 
 export class CurrentClassesComponent implements OnInit {
+  noCurrentClasses = false;
   /**
-    Configuration for the table
+  Configuration for the table
   */
   settings = {
     actions: false,
     columns: {
       classID: {
         title: 'Class',
+      },
+      title: {
+        title: 'Course title',
       },
       grade: {
         title: 'Status',
@@ -34,19 +38,29 @@ export class CurrentClassesComponent implements OnInit {
   };
 
   /**
-    The data that will go into the table
+  The data that will go into the table
   */
   source: LocalDataSource = new LocalDataSource();
 
   /**
-    Initializes new names for the imports
+  Initializes new names for the imports
   */
   constructor(private classService: ClassService) {
   }
   ngOnInit() {
     this.classService.getCurrentClasses()
-      .subscribe((res: User['course']) => {
-         this.source.load(res);
-     });
+    .subscribe((res: User['course']) => {
+      if ( res.length === 0) {
+        this.noCurrentClasses = true;
+      } else {
+        this.noCurrentClasses = false;
+        for(const c of res) {
+          this.classService.getClass(c['classID']).subscribe((classRes) => {
+            c['title'] = classRes['class'].title;
+            this.source.load(res);
+          });
+        }
+      }
+    });
   }
 }
