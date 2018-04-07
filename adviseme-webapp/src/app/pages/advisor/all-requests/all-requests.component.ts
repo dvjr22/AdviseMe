@@ -7,6 +7,9 @@ import { CartViewRenderComponent } from '../../../_shared/services/cart-view.ren
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 
+/**
+  Shows advisor all students that currently have a pending cart
+**/
 @Component({
   selector: 'ngx-app-requests',
   templateUrl: './all-requests.component.html',
@@ -51,6 +54,9 @@ export class AllRequestsComponent implements OnInit {
     this.loadData();
   }
 
+  /**
+    loads data into the table
+  **/
   loadData() {
     const currentAdvisor = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getCurrentUser().subscribe( res => {

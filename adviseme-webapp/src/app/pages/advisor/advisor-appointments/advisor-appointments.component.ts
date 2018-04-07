@@ -4,6 +4,9 @@ import { AppointmentService } from '../../../_shared/services/appointment.servic
 import { UserService } from '../../../_shared/services/user.service';
 import { LocalDataSource } from 'ng2-smart-table';
 
+/**
+  Component to see Advisors appointments
+**/
 @Component({
   selector: 'ngx-app-appointments',
   templateUrl: './advisor-appointments.component.html',
@@ -69,6 +72,9 @@ export class AdvisorAppointmentsComponent implements OnInit {
     });
   }
 
+  /**
+    Deletes appointment
+  **/
   onDeleteConfirm(event) {
     if (window.confirm('Are you sure you want to delete this appointment?')) {
       this.appointmentService.delete(event.data._id);
@@ -79,6 +85,9 @@ export class AdvisorAppointmentsComponent implements OnInit {
     this.checkNoAppointment();
   }
 
+  /**
+    Checks to see if there are any appointments
+  **/
   checkNoAppointment() {
       this.appointmentService.getAll().subscribe( res => {
         if ( res.data.length === 0) {
