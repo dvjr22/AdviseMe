@@ -140,7 +140,6 @@ export class PermissionComponent implements OnInit {
     u.role = event.newData.role;
     u.status = event.newData.status;
     u.major = event.newData.major;
-    u.password = '1234';
     this.userService.create(u).subscribe();
     event.confirm.resolve(event.newData);
     this.messageService.add({severity: 'success',
