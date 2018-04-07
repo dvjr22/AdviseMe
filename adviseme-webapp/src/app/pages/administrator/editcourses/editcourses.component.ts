@@ -15,6 +15,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 @Component({
   selector: 'ngx-editcourses-list-page',
   templateUrl: './editcourses.component.html',
+  styleUrls: ['./editcourses.component.scss'],
 })
 
 export class EditcoursesComponent implements OnInit {
