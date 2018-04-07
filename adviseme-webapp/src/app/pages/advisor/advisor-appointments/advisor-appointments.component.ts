@@ -3,6 +3,8 @@ import { Appointment } from '../../../_shared/models/appointment';
 import { AppointmentService } from '../../../_shared/services/appointment.service';
 import { UserService } from '../../../_shared/services/user.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
+
 
 @Component({
   selector: 'ngx-app-appointments',
@@ -64,8 +66,17 @@ export class AdvisorAppointmentsComponent implements OnInit {
   */
   ngOnInit() {
     this.checkNoAppointment();
-    this.appointmentService.getAll().subscribe( res => {
-      this.source.load(res.data);
+    let userID = ''; // Initializes Variable
+    this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
+      userID = res['studentID'];
+      this.appointmentService.getById(userID).subscribe( res2 => {
+        if ( res2.data.length === 0) {
+          this.noAppointment = true;
+        } else {
+          this.source.load(res2.data);
+        }
+        this.source.load(flattenObject(res2.data));
+      });
     });
   }
 
