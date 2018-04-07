@@ -53,6 +53,9 @@ export class CartProgressComponent implements OnInit {
     this.loadData();
   }
 
+  /**
+    Loads the data to the table
+  **/
   loadData() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.cartService.getById(this.currentUser._id)
@@ -71,6 +74,9 @@ export class CartProgressComponent implements OnInit {
     });
   }
 
+  /**
+    Routes to the cart screen
+  **/
   goToCart() {
     this.router.navigate(['pages/student/cart']);
   }
