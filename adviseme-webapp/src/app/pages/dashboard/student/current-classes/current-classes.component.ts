@@ -17,6 +17,7 @@ For the current classes that the user is in
 })
 
 export class CurrentClassesComponent implements OnInit {
+  noCurrentClasses = false;
   /**
   Configuration for the table
   */
@@ -49,12 +50,17 @@ export class CurrentClassesComponent implements OnInit {
   ngOnInit() {
     this.classService.getCurrentClasses()
     .subscribe((res: User['course']) => {
-      for(const c of res) {
-        this.classService.getClass(c['classID']).subscribe((classRes) => {
-          c['title'] = classRes['class'].title
-        });
+      if ( res.length === 0) {
+        this.noCurrentClasses = true;
+      } else {
+        this.noCurrentClasses = false;
+        for(const c of res) {
+          this.classService.getClass(c['classID']).subscribe((classRes) => {
+            c['title'] = classRes['class'].title;
+            this.source.load(res);
+          });
+        }
       }
-      this.source.load(res);
     });
   }
 }

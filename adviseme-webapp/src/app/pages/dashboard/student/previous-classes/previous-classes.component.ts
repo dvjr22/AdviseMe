@@ -17,6 +17,7 @@ For the past classes that the user is in
 })
 
 export class PreviousClassesComponent implements OnInit {
+  noPreviousClasses = false;
   /**
   Configuration for the table
   */
@@ -52,12 +53,17 @@ export class PreviousClassesComponent implements OnInit {
   ngOnInit() {
     this.classService.getGradedClasses()
     .subscribe((res: User['course']) => {
-      for(const c of res) {
-        this.classService.getClass(c['classID']).subscribe((classRes) => {
-          c['title'] = classRes['class'].title
-        });
+      if ( res.length === 0) {
+        this.noPreviousClasses = true;
+      } else {
+        this.noPreviousClasses = false;
+        for(const c of res) {
+          this.classService.getClass(c['classID']).subscribe((classRes) => {
+            c['title'] = classRes['class'].title
+          });
+        }
+        this.source.load(res);
       }
-      this.source.load(res);
     });
   }
 }
