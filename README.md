@@ -9,6 +9,8 @@ Guest credentials are:
 | advisor       | advisor  | 1234     |
 | administrator | admin    | 1234     |
 
+Any user that is created by the admin will have the password of: password
+
 ## Getting Started
 
 ### Prerequisites
