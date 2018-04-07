@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 /**
   Component:
-    For the Profile
+    For the _shared
 */
 @Component({
   selector: 'ngx-shared',
