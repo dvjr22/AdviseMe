@@ -13,6 +13,7 @@ import { flattenObject } from '../../../_shared/scripts/flattenObject';
 @Component({
   selector: 'ngx-courses-list-page',
   templateUrl: './courses.component.html',
+  styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent implements OnInit {
 
@@ -23,6 +24,9 @@ export class CoursesComponent implements OnInit {
     */
     settings = {
       actions: false,
+      pager: {
+        display: false,
+      },
       columns: {
         class__prefix: {
           title: 'Department',

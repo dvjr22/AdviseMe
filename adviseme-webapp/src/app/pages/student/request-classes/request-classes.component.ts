@@ -40,6 +40,9 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
     settings = {
       selectMode: 'multi',
       actions: false,
+      pager: {
+        display: false,
+      },
       columns: {
         class__prefix: {
           title: 'Department',
