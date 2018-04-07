@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 /**
-  Student Component
+  Component:
+    Student Component
 */
 @Component({
   selector: 'ngx-student',

@@ -14,6 +14,10 @@ import { UserService } from '../../../_shared/services/user.service';
 import { AdvisementService } from '../../../_shared/services/advisement.service';
 
 declare var require: any;
+
+/**
+  This is the individual student request page
+**/
 @Component({
   selector: 'ngx-app-requests-class',
   templateUrl: './student-requests.component.html',

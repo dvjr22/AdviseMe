@@ -43,7 +43,9 @@ export class ClassViewComponent implements OnInit {
         this.Class = res;
       });
   }
-
+  /**
+    Goes back to the last location
+  **/
   goBack() {
     this._location.back();
   }

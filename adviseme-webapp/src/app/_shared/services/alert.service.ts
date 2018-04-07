@@ -3,6 +3,10 @@ import { ToasterModule, ToasterService, ToasterConfig, Toast, BodyOutputType } f
 
 import 'style-loader!angular2-toaster/toaster.css';
 
+/**
+  Alert Service
+  otherwise known as toasters
+**/
 @Injectable()
 export class AlertService {
   constructor(private toasterService: ToasterService) {}

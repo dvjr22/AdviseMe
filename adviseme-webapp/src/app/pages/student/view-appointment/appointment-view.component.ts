@@ -90,10 +90,16 @@ export class AppointmentViewComponent implements OnInit {
     });
   }
 
+  /**
+    Routes to the make appointment page
+  **/
   goToMakeAppointment() {
     this.router.navigate(['/pages/student/appointment']);
   }
 
+  /**
+    Deletes appointment
+  **/
   onDeleteConfirm(event) {
     if (window.confirm('Are you sure you want to delete?')) {
       this.appointmentService.delete(event.data._id);
@@ -104,6 +110,9 @@ export class AppointmentViewComponent implements OnInit {
     this.checkNoAppointment();
   }
 
+  /**
+    Checks to see if there are any appointments
+  **/
   checkNoAppointment() {
     let userID = '';
     this.userService.getCurrentUser().subscribe( res => { // gets current users studentID

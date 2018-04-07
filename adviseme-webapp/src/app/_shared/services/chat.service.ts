@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+/**
+  Cart Service
+**/
 @Injectable()
 export class ChatService {
 
@@ -16,6 +19,9 @@ export class ChatService {
     headers: new Headers(this.headerDict),
   };
 
+  /**
+    Gets the chat by the room id
+  **/
   getChatByRoom(room) {
     return new Promise((resolve, reject) => {
       this.http.get('/api/chat/room/' + room, this.requestOptions)
@@ -28,6 +34,9 @@ export class ChatService {
     });
   }
 
+  /**
+    Displays the chat
+  **/
   showChat(id) {
     return new Promise((resolve, reject) => {
         this.http.get('/api/chat/' + id, this.requestOptions)
@@ -40,6 +49,9 @@ export class ChatService {
     });
   }
 
+  /**
+    Saves the message
+  **/
   saveChat(data) {
     return new Promise((resolve, reject) => {
         this.http.post('/api/chat', data, this.requestOptions)
@@ -52,6 +64,9 @@ export class ChatService {
     });
   }
 
+  /**
+    Updates the chat
+  **/
   updateChat(id, data) {
     return new Promise((resolve, reject) => {
         this.http.put('/api/chat/' + id, data, this.requestOptions)
@@ -64,6 +79,9 @@ export class ChatService {
     });
   }
 
+  /**
+    Deletes the chat
+  **/
   deleteChat(id) {
     return new Promise((resolve, reject) => {
         this.http.delete('/api/chat/' + id, this.requestOptions)

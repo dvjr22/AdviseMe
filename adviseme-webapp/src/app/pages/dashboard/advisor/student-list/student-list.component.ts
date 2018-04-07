@@ -4,6 +4,9 @@ import { flattenObject } from '../../../../_shared/scripts/flattenObject';
 import { User } from '../../../../_shared/models/user';
 import { UserService } from '../../../../_shared/services/user.service';
 
+/**
+  List all of the advisors students
+**/
 @Component({
   selector: 'ngx-student-list',
   templateUrl: './student-list.component.html',

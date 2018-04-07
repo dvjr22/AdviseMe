@@ -33,6 +33,9 @@ export class UpdatePasswordComponent implements OnInit {
 
   }
 
+  /**
+    Submits users new password
+  **/
   submit() {
     this.currentUser.password = this.password;
     try {
@@ -44,6 +47,9 @@ export class UpdatePasswordComponent implements OnInit {
     }
   }
 
+  /**
+    Compares the two input fields to make sure the passwords are the same
+  **/
   compare() {
     if (this.password === this.confirmPassword) {
       this.disableButton = false;

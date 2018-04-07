@@ -2,6 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ViewCell } from 'ng2-smart-table';
 import { Router } from '@angular/router';
 
+/**
+
+renders a info button to view the information about that class from the table
+
+**/
+
 @Component({
   template: `
     <div class="btn-group btn-group-full-width" role="group">
@@ -23,6 +29,9 @@ export class AdvisorChatListRenderComponent implements OnInit {
     this.renderValue = this.value;
   }
 
+  /**
+    Routes to the chat
+  **/
   goClassView() {
     this.router.navigate(['/pages/shared/chat', this.renderValue]);
   }

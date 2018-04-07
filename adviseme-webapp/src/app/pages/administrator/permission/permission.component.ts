@@ -11,6 +11,9 @@ import { MessageService } from 'primeng/components/common/messageservice';
 
 import { AdvisorViewRenderComponent } from '../../../_shared/services/render/advisor-view.render.component';
 
+/**
+  This holds a table with all users for the admin to edit/create/delete
+**/
 @Component({
   selector: 'ngx-app-permission',
   templateUrl: './permission.component.html',
@@ -95,6 +98,10 @@ export class PermissionComponent implements OnInit {
       });
   }
 
+  /**
+    Updates a user
+    @param {$event} event
+  **/
   onSaveConfirm(event) {
     if (window.confirm('Are you sure you want to save?')) {
 
@@ -128,6 +135,10 @@ export class PermissionComponent implements OnInit {
     }
   }
 
+  /**
+    Creates a new user
+    @param {$event} event
+  **/
   onCreateConfirm(event) {
     const u = new User();
     u._id = event.newData._id;
@@ -147,6 +158,10 @@ export class PermissionComponent implements OnInit {
       detail: 'Successfully created a new user ' + event.newData.firstName + ' ' + event.newData.lastName + ' '});
   }
 
+  /**
+    Deletes a course
+    @param {$event} event
+  **/
   onDeleteConfirm(event) {
     if (window.confirm('Are you user you want to delete this user?')) {
       this.userService.delete(event.data._id).subscribe();

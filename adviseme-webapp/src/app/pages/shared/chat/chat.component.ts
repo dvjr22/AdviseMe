@@ -68,12 +68,23 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     // Set up the socket io watch for new messages from the advisor
     this.watchForMessages();
   }
+  /**
+    @param {any} data
+
+    Formats the user
+  **/
   formatCurrentUser(data: any) {
     this.currentUser = data;
     if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
       this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
     }
   }
+
+  /**
+    @param {User} user
+
+    Sets the chat room for the user
+  **/
   setRoom(user: User) {
     switch (user.role.toString()) {
       case 'student':
@@ -84,6 +95,12 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       break;
     }
   }
+
+  /**
+    @param {User} user
+
+    Sets the name for the chat room
+  **/
   setRoomName(user: User) {
     let searchId = '';
     switch (user.role.toString()) {
@@ -100,6 +117,12 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       this.description = 'Send a message to ' + this.roomName + ' and AdviseMe will notify you when they respond';
     });
   }
+
+  /**
+    @param {string} message
+
+    Assigns the messages
+  **/
    assignMsgData(message: string) {
      if (this.currentUser !== null && this.currentUser !== undefined) {
        // Set the message data with the current users information
@@ -109,6 +132,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
      }
    }
 
+   /**
+
+      Watches for emitted messages that are directed to that user
+
+   **/
   watchForMessages() {
     // Recieve the new message push from the socket server
     this.socket.on('new-message', function (data) {
@@ -121,22 +149,34 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }.bind(this));
   }
 
+  /**
+    Makes sure it scrolls to the last message sent/recieved
+  **/
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
 
+  /**
+    The scroll to the bottom
+  **/
   scrollToBottom(): void {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
     } catch (err) { }
   }
 
+  /**
+    Gets teh chat by the room id
+  **/
   getChatByRoom(room) {
     this.chatService.getChatByRoom(room).then((res) => {
       this.chats = res;
     }, (err) => {});
   }
 
+  /**
+    Joining a room
+  **/
   joinRoom() {
     const date = new Date();
     this.userService.getCurrentUser().subscribe((res) => {
@@ -148,6 +188,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     });
   }
 
+  /**
+    Sending a message
+  **/
   sendMessage() {
     this.chatService.saveChat(this.msgData).then((result) => {
       this.socket.emit('save-message', result);

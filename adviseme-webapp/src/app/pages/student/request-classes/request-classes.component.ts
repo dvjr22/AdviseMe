@@ -209,6 +209,10 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       }
     }
 
+    /**
+      Triggers when the Save to cart button is clicked
+      @returns {none}
+    */
     updatedCart(event) {
       // Make sure a class was selected
       if (this.selectedClasses !== undefined) {

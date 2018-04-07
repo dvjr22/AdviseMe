@@ -5,6 +5,15 @@ import { ViewCell, Cell, DefaultEditor } from 'ng2-smart-table';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 
+/**
+
+  @Input = advisor _id
+
+  Will take the input and create a button with the text of the input.
+  You are then able to click the button and get a modal with the advisors info.
+
+**/
+
 @Component({
   template: `
     <style>
@@ -65,6 +74,9 @@ export class AdvisorViewRenderComponent extends DefaultEditor implements ViewCel
     this.renderValue = this.value.toString();
   }
 
+  /**
+    Opens the modal
+  **/
   open(content) {
     if (this.renderValue.length !== 0) {
       this.userService.getById(this.renderValue)
@@ -80,6 +92,9 @@ export class AdvisorViewRenderComponent extends DefaultEditor implements ViewCel
     }
   }
 
+  /**
+    Gets the reason for the modal being dismissed. Debug gold
+  **/
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
