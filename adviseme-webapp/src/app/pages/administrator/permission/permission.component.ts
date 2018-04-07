@@ -45,6 +45,12 @@ export class PermissionComponent implements OnInit {
         confirmDelete: true,
       },
       columns: {
+        _id: {
+          title: 'ID',
+        },
+        username: {
+          title: 'Username',
+        },
         firstName: {
           title: 'First Name',
         },
@@ -67,9 +73,6 @@ export class PermissionComponent implements OnInit {
         },
         status: {
           title: 'Status',
-        },
-        _id: {
-          title: 'id',
         },
       },
     };
@@ -128,6 +131,7 @@ export class PermissionComponent implements OnInit {
   onCreateConfirm(event) {
     const u = new User();
     u._id = event.newData._id;
+    u.username = event.newData.username;
     u.studentID = event.newData._id;
     u.password = 'password'; // HACK: Figure out a better way to do this
     u.firstName = event.newData.firstName;
