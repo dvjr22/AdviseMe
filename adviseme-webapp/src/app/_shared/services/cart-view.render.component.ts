@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ViewCell } from 'ng2-smart-table';
 import { Router } from '@angular/router';
 
+/**
+  Component that renders a button that allows advisors to view requested classes
+**/
 @Component({
   template: `
     <div class="btn-group btn-group-full-width" role="group">
@@ -25,6 +28,9 @@ export class CartViewRenderComponent implements OnInit {
     this.renderValue = this.value;
   }
 
+  /**
+    Go to the students request
+  **/
   goClassView() {
     this.router.navigate(['/pages/advisor/student-request', this.value]);
   }

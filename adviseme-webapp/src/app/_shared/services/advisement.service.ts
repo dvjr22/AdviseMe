@@ -11,6 +11,11 @@ import { User } from '../models/user';
 import { UserService } from './user.service';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
+/*
+ * advisement.service.ts
+ * The advisement service is used to tell if a user has already been advised this semester
+ *
+*/
 @Injectable()
 export class AdvisementService {
 
@@ -18,6 +23,10 @@ export class AdvisementService {
   private _semesterSub: Subscription;
   constructor(private userService: UserService) {}
 
+
+  /**
+    Gets the current semester
+  **/
   getCurrentSemester() {
     const today = new Date();
     const x = today.getUTCMonth() + 1;
@@ -38,6 +47,9 @@ export class AdvisementService {
    }
   }
 
+  /**
+    Checks to see if a user has already been approved
+  **/
   checkAdvisedSemester() {
 
     const thisSemester = this.getCurrentSemester();
@@ -64,6 +76,12 @@ export class AdvisementService {
   }
 
 }
+
+/**
+
+  returns: if the user has already been approved this semester
+
+**/
 
 @Injectable()
 export class CanActivateAdvisement implements CanActivate {

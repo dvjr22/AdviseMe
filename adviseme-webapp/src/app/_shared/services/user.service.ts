@@ -92,6 +92,11 @@ export class UserService {
       return this.http.delete('/api/users/' + _id, this.requestOptions);
     }
 
+    /**
+      Checks to see if there is a current user and sets the headers
+      @param {none}
+      @return {none}
+    */
     checkUser() {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       if (this.currentUser !== null && this.currentUser !== undefined) {
