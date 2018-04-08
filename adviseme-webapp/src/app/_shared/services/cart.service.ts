@@ -45,6 +45,24 @@ export class CartService {
     }
 
     /**
+      Get all current requests for an advisor by the Advisor id
+      @param {string} advisorid
+      @returns {json}
+    */
+    getCurrentRequests(advisorid: string) {
+      return this.http.get('/api/carts/currentRequest/' + advisorid, this.requestOptions).map((response: Response) => response.json());
+    }
+
+    /**
+      Get all current requests for an advisor by the Advisor id
+      @param {string} studentid
+      @returns {json}
+    */
+    getCurrentStudentCart(studentid: string) {
+      return this.http.get('/api/carts/currentStudent/' + studentid, this.requestOptions).map((response: Response) => response.json());
+    }
+
+    /**
       Get all carts
     */
     get() {
