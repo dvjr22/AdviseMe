@@ -117,7 +117,6 @@ export class StudentRequestComponent implements OnInit {
     //
     this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
       this.cart = res.data;
-      this.cart.advisor = '';
       this.cart.status = 'approved';
       this.cart.approvedDate = this.advisementService.getCurrentSemester();
       this.cartService.update(this.cart).subscribe();
