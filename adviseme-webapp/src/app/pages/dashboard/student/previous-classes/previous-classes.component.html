@@ -5,10 +5,10 @@
   </div>
   </nb-card-header>
   <nb-card-body>
-    <div *ngIf="this.noPreviousClasses">
+    <div *ngIf="this.noPreviousClasses === true">
       <span>No classes have been taken</span>
     </div>
-    <div *ngIf="!this.noPreviousClasses">
+    <div *ngIf="this.noPreviousClasses === false">
       <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
     </div>
   </nb-card-body>
