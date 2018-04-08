@@ -41,8 +41,8 @@ exports.getAppointment = async function(req, res) {
 
 }
 
-//get Appointment by id
-exports.getAppointmentById = async function (req, res) {
+//get Appointment by student id
+exports.getAppointmentByStudentId = async function (req, res) {
 
   if(!req.params.id) { //id is necessary for findById
     return res.status(400).json({status: 400, message: "Id must be present"})
@@ -51,7 +51,27 @@ exports.getAppointmentById = async function (req, res) {
   var id = req.params.id;
 
   try{
-    var Appointments = await AppointmentService.getAppointmentById(id)
+    var Appointments = await AppointmentService.getAppointmentByStudentId(id)
+    //return classes list with appropiate HTTP status code and message
+    return res.status(200).json({status: 200, data: Appointments, message: "Successfully received appointments"})
+  }catch(e){
+    //return error code response with error message
+    return res.status(400).json({status: 400, message: e.message})
+  }
+
+}
+
+//get Appointment by advisor id
+exports.getAppointmentByAdvisorId = async function (req, res) {
+
+  if(!req.params.id) { //id is necessary for findById
+    return res.status(400).json({status: 400, message: "Id must be present"})
+  }
+
+  var id = req.params.id;
+
+  try{
+    var Appointments = await AppointmentService.getAppointmentByAdvisorId(id)
     //return classes list with appropiate HTTP status code and message
     return res.status(200).json({status: 200, data: Appointments, message: "Successfully received appointments"})
   }catch(e){

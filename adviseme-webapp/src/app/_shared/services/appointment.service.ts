@@ -33,13 +33,23 @@ export class AppointmentService {
     }
 
     /**
-      Get an appointment by id
+      Get an appointment by student id
 
       @param {string} _id
       @returns {json}
     */
-    getById(_id: string) {
-      return this.http.get('/api/appointments/' + _id, this.requestOptions).map((response: Response) => response.json());
+    getByStudentId(_id: string) {
+      return this.http.get('/api/appointments/student/' + _id, this.requestOptions).map((response: Response) => response.json());
+    }
+
+    /**
+      Get an appointment by advisor id
+
+      @param {string} _id
+      @returns {json}
+    */
+    getByAdvisorId(_id: string) {
+      return this.http.get('/api/appointments/advisor/' + _id, this.requestOptions).map((response: Response) => response.json());
     }
     /**
       Create a new Appointment
