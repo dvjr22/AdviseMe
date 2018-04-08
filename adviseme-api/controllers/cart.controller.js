@@ -107,3 +107,13 @@ exports.removeCart = async function(req, res, next){
     return res.status(400).json({status:400, message: e.message})
   }
 }
+
+// Delete all carts
+exports.removeAll = async function(req, res, next) {
+  try{
+    var deletedCarts = await cartService.deleteAll()
+    return res.status(200).json({status:200, message: "Successfully deleted all carts"})
+  } catch (e) {
+    return res.status(500).json({status:500, message: e.message})
+  }
+}

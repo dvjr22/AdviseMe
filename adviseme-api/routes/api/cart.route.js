@@ -12,6 +12,7 @@ router.get('/advisor/:advisorid', cartController.getCartByAdvisor)
 router.post('/', cartController.createCart)
 router.put('/', cartController.updateCart)
 router.delete('/:id',cartController.removeCart)
+router.delete('/', cartController.removeAll)
 
 
 // Export the Router

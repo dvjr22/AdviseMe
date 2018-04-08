@@ -1,3 +1,20 @@
-<p>
-  cart-reset works!
-</p>
+<nb-card>
+  <nb-card-header>
+    <p>Semester Reset</p>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="alert alert-danger" role="alert">
+      <span>Warning! The following reset will effect all student users. The semester reset
+        should only be used after all advisement and registration is complete and a new
+        advisement period is starting.
+      </span>
+    </div>
+    <br>
+    <div class="input-group" style="margin-left:18px;">
+      <input type="checkbox" class="form-check-input" id="exampleCheck2" [checked]="resetCheck" (change)="resetCheck = $event.target.checked">
+      <label class="form-check-label" for="exampleCheck1">I agree that the following action cannot be undone</label>
+    </div>
+    <br>
+    <button [disabled]="!resetCheck" class="btn btn-warning" (click)="resetAll($event)">Reset All Students</button>
+  </nb-card-body>
+</nb-card>
