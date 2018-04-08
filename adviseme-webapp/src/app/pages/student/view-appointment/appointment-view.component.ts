@@ -75,7 +75,7 @@ export class AppointmentViewComponent implements OnInit {
     let userID = ''; // Initializes Variable
     this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
       userID = res['studentID'];
-      this.appointmentService.getById(userID).subscribe( res2 => {
+      this.appointmentService.getByStudentId(userID).subscribe( res2 => {
         if (res2.data.length === 0) {
           this.noAppointment = true;
         } else {
@@ -117,7 +117,7 @@ export class AppointmentViewComponent implements OnInit {
     let userID = '';
     this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
       userID = res['studentID'];
-      this.appointmentService.getById(userID).subscribe( res2 => {
+      this.appointmentService.getByStudentId(userID).subscribe( res2 => {
         if ( res2.data.length === 0) {
           this.noAppointment = true;
         } else {
