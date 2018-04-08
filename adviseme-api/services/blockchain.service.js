@@ -13,16 +13,16 @@ var Cart = require('../models/cart.model')
 
 _this = this
 
-exports.createBlock = async function() {
+exports.createBlock = async function(aCart) {
 
     var tempID = 1;
 
-  //   var aCart = new Cart({
-  //   _id: aCart._id,
-  //   studentID: aCart.studentID,
-  //   classes: aCart.classes,
-  //   status: aCart.status,
-  // });
+    var newCart = new Cart({
+    _id: aCart._id,
+    studentID: aCart.studentID,
+    classes: aCart.classes,
+    status: aCart.status,
+  });
 
   var cart = await Blockchain.find({}, {_id:1})
   .limit(1)
@@ -35,7 +35,7 @@ exports.createBlock = async function() {
     _id: tempID,
     previousHash: 'jkl;',
     timestamp: 'today',
-    data: 'jkl;',
+    data: newCart,
     hash: '1234',
     nonce: 1234,
   });
