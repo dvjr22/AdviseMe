@@ -152,6 +152,10 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
         title: 'Edit Courses',
         link: '/pages/administrator/editcourses',
       },
+      {
+        title: 'Cart Reset',
+        link: '/pages/administrator/cartreset',
+      },
     ],
   },
   {
