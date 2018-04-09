@@ -11,6 +11,7 @@ import * as io from 'socket.io-client';
 
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
+import { BlockchainService } from '../../../_shared/services/blockchain.service';
 import { AdvisementService } from '../../../_shared/services/advisement.service';
 
 declare var require: any;
@@ -53,7 +54,7 @@ export class StudentRequestComponent implements OnInit {
   constructor(protected route: ActivatedRoute, private cartService: CartService,
     private notificationService: NotificationService, private router: Router,
     private messageService: MessageService, private userService: UserService,
-    private advisementService: AdvisementService) { }
+    private advisementService: AdvisementService, private blockService: BlockchainService) { }
 
   ngOnInit() {
     this.cartService.getById(this.route.snapshot.params['id']).subscribe((res: any) => {
@@ -120,6 +121,7 @@ export class StudentRequestComponent implements OnInit {
       this.cart.status = 'approved';
       this.cart.approvedDate = this.advisementService.getCurrentSemester();
       this.cartService.update(this.cart).subscribe();
+      this.blockService.newBlock(this.cart);
       this.studentUser.registered = this.advisementService.getCurrentSemester();
       this.userService.update(this.studentUser).subscribe();
       this.socket.emit('cart-status', 'Your requested classes have been approved!');
