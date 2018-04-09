@@ -41,16 +41,15 @@ exports.isValidNewBlock = function(newBlock, previousBlock) {
   const blockHash = calculateHashForBlock(newBlock);
 
   if (previousBlock._id + 1 !== newBlock._id) {
-    console.log("id");
     return false
   } else if (previousBlock.hash !== newBlock.previousHash) {
-    console.log("hash");
+
     return false
   } else if (blockHash !== newBlock.hash) {
-    console.log("hash hash");
+
     return false
   } else if (!isValidHashDifficulty(calculateHashForBlock(newBlock))) {
-    console.log("valid");
+
     return false;
   }
   return true
