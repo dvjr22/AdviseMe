@@ -27,11 +27,12 @@ exports.createBlock = async function(aCart) {
     status: aCart.status,
   });
 
-  var cart = await Blockchain.find({}, {_id:1, hash:1})
+  var prevBlock = await Blockchain.find({}, {_id:1, hash:1})
   .limit(1)
   .sort({$natural:-1});
-  if(cart.length !== 0) {
-    var genBlock = await BlockchainService.generateNextBlock(cart);
+
+  if(prevBlock.length !== 0) {
+    var genBlock = await BlockchainService.generateNextBlock(prevBlock);
     newBlock = new Blockchain({
       _id: genBlock._id,
       previousHash: genBlock.previousHash,
@@ -40,8 +41,11 @@ exports.createBlock = async function(aCart) {
       hash: genBlock.hash,
       nonce: genBlock.nonce,
     });
+    if(BlockchainService.isValidNewBlock(newBlock, prevBlock[0])){
+      newBlock = {};
+    }
   } else {
-    var genBlock = await BlockchainService.generateGenesis(cart);
+    var genBlock = await BlockchainService.generateGenesis(prevBlock);
     newBlock = new Blockchain({
       _id: genBlock._id,
       previousHash: genBlock.previousHash,

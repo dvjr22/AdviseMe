@@ -23,10 +23,6 @@ exports.generateNextBlock = function(cartData) {
         nonce: nonce, }
 }
 
-function calculateHash(index, previousHash, timestamp, cart, nonce) {
-  return CryptoJS.SHA256(index + previousHash + timestamp + JSON.stringify(cart) + nonce).toString();
-}
-
 exports.generateGenesis = function(cartData) {
   const index = 0;
   const previousHash = 0;
@@ -39,6 +35,33 @@ exports.generateGenesis = function(cartData) {
     hash = calculateHash(0, 0, timestamp, cartData, nonce);
   }
   return {_id: index, previousHash: previousHash, timestamp: timestamp, hash: hash, nonce: nonce};
+}
+
+exports.isValidNewBlock = function(newBlock, previousBlock) {
+  const blockHash = calculateHashForBlock(newBlock);
+
+  if (previousBlock._id + 1 !== newBlock._id) {
+    console.log("id");
+    return false
+  } else if (previousBlock.hash !== newBlock.previousHash) {
+    console.log("hash");
+    return false
+  } else if (blockHash !== newBlock.hash) {
+    console.log("hash hash");
+    return false
+  } else if (!isValidHashDifficulty(calculateHashForBlock(newBlock))) {
+    console.log("valid");
+    return false;
+  }
+  return true
+}
+
+function calculateHash(index, previousHash, timestamp, cart, nonce) {
+  return CryptoJS.SHA256(index + previousHash + timestamp + JSON.stringify(cart) + nonce).toString();
+}
+
+function calculateHashForBlock (block) {
+  return calculateHash(block.index, block.previousHash, block.timestamp, block.data, block.nonce)
 }
 
 function isValidHashDifficulty(hash) {
