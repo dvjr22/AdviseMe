@@ -7,15 +7,18 @@ Using async-await feature introduced in NodeJS 7.6.
 services to access the Mongoose Models
 */
 
+const CryptoJS = require('crypto-js')
+
 //get mongoose model
 var Blockchain = require('../models/blockchain.model')
 var Cart = require('../models/cart.model')
-
-_this = this
+const BlockchainService = require('./blockchain/blockchain')
+_this = this;
 
 exports.createBlock = async function(aCart) {
 
     var tempID = 1;
+    var newBlock;
 
     var newCart = new Cart({
     _id: aCart._id,
@@ -24,26 +27,44 @@ exports.createBlock = async function(aCart) {
     status: aCart.status,
   });
 
-  var cart = await Blockchain.find({}, {_id:1})
+  var cart = await Blockchain.find({}, {_id:1, hash:1})
   .limit(1)
   .sort({$natural:-1});
-
-  console.log(cart);
-  //.forEach(function(u) { tempID = (u._id + 1) });
-
-  var newBlock = new Blockchain({
-    _id: tempID,
-    previousHash: 'jkl;',
-    timestamp: 'today',
-    data: newCart,
-    hash: '1234',
-    nonce: 1234,
-  });
+  if(cart.length !== 0) {
+    var genBlock = await BlockchainService.generateNextBlock(cart);
+    newBlock = new Blockchain({
+      _id: genBlock._id,
+      previousHash: genBlock.previousHash,
+      timestamp: genBlock.timestamp,
+      data: newCart,
+      hash: genBlock.hash,
+      nonce: genBlock.nonce,
+    });
+  } else {
+    var genBlock = await BlockchainService.generateGenesis(cart);
+    newBlock = new Blockchain({
+      _id: genBlock._id,
+      previousHash: genBlock.previousHash,
+      timestamp: genBlock.timestamp,
+      data: newCart,
+      hash: genBlock.hash,
+      nonce: genBlock.nonce,
+    });
+  }
 
   try{
       var savedBlock = await newBlock.save();
       return savedBlock;
   }catch(e){
       throw Error(e.message)
+  }
+}
+
+exports.getChain = async function() {
+  try{
+    var chain = await Blockchain.find({}).sort({_id: 1})
+    return chain;
+  }catch(e){
+    throw Error(e.message);
   }
 }

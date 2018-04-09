@@ -14,6 +14,7 @@ var blockchainController = require('../../controllers/blockchain.controller');
 // router.put('/', appointmentController.updateAppointment)
 // router.delete('/:id',appointmentController.removeAppointment)
 router.post('/', blockchainController.createBlock)
+router.get('/', blockchainController.getChain)
 
 // Export the Router
 module.exports = router;
