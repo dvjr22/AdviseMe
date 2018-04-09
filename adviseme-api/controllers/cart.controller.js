@@ -68,6 +68,41 @@ exports.getCartByAdvisor = async function (req, res) {
   }
 }
 
+//get Cart by id
+exports.getCurrentStudentCart = async function (req, res) {
+
+  if(!req.params.id) { //id is necessary for findById
+    return res.status(400).json({status: 400, message: "Id must be present"})
+  }
+
+  var id = req.params.id;
+  try{
+    var cart = await cartService.getCurrentStudentCart(id)
+    //return classes list with appropiate HTTP status code and message
+    return res.status(200).json({status: 200, data: cart, message: "Successfully received Cart"})
+  }catch(e){
+    //return error code response with error message
+    return res.status(500).json({status: 500, message: e.message})
+  }
+
+}
+
+// Get carts by advisor id
+exports.getCurrentRequests = async function (req, res) {
+  if(!req.params.advisorid) {
+    return res.status(500).json({status: 500, message: 'AdvisorId must be present'})
+  }
+
+  var advisorid = req.params.advisorid;
+
+  try{
+    var carts = await cartService.getCurrentRequests(advisorid);
+    return res.status(200).json({status: 200, data: carts, message: "Successfully received carts"})
+  } catch (e) {
+    return res.status(500).json({status: 500, message: e.message})
+  }
+}
+
 //update Cart
 exports.updateCart = async function(req, res){
 
