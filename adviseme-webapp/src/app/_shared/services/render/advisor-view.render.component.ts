@@ -5,6 +5,15 @@ import { ViewCell, Cell, DefaultEditor } from 'ng2-smart-table';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 
+/**
+
+  @Input = advisor _id
+
+  Will take the input and create a button with the text of the input.
+  You are then able to click the button and get a modal with the advisors info.
+
+**/
+
 @Component({
   template: `
     <style>
@@ -44,7 +53,7 @@ import { UserService } from '../../../_shared/services/user.service';
     </div>
     </ng-template>
 
-    <button class="btn btn-md btn-outline-info" (click)="open(content)">{{this.renderValue}}</button>
+    <button class="btn btn-md btn-outline-info" (click)="open(content)" *ngIf="renderValue.length !== 0">{{this.renderValue}}</button>
   `,
 })
 export class AdvisorViewRenderComponent extends DefaultEditor implements ViewCell, OnInit {
@@ -63,23 +72,29 @@ export class AdvisorViewRenderComponent extends DefaultEditor implements ViewCel
 
   ngOnInit() {
     this.renderValue = this.value.toString();
-
   }
 
+  /**
+    Opens the modal
+  **/
   open(content) {
+    if (this.renderValue.length !== 0) {
+      this.userService.getById(this.renderValue)
+        .subscribe((res: User) => {
+          this.advisor = Object.assign({}, res);
+        });
 
-    this.userService.getById(this.renderValue)
-      .subscribe((res: User) => {
-        this.advisor = Object.assign({}, res);
+      this.modalService.open(content, {windowClass: 'center-modal'}).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
-
-    this.modalService.open(content, {windowClass: 'center-modal'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    }
   }
 
+  /**
+    Gets the reason for the modal being dismissed. Debug gold
+  **/
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

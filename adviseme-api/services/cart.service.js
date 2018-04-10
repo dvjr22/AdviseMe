@@ -36,9 +36,7 @@ exports.createCart = async function(aCart){
 */
 exports.updateCart = async function(aCart){
 
-  console.log('aCart' + JSON.stringify(aCart));
   var _id = aCart._id
-  console.log("ID : " + _id)
    try{
      //find by Id
      var oldCart = await Cart.findById({_id: _id});
@@ -46,12 +44,8 @@ exports.updateCart = async function(aCart){
 
    }
 
-   console.log('old cart' + oldCart)
-   console.log('a cart later ' + aCart)
-
    //edit the class object
    if(oldCart === null){
-     console.log('no object')
      var oldCart = new Cart({
        _id: aCart._id,
        classes: aCart.classes,
@@ -59,19 +53,21 @@ exports.updateCart = async function(aCart){
        advisor: aCart.advisor,
        status: aCart.status,
        message: aCart.message,
+       approvedDate: aCart.approvedDate,
+       pastMessage: aCart.pastMessage,
      })
       var savedCart = await oldCart.save();
       return savedCart;
    }else{
-     console.log('object found')
      oldCart._id = aCart._id
      oldCart.classes = aCart.classes
      oldCart.studentID = aCart.studentID
      oldCart.advisor = aCart.advisor
      oldCart.status = aCart.status
      oldCart.message = aCart.message
+     oldCart.approvedDate = aCart.approvedDate
+     oldCart.pastMessage = aCart.pastMessage
    try {
-      console.log("OLD CART " + JSON.stringify(oldCart))
      var savedCart = await oldCart.save()
      return savedCart
    }catch(e){
@@ -124,6 +120,28 @@ exports.getCartByAdvisorAndStudent = async function(advisorid, studentid) {
   }
 }
 
+// Gets current cart of student
+exports.getCurrentStudentCart = async function(studentid) {
+  //try-catch handle errors
+  try{
+    var cart = await Cart.find({studentID: studentid, approvedDate: undefined});
+    return cart;
+  }catch(e){
+    throw Error(e.message, "Error while finding class by id and undefined approved date")
+  }
+}
+
+// Gets current request for the advisors
+exports.getCurrentRequests = async function(advisorid) {
+  //try-catch handle errors
+  try{
+    var cart = await Cart.find({advisor: advisorid, approvedDate: undefined});
+    return cart;
+  }catch(e){
+    throw Error(e.message, "Error while finding class by advisorid and undefined approved date")
+  }
+}
+
 //delete a class mongoose object by ID
 exports.deleteCart = async function(id) {
   try{
@@ -133,6 +151,15 @@ exports.deleteCart = async function(id) {
     }
     return deleted
   }catch(e){
+    throw Error(e.message)
+  }
+}
+
+exports.deleteAll = async function() {
+  try{
+    var deleteAll = await Cart.collection.drop();
+    return deleteAll;
+  }catch(e) {
     throw Error(e.message)
   }
 }

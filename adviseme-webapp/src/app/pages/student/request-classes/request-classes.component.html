@@ -13,27 +13,16 @@
         #table>
       </ng2-smart-table>
     </nb-card-body>
+    <br/>
+    <nb-card-footer>
+      <ng-template [ngIf]="this.cart?.status === 'created'">
+          <button [disabled]="buttonDisabled" (click)="addToCart()" type="button" class="btn btn-success">Add To Cart</button>
+      </ng-template>
+      <ng-template [ngIf]="this.cart?.status === 'pending' || this.cart?.status === 'updated'">
+          <button [disabled]="buttonDisabled" (click)="updatedCart()" type="button" class="btn btn-success">Update Cart</button>
+      </ng-template>
+      <ng-template [ngIf]="this.cart?.status === 'rejected'">
+          <button [disabled]="buttonDisabled" (click)="addToCart()" type="button" class="btn btn-success">Add Fixed Classes</button>
+      </ng-template>
+    </nb-card-footer>
   </nb-card>
-  <span *ngIf="this.buttonDisabled === false">
-    <span *ngFor="let i of selectedClasses">
-      {{ i._id }}
-    </span>
-  </span>
-
-<ng-template [ngIf]="this.cart?.status === 'created'">
-  <nb-card>
-    <button [disabled]="buttonDisabled" (click)="addToCart()" type="button" class="btn btn-success">Add To Cart</button>
-  </nb-card>
-</ng-template>
-
-<ng-template [ngIf]="this.cart?.status === 'pending'">
-  <nb-card>
-    <button [disabled]="buttonDisabled" (click)="updatedCart()" type="button" class="btn btn-success">Update Cart</button>
-  </nb-card>
-</ng-template>
-
-<ng-template [ngIf]="this.cart?.status === 'rejected'">
-  <nb-card>
-    <button [disabled]="buttonDisabled" (click)="addToCart()" type="button" class="btn btn-success">Add Fixed Classes</button>
-  </nb-card>
-</ng-template>

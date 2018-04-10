@@ -62,7 +62,41 @@ exports.getCartByAdvisor = async function (req, res) {
 
   try{
     var carts = await cartService.getCartByAdvisor(advisorid);
-    console.log("FOUND: " + JSON.stringify(carts))
+    return res.status(200).json({status: 200, data: carts, message: "Successfully received carts"})
+  } catch (e) {
+    return res.status(500).json({status: 500, message: e.message})
+  }
+}
+
+//get Cart by id
+exports.getCurrentStudentCart = async function (req, res) {
+
+  if(!req.params.id) { //id is necessary for findById
+    return res.status(400).json({status: 400, message: "Id must be present"})
+  }
+
+  var id = req.params.id;
+  try{
+    var cart = await cartService.getCurrentStudentCart(id)
+    //return classes list with appropiate HTTP status code and message
+    return res.status(200).json({status: 200, data: cart, message: "Successfully received Cart"})
+  }catch(e){
+    //return error code response with error message
+    return res.status(500).json({status: 500, message: e.message})
+  }
+
+}
+
+// Get carts by advisor id
+exports.getCurrentRequests = async function (req, res) {
+  if(!req.params.advisorid) {
+    return res.status(500).json({status: 500, message: 'AdvisorId must be present'})
+  }
+
+  var advisorid = req.params.advisorid;
+
+  try{
+    var carts = await cartService.getCurrentRequests(advisorid);
     return res.status(200).json({status: 200, data: carts, message: "Successfully received carts"})
   } catch (e) {
     return res.status(500).json({status: 500, message: e.message})
@@ -77,7 +111,6 @@ exports.updateCart = async function(req, res){
   }
 
   var _id = req.body._id;
-  console.log(_id);
 
   var Cart = {
     _id,
@@ -86,6 +119,8 @@ exports.updateCart = async function(req, res){
     advisor: req.body.advisor,
     status: req.body.status,
     message: req.body.message,
+    approvedDate: req.body.approvedDate,
+    pastMessage: req.body.pastMessage,
   }
 
   try{
@@ -105,5 +140,15 @@ exports.removeCart = async function(req, res, next){
     return res.status(204).json({status:204, message: "Successfully Deleted Cart"})
   }catch(e){
     return res.status(400).json({status:400, message: e.message})
+  }
+}
+
+// Delete all carts
+exports.removeAll = async function(req, res, next) {
+  try{
+    var deletedCarts = await cartService.deleteAll()
+    return res.status(200).json({status:200, message: "Successfully deleted all carts"})
+  } catch (e) {
+    return res.status(500).json({status:500, message: e.message})
   }
 }

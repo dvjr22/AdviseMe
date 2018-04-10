@@ -87,6 +87,19 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
         this.userService.getCurrentUser().subscribe((res: User) => {
           user = res;
 
+          const cir = res.course;
+          let recomendation = 0;
+          const data = [];
+          for (const c of cir) {
+            if (c.grade === 'tbc' && recomendation < 5) {
+              this.classes.push(c);
+              this.classService.getClass(c.classID).subscribe((classRes) => {
+                data.push(classRes);
+                this.source.load(flattenFiveObjects(data));
+              });
+              recomendation ++;
+            }
+          }
           this.cartService.getById(user._id).subscribe((res2: any) => {
             if (res2.data !== null) {
               this.cart = res2.data;
@@ -101,11 +114,6 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
             }
           //  this.selectedClasses = this.cart.classes;
           });
-        });
-        this.classService.getClasses()
-          .subscribe((res2: Class[]) => {
-            this.source.load(flattenFiveObjects(res2));
-            this.classes = flattenFiveObjects(res2);
         });
       }
 
@@ -136,7 +144,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
             for (let i = 0; i < this.classes.length; i++) {
               // For each of the selected classes get the course information and set it to the cart.
               // Then update the cart model. This overwrites insead of updates it currently.
-              this.classService.getClass(this.classes[i]._id).subscribe((res: any) => {
+              this.classService.getClass(this.classes[i].classID).subscribe((res: any) => {
                   if (this.cart.classes === undefined) {
                     this.cart.classes = [res];
                   } else {
@@ -149,7 +157,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
                   }
                   this.cartService.update(this.cart).subscribe(() => {
                     if (i === this.classes.length - 1) {
-                      this.router.navigate(['/pages/student/request-classes']);
+                      this.router.navigate(['/pages/student/cart']);
                     }
                   });
                 });
@@ -167,44 +175,6 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
         } else {
           // No classes were selected
           this.messageService.add({severity: 'warn', summary: 'No Classes Selected', detail: 'Please select a class to add to your cart'});
-        }
-      }
-
-      updatedCart(event) {
-        // Make sure a class was selected
-        if (this.selectedClasses !== undefined) {
-          try {
-            // HACK: Redo all of this shit after beta
-            // HACK: 3/28/2018 - Tyler Moon - I want to appologyize for this code. It is
-            // some wacky stuff for sure. However, it works :)
-            for (let i = 0; i < this.selectedClasses.length; i++) {
-              // For each of the selected classes get the course information and set it to the cart.
-              // Then update the cart model. This overwrites insead of updates it currently.
-              this.classService.getClass(this.selectedClasses[i]._id).subscribe((res: any) => {
-                  if (this.cart.classes === undefined) {
-                    this.cart.classes = [res];
-                  } else {
-                    this.cart.classes[i] = res;
-                  }
-                  this.cart.status = 'updated';
-                  this.cartService.update(this.cart).subscribe(() => {
-                    if (i === this.selectedClasses.length - 1) {
-                      this.router.navigate(['/pages/cart']);
-                    }
-                  });
-                });
-              }
-          } catch (e) {
-            this.messageService.add({severity: 'error', summary: 'Error updating Cart',
-              detail: 'An error has occured updating those classes to your cart'});
-
-          } finally {
-            this.messageService.add({severity: 'success', summary: 'Update Cart', detail: 'Classes were successfully updated in your cart'});
-            // TODO: Found out why it isn't updating the cart quick enough to pull the classes
-          }
-        } else {
-          // No classes were selected
-          this.messageService.add({severity: 'warn', summary: 'No Classes Selected', detail: 'Please select a class to update in your cart'});
         }
       }
 

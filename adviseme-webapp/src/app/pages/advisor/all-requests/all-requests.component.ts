@@ -7,6 +7,9 @@ import { CartViewRenderComponent } from '../../../_shared/services/cart-view.ren
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 
+/**
+  Shows advisor all students that currently have a pending cart
+**/
 @Component({
   selector: 'ngx-app-requests',
   templateUrl: './all-requests.component.html',
@@ -51,35 +54,36 @@ export class AllRequestsComponent implements OnInit {
     this.loadData();
   }
 
+  /**
+    loads data into the table
+  **/
   loadData() {
     const currentAdvisor = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userService.getCurrentUser().subscribe( res => {
       this.advisorID = res['advisor'];
     });
 
-    this.cartService.getByAdvisor(currentAdvisor._id)
-      .subscribe( (res) => {
-        const flatData = flattenObject(res.data);
-        for (let i = 0; i < flatData.length; i++) {
-          const d = flatData[i];
-          this.userService.getById(d._id).subscribe((userres) => {
-            d.fullName = userres.firstName + ' ' + userres.lastName;
-            flatData[i] = d;
-          });
-        }
+    this.cartService.getCurrentRequests(currentAdvisor._id)
+    .subscribe( (res) => {
+          const flatData = flattenObject(res.data);
+          for (let i = flatData.length - 1; i >= 0; i--) {
+            const d = flatData[i];
+              this.userService.getById(d._id).subscribe((userres) => {
+                d.fullName = userres.firstName + ' ' + userres.lastName;
+                flatData[i] = d;
+              });
+          }
+          if (flatData.length !== 0) {
+            this.noRequest = false;
+            this.source.load(flatData);
+          } else {
+            this.noRequest = true;
+          }
+    });
 
-        if (flatData.length !== 0) {
-          this.noRequest = false;
-          this.source.load(flatData);
-        } else {
-          this.noRequest = true;
-        }
-
-      });
   }
   receiveSource($event) {
     this.loadData();
-    console.log(this.noRequest);
   }
 
 }

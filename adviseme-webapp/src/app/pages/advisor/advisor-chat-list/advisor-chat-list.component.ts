@@ -9,6 +9,9 @@ import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
 import { AdvisorChatListRenderComponent } from '../../../_shared/services/advisor-chat-view.render.component';
 
+/**
+  List of all students with a button to go to their chat room
+**/
 @Component({
   selector: 'ngx-advisor-chat-list',
   templateUrl: './advisor-chat-list.component.html',
@@ -47,11 +50,11 @@ export class AdvisorChatListComponent implements OnInit {
     this.userService.getById(currentAdvisor._id)
       .subscribe((res: User) => {
         const data = [];
-        for ( let i = 0; i < res.students.length; i++){
+        for ( let i = 0; i < res.students.length; i++) {
             const ob = {};
             const studentID = res.students[i];
             this.userService.getById(studentID).subscribe((studentRes) => {
-              ob['studentName'] = studentRes.firstName + ' ' + studentRes.lastName
+              ob['studentName'] = studentRes.firstName + ' ' + studentRes.lastName;
               ob['index'] = i;
               data.push(ob);
             });

@@ -5,6 +5,8 @@ import { Cart } from '../../../_shared/models/cart';
 import { User } from '../../../_shared/models/user';
 import { Router } from '@angular/router';
 
+import { MessageService } from 'primeng/components/common/messageservice';
+
 import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
 
@@ -43,6 +45,7 @@ export class CartProgressComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private cartService: CartService,
+              private messageService: MessageService,
               private router: Router) { }
 
   ngOnInit() {
@@ -53,6 +56,9 @@ export class CartProgressComponent implements OnInit {
     this.loadData();
   }
 
+  /**
+    Loads the data to the table
+  **/
   loadData() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.cartService.getById(this.currentUser._id)
@@ -60,15 +66,27 @@ export class CartProgressComponent implements OnInit {
       this.currentCart = res.data;
 
       if (this.currentCart !== null) {
-        if (this.currentCart.advisor !== '' || this.currentCart.advisor === undefined) {
-          this.source.load(flattenObject(this.currentCart.classes));
-        } else {
-          this.source.load([]);
-        }
+        this.source.load(flattenObject(this.currentCart.classes));
       } else {
         this.source.load([]);
       }
     });
+  }
+  /**
+    Routes to the cart screen
+  **/
+  cancelRequest() {
+    try {
+      this.currentCart.status = 'created';
+      this.currentCart.advisor = '';
+    } catch (e) {
+      this.messageService.add({severity: 'error', summary: 'Cancel Request Failed', detail: 'Error cancelling your request'});
+    } finally {
+      this.messageService.add({severity: 'success', summary: 'Cancelled Request', detail: 'Successfully cancelled your request'});
+      this.cartService.update(this.currentCart).subscribe(() => {
+        this.router.navigate(['/pages/student/cart']);
+      });
+    }
   }
 
   goToCart() {

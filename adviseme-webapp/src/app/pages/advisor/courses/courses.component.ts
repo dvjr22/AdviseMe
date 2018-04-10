@@ -4,7 +4,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
-
+import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
 import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
 /**
@@ -13,6 +13,7 @@ import { flattenObject } from '../../../_shared/scripts/flattenObject';
 @Component({
   selector: 'ngx-courses-list-page',
   templateUrl: './courses.component.html',
+  styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent implements OnInit {
 
@@ -23,6 +24,9 @@ export class CoursesComponent implements OnInit {
     */
     settings = {
       actions: false,
+      pager: {
+        display: false,
+      },
       columns: {
         class__prefix: {
           title: 'Department',
@@ -32,6 +36,12 @@ export class CoursesComponent implements OnInit {
         },
         class__title: {
           title: 'Course Title',
+        },
+        _id: {
+          title: 'Class Info',
+          type: 'custom',
+          filter: false,
+          renderComponent: ClassViewRenderComponent,
         },
       },
     };

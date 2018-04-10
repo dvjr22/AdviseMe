@@ -3,7 +3,12 @@ import { Appointment } from '../../../_shared/models/appointment';
 import { AppointmentService } from '../../../_shared/services/appointment.service';
 import { UserService } from '../../../_shared/services/user.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
+
+/**
+  Component to see Advisors appointments
+**/
 @Component({
   selector: 'ngx-app-appointments',
   templateUrl: './advisor-appointments.component.html',
@@ -45,6 +50,9 @@ export class AdvisorAppointmentsComponent implements OnInit {
       date: {
         title: 'Date',
       },
+      timefull: {
+        title: 'Time',
+      },
     },
   };
 
@@ -61,11 +69,23 @@ export class AdvisorAppointmentsComponent implements OnInit {
   */
   ngOnInit() {
     this.checkNoAppointment();
-    this.appointmentService.getAll().subscribe( res => {
-      this.source.load(res.data);
+    let userID = ''; // Initializes Variable
+    this.userService.getCurrentUser().subscribe( res => { // gets current users studentID
+      userID = res['studentID'];
+      this.appointmentService.getByAdvisorId(userID).subscribe( res2 => {
+        if ( res2.data.length === 0) {
+          this.noAppointment = true;
+        } else {
+          this.source.load(res2.data);
+        }
+        this.source.load(flattenObject(res2.data));
+      });
     });
   }
 
+  /**
+    Deletes appointment
+  **/
   onDeleteConfirm(event) {
     if (window.confirm('Are you sure you want to delete this appointment?')) {
       this.appointmentService.delete(event.data._id);
@@ -76,6 +96,9 @@ export class AdvisorAppointmentsComponent implements OnInit {
     this.checkNoAppointment();
   }
 
+  /**
+    Checks to see if there are any appointments
+  **/
   checkNoAppointment() {
       this.appointmentService.getAll().subscribe( res => {
         if ( res.data.length === 0) {

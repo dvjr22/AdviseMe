@@ -5,6 +5,18 @@ import { ViewCell, Cell, DefaultEditor } from 'ng2-smart-table';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 
+/**
+
+  @Input = course description
+
+  takes the course description and when you click the description button it opens
+  a modal with a text area filled with the description.
+
+  POC_CURRENTLY
+
+
+**/
+
 @Component({
   template: `
     <style>
@@ -64,6 +76,9 @@ export class CourseDescriptionRenderComponent extends DefaultEditor implements V
 
   }
 
+  /**
+    Opens modal
+  **/
   open(content) {
     this.modalService.open(content, { size: 'lg' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -72,6 +87,9 @@ export class CourseDescriptionRenderComponent extends DefaultEditor implements V
     });
   }
 
+  /**
+    Gets the reason for the modal being dismissed. Debug gold
+  **/
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

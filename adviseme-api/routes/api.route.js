@@ -10,6 +10,7 @@ var notification = require('./api/notification.route')
 var token = require('./api/token.route')
 var upload = require('./api/upload.route')
 var chat = require('./api/chat.route')
+var blockchain = require('./api/blockchain.route')
 
 //add route modules here
 router.use('/api/classes', classes);
@@ -20,4 +21,5 @@ router.use('/api/notify', notification);
 router.use('/api/token', token);
 router.use('/upload', upload);
 router.use('/api/chat', chat);
+router.use('/api/blockchain', blockchain);
 module.exports = router;

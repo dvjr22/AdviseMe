@@ -1,6 +1,6 @@
 <nb-card>
 
-  <ng-template [ngIf]="this.currentCart?.status !== 'rejected'">
+  <ng-template [ngIf]="this.currentCart?.status !== 'rejected' && this.currentCart?.status !== 'pending'">
     <nb-card-header>
       <div> <ngx-refresh-button (messageEvent)="receiveSource($event)" ></ngx-refresh-button> </div>
       <br>
@@ -12,8 +12,33 @@
       <b> Status:</b>  {{ currentCart?.status | ngxCapitalize }}
       <br>
       <br>
-      <ng2-smart-table [settings]="settings"  [source]="source"></ng2-smart-table>
+
+      <ng2-smart-table [settings]="settings"  [source]="source" *ngIf="this.currentCart?.classes.length !== 0"></ng2-smart-table>
+      <span *ngIf="this.currentCart?.classes.length === 0"> Please add classes to your cart to submit to your advisor </span>
+
     </nb-card-body>
+  </ng-template>
+
+  <ng-template [ngIf]="this.currentCart?.status === 'pending'">
+    <nb-card-header>
+      <div> <ngx-refresh-button (messageEvent)="receiveSource($event)" ></ngx-refresh-button> </div>
+      <br>
+      <div> <span id="requeststatus">Request Status</span> </div>
+      <br>
+      <div class="subtitle">{{description}}</div>
+    </nb-card-header>
+      <nb-card-body *ngIf="currentCart; else noCart">
+      <b> Status:</b>  {{ currentCart?.status | ngxCapitalize }}
+      <br>
+      <br>
+
+      <ng2-smart-table [settings]="settings"  [source]="source" *ngIf="this.currentCart?.classes.length !== 0"></ng2-smart-table>
+      <span *ngIf="this.currentCart?.classes.length === 0"> Please add classes to your cart to submit to your advisor </span>
+
+    </nb-card-body>
+    <nb-card-footer>
+      <button (click)="cancelRequest()" id="submitBtn" type="button" class="btn btn-danger">Cancel Request</button>
+    </nb-card-footer>
   </ng-template>
 
   <ng-template [ngIf]="this.currentCart?.status === 'rejected'">
@@ -34,7 +59,7 @@
       <ng2-smart-table [settings]="settings"  [source]="source"></ng2-smart-table>
     </nb-card-body>
     <nb-card-footer>
-      <button (click)="goToCart()" id="submitBtn" type="button" class="btn btn-success">See Advisors Message</button>
+      <button (click)="goToCart()" id="submitBtn" type="button" class="btn btn-success">Make Changes</button>
     </nb-card-footer>
   </ng-template>
 

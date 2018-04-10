@@ -33,6 +33,8 @@ import { AlertService } from './_shared/services/alert.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { NotificationService } from './_shared/services/notification.service';
 import { CartService } from './_shared/services/cart.service';
+import { AdvisementService, CanActivateAdvisement } from './_shared/services/advisement.service';
+import { BlockchainService } from './_shared/services/blockchain.service';
 
 // Render Components
 import { ClassViewRenderComponent } from './_shared/services/class-view.render.component';
@@ -92,6 +94,9 @@ import { Class } from './_shared/models/class';
     NotificationService,
     MessageService,
     CartService,
+    AdvisementService,
+    CanActivateAdvisement,
+    BlockchainService,
   ],
   entryComponents: [ClassViewRenderComponent,
   CartViewRenderComponent,

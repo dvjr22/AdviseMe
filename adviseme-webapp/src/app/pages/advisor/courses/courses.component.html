@@ -1,11 +1,12 @@
 <nb-card>
   <nb-card-header>
-    <span>Courses</span>
-  </nb-card-header>
-  <nb-card-body>
-    <div class="description">
+    <div><span>Courses</span></div>
+    <br>
+    <div class="subtitle">
       {{ description }}
     </div>
+  </nb-card-header>
+  <nb-card-body>
     <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
   </nb-card-body>
 </nb-card>

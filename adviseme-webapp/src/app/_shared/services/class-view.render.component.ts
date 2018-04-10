@@ -15,6 +15,7 @@ export class ClassViewRenderComponent implements OnInit {
 
   public renderValue;
   html: any;
+  url: string;
 
   @Input() value;
 
@@ -25,6 +26,7 @@ export class ClassViewRenderComponent implements OnInit {
   }
 
   goClassView() {
+    this.url = this.router.url;
     this.router.navigate(['/pages/shared/class-view', this.renderValue]);
   }
 

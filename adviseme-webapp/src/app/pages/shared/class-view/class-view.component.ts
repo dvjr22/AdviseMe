@@ -7,6 +7,8 @@ import { ClassService } from '../../../_shared/services/class.service';
 
 import { Router } from '@angular/router';
 
+import {Location} from '@angular/common';
+
 /**
   Component:
     Allows a user to look at an overview of their class
@@ -22,8 +24,11 @@ export class ClassViewComponent implements OnInit {
   */
 
   _id;
+  pastUrl;
   Class;
-  constructor(protected route: ActivatedRoute, private classService: ClassService, protected router: Router) {
+  prerequisites;
+
+  constructor(protected route: ActivatedRoute, private classService: ClassService, protected router: Router, private _location: Location) {
   }
 
   /**
@@ -36,10 +41,13 @@ export class ClassViewComponent implements OnInit {
     this.classService.getClass(this._id)
       .subscribe((res: Class) => {
         this.Class = res;
+        this.prerequisites = res.prerequisites;
       });
   }
-
-  goClassTableView() {
-    this.router.navigate(['/pages/student/request-classes']);
+  /**
+    Goes back to the last location
+  **/
+  goBack() {
+    this._location.back();
   }
 }

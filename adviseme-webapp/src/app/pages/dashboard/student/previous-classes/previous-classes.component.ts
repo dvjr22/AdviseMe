@@ -7,8 +7,8 @@ import { ClassService } from '../../../../_shared/services/class.service';
 import {CapitalizePipe} from '../../../../@theme/pipes/capitalize.pipe';
 
 /**
-  Component:
-    For the past classes that the user is in
+Component:
+For the past classes that the user is in
 */
 @Component({
   selector: 'ngx-previous-classes',
@@ -17,14 +17,18 @@ import {CapitalizePipe} from '../../../../@theme/pipes/capitalize.pipe';
 })
 
 export class PreviousClassesComponent implements OnInit {
+  noPreviousClasses = false;
   /**
-    Configuration for the table
+  Configuration for the table
   */
   settings = {
     actions: false,
     columns: {
       classID: {
         title: 'Class',
+      },
+      title: {
+        title: 'Course title',
       },
       grade: {
         title: 'Grade',
@@ -33,23 +37,33 @@ export class PreviousClassesComponent implements OnInit {
   };
 
   /**
-    The data that will go into the table
+  The data that will go into the table
   */
   source: LocalDataSource = new LocalDataSource();
 
   /**
-    Initializes new names for the imports
+  Initializes new names for the imports
   */
   constructor(private classService: ClassService) {
   }
 
-    /**
-      Gets the currents users classes they have took
-    */
+  /**
+  Gets the currents users classes they have took
+  */
   ngOnInit() {
     this.classService.getGradedClasses()
-      .subscribe((res: User['course']) => {
-         this.source.load(res);
-     });
+    .subscribe((res: User['course']) => {
+      if ( res.length === 0) {
+        this.noPreviousClasses = true;
+      } else {
+        this.noPreviousClasses = false;
+        for(const c of res) {
+          this.classService.getClass(c['classID']).subscribe((classRes) => {
+            c['title'] = classRes['class'].title
+          });
+        }
+        this.source.load(res);
+      }
+    });
   }
 }

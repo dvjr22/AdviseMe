@@ -23,7 +23,12 @@ tr:nth-child(even) {
         <br>
         <p><b>Semester Offered: </b>(Not yet object in DB)</p>
         <br>
-        <p><b>Pre-Requisites: </b>(DB needs to include required grade)</p>
+        <p><b>Pre-Requisites: </b></p>
+        <table>
+          <tr *ngFor="let prereq of prerequisites">
+              <td><p>{{prereq}}</p></td>
+          </tr>
+        </table>
         <br>
         <p><b>Credit Hours: </b>{{ Class?.hrs }}</p>
       </nb-card-body>
@@ -34,34 +39,6 @@ tr:nth-child(even) {
         <p>{{ Class?.description }}</p>
       </nb-card-body>
     </nb-card>
-    <nb-card>
-      <nb-card-header>Related Classes</nb-card-header>
-      <nb-card-body>
-        <p>(Not yet object in DB)</p>
-        <!-- <table>
-          <tr>
-            <th>Completed</th>
-            <th>Course</th>
-            <th>Reason</th>
-          </tr>
-          <tr>
-            <td text-align: center><input id="checkBox" type="checkbox" checked></td>
-            <td>ENGL 101</td>
-            <td>Pre-Requisite</td>
-          </tr>
-          <tr>
-            <td text-align: center><input id="checkBox" type="checkbox"></td>
-            <td>ENGL 462</td>
-            <td>CS Curriculum Option</td>
-          </tr>
-          <tr>
-            <td text-align: center><input id="checkBox" type="checkbox" checked></td>
-            <td>ENGL 463</td>
-            <td>CS Curriculum Option</td>
-          </tr>
-        </table> -->
-      </nb-card-body>
-    </nb-card>
-    <button (click)="goClassTableView()" type="button" class="btn btn-success">Back</button>
+    <button (click)="goBack()" type="button" class="btn btn-success">Back</button>
   </nb-card-body>
 </nb-card>

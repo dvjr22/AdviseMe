@@ -40,6 +40,9 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
     settings = {
       selectMode: 'multi',
       actions: false,
+      pager: {
+        display: false,
+      },
       columns: {
         class__prefix: {
           title: 'Department',
@@ -111,7 +114,6 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
             this.cartService.create(newCart);
             this.cart = newCart;
           }
-        //  this.selectedClasses = this.cart.classes;
         });
       });
       this.classService.getClasses()
@@ -147,7 +149,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
           });
         }, this);
 
-        if (this.selectedClasses.length === 0 && this.OGClasses.length !== 0) {
+        if (this.selectedClasses.length === 0 && this.OGClasses.length !== 0 || this.selectedClasses.length !== 0 && this.OGClasses.length === 0 ) {
           difference = true;
         }
 
@@ -186,7 +188,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
                 }
                 this.cartService.update(this.cart).subscribe(() => {
                   if (i === this.selectedClasses.length - 1) {
-                    this.router.navigate(['/pages/cart']);
+                    this.router.navigate(['/pages/student/cart']);
                   }
                 });
               });
@@ -207,6 +209,10 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       }
     }
 
+    /**
+      Triggers when the Save to cart button is clicked
+      @returns {none}
+    */
     updatedCart(event) {
       // Make sure a class was selected
       if (this.selectedClasses !== undefined) {

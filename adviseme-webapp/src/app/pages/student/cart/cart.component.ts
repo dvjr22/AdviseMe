@@ -8,6 +8,8 @@ import { flattenObject } from '../../../_shared/scripts/flattenObject';
 import { Router, NavigationEnd } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
 
+import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
+
 @Component({
   selector: 'ngx-app-cart',
   templateUrl: './cart.component.html',
@@ -126,14 +128,25 @@ export class CartComponent implements OnInit {
       });
   }
 
+  /**
+    Goes to the requested class page
+  **/
   goToRequestClasses() {
     this.router.navigate(['pages/student/request-classes']);
   }
 
+  /**
+    Goes to the request progress page
+  **/
   goToRequestProgress() {
     this.router.navigate(['/pages/student/cart-progress']);
   }
 
+  /**
+
+    @param {$event} event
+    Deletes the class from the cart
+  **/
   onDeleteConfirm(event) {
     if (window.confirm('Are you sure you want to delete?')) {
       const deletedItem = this.currentCart.classes.find(x => x._id === event.data.class__prefix + event.data.class__courseNo);

@@ -3,6 +3,8 @@ import { Component, Output,  EventEmitter} from '@angular/core';
 /**
   Component:
     refresh-button
+         This generates a small button that will emit nothing.
+         The component that uses this should wait for the emit and refresh what's needed
 */
 @Component({
   selector: 'ngx-refresh-button',
@@ -23,6 +25,9 @@ export class RefreshButtonComponent {
 
   constructor() {}
 
+  /**
+    Emits null
+  **/
   refresh() {
     this.messageEvent.emit();
   }

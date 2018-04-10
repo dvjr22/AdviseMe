@@ -145,7 +145,7 @@ import { AlertService } from '../../../../../_shared/services/alert.service';
           </div>
           <div class="form-group accept-group col-sm-12" *ngIf="getConfigValue('forms.register.terms')">
             <nb-checkbox name="terms" id="tocbox" [(ngModel)]="user.terms" [required]="getConfigValue('forms.register.terms')">
-              Agree to <a href="#" target="_blank"><strong>Terms & Conditions</strong></a>
+              Agree to <a href="https://app.termly.io/document/terms-of-use-for-website/dfee2862-2934-4fe8-ae30-7ef2c34d15b0" target="_blank"><strong>Terms & Conditions</strong></a>
             </nb-checkbox>
           </div>
           <button [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success"

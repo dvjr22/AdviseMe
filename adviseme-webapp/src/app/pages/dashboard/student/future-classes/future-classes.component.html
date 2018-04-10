@@ -15,7 +15,11 @@
 
 
   <nb-card-footer align-items="center">
+
+    <ng-template [ngIf]="this.cart?.status === 'created'">
     <button position="left" (click)="addToCart()" type="button" class="btn btn-success">Add Classes To Cart</button>
+    </ng-template>
+
     <button position="right" (click)="goToClasses()" type="button" class="btn btn-success">Full Course List</button>
   </nb-card-footer>
 </nb-card>

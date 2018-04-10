@@ -38,11 +38,17 @@ export class AuthenticationService {
       });
   }
 
+  /**
+    Logout of application. Removes user from sessionStorage
+  **/
   logout() {
     // Remove user from local storage to log user out
     sessionStorage.removeItem('currentUser');
   }
 
+  /**
+    Gets the user that is currently logged in
+  **/
   getUser() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     if (this.allow) {
@@ -69,8 +75,11 @@ export class AuthenticationService {
         });
     });
     return this.allow;
-}
+  }
 
+  /**
+    Checks to see if the token is valid
+  **/
   checkToken(token: string) {
     return this.http.post('/api/token/valid', { token: token})
       .map((response: Response) => {
@@ -94,6 +103,10 @@ export class AuthenticationService {
       return false;
     }
   }
+
+  /**
+    Checks to see if the user's role is an admin
+  **/
   checkForAdminUser() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.allow = new Observable( observer => {
@@ -111,6 +124,10 @@ export class AuthenticationService {
     });
     return this.allow;
   }
+
+  /**
+    Checks to see if the user's role is an advisor
+  **/
   checkForAdvisorUser() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.allow = new Observable( observer => {
@@ -130,8 +147,10 @@ export class AuthenticationService {
   }
 }
 
-// This class restricts the router to only allowing login and registration
-// when there is not a valid user logged in
+/**
+This class restricts the router to only allowing login and registration
+ when there is not a valid user logged in
+ **/
 @Injectable()
 export class CanActivateUser implements CanActivate {
   constructor(private authenticationService: AuthenticationService,
@@ -149,7 +168,9 @@ export class CanActivateUser implements CanActivate {
     }
   }
 }
-
+/**
+  Tells if you can activate the Admin routes
+**/
 @Injectable()
 export class CanActivateAdmin implements CanActivate {
   constructor(private authenticationService: AuthenticationService) {}
@@ -162,6 +183,9 @@ export class CanActivateAdmin implements CanActivate {
   }
 }
 
+/**
+  Tells if you can activate the advisor routes
+**/
 @Injectable()
 export class CanActivateAdvisor implements CanActivate {
   constructor(private authenticationService: AuthenticationService) {}

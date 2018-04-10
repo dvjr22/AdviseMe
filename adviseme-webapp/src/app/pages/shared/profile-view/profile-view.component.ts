@@ -41,6 +41,10 @@ export class ProfileViewComponent implements OnInit {
   */
   phoneNumber: string;
 
+  /**
+    SMS Opt In Flag
+  */
+  smsChecked = false;
 
   public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo' });
 
@@ -68,6 +72,7 @@ export class ProfileViewComponent implements OnInit {
     this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       const r = response.split('/')[1];
+
       this.currentUser.profilePicture = r;
       this.userService.update(this.currentUser).subscribe(() => {});
       this.messageService.add({severity: 'success',
@@ -76,12 +81,17 @@ export class ProfileViewComponent implements OnInit {
     };
   }
 
+  /**
+    Updates the phone number of the user
+  **/
   updatePhoneNumber(event) {
-    this.currentUser.phoneNumber = this.values;
-    this.userService.update(this.currentUser).subscribe(() => {});
-    this.messageService.add({severity: 'success',
-      summary: 'Successful Update',
-      detail: 'Successfully updated your phone number to ' + this.values});
+    if (this.values != "") {
+      this.currentUser.phoneNumber = this.values;
+      this.userService.update(this.currentUser).subscribe(() => {});
+      this.messageService.add({severity: 'success',
+        summary: 'Successful Update',
+        detail: 'Successfully updated your phone number to ' + this.values});
+    }
   }
   values = '';
   onKey(event: any) { // without type info

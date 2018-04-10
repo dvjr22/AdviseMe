@@ -15,6 +15,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 @Component({
   selector: 'ngx-editcourses-list-page',
   templateUrl: './editcourses.component.html',
+  styleUrls: ['./editcourses.component.scss'],
 })
 
 export class EditcoursesComponent implements OnInit {
@@ -42,6 +43,9 @@ export class EditcoursesComponent implements OnInit {
       delete: {
         deleteButtonContent: '<i class="nb-trash"></i>',
         confirmDelete: true,
+      },
+      pager: {
+        display: false,
       },
       columns: {
         class__prefix: {
@@ -103,6 +107,10 @@ export class EditcoursesComponent implements OnInit {
 
     }
 
+    /**
+      Creates a new course
+      @param {$event} event
+    **/
     onCreateConfirm(event): void {
       this.selectedClass._id = (event.newData.class_prefix + event.newData.class_courseNo);
       this.selectedClass.department = event.newData.class_prefix;
@@ -140,6 +148,10 @@ export class EditcoursesComponent implements OnInit {
       event.confirm.resolve();
     }
 
+    /**
+      Deletes a course
+      @param {$event} event
+    **/
     onDeleteConfirm(event): void {
       if (window.confirm('Are you sure you want to delete ' + event.data.class_title + ' ?')) {
         this.classService.deleteClass(event.data._id).subscribe();
@@ -152,6 +164,10 @@ export class EditcoursesComponent implements OnInit {
       }
     }
 
+    /**
+      Updates a course
+      @param {$event} event
+    **/
     onSaveConfirm(event): void {
 
       this.selectedClass._id = event.newData._id;

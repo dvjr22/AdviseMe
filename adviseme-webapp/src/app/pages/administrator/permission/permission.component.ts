@@ -11,6 +11,9 @@ import { MessageService } from 'primeng/components/common/messageservice';
 
 import { AdvisorViewRenderComponent } from '../../../_shared/services/render/advisor-view.render.component';
 
+/**
+  This holds a table with all users for the admin to edit/create/delete
+**/
 @Component({
   selector: 'ngx-app-permission',
   templateUrl: './permission.component.html',
@@ -25,6 +28,9 @@ export class PermissionComponent implements OnInit {
     */
     settings = {
       mode: 'inline',
+      pager: {
+        display: false,
+      },
       add: {
         addButtonContent: '<i class="nb-plus"></i>',
         createButtonContent: '<i class="nb-checkmark"></i>',
@@ -42,6 +48,12 @@ export class PermissionComponent implements OnInit {
         confirmDelete: true,
       },
       columns: {
+        _id: {
+          title: 'ID',
+        },
+        username: {
+          title: 'Username',
+        },
         firstName: {
           title: 'First Name',
         },
@@ -86,6 +98,10 @@ export class PermissionComponent implements OnInit {
       });
   }
 
+  /**
+    Updates a user
+    @param {$event} event
+  **/
   onSaveConfirm(event) {
     if (window.confirm('Are you sure you want to save?')) {
 
@@ -101,12 +117,13 @@ export class PermissionComponent implements OnInit {
       u.university = event.newData.university;
       u.appointments = event.newData.appointments;
       u.role = event.newData.role;
-      u.studentID = event.newData.studentID;
+      u.studentID = event.newData._id;
       u.status = event.newData.status;
       u.major = event.newData.major;
       u.course = event.newData.course;
       u.students = event.newData.students;
       u.advisor = event.newData.advisor;
+      u.registered = { semester: event.newData.registered__semester, year: event.newData.registered__year};
       u.profilePicture = event.newData.profilePicture;
       this.userService.update(u).subscribe();
       event.confirm.resolve(event.newData);
@@ -118,8 +135,15 @@ export class PermissionComponent implements OnInit {
     }
   }
 
+  /**
+    Creates a new user
+    @param {$event} event
+  **/
   onCreateConfirm(event) {
     const u = new User();
+    u._id = event.newData._id;
+    u.username = event.newData.username;
+    u.studentID = event.newData._id;
     u.password = 'password'; // HACK: Figure out a better way to do this
     u.firstName = event.newData.firstName;
     u.lastName = event.newData.lastName;
@@ -134,6 +158,10 @@ export class PermissionComponent implements OnInit {
       detail: 'Successfully created a new user ' + event.newData.firstName + ' ' + event.newData.lastName + ' '});
   }
 
+  /**
+    Deletes a course
+    @param {$event} event
+  **/
   onDeleteConfirm(event) {
     if (window.confirm('Are you user you want to delete this user?')) {
       this.userService.delete(event.data._id).subscribe();
