@@ -8,6 +8,7 @@ import { AdministratorRoutingModule, routedComponents } from './administrator-ro
 import { EditcoursesComponent } from './editcourses/editcourses.component';
 
 import { GrowlModule } from 'primeng/growl';
+import { CartResetComponent } from './cart-reset/cart-reset.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { GrowlModule } from 'primeng/growl';
   declarations: [
     ...routedComponents,
     EditcoursesComponent,
+    CartResetComponent,
   ],
   providers: [
     CanActivateAdmin,

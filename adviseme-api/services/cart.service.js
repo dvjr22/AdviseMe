@@ -154,3 +154,12 @@ exports.deleteCart = async function(id) {
     throw Error(e.message)
   }
 }
+
+exports.deleteAll = async function() {
+  try{
+    var deleteAll = await Cart.collection.drop();
+    return deleteAll;
+  }catch(e) {
+    throw Error(e.message)
+  }
+}

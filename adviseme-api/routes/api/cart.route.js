@@ -14,6 +14,7 @@ router.get('/currentStudent/:id', cartController.getCurrentStudentCart)
 router.post('/', cartController.createCart)
 router.put('/', cartController.updateCart)
 router.delete('/:id',cartController.removeCart)
+router.delete('/', cartController.removeAll)
 
 
 // Export the Router
