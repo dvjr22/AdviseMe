@@ -130,16 +130,6 @@ export class EditcoursesComponent implements OnInit {
           this.prerequisites.push(value);
         }
 
-        // if (key.startsWith('curriculum_')) {
-        //   this.curriculum_one.push(value);
-        //
-        //   if (this.curriculum_one.length === 2) {
-        //     this.curriculum_two.push([this.curriculum_one[0], this.curriculum_one[1]]);
-        //     this.curriculum_one.pop();
-        //     this.curriculum_one.pop();
-        //   }
-        //
-        // }
 
       });
       this.selectedClass.prerequisites = this.prerequisites;
