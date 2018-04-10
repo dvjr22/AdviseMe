@@ -65,7 +65,7 @@ exports.updateCart = async function(aCart){
      oldCart.advisor = aCart.advisor
      oldCart.status = aCart.status
      oldCart.message = aCart.message
-     oldCart.approvedDate = aCart.approvedDate 
+     oldCart.approvedDate = aCart.approvedDate
      oldCart.pastMessage = aCart.pastMessage
    try {
      var savedCart = await oldCart.save()
@@ -117,6 +117,28 @@ exports.getCartByAdvisorAndStudent = async function(advisorid, studentid) {
     return carts;
   } catch (e) {
     throw Error(e.message, "error while finding classes by advisor id")
+  }
+}
+
+// Gets current cart of student
+exports.getCurrentStudentCart = async function(studentid) {
+  //try-catch handle errors
+  try{
+    var cart = await Cart.find({studentID: studentid, approvedDate: undefined});
+    return cart;
+  }catch(e){
+    throw Error(e.message, "Error while finding class by id and undefined approved date")
+  }
+}
+
+// Gets current request for the advisors
+exports.getCurrentRequests = async function(advisorid) {
+  //try-catch handle errors
+  try{
+    var cart = await Cart.find({advisor: advisorid, approvedDate: undefined});
+    return cart;
+  }catch(e){
+    throw Error(e.message, "Error while finding class by advisorid and undefined approved date")
   }
 }
 
