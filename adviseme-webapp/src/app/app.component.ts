@@ -45,9 +45,14 @@ export class AppComponent implements OnInit {
     }
   }
 
+  /**
+    Listener for new message notifications and if its for the current user then
+    display a toast notification
+  */
   messageBind() {
     this.socket.on('new-message', function (data) {
       if (data.message.data !== undefined) {
+        // The room id is the student and the advisor ids combined
         if (data.message.data.room.indexOf(this.currentUser._id) >= 0) {
           const message = data.message.data.message;
           const otherUser = data.message.data.nickname;
@@ -55,6 +60,7 @@ export class AppComponent implements OnInit {
           if (this.currentUser.phoneNumber !== null || this.currentUser.phoneNumber !== '') {
             this.notificationService.sendNotification(JSON.stringify(data.message.data), this.currentUser.phoneNumber);
           }
+          // Fire off a toast notification using PrimeNG
           this.messageService.add({severity: 'success',
             summary: 'New Message',
             detail: 'New message from ' + otherUser + ' saying: ' + message});
@@ -63,9 +69,14 @@ export class AppComponent implements OnInit {
     }.bind(this));
   }
 
+  /**
+    Listener for cart status changes. Alerts the user to the status change
+  */
   cartBind() {
     this.socket.on('cart-status', function (data) {
+      // Text the user
       this.notificationService.sendNotification(JSON.stringify(data), this.currentUser.phoneNumber);
+      // Fire a toast notification
       this.messageService.add({severity: 'success',
         summary: 'Cart Status Change',
         detail: 'Your cart status has changed: ' + JSON.stringify(data.message)});
