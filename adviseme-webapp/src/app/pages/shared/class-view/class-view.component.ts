@@ -26,7 +26,7 @@ export class ClassViewComponent implements OnInit {
   _id;
   pastUrl;
   Class;
-
+  prerequisites;
 
   constructor(protected route: ActivatedRoute, private classService: ClassService, protected router: Router, private _location: Location) {
   }
@@ -41,6 +41,7 @@ export class ClassViewComponent implements OnInit {
     this.classService.getClass(this._id)
       .subscribe((res: Class) => {
         this.Class = res;
+        this.prerequisites = res.prerequisites;
       });
   }
   /**
