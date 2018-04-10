@@ -14,9 +14,9 @@ obj.firstName = "Tyler";
 obj.lastName = "Hall";
 obj.major = "cs";
 obj.status = "senior";
-obj.advisor = "Captain America";
+obj.advisor = "advisor01";
 obj.roomNumber = "211A";
-obj.date = "2017-03-18T12:00:00"
+obj.date = "2018-04-18T12:00:00"
 
 // Connect to db
 MongoClient.connect(url, function(err, db) {
