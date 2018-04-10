@@ -85,11 +85,13 @@ export class ProfileViewComponent implements OnInit {
     Updates the phone number of the user
   **/
   updatePhoneNumber(event) {
-    this.currentUser.phoneNumber = this.values;
-    this.userService.update(this.currentUser).subscribe(() => {});
-    this.messageService.add({severity: 'success',
-      summary: 'Successful Update',
-      detail: 'Successfully updated your phone number to ' + this.values});
+    if (this.values != "") {
+      this.currentUser.phoneNumber = this.values;
+      this.userService.update(this.currentUser).subscribe(() => {});
+      this.messageService.add({severity: 'success',
+        summary: 'Successful Update',
+        detail: 'Successfully updated your phone number to ' + this.values});
+    }
   }
   values = '';
   onKey(event: any) { // without type info
