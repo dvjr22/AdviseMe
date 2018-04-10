@@ -98,4 +98,13 @@ export class CartService {
     delete(_id: string) {
         return this.http.delete('/api/carts/' + _id, this.requestOptions).subscribe();
     }
+
+    /**
+      Delete all carts
+
+      @returns {none}
+    */
+    deleteAll() {
+      return this.http.delete('/api/carts/', this.requestOptions).map((response: Response) => response.json());
+    }
 }
