@@ -19,7 +19,7 @@ import { NotificationService } from './_shared/services/notification.service';
 })
 export class AppComponent implements OnInit {
   // Connection to the socket server for realtime chat updates
-  socket = io('http://localhost:4001');
+  socket = io('http://theadviseme.com:4001');
 
   currentUser: any;
   /**
