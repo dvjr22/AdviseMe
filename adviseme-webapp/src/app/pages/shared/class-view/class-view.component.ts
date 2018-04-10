@@ -43,8 +43,6 @@ export class ClassViewComponent implements OnInit {
         this.Class = res;
         this.prerequisites = res.prerequisites;
       });
-
-
   }
   /**
     Goes back to the last location
