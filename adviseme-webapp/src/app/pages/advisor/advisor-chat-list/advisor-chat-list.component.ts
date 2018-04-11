@@ -23,10 +23,14 @@ export class AdvisorChatListComponent implements OnInit {
     Configuration for the table
   */
   settings = {
+    pager: false,
     actions: false,
     columns: {
       studentName: {
         title: 'Student',
+      },
+      studentEmail: {
+        title: 'Email',
       },
       index: {
         title: '',
@@ -55,6 +59,7 @@ export class AdvisorChatListComponent implements OnInit {
             const studentID = res.students[i];
             this.userService.getById(studentID).subscribe((studentRes) => {
               ob['studentName'] = studentRes.firstName + ' ' + studentRes.lastName;
+              ob['studentEmail'] = studentRes.email;
               ob['index'] = i;
               data.push(ob);
             });
