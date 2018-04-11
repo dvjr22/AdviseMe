@@ -23,24 +23,44 @@
             <ngb-timepicker name="time" id="time" [(ngModel)]="time"[meridian]="meridian"></ngb-timepicker>
         </div>
         <div class="col-md-4">
-          <h5> Appointment Time </h5>
-          <br>
+          <h5> Appointment Details </h5>
+          <hr>
           <p>
-            Date: {{this.ngbDateParserFormatter.format(this.model) | date: "fullDate"}}
+            <b>Advisor:</b> {{this.currentUser?.advisor | ngxCapitalize}}
             <br>
-            Time: {{ this.time }}
+            <br>
+            <b>Room Number:</b> {{ this.currentUser?.advisorRoom }}
+            <br>
+            <br>
+            <b>Date:</b> {{this.ngbDateParserFormatter.format(this.model) | date: "fullDate"}}
+            <br>
+            <br>
+            <ng-template [ngIf]="this.time.minute < 10 && this.time.hour < 12">
+              <b>Time:</b> {{ this.time.hour  % 12 || 12}}:0{{ this.time.minute }} AM
+            </ng-template>
+            <ng-template [ngIf]="this.time.minute >= 10 && this.time.hour < 12">
+              <b>Time:</b> {{ this.time.hour  % 12 || 12 }}:{{ this.time.minute }} AM
+            </ng-template>
+            <ng-template [ngIf]="this.time.minute < 10 && this.time.hour >= 12">
+              <b>Time:</b> {{ this.time.hour  % 12 || 12}}:0{{ this.time.minute }} PM
+            </ng-template>
+            <ng-template [ngIf]="this.time.minute >= 10 && this.time.hour >= 12">
+              <b>Time:</b> {{ this.time.hour  % 12 || 12 }}:{{ this.time.minute }} PM
+            </ng-template>
           </p>
+          <br>
+          <div class="btn-group btn-group" role="group">
+            <button class="btn btn-success btn-group-icon btn-group-divider btn-fixed" type="button">
+              <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </button>
+            <button (click)="onSubmit()" type="submit" class="btn btn-success">Send Appointment</button>
+          </div>
         </div><!-- end of col -->
       </div>
       <br>
     </div>
   </nb-card-body>
   <nb-card-footer>
-    <div class="btn-group btn-group" role="group">
-      <button class="btn btn-success btn-group-icon btn-group-divider btn-fixed" type="button">
-        <i class="fa fa-paper-plane" aria-hidden="true"></i>
-      </button>
-      <button (click)="onSubmit()" type="submit" class="btn btn-success">Send Appointment</button>
-    </div>
+
   </nb-card-footer>
 </nb-card>
