@@ -2,7 +2,7 @@
 <nb-card size="large">
   <nb-card-body>
     <div *ngIf="this.currentUser?.profilePicture !== undefined" class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
-
+    <img *ngIf="this.currentUser?.profilePicture === undefined" src="/assets/images/profile_image.png" class="picture">
     <div class="details">
       <div class="title">
         {{ this.currentUser?.fullName }}
@@ -16,8 +16,6 @@
         <br>
         <br>
         <b>Major:</b> {{ this.currentUser?.major | uppercase }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Year:</b> {{ this.currentUser?.status | ngxCapitalize}}
-        <br/>
-        <br/>
 
       </div>
       <br/>
@@ -31,7 +29,7 @@
 <nb-card size="large">
   <nb-card-body>
     <div *ngIf="this.currentUser?.profilePicture !== undefined" class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
-
+    <img *ngIf="this.currentUser?.profilePicture === undefined" src="/assets/images/profile_image.png" class="picture">
     <div class="details">
       <div class="title">
         {{ this.currentUser?.fullName }}
