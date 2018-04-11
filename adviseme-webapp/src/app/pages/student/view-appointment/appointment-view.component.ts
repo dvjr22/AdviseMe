@@ -1,10 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Appointment } from '../../../_shared/models/appointment';
 import { AppointmentService } from '../../../_shared/services/appointment.service';
 import { UserService } from '../../../_shared/services/user.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource, ViewCell } from 'ng2-smart-table';
 import { Router } from '@angular/router';
 import { flattenObject } from '../../../_shared/scripts/flattenObject';
+
+@Component({
+  template: `
+    {{renderValue | date:'fullDate'}}
+  `,
+})
+export class DateFieldComponent implements ViewCell, OnInit {
+
+  renderValue: string;
+
+  @Input() value: string | number;
+  @Input() rowData: any;
+
+  ngOnInit() {
+    this.renderValue = this.value.toString();
+  }
+
+}
 
 /**
   Component that allows the user to see their appointments
@@ -50,6 +68,8 @@ export class AppointmentViewComponent implements OnInit {
       },
       date: {
         title: 'Date',
+        type: 'custom',
+        renderComponent: DateFieldComponent,
       },
       timefull: {
         title: 'Time',
