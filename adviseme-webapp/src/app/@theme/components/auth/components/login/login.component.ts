@@ -97,9 +97,6 @@ import { NbAuthResult, NbAuthService } from '../../services/auth.service';
         <a href="https://twitter.com" target="_blank" class="socicon-twitter"></a>
       </div>-->
 
-      <small class="form-text sub-footer">
-        Don't have an account? <a routerLink="../register" id="signuplink"><strong>Sign Up</strong></a>
-      </small>
     </div>
     <br/>
     <br/>
