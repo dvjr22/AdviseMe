@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { StudentComponent } from './student.component';
 import { CartProgressComponent } from './cart-progress/cart-progress.component';
 import { CartComponent } from './cart/cart.component';
-import { AppointmentViewComponent, CustomRenderComponent } from './view-appointment/appointment-view.component';
+import { AppointmentViewComponent, DateFieldComponent } from './view-appointment/appointment-view.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { RequestClassesComponent } from './request-classes/request-classes.component';
 
@@ -47,5 +47,5 @@ export const routedComponents = [
   AppointmentViewComponent,
   AppointmentComponent,
   RequestClassesComponent,
-  CustomRenderComponent,
+  DateFieldComponent,
 ];

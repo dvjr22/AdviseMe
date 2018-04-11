@@ -7,7 +7,7 @@ import { CartProgressComponent } from './cart-progress/cart-progress.component';
 import { StudentRoutingModule, routedComponents } from './student-routing.module';
 import { CartService } from '../../_shared/services/cart.service';
 import { ServiceComponentModule } from '../../_shared/services/components/service-components.module';
-import { CustomRenderComponent } from './view-appointment/appointment-view.component';
+import { DateFieldComponent } from './view-appointment/appointment-view.component';
 
 @NgModule({
   imports: [
@@ -26,7 +26,7 @@ import { CustomRenderComponent } from './view-appointment/appointment-view.compo
     CartService,
   ],
   entryComponents: [
-    CustomRenderComponent,
+    DateFieldComponent,
   ],
 })
 

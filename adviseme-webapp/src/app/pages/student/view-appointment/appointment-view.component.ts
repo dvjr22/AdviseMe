@@ -11,7 +11,7 @@ import { flattenObject } from '../../../_shared/scripts/flattenObject';
     {{renderValue | date:'fullDate'}}
   `,
 })
-export class CustomRenderComponent implements ViewCell, OnInit {
+export class DateFieldComponent implements ViewCell, OnInit {
 
   renderValue: string;
 
@@ -69,7 +69,7 @@ export class AppointmentViewComponent implements OnInit {
       date: {
         title: 'Date',
         type: 'custom',
-        renderComponent: CustomRenderComponent,
+        renderComponent: DateFieldComponent,
       },
       timefull: {
         title: 'Time',
