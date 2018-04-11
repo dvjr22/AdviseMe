@@ -1,32 +1,39 @@
 <nb-card>
   <nb-card-header>
-    <div>Make an Appointment</div>
+    <div><h4>Make an Appointment</h4></div>
     <br>
     <div class="subtitle">{{description}}</div>
   </nb-card-header>
   <nb-card-body>
 
-    <div>
-    <span style="font-weight: bold"> Todays Date: </span> {{ this.ngbDateParserFormatter.format(this.currentDate)}}
+    <div style="font-size: large">
+    <span style="font-weight: bold;"> Todays Date: </span> {{ this.ngbDateParserFormatter.format(this.currentDate)}}
     <hr>
     </div>
     <br>
     <div class="container">
       <div class="row">
         <div class="col-md-4">
-          <h6>Pick a Day: </h6>
+          <h5>Pick a Day: </h5>
+          <hr>
           <ngb-datepicker  #d1 [(ngModel)]="model" #c1="ngModel" [minDate]="minDate"></ngb-datepicker>
+          <br>
+          <br>
         </div>
         <div class="col-md-4">
-            <h6>Pick a Time: </h6>
+            <h5>Pick a Time: </h5>
+            <hr>
             <br>
             <ngb-timepicker name="time" id="time" [(ngModel)]="time"[meridian]="meridian"></ngb-timepicker>
+            <br>
+            <br>
         </div>
+
         <div class="col-md-4">
           <h5> Appointment Details </h5>
           <hr>
           <p>
-            <b>Advisor:</b> {{this.currentUser?.advisor | ngxCapitalize}}
+            <b>Advisor:</b> {{this.advisorName | titlecase}}
             <br>
             <br>
             <b>Room Number:</b> {{ this.currentUser?.advisorRoom }}

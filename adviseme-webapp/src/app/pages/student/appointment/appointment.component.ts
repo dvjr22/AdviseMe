@@ -28,6 +28,7 @@ export class AppointmentComponent implements OnInit {
     User initialized from ngOnInit
   */
   currentUser: User;
+  advisorName: String;
   /**
     Blank appointment
   */
@@ -64,7 +65,12 @@ export class AppointmentComponent implements OnInit {
   */
   ngOnInit() {
     this.userService.getCurrentUser()
-        .subscribe(res => this.currentUser = res);
+        .subscribe(res => {
+          this.currentUser = res;
+          this.userService.getById(this.currentUser.advisor).subscribe((user) => {
+            this.advisorName = user.firstName + ' ' + user.lastName;
+          });
+        });
   }
 
   /**
