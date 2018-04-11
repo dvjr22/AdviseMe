@@ -112,11 +112,19 @@ export class EditcoursesComponent implements OnInit {
       @param {$event} event
     **/
     onCreateConfirm(event): void {
-      this.selectedClass._id = (event.newData.class_prefix + event.newData.class_courseNo);
-      this.selectedClass.department = event.newData.class_prefix;
+      if (event.newData.class_prefix != "" && event.newData.class_courseNo != "") {
+        this.selectedClass._id = (event.newData.class_prefix + event.newData.class_courseNo);
+      }
+      if (event.newData.class_prefix != "") {
+        this.selectedClass.department = event.newData.class_prefix;
+      }
 
-      this.selectedClass.hrs = event.newData.hrs;
-      this.selectedClass.description = event.newData.description;
+      if (event.newData.hrs != "") {
+        this.selectedClass.hrs = event.newData.hrs;
+      }
+      if (event.newData.description != "") {
+        this.selectedClass.description = event.newData.description;
+      }
 
       this.selectedClass.class = {
         title: String(event.newData.class_title),
@@ -170,26 +178,38 @@ export class EditcoursesComponent implements OnInit {
     **/
     onSaveConfirm(event): void {
 
-      this.selectedClass._id = event.newData._id;
-      this.selectedClass.department = event.newData.class_prefix;
+      if (event.newData._id != "") {
+        this.selectedClass._id = event.newData._id;
+      }
+      if (event.newData.class__prefix != "") {
+        this.selectedClass.department = event.newData.class__prefix;
+      }
 
-      this.selectedClass.hrs = event.newData.hrs;
-      this.selectedClass.description = event.newData.description;
+      if (event.newData.hrs != "") {
+        this.selectedClass.hrs = event.newData.hrs;
+      }
+      if (event.newData.description != "") {
+        this.selectedClass.description = event.newData.description;
+      }
 
       this.selectedClass.class = {
-        title: String(event.newData.class_title),
-        courseNo: String(event.newData.class_courseNo),
-        prefix: String(event.newData.class_prefix),
+        title: String(event.newData.class__title),
+        courseNo: String(event.newData.class__courseNo),
+        prefix: String(event.newData.class__prefix),
       };
 
       Object.entries(event.newData).forEach(([key, value]) => {
 
         if (key.startsWith('prerequisites_')) {
-          this.prerequisites.push(value);
+          if (value != "") {
+            this.prerequisites.push(value);
+          }
         }
 
         if (key.startsWith('curriculum_')) {
-          this.curriculum_one.push(value);
+          if (value != "") {
+            this.curriculum_one.push(value);
+          }
 
           if (this.curriculum_one.length === 2) {
             this.curriculum_two.push([this.curriculum_one[0], this.curriculum_one[1]]);
@@ -203,11 +223,11 @@ export class EditcoursesComponent implements OnInit {
       this.selectedClass.prerequisites = this.prerequisites;
       this.selectedClass.curriculum = this.curriculum_two;
 
-      if (window.confirm('Are you sure you want to edit ' + event.data.class_title + ' ?')) {
+      if (window.confirm('Are you sure you want to edit ' + event.data.class__title + ' ?')) {
         this.classService.editClass(this.selectedClass).subscribe();
         this.messageService.add({severity: 'success',
           summary: 'Success Updating Class',
-          detail: 'Successfully updated class ' + event.newData.class_title});
+          detail: 'Successfully updated class ' + event.newData.class__title});
         event.confirm.resolve();
       } else {
         event.confirm.reject();
