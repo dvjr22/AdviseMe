@@ -4,6 +4,7 @@ import { CanActivateAdmin } from '../../_shared/services/authentication.service'
 import { AdministratorComponent } from './administrator.component';
 import { EditcoursesComponent } from './editcourses/editcourses.component';
 import { PermissionComponent } from './permission/permission.component';
+import { CartResetComponent } from './cart-reset/cart-reset.component';
 
 const routes: Routes = [{
   path: '',
@@ -18,6 +19,10 @@ const routes: Routes = [{
   {
     path: 'editcourses',
     component: EditcoursesComponent,
+  },
+  {
+    path: 'cartreset',
+    component: CartResetComponent,
   }],
 }];
 
@@ -31,4 +36,5 @@ export class AdministratorRoutingModule { }
 export const routedComponents = [
   AdministratorComponent,
   PermissionComponent,
+  CartResetComponent,
 ];
