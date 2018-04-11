@@ -13,28 +13,34 @@
     <br>
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col-md-4">
           <h6>Pick a Day: </h6>
           <ngb-datepicker  #d1 [(ngModel)]="model" #c1="ngModel" [minDate]="minDate"></ngb-datepicker>
         </div>
-        <div class="col">
+        <div class="col-md-4">
             <h6>Pick a Time: </h6>
             <br>
-            <form (ngSubmit)="onSubmit()" #form="ngForm">
-
-              <ngb-timepicker name="time" id="time" [(ngModel)]="time"[meridian]="meridian"></ngb-timepicker>
-              <br>
-              <br>
-              <br>
-              <div class="btn-group btn-group" role="group">
-                <button class="btn btn-success btn-group-icon btn-group-divider btn-fixed" type="button">
-                  <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                </button>
-                <button type="submit" class="btn btn-success">Send Appointment</button>
-              </div>
-            </form>
+            <ngb-timepicker name="time" id="time" [(ngModel)]="time"[meridian]="meridian"></ngb-timepicker>
+        </div>
+        <div class="col-md-4">
+          <h5> Appointment Time </h5>
+          <br>
+          <p>
+            Date: {{this.ngbDateParserFormatter.format(this.model) | date: "fullDate"}}
+            <br>
+            Time: {{ this.time }}
+          </p>
         </div><!-- end of col -->
       </div>
+      <br>
     </div>
   </nb-card-body>
+  <nb-card-footer>
+    <div class="btn-group btn-group" role="group">
+      <button class="btn btn-success btn-group-icon btn-group-divider btn-fixed" type="button">
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+      </button>
+      <button (click)="onSubmit()" type="submit" class="btn btn-success">Send Appointment</button>
+    </div>
+  </nb-card-footer>
 </nb-card>
