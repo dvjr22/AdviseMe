@@ -1,7 +1,7 @@
 <nb-card>
     <ng-template [ngIf]="this.noAppointment === false">
       <nb-card-header>
-        <div>Upcoming Appointments!</div>
+        <div><h4>Upcoming Appointments!</h4></div>
         <br>
         <div class="subtitle">{{description}}</div>
       </nb-card-header>
@@ -10,7 +10,7 @@
       </nb-card-body>
     </ng-template>
     <ng-template [ngIf]="this.noAppointment === true">
-      <nb-card-header>Upcoming Appointments!</nb-card-header>
+      <nb-card-header><h4>Upcoming Appointments!</h4></nb-card-header>
       <nb-card-body>
         There are no appointments made yet. Click the button below to make one.
       </nb-card-body>

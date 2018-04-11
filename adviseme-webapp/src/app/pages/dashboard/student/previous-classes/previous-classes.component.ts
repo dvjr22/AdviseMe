@@ -22,6 +22,7 @@ export class PreviousClassesComponent implements OnInit {
   Configuration for the table
   */
   settings = {
+    pager: false,
     actions: false,
     columns: {
       classID: {
