@@ -1,25 +1,45 @@
-<nb-card size="large">
-  <nb-card-header>
-    <div class="header">
-      <div class="name bold"><h4>Future Classes</h4></div>
-  </div>
-  </nb-card-header>
-  <nb-card-body>
-    <ng2-smart-table
-      [settings]="settings"
-      [source]="source"
-      (userRowSelect)="onUserRowSelect($event)"
-      #table>
-    </ng2-smart-table>
-  </nb-card-body>
+<ng-template [ngIf]="this.recomendation !== 0">
+  <nb-card size="large">
+    <nb-card-header>
+      <div class="header">
+        <div class="name bold"><h4>Future Classes</h4></div>
+    </div>
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table
+        [settings]="settings"
+        [source]="source"
+        (userRowSelect)="onUserRowSelect($event)"
+        #table>
+      </ng2-smart-table>
+    </nb-card-body>
+    <nb-card-footer align-items="center">
+      <ng-template [ngIf]="this.cart?.status === 'created'">
+      <button position="left" (click)="addToCart()" type="button" class="btn btn-success">Add Classes To Cart</button>
+      </ng-template>
+
+      <button position="right" (click)="goToClasses()" type="button" class="btn btn-success">Full Course List</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
 
 
-  <nb-card-footer align-items="center">
 
-    <ng-template [ngIf]="this.cart?.status === 'created'">
-    <button position="left" (click)="addToCart()" type="button" class="btn btn-success">Add Classes To Cart</button>
-    </ng-template>
+<ng-template [ngIf]="this.recomendation === 0">
+  <nb-card size="large">
+    <nb-card-header>
+      <div class="header">
+        <div class="name bold"><h4>Future Classes</h4></div>
+    </div>
+    </nb-card-header>
+    <nb-card-body>
+      <p> No recomended class list could be made from your current and past course list </p>
+    </nb-card-body>
 
-    <button position="right" (click)="goToClasses()" type="button" class="btn btn-success">Full Course List</button>
-  </nb-card-footer>
-</nb-card>
+
+    <nb-card-footer align-items="center">
+
+      <button position="right" (click)="goToClasses()" type="button" class="btn btn-success">Full Course List</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
