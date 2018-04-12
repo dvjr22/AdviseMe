@@ -121,7 +121,7 @@ export class EditcoursesComponent implements OnInit {
       } else {
         this.messageService.add({severity: 'Failed',
           summary: 'Failed to Create Class',
-          detail: 'Failed to create class due to missing field'});
+          detail: 'One or more fields was left blank.'});
         event.confirm.reject();
         return;
       }
@@ -135,7 +135,7 @@ export class EditcoursesComponent implements OnInit {
       } else {
         this.messageService.add({severity: 'Failed',
           summary: 'Failed to Create Class',
-          detail: 'Failed to create class due to missing field'});
+          detail: 'One or more fields was left blank.'});
         event.confirm.reject();
         return;
       }
@@ -187,7 +187,7 @@ export class EditcoursesComponent implements OnInit {
       } else {
         this.messageService.add({severity: 'Failed',
           summary: 'Failed to Update Class',
-          detail: 'Failed to update class ' + event.newData.class__title});
+          detail: 'Failed to update class ' + event.newData.class__title + '. One or more fields was left blank.'});
         event.confirm.reject();
         return;
       }
@@ -201,7 +201,7 @@ export class EditcoursesComponent implements OnInit {
       } else {
         this.messageService.add({severity: 'Failed',
           summary: 'Failed to Update Class',
-          detail: 'Failed to update class ' + event.newData.class__title});
+          detail: 'Failed to update class ' + event.newData.class__title + '. One or more fields was left blank.'});
         event.confirm.reject();
         return;
       }
@@ -220,8 +220,7 @@ export class EditcoursesComponent implements OnInit {
           } else {
             this.messageService.add({severity: 'Failed',
               summary: 'Failed to Update Class',
-              detail: 'Failed to update class ' + event.newData.class__title});
-            event.confirm.reject();
+              detail: 'Failed to update class ' + event.newData.class__title + '. One or more fields was left blank.'});
             return;
           }
 
