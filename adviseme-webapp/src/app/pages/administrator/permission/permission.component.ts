@@ -112,7 +112,7 @@ export class PermissionComponent implements OnInit {
           event.newData.firstName !== '' &&
           event.newData.lastName !== '' &&
           event.newData.email !== '' &&
-          event.newData.role.toLowerCase() == 'student' &&
+          event.newData.role.toLowerCase() === 'student' &&
           event.newData.status !== '' &&
           event.newData.major !== '' &&
           event.newData.advisor !== '') {
@@ -193,7 +193,7 @@ export class PermissionComponent implements OnInit {
         event.newData.firstName !== '' &&
         event.newData.lastName !== '' &&
         event.newData.email !== '' &&
-        event.newData.role.toLowerCase() == 'student' &&
+        event.newData.role.toLowerCase() === 'student' &&
         event.newData.status !== '' &&
         event.newData.major !== '' &&
         event.newData.advisor !== '') {
@@ -212,7 +212,7 @@ export class PermissionComponent implements OnInit {
         event.newData.firstName !== '' &&
         event.newData.lastName !== '' &&
         event.newData.email !== '' &&
-        (event.newData.role.toLowerCase() == 'advisor' || event.newData.role.toLowerCase() == 'administrator')) {
+        (event.newData.role.toLowerCase() === 'advisor' || event.newData.role.toLowerCase() === 'admin')) {
       u._id = event.newData._id;
       u.username = event.newData.username;
       u.studentID = event.newData._id;
