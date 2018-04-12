@@ -250,6 +250,9 @@ export class PermissionComponent implements OnInit {
     if (window.confirm('Are you user you want to delete this user?')) {
       // Delete the user
       this.userService.delete(event.data._id).subscribe();
+      this.messageService.add({severity: 'Success',
+        summary: 'Success Deleted User',
+        detail: 'Successfully deleted user with id of' + event.data._id});
       event.confirm.resolve(event.newData);
     } else {
       event.confirm.reject();
