@@ -54,6 +54,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Change Password',
         link: '/pages/shared/password',
       },
+      {
+       title: 'Log out',
+       link: '/auth/logout',
+     },
     ],
 
   },
@@ -114,6 +118,10 @@ export const ADVISED_STUDENTS_ITEMS: NbMenuItem[] = [
         title: 'Change Password',
         link: '/pages/shared/password',
       },
+      {
+       title: 'Log out',
+       link: '/auth/logout',
+     },
     ],
 
   },
@@ -170,6 +178,10 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
         title: 'Change Password',
         link: '/pages/shared/password',
       },
+      {
+       title: 'Log out',
+       link: '/auth/logout',
+     },
     ],
 
   },
@@ -222,6 +234,10 @@ export const ADVISOR_ITEMS: NbMenuItem[] = [
         title: 'Change Password',
         link: '/pages/shared/password',
       },
+      {
+       title: 'Log out',
+       link: '/auth/logout',
+     },
     ],
 
   },
