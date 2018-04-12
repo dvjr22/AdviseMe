@@ -139,7 +139,7 @@ export class PermissionComponent implements OnInit {
           event.newData.firstName !== '' &&
           event.newData.lastName !== '' &&
           event.newData.email !== '' &&
-          event.newData.role.toLowerCase() == 'advisor') {
+          (event.newData.role.toLowerCase() == 'advisor' || event.newData.role.toLowerCase() == 'administrator')) {
         u._id = event.newData._id;
         u.username = event.newData.username;
         u.password = event.newData.password;
@@ -212,7 +212,7 @@ export class PermissionComponent implements OnInit {
         event.newData.firstName !== '' &&
         event.newData.lastName !== '' &&
         event.newData.email !== '' &&
-        event.newData.role.toLowerCase() == 'advisor') {
+        (event.newData.role.toLowerCase() == 'advisor' || event.newData.role.toLowerCase() == 'administrator')) {
       u._id = event.newData._id;
       u.username = event.newData.username;
       u.studentID = event.newData._id;
