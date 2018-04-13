@@ -71,6 +71,10 @@ export class DashboardComponent  implements OnInit {
         .subscribe(res => {
           this.currentUser = res;
           this.role = this.currentUser.role;
+
+          if (this.currentUser.tutorialEnabled !== undefined) {
+            this.tutorialEnabled = this.currentUser.tutorialEnabled;
+          }
         },
         );
   }
@@ -89,6 +93,9 @@ export class DashboardComponent  implements OnInit {
   */
   finish() {
     this.tutorialEnabled = false;
+
+    this.currentUser.tutorialEnabled = false;
+    this.userService.update(this.currentUser).subscribe();
   }
 
   }

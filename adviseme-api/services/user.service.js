@@ -151,6 +151,7 @@ function update(_id, userParam) {
             registered: userParam.registered,
             profilePicture: userParam.profilePicture,
             phoneNumber: userParam.phoneNumber,
+            tutorialEnabled: userParam.tutorialEnabled,
         };
         // update password if it was entered
         if (userParam.password) {
