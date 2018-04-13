@@ -25,34 +25,36 @@ export class DashboardComponent  implements OnInit {
   items = [
     {
       'header': 'Welcome',
-      'content': `Welcome to AdviseMe! A web app that
-                  will assists college students through
+      'content': `Welcome to AdviseMe! AdviseMe is a web app that
+                  assists college students through
                   the majority of advising requirements
                   while in pursuit of a degree.`,
     },
     {
       'header': 'Class Requests',
       'content': `The Class Requests system allows you to
-                  add classes to your cart. After you get
-                  all the classes you want to take
-                  submit the cart to your advisor for their
-                  approval. They may send back recommendations
-                  for changes so check back until you hear
-                  from them. To get started click on the requests
-                  section of the menu or the 'Full Course List'
-                  button on the dashboard`,
+                  add classes to your cart during your
+                  advisement period. After you have added
+                  all classes you want to take to your cart,
+                  you can submit it to your advisor for their
+                  approval. They may send your cart back to you
+                  with recommendations for changes, so check back
+                  until you hear from them. To get started, click on the requests
+                  'Request Classes' tab on the sidebar under 'Requests',
+                  or the 'Full Course List' button on the dashboard`,
     },
     {
       'header': 'Advisor Communication',
-      'content': `If you need to communicate with your advisor
-                  you can schedule an appointment or instant message
-                  on the Advisement tab`,
+      'content': `If you need to cotact your advisor,
+                  you can schedule an appointment or message them
+                  on the 'Advisor Messaging' tab under the
+                  'Advisement' menu on the sidebar.`,
     },
     {
       'header': 'SMS Notifications',
-      'content': `On the profile view screen you can opt in to get
-                  SMS notifications to help keep you up to date on
-                  your advisement status`,
+      'content': `On the Profile View page, you can opt in to receive
+                  SMS notifications to keep you up to date on
+                  your advisement status.`,
     },
   ];
   // Index of which of the items above is shown
