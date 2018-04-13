@@ -43,3 +43,21 @@
     </div>
   </div>
 </div>
+
+<div class="tutorial-background" *ngIf="tutorialEnabled">
+  <div class="tutorial">
+    <nb-card>
+      <nb-card-header>
+        <span>Tutorial - {{items[index].header}}</span>
+      </nb-card-header>
+      <nb-card-body>
+        {{items[index].content}}
+      </nb-card-body>
+      <nb-card-footer>
+        <button *ngIf="index !== items.length - 1" class="nextBtn btn btn-info" type="button" (click)="finish()">Skip</button>
+        <button *ngIf="index !== items.length - 1" class="nextBtn btn btn-primary" type="button" (click)="openNext()">Next</button>
+        <button *ngIf="index === items.length - 1" class="nextBtn btn btn-info" type="button" (click)="finish()">Finish</button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>

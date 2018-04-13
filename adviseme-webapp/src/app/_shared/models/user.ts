@@ -36,5 +36,6 @@ export class User {
   // Advisor Role
   students: string[];
   // Admin Role
+  tutorialEnabled: boolean;
 
 }
