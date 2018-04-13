@@ -13,11 +13,16 @@ import { FutureClassesComponent } from './student/future-classes/future-classes.
 import { UnderlingsComponent } from './advisor/underlings/underlings.component';
 import { StudentlistComponent } from './advisor/student-list/student-list.component';
 
+import { GrowlModule } from 'primeng/growl';
+import { TabViewModule } from 'primeng/tabview';
+
 @NgModule({
   imports: [
     ThemeModule,
     AngularEchartsModule,
     Ng2SmartTableModule,
+    GrowlModule,
+    TabViewModule,
   ],
   declarations: [
     DashboardComponent,
