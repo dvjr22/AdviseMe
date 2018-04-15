@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdvisorComponent } from './advisor.component';
 import { AllRequestsComponent } from './all-requests/all-requests.component';
-import { AdvisorAppointmentsComponent } from './advisor-appointments/advisor-appointments.component';
+import { AdvisorAppointmentsComponent, DateFieldComponent } from './advisor-appointments/advisor-appointments.component';
 import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
 import { StudentRequestComponent } from './student-requests/student-requests.component';
 import { AdvisorChatListComponent } from './advisor-chat-list/advisor-chat-list.component';
@@ -45,4 +45,5 @@ export const routedComponents = [
   AllRequestsComponent,
   StudentRequestComponent,
   AdvisorAppointmentsComponent,
+  DateFieldComponent,
 ];

@@ -4,7 +4,7 @@
     <nb-card-header>
       <div> <ngx-refresh-button (messageEvent)="receiveSource($event)" ></ngx-refresh-button> </div>
       <br>
-      <div> <span id="requeststatus">Request Status</span> </div>
+      <div> <span id="requeststatus"><h4>Request Status</h4></span> </div>
       <br>
       <div class="subtitle">{{description}}</div>
     </nb-card-header>
@@ -23,7 +23,7 @@
     <nb-card-header>
       <div> <ngx-refresh-button (messageEvent)="receiveSource($event)" ></ngx-refresh-button> </div>
       <br>
-      <div> <span id="requeststatus">Request Status</span> </div>
+      <div> <span id="requeststatus"><h4>Request Status</h4></span> </div>
       <br>
       <div class="subtitle">{{description}}</div>
     </nb-card-header>
@@ -43,7 +43,7 @@
 
   <ng-template [ngIf]="this.currentCart?.status === 'rejected'">
     <nb-card-header>
-      <span>Request Status</span>
+      <span><h4>Request Status</h4></span>
     </nb-card-header>
     <nb-card-body *ngIf="currentCart; else noCart">
       <div class="description">

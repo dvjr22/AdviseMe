@@ -59,7 +59,7 @@ app.use(require('express-session')({
 //TODO: Do not allow the display of data... will have to be from issuer
 app.all('/api/*', function(req, res, next) {
 
-  if(req.url === '/api/users/authenticate' || req.url === '/api/users/register' || req.url === '/api/token/valid') {
+  if(req.url === '/api/users/authenticate' || req.url === '/api/token/valid') {
     next();
   } else {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {

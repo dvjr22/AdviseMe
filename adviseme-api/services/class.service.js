@@ -124,7 +124,7 @@ exports.getGradedClasses = async function (id) {
 exports.deleteClass = async function(id) {
   try{
     var deleted = await Class.remove({_id: id})
-    if(deleted.result.n === 0){
+    if(deleted.n === 0){
       throw Error("Class could not be deleted")
     }
     return deleted

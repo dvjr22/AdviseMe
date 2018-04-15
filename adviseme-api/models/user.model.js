@@ -90,6 +90,7 @@ var UserSchema = new mongoose.Schema({
     created: Date,
     updated: { type: Date, default: Date.now},
     profilePicture: String,
+    tutorialEnabled: Boolean,
 })
 
 UserSchema.pre('save', function(next) {

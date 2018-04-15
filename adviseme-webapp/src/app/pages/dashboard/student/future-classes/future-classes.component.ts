@@ -32,6 +32,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
       cart: Cart;
       classes: any[] = [];
       selectedClasses: any[] = [];
+      recomendation: number;
       @ViewChild('table') table: Ng2SmartTableComponent;
 
       /**
@@ -88,16 +89,16 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
           user = res;
 
           const cir = res.course;
-          let recomendation = 0;
+          this.recomendation = 0;
           const data = [];
           for (const c of cir) {
-            if (c.grade === 'tbc' && recomendation < 5) {
+            if (c.grade === 'tbc' && this.recomendation < 5) {
               this.classes.push(c);
               this.classService.getClass(c.classID).subscribe((classRes) => {
                 data.push(classRes);
                 this.source.load(flattenFiveObjects(data));
               });
-              recomendation ++;
+              this.recomendation ++;
             }
           }
           this.cartService.getById(user._id).subscribe((res2: any) => {
@@ -190,7 +191,8 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
        @returns {none}
        */
       syncTable(): void {
-          if (this.table.grid !== undefined ) {
+
+          if (this.table !== undefined && this.table.grid !== undefined) {
             this.table.grid.getRows().forEach((row) => {
               if (this.selectedClasses.find( r => r._id === row.getData()._id)) {
                 row.isSelected = true;

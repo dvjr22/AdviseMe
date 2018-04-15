@@ -6,7 +6,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 
 import { AdvisorRoutingModule, routedComponents } from './advisor-routing.module';
 import { AllRequestsComponent } from './all-requests/all-requests.component';
-import { AdvisorAppointmentsComponent } from './advisor-appointments/advisor-appointments.component';
+import { AdvisorAppointmentsComponent, DateFieldComponent } from './advisor-appointments/advisor-appointments.component';
 
 import { CanActivateAdvisor } from '../../_shared/services/authentication.service';
 
@@ -39,6 +39,9 @@ import { ServiceComponentModule } from '../../_shared/services/components/servic
   ],
   providers: [
     CanActivateAdvisor,
+  ],
+  entryComponents: [
+    DateFieldComponent,
   ],
 })
 export class AdvisorModule { }

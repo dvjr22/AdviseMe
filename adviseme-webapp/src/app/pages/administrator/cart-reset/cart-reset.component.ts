@@ -14,7 +14,10 @@ export class CartResetComponent implements OnInit {
   ngOnInit() {
   }
 
-
+  /**
+    Method to reset all the carts for a new semester. On the backend it drops the
+    mongo cart collection
+  */
   resetAll(event) {
     this.cartService.deleteAll().subscribe(() => {
       this.messageService.add({severity: 'success', summary: 'Carts deleted', detail: 'Successfully deleted all the carts'});

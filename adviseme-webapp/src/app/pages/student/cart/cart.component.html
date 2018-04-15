@@ -1,7 +1,7 @@
 <nb-card>
   <ng-template [ngIf]="this.currentState === 'yesCart' && this.noClasses === false && this.message ===''">
     <nb-card-header>
-      <div><span>Cart</span></div>
+      <div><span><h4>Cart</h4></span></div>
 
       <br>
 
@@ -19,7 +19,7 @@
 
 <ng-template [ngIf]="this.currentState === 'yesCart' && this.noClasses === false && this.message !== ''">
   <nb-card-header>
-    <div><span>Cart</span></div>
+    <div><span><h4>Cart</h4></span></div>
 
     <br>
 
@@ -40,7 +40,7 @@
 </ng-template>
 <ng-template [ngIf]="this.currentState === 'yesCart' && this.noClasses === true">
   <nb-card-header>
-    <div><span>Cart</span></div>
+    <div><span><h4>Cart</h4></span></div>
 
     <br>
 
@@ -58,7 +58,7 @@
 
 <ng-template [ngIf]="this.currentState === 'updatedCart'">
   <nb-card-header>
-    <div><span>Cart</span></div>
+    <div><span><h4>Cart</h4></span></div>
 
     <br>
 
@@ -75,7 +75,7 @@
 
   <ng-template [ngIf]="this.currentState === 'noCart'">
     <nb-card-header>
-      <div><span>Cart</span></div>
+      <div><span><h4>Cart</h4></span></div>
 
       <br>
 
@@ -94,7 +94,7 @@
 
   <ng-template [ngIf]="this.currentState === 'sentCart'">
     <nb-card-header>
-      <div><span>Cart</span></div>
+      <div><span><h4>Cart</h4></span></div>
 
       <br>
 
