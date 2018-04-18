@@ -249,8 +249,8 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
             detail: 'An error has occured updating those classes to your cart'});
 
         } finally {
-          this.messageService.add({severity: 'success', summary: 'Update Cart', detail: 'Classes were successfully updated in your cart'});
-          // TODO: Found out why it isn't updating the cart quick enough to pull the classes
+          this.messageService.add({severity: 'success', summary: 'Update Cart',
+            detail: 'Your request was canceled to your advisor and your cart was updated'});
         }
       } else {
         // No classes were selected
