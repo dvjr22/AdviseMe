@@ -11,7 +11,13 @@
         <b>Timestamp: </b>{{block.timestamp}}
       </div>
       <div>
-        <b>Data: </b>{{block.data}}
+        <b>Data: </b>
+        <br>
+        <b>Student ID: </b>{{block.data.studentID}}
+        <br>
+        <ul *ngFor="let class of block.data.classes">
+          <li>{{class._id}}</li>
+        </ul>
       </div>
       <div>
         <b>Hash: </b>{{block.hash}}
