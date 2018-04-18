@@ -121,6 +121,7 @@ export class StudentRequestComponent implements OnInit {
       this.cart.status = 'approved';
       this.cart.approvedDate = this.advisementService.getCurrentSemester();
       this.cartService.update(this.cart).subscribe();
+      console.log(this.cart);
       this.blockService.newBlock(this.cart);
       this.studentUser.registered = this.advisementService.getCurrentSemester();
       this.userService.update(this.studentUser).subscribe();
