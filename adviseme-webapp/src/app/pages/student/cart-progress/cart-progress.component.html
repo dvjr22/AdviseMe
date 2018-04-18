@@ -11,12 +11,17 @@
       <nb-card-body *ngIf="currentCart; else noCart">
       <b> Status:</b>  {{ currentCart?.status | ngxCapitalize }}
       <br>
+      <br>
+      <b>Date Sent: </b> {{currentCart?.requestDate}}
+      <br>
+      <br>
       <b>Advisor:</b> {{advisorName}}
+      <br>
       <br>
       <b>Advisor Email:</b> {{advisorEmail}}
       <br>
       <br>
-
+      <hr>
       <ng2-smart-table [settings]="settings"  [source]="source" *ngIf="this.currentCart?.classes.length !== 0"></ng2-smart-table>
       <span *ngIf="this.currentCart?.classes.length === 0"> Please add classes to your cart to submit to your advisor </span>
 

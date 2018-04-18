@@ -23,6 +23,7 @@ var CartSchema = new mongoose.Schema({
       year: String
     },
     pastMessage: { type: String },
+    requestDate: { type: String },
   })
 
 const Cart = mongoose.model('Cart', CartSchema)

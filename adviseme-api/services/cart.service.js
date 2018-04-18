@@ -55,6 +55,7 @@ exports.updateCart = async function(aCart){
        message: aCart.message,
        approvedDate: aCart.approvedDate,
        pastMessage: aCart.pastMessage,
+       requestDate: aCart.requestDate,
      })
       var savedCart = await oldCart.save();
       return savedCart;
@@ -67,6 +68,7 @@ exports.updateCart = async function(aCart){
      oldCart.message = aCart.message
      oldCart.approvedDate = aCart.approvedDate
      oldCart.pastMessage = aCart.pastMessage
+     oldCart.requestDate = aCart.requestDate
    try {
      var savedCart = await oldCart.save()
      return savedCart

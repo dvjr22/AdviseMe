@@ -75,6 +75,7 @@ export class CartComponent implements OnInit {
       this.advisorID = res['advisor'];
       this.currentCart.advisor = this.advisorID;
       this.currentCart.status = 'pending';
+      this.currentCart.requestDate = new Date().toString();
       this.currentCart.message = undefined;
       try {
         // Reload the data in the table, should be blank if the cart is sent

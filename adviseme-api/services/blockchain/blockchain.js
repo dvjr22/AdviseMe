@@ -1,4 +1,3 @@
-
 const CryptoJS = require('crypto-js')
 const Blockchain = require('../../models/blockchain.model')
 const difficulty = 4;
