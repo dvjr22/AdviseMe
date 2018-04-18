@@ -26,7 +26,7 @@ const routes: Routes = [{
     component: CartResetComponent,
   },
   {
-    path: 'blockchain',
+    path: 'approved-carts',
     component: BlockchainRequestsComponent,
   }],
 }];
@@ -42,5 +42,5 @@ export const routedComponents = [
   AdministratorComponent,
   PermissionComponent,
   CartResetComponent,
-  BlockchainRequestsComponent
+  BlockchainRequestsComponent,
 ];

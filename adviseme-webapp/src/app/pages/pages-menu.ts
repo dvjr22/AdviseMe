@@ -166,7 +166,7 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Cart Verification',
-        link: '/pages/administrator/blockchain',
+        link: '/pages/administrator/approved-carts',
       },
     ],
   },
