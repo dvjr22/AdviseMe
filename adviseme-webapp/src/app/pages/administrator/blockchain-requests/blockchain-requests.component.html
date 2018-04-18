@@ -11,11 +11,11 @@
         <b>Timestamp: </b>{{block.timestamp}}
       </div>
       <div>
-        <b>Data: </b>
+        <b>Request Data: </b>
         <br>
-        <b>Student ID: </b>{{block.data.studentID}}
+        <span style="margin-left: 40px"><b>Student ID: </b>{{block.data.studentID}}</span>
         <br>
-        <ul *ngFor="let class of block.data.classes">
+        <ul *ngFor="let class of block.data.classes" style="margin-left: 40px">
           <li>{{class._id}}</li>
         </ul>
       </div>
