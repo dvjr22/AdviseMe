@@ -5,6 +5,7 @@ import { AdministratorComponent } from './administrator.component';
 import { EditcoursesComponent } from './editcourses/editcourses.component';
 import { PermissionComponent } from './permission/permission.component';
 import { CartResetComponent } from './cart-reset/cart-reset.component';
+import { BlockchainRequestsComponent } from './blockchain-requests/blockchain-requests.component';
 
 const routes: Routes = [{
   path: '',
@@ -23,6 +24,10 @@ const routes: Routes = [{
   {
     path: 'cartreset',
     component: CartResetComponent,
+  },
+  {
+    path: 'blockchain',
+    component: BlockchainRequestsComponent,
   }],
 }];
 
@@ -37,4 +42,5 @@ export const routedComponents = [
   AdministratorComponent,
   PermissionComponent,
   CartResetComponent,
+  BlockchainRequestsComponent
 ];
