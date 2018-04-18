@@ -11,6 +11,10 @@
       <nb-card-body *ngIf="currentCart; else noCart">
       <b> Status:</b>  {{ currentCart?.status | ngxCapitalize }}
       <br>
+      <b>Advisor:</b> {{advisorName}}
+      <br>
+      <b>Advisor Email:</b> {{advisorEmail}}
+      <br>
       <br>
 
       <ng2-smart-table [settings]="settings"  [source]="source" *ngIf="this.currentCart?.classes.length !== 0"></ng2-smart-table>
@@ -29,6 +33,10 @@
     </nb-card-header>
       <nb-card-body *ngIf="currentCart; else noCart">
       <b> Status:</b>  {{ currentCart?.status | ngxCapitalize }}
+      <br>
+      <b>Advisor:</b> {{advisorName}}
+      <br>
+      <b>Advisor Email:</b> {{advisorEmail}}
       <br>
       <br>
 
@@ -49,7 +57,11 @@
       <div class="description">
         {{ description }}
       </div>
-      <b> Status:</b>  {{ currentCart?.status | ngxCapitalize }}
+      <b>Status:</b>  {{ currentCart?.status | ngxCapitalize }}
+      <br>
+      <b>Advisor:</b> {{advisorName}}
+      <br>
+      <b>Advisor Email:</b> {{advisorEmail}}
       <br>
       <br>
       <div class="alert alert-danger" role="alert">
