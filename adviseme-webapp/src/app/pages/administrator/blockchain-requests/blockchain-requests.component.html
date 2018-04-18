@@ -1,7 +1,13 @@
 <div *ngFor="let block of blockchain">
   <nb-card >
     <nb-card-header>
-      <h4>{{block._id}}</h4>
+      <div *ngIf="block._id === 0;else notGenesis">
+        <h4>Genesis Block</h4>
+      </div>
+
+      <ng-template #notGenesis>
+        <h4>Block #{{block._id}}</h4>
+      </ng-template>
     </nb-card-header>
     <nb-card-body>
       <div>
@@ -30,6 +36,8 @@
   <ng-template [ngIf]="(blockchain.length - 1) > block._id">
   <div style="text-align: center;">
     <i class="ion ion-chevron-down large"></i>
+    <br>
+    <br>
   </div>
 </ng-template>
 </div>
