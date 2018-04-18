@@ -60,7 +60,7 @@ export class DashboardComponent  implements OnInit {
   // Index of which of the items above is shown
   index = 0;
   // Flag for if the tutorial will show up or not
-  tutorialEnabled = true;
+  tutorialEnabled = false;
 
   /**
     Initializes new names for the imports
@@ -73,9 +73,10 @@ export class DashboardComponent  implements OnInit {
         .subscribe(res => {
           this.currentUser = res;
           this.role = this.currentUser.role;
-
           if (this.currentUser.tutorialEnabled !== undefined) {
             this.tutorialEnabled = this.currentUser.tutorialEnabled;
+          } else {
+            this.tutorialEnabled = true;
           }
         },
         );
