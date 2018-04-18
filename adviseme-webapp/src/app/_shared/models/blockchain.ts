@@ -9,7 +9,7 @@ export class Blockchain {
   _id: string;
   previousHash: string;
   timestamp: string;
-  data: Cart;
+  data: any;
   hash: string;
   nonce: number;
 }

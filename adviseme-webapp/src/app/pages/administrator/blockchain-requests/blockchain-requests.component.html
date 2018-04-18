@@ -1,1 +1,29 @@
-jkl;
+<div *ngFor="let block of blockchain">
+  <nb-card >
+    <nb-card-header>
+      <h4>{{block._id}}</h4>
+    </nb-card-header>
+    <nb-card-body>
+      <div>
+        <b>Previous Hash: </b>{{block.previousHash}}
+      </div>
+      <div>
+        <b>Timestamp: </b>{{block.timestamp}}
+      </div>
+      <div>
+        <b>Data: </b>{{block.data}}
+      </div>
+      <div>
+        <b>Hash: </b>{{block.hash}}
+        <div>
+          <b>Nonce: </b>{{block.nonce}}
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <ng-template [ngIf]="(blockchain.length - 1) > block._id">
+  <div style="text-align: center;">
+    <i class="ion ion-chevron-down large"></i>
+  </div>
+</ng-template>
+</div>
