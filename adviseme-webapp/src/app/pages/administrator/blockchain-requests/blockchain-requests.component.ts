@@ -17,6 +17,7 @@ export class BlockchainRequestsComponent implements OnInit {
     this.blockchainService.getChain().subscribe((res) => {
       res.data.forEach(function(block) {
         this.blockchain.push(block);
+        console.log(block);
       }, this);
     });
   }
