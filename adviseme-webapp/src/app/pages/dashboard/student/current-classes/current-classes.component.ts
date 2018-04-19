@@ -51,15 +51,13 @@ export class CurrentClassesComponent implements OnInit {
   }
   ngOnInit() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    const currentClassesObservable = this.cacheService.get(currentUser._id + 'currentClasses', this.classService.getCurrentClasses());
-    currentClassesObservable
-    .subscribe((res: User['course']) => {
+    this.cacheService.get('currentClasses', this.classService.getCurrentClasses()).subscribe((res: User['course']) => {
       if ( res.length === 0) {
         this.noCurrentClasses = true;
       } else {
         this.noCurrentClasses = false;
         for (const c of res) {
-          this.classService.getClass(c['classID']).subscribe((classRes) => {
+          this.cacheService.get(c['classID'], this.classService.getClass(c['classID'])).subscribe((classRes) => {
             c['title'] = classRes['class'].title;
             this.source.load(res);
           });
