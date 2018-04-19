@@ -42,13 +42,18 @@
     color: #aaa;
 }
 
+.panel-body
+{
+    overflow-y: scroll;
+    @media screen and (max-width: 500px) {
+      height: 30%;
+    }
+    height: 95%;
 /* Style time text */
 .time-left {
     float: left;
     color: #999;
 }
-
-/* DIVIDER OLD BELOW THAT IS STILL USED */
 
 .chat
 {
@@ -92,10 +97,13 @@
 .panel-body
 {
     overflow-y: scroll;
-    height: 600px;
+    height: 95%;
     width: 100%;
     margin-bottom:4px;
     padding-top: 4px;
+    @media screen and (max-width: 500px) {
+      height: 30%;
+    }
 }
 .img-circle
 {

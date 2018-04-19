@@ -27,8 +27,8 @@
 
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-email" aria-hidden="true"></i></span>
-            <span class="form-control">{{emailBegin | ngxCapitalize}}</span>
-            <span class="input-group-btn">
+            <span class="form-control">{{emailBegin | ngxCapitalize}} <span *ngIf="isMobile">{{emailEnding}}</span></span>
+            <span class="input-group-btn" *ngIf="!isMobile">
               <span class="btn btn-success disabled">
                 {{emailEnding}}
               </span>
@@ -77,24 +77,35 @@
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-ios-telephone" aria-hidden="true"></i></span>
             <input [disabled]="!smsChecked" class="form-control" placeholder="{{currentUser.phoneNumber}}" (keyup)="onKey($event)">
-            <span class="input-group-btn">
+            <span class="input-group-btn" *ngIf="!isMobile">
               <button [disabled]="!smsChecked" class="btn btn-success" (click)="updatePhoneNumber($event)">
                 Update Phone Number
               </button>
             </span>
           </div>
-
-          <br>
+          <span *ngIf="isMobile">
+            <button [disabled]="!smsChecked" class="btn btn-success" (click)="updatePhoneNumber($event)">
+              Update Phone Number
+            </button>
+          </span>
+          <br/>
+          <br/>
 
           <div class="input-group">
             <span class="input-group-addon"><i class="ion-camera" aria-hidden="true"></i></span>
             <input class="form-control" type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-            <span class="input-group-btn">
+            <span class="input-group-btn" *ngIf="!isMobile">
               <span class="btn btn-success" (click)="uploader.uploadAll()">
                 Upload New Profile Picture
               </span>
             </span>
           </div>
+
+          <span *ngIf="isMobile">
+            <span class="btn btn-success" (click)="uploader.uploadAll()">
+              Upload New Profile Picture
+            </span>
+          </span>
       </form>
       </nb-card-body>
     </nb-card>

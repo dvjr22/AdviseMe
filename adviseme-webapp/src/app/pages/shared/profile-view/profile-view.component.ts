@@ -46,7 +46,14 @@ export class ProfileViewComponent implements OnInit {
   */
   smsChecked = false;
 
+
+  /**
+    Flag for if the screen is a phone
+  */
+  isMobile = false;
+
   advisorName: string;
+
 
   public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo' });
 
@@ -84,6 +91,10 @@ export class ProfileViewComponent implements OnInit {
         summary: 'Succesful Upload',
         detail: 'Successfully uploaded a new profile picture'});
     };
+
+    if (window.screen.width <= 360) {
+      this.isMobile = true;
+    }
   }
 
   /**
