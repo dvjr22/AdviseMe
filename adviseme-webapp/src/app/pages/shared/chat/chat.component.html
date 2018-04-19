@@ -14,12 +14,12 @@
                   <ul class="chat">
                       <li *ngFor="let c of chats">
                         <div class="left clearfix" *ngIf="c.nickname===msgData.nickname; else rightchat">
-                          <span class="chat-img pull-left" *ngIf="currentUser.profilePicture!==undefined; else defaultProfile">
-                            <img class="img-circle" [src]="'/uploads/' + currentUser?.profilePicture" alt="User Avatar"  />
+                          <span class="chat-img pull-left" *ngIf="currentUser.profilePicture!==undefined && currentUser.profilePicture !== null; else defaultProfile">
+                            <img class="img-circle" [src]="'/uploads/' + currentUser.profilePicture" alt="User Avatar"  />
                           </span>
                           <ng-template #defaultProfile>
                             <span class="chat-img pull-left">
-                              <img class="img-circle" src="http://placehold.it/50/8899FF?text=%20" alt="User Avatar"  />
+                              <img class="img-circle" src="http://placehold.it/50/8899FF?text=%20" alt="Default Avatar"  />
                             </span>
                           </ng-template>
                           <div class="chat-body clearfix">
@@ -32,12 +32,12 @@
                         </div>
                         <ng-template #rightchat>
                           <div class="left clearfix">
-                            <span class="chat-img pull-left" *ngIf="otherPicture!==undefined; else otherProfile">
+                            <span class="chat-img pull-left" *ngIf="otherPicture!==undefined && otherPicture !== null; else otherProfile">
                               <img class="img-circle" [src]="'/uploads/' + otherPicture" alt="User Avatar"  />
                             </span>
                             <ng-template #otherProfile>
                               <span class="chat-img pull-left">
-                                <img class="img-circle" src="http://placehold.it/50/CCCCCC?text=%20" alt="User Avatar"  />
+                                <img class="img-circle" src="http://placehold.it/50/CCCCCC?text=%20" alt="Default Avatar"  />
                               </span>
                             </ng-template>
                             <div class="chat-body clearfix">

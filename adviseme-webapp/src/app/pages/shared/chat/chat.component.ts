@@ -75,9 +75,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   **/
   formatCurrentUser(data: any) {
     this.currentUser = data;
-    if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
-      this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
-    }
   }
 
   /**
