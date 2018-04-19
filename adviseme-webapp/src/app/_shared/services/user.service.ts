@@ -30,10 +30,6 @@ export class UserService {
       this.requestOptions = null;
     }
   }
-    bigOlTest(): Observable<any> {
-      this.checkUser();
-      return  this.http.get('/api/users/' + this.currentUser._id, this.requestOptions).map((response: Response) => response.json());
-    }
     /**
       Calls api users service to get all users
 
