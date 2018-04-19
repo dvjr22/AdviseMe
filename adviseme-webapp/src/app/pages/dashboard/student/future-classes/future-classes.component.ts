@@ -84,80 +84,48 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
           @returns {none}
       */
       ngOnInit() {
-        // const current = this.cacheService.get('id1234', this.userService.bigOlTest());
-        // current.subscribe(res => {console.log(res)});
-        this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-        let user: User;
-        // Get the current user model then get the cart by the associated studentID
-
-        const currentUserObservable = this.cacheService.get(this.currentUser._id + 'user', this.userService.getCurrentUser());
-        console.log(currentUserObservable);
+        const currentUserObservable = this.cacheService.get('user', this.userService.getCurrentUser());
         if (currentUserObservable['value'] === undefined) {
           // There is no cached data so query the API
           currentUserObservable.subscribe((res: User) => {
-            user = res;
-            const cartObservable = this.cacheService.get(user._id + 'cart', this.cartService.getById(user._id));
-            const cir = res.course;
-            this.recomendation = 0;
-            const data = [];
-            for (const c of cir) {
-              if (c.grade === 'tbc' && this.recomendation < 5) {
-                this.classes.push(c);
-                this.classService.getClass(c.classID).subscribe((classRes) => {
-                  data.push(classRes);
-                  this.source.load(flattenFiveObjects(data));
-                });
-                this.recomendation ++;
-              }
-            }
-            cartObservable.subscribe((res2: any) => {
-              if (res2.data !== null) {
-                this.cart = res2.data;
-              } else {
-                // Create the cart
-                const newCart: Cart = new Cart();
-                newCart._id = user._id;
-                newCart.studentID = user.studentID;
-                newCart.status = 'created';
-                this.cartService.create(newCart);
-                this.cart = newCart;
-              }
-            //  this.selectedClasses = this.cart.classes;
-            });
+            this.parseTableData(res);
           });
         } else {
-          // There is a cache of the data
-          user = currentUserObservable['value'];
-          const cartObservable = this.cacheService.get(user._id + 'cart', this.cartService.getById(user._id));
-          const cir = user.course;
-          this.recomendation = 0;
-          const data = [];
-          for (const c of cir) {
-            if (c.grade === 'tbc' && this.recomendation < 5) {
-              this.classes.push(c);
-              this.classService.getClass(c.classID).subscribe((classRes) => {
-                data.push(classRes);
-                this.source.load(flattenFiveObjects(data));
-              });
-              this.recomendation ++;
-            }
-          }
-          cartObservable.subscribe((res2: any) => {
-            if (res2.data !== null) {
-              this.cart = res2.data;
-            } else {
-              // Create the cart
-              const newCart: Cart = new Cart();
-              newCart._id = user._id;
-              newCart.studentID = user.studentID;
-              newCart.status = 'created';
-              this.cartService.create(newCart);
-              this.cart = newCart;
-            }
-          //  this.selectedClasses = this.cart.classes;
-          });
+          // Use the cached data
+          this.parseTableData(currentUserObservable['value']);
         }
 
+      }
+
+      parseTableData(data) {
+        const cartObservable = this.cacheService.get('cart', this.cartService.getById(data._id));
+        const cir = data.course;
+        this.recomendation = 0;
+        const classData = [];
+        for (const c of cir) {
+          if (c.grade === 'tbc' && this.recomendation < 5) {
+            this.classes.push(c);
+            this.classService.getClass(c.classID).subscribe((classRes) => {
+              classData.push(classRes);
+              this.source.load(flattenFiveObjects(classData));
+            });
+            this.recomendation ++;
+          }
+        }
+        cartObservable.subscribe((res2: any) => {
+          if (res2.data !== null) {
+            this.cart = res2.data;
+          } else {
+            // Create the cart
+            const newCart: Cart = new Cart();
+            newCart._id = data._id;
+            newCart.studentID = data.studentID;
+            newCart.status = 'created';
+            this.cartService.create(newCart);
+            this.cart = newCart;
+          }
+        //  this.selectedClasses = this.cart.classes;
+        });
       }
 
       /**
