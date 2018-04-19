@@ -5,24 +5,6 @@ import { UserService } from '../../../_shared/services/user.service';
 import { LocalDataSource, ViewCell } from 'ng2-smart-table';
 import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
-@Component({
-  template: `
-    {{renderValue | date:'fullDate'}}
-  `,
-})
-export class DateFieldComponent implements ViewCell, OnInit {
-
-  renderValue: string;
-
-  @Input() value: string | number;
-  @Input() rowData: any;
-
-  ngOnInit() {
-    this.renderValue = this.value.toString();
-  }
-
-}
-
 /**
   Component to see Advisors appointments
 **/
@@ -66,8 +48,6 @@ export class AdvisorAppointmentsComponent implements OnInit {
       },
       date: {
         title: 'Date',
-        type: 'custom',
-        renderComponent: DateFieldComponent,
       },
       timefull: {
         title: 'Time',
@@ -95,6 +75,21 @@ export class AdvisorAppointmentsComponent implements OnInit {
         if ( res2.data.length === 0) {
           this.noAppointment = true;
         } else {
+          let counter = 0;
+          res2.data.forEach(function(data) {
+            const monthNames = [
+              'January', 'February', 'March',
+              'April', 'May', 'June', 'July',
+              'August', 'September', 'October',
+              'November', 'December',
+            ];
+            const date = new Date(data.date);
+            const day = date.getDate();
+            const monthIndex = date.getMonth();
+            const year = date.getFullYear();
+            res2.data[counter].date = monthNames[monthIndex] + ' ' + day  + ', ' + year;
+            counter ++;
+          }, res2);
           this.source.load(res2.data);
         }
         this.source.load(flattenObject(res2.data));
