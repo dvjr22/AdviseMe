@@ -25,6 +25,7 @@ exports.createBlock = async function(aCart) {
     studentID: aCart.studentID,
     classes: aCart.classes,
     status: aCart.status,
+    advisor: aCart.advisor,
   });
 
   var prevBlock = await Blockchain.find({}, {_id:1, hash:1})

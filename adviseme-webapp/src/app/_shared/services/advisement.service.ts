@@ -58,12 +58,8 @@ export class AdvisementService {
 
       this._semesterSub = this.userService.getCurrentUser().subscribe(val => {
         if ( val.registered !== undefined && val.registered !== null) {
-          if (val.registered.semester === null || val.registered.year === null) {
-            if (val.registered.semester === thisSemester.semester && val.registered.year === thisSemester.year) {
-              observer.next(false);
-            } else {
-              observer.next(true);
-            }
+          if (val.registered.semester === thisSemester.semester && val.registered.year === thisSemester.year) {
+            observer.next(false);
           } else {
             observer.next(true);
           }

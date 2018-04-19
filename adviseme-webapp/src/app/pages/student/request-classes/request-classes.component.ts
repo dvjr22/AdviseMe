@@ -62,8 +62,6 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       },
     };
 
-
-
     /**
       The data that will go into the table
     */
@@ -115,6 +113,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
             this.cart = newCart;
           }
         });
+
       });
       this.classService.getClasses()
         .subscribe((res2: Class[]) => {

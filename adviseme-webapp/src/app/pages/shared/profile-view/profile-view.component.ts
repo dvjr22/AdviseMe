@@ -46,6 +46,8 @@ export class ProfileViewComponent implements OnInit {
   */
   smsChecked = false;
 
+  advisorName: string;
+
   public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo' });
 
   /**
@@ -66,6 +68,9 @@ export class ProfileViewComponent implements OnInit {
           this.emailArray = this.currentUser.email.split('@');
           this.emailBegin = this.emailArray[0];
           this.emailEnding = '@' + this.emailArray[1];
+          this.userService.getById(this.currentUser.advisor).subscribe((user) => {
+            this.advisorName = user.firstName + ' ' + user.lastName;
+          });
         });
 
     // File Upload stuff
