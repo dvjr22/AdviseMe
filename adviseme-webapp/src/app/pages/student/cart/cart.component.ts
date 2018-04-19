@@ -152,7 +152,8 @@ export class CartComponent implements OnInit {
     if (window.confirm('Are you sure you want to delete?')) {
       const deletedItem = this.currentCart.classes.find(x => x._id === event.data.class__prefix + event.data.class__courseNo);
       const index = this.currentCart.classes.findIndex(d => d._id === event.data.class__prefix + event.data.class__courseNo);
-      if (index <= 0) {
+      if (index >= 0) {
+
         this.currentCart.classes.splice(0, 1); // remove element from array
         this.cartService.update(this.currentCart).subscribe(() => {});
         event.confirm.resolve();
