@@ -148,7 +148,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
             for (let i = 0; i < this.classes.length; i++) {
               // For each of the selected classes get the course information and set it to the cart.
               // Then update the cart model. This overwrites insead of updates it currently.
-              this.classService.getClass(this.classes[i].classID).subscribe((res: any) => {
+              this.cacheService.get(this.classes[i].classID, this.classService.getClass(this.classes[i].classID)).subscribe((res: any) => {
                   if (this.cart.classes === undefined) {
                     this.cart.classes = [res];
                   } else {

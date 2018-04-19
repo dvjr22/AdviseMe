@@ -54,20 +54,18 @@ export class PreviousClassesComponent implements OnInit {
   Gets the currents users classes they have took
   */
   ngOnInit() {
-    const gradedClassesObservable = this.cacheService.get('gradedClasses', this.classService.getGradedClasses());
-    gradedClassesObservable
-    .subscribe((res: User['course']) => {
-      if ( res.length === 0) {
-        this.noPreviousClasses = true;
-      } else {
-        this.noPreviousClasses = false;
-        for(const c of res) {
-          this.classService.getClass(c['classID']).subscribe((classRes) => {
-            c['title'] = classRes['class'].title
-          });
+  this.cacheService.get('gradedClasses', this.classService.getGradedClasses()).subscribe((res: User['course']) => {
+        if ( res.length === 0) {
+          this.noPreviousClasses = true;
+        } else {
+          this.noPreviousClasses = false;
+          for (const c of res) {
+            this.cacheService.get(c['classID'], this.classService.getClass(c['classID'])).subscribe((classRes) => {
+              c['title'] = classRes['class'].title;
+            });
+          }
+          this.source.load(res);
         }
-        this.source.load(res);
-      }
-    });
+      });
   }
 }
