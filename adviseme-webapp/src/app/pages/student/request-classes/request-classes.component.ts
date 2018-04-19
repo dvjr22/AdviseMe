@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
+import { CacheService, CacheKeys } from '../../../_shared/services/cache.service';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 import { Cart } from '../../../_shared/models/cart';
@@ -75,7 +76,8 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       private userService: UserService,
       private messageService: MessageService,
       private cdr: ChangeDetectorRef,
-      private router: Router) {
+      private router: Router,
+      private cacheService: CacheService) {
     }
 
     /**
@@ -87,10 +89,11 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       let user: User;
       // Get the current user model then get the cart by the associated studentID
-      this.userService.getCurrentUser().subscribe((res: User) => {
+      this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser()).subscribe((res: User) => {
         user = res;
 
-        this.cartService.getById(user._id).subscribe((res2: any) => {
+        this.cacheService.get(CacheKeys.cart, this.cartService.getById(user._id))
+        .subscribe((res2: any) => {
           if (res2.data !== null) {
             this.cart = res2.data;
             const flatClasses = flattenObject(res2.data.classes);
@@ -115,7 +118,7 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
         });
 
       });
-      this.classService.getClasses()
+      this.cacheService.get(CacheKeys.allClasses, this.classService.getClasses())
         .subscribe((res2: Class[]) => {
           this.source.load(flattenObject(res2));
       });
@@ -174,7 +177,8 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
           for (let i = 0; i < this.selectedClasses.length; i++) {
             // For each of the selected classes get the course information and set it to the cart.
             // Then update the cart model. This overwrites insead of updates it currently.
-            this.classService.getClass(this.selectedClasses[i]._id).subscribe((res: any) => {
+            this.cacheService.get(this.selectedClasses[i]._id, this.classService.getClass(this.selectedClasses[i]._id))
+            .subscribe((res: any) => {
                 if (this.cart.classes === undefined) {
                   this.cart.classes = [res];
                 } else {
@@ -222,7 +226,8 @@ export class RequestClassesComponent implements OnInit, AfterContentChecked {
           for (let i = 0; i < this.selectedClasses.length; i++) {
             // For each of the selected classes get the course information and set it to the cart.
             // Then update the cart model. This overwrites insead of updates it currently.
-            this.classService.getClass(this.selectedClasses[i]._id).subscribe((res: any) => {
+            this.cacheService.get(this.selectedClasses[i]._id, this.classService.getClass(this.selectedClasses[i]._id))
+            .subscribe((res: any) => {
                 if (this.cart.classes === undefined) {
                   this.cart.classes = [res];
                 } else {

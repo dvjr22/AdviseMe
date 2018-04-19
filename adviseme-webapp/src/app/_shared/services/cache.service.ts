@@ -11,6 +11,7 @@ export enum CacheKeys {
   currentClasses = 'currentClasses',
   gradedClasses = 'gradedClasses',
   cart = 'cart',
+  allClasses = 'allClasses',
 }
 
 /**
