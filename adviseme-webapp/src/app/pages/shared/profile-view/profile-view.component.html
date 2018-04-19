@@ -68,7 +68,7 @@
               </span>
             </span>
           </div>
-          
+
           <br>
           <div class="form-group" style="margin-left:25px">
              <input type="checkbox" class="form-check-input" id="exampleCheck1" [checked]="smsChecked" (change)="smsChecked = $event.target.checked">
@@ -106,6 +106,10 @@
               Upload New Profile Picture
             </span>
           </span>
+          <br/>
+          <div class="input-group">
+            <button class="btn btn-success" (click)="redoTutorial($event)">View Tutorial Again</button>
+          </div>
       </form>
       </nb-card-body>
     </nb-card>
@@ -173,6 +177,7 @@
                 </span>
               </span>
             </div>
+            <br/>
         </form>
         </nb-card-body>
       </nb-card>
