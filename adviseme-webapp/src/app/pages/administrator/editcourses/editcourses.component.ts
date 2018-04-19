@@ -4,7 +4,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
-
+import { CacheService, CacheKeys } from '../../../_shared/services/cache.service';
 import {flattenObject } from '../../../_shared/scripts/flattenObject';
 
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -88,7 +88,8 @@ export class EditcoursesComponent implements OnInit {
     */
     constructor(private classService: ClassService,
       private selectedClass: Class,
-      private messageService: MessageService) {
+      private messageService: MessageService,
+      private cacheService: CacheService) {
       this.prerequisites = [];
       this.curriculum_one = [];
       this.curriculum_two = [];
@@ -100,7 +101,7 @@ export class EditcoursesComponent implements OnInit {
     */
     ngOnInit() {
 
-      this.classService.getClasses()
+      this.cacheService.get(CacheKeys.allClasses, this.classService.getClasses())
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
         });
