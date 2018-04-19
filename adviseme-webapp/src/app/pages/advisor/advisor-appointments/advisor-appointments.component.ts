@@ -83,11 +83,13 @@ export class AdvisorAppointmentsComponent implements OnInit {
               'August', 'September', 'October',
               'November', 'December',
             ];
+            const daysInWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             const date = new Date(data.date);
+            const weekday = date.getDay();
             const day = date.getDate();
             const monthIndex = date.getMonth();
             const year = date.getFullYear();
-            res2.data[counter].date = monthNames[monthIndex] + ' ' + day  + ', ' + year;
+            res2.data[counter].date = daysInWeek[weekday] + ' ' + monthNames[monthIndex] + ' ' + day  + ', ' + year;
             counter ++;
           }, res2);
           this.source.load(res2.data);
