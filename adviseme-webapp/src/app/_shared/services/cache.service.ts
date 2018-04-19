@@ -16,6 +16,17 @@ export class CacheService {
   private inFlightObservables: Map<string, Subject<any>> = new Map<string, Subject<any>>();
   readonly DEFAULT_MAX_AGE: number = 300000;
 
+  wait (key: string, fallback?: Observable<any>) {
+    const observer = this.get(key, fallback);
+    if (observer['value'] === undefined) {
+      observer.subscribe((res) => {
+        return res;
+      });
+    } else {
+      return observer['value'];
+    }
+  }
+
   get(key: string, fallback?: Observable<any>, maxAge?: number): Observable<any> | Subject<any> {
     if(this.hasValidCachedValue(key)) {
       console.log(`%cGetting from cache ${key}`, 'color: green');

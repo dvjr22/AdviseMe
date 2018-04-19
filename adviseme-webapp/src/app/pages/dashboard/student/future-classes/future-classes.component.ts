@@ -84,35 +84,28 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
           @returns {none}
       */
       ngOnInit() {
-        const currentUserObservable = this.cacheService.get('user', this.userService.getCurrentUser());
-        if (currentUserObservable['value'] === undefined) {
-          // There is no cached data so query the API
-          currentUserObservable.subscribe((res: User) => {
-            this.parseTableData(res);
-          });
-        } else {
-          // Use the cached data
-          this.parseTableData(currentUserObservable['value']);
-        }
-
+        this.cacheService.get('user', this.userService.getCurrentUser()).subscribe((res) => {
+          this.parseTableData(res);
+        });
       }
 
       parseTableData(data) {
-        const cartObservable = this.cacheService.get('cart', this.cartService.getById(data._id));
+
+
         const cir = data.course;
         this.recomendation = 0;
         const classData = [];
         for (const c of cir) {
           if (c.grade === 'tbc' && this.recomendation < 5) {
             this.classes.push(c);
-            this.classService.getClass(c.classID).subscribe((classRes) => {
+            this.cacheService.get(c.classID, this.classService.getClass(c.classID)).subscribe((classRes) => {
               classData.push(classRes);
               this.source.load(flattenFiveObjects(classData));
             });
             this.recomendation ++;
           }
         }
-        cartObservable.subscribe((res2: any) => {
+        this.cacheService.get('cart', this.cartService.getById(data._id)).subscribe((res2: any) => {
           if (res2.data !== null) {
             this.cart = res2.data;
           } else {
