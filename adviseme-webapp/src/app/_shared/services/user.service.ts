@@ -5,6 +5,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
 
 import { User } from '../models/user';
 
@@ -29,7 +30,10 @@ export class UserService {
       this.requestOptions = null;
     }
   }
-
+    bigOlTest(): Observable<any> {
+      this.checkUser();
+      return  this.http.get('/api/users/' + this.currentUser._id, this.requestOptions).map((response: Response) => response.json());
+    }
     /**
       Calls api users service to get all users
 
@@ -57,9 +61,10 @@ export class UserService {
       @param {string} id
       @return {json}
     */
-    getCurrentUser() {
+    getCurrentUser(): Observable<any> {
       this.checkUser();
-      return  this.http.get('/api/users/' + this.currentUser._id, this.requestOptions).map((response: Response) => response.json());
+      return  this.http.get('/api/users/' + this.currentUser._id, this.requestOptions)
+          .map((response: Response) => response.json());
     }
 
     /**

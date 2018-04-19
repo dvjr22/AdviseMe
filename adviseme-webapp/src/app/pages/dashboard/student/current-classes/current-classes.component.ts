@@ -4,6 +4,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 import { User } from '../../../../_shared/models/user';
 import { ClassService } from '../../../../_shared/services/class.service';
+import { CacheService } from '../../../../_shared/services/cache.service';
 import {CapitalizePipe} from '../../../../@theme/pipes/capitalize.pipe';
 
 /**
@@ -45,16 +46,19 @@ export class CurrentClassesComponent implements OnInit {
   /**
   Initializes new names for the imports
   */
-  constructor(private classService: ClassService) {
+  constructor(private classService: ClassService,
+              private cacheService: CacheService) {
   }
   ngOnInit() {
-    this.classService.getCurrentClasses()
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    const currentClassesObservable = this.cacheService.get(currentUser._id + 'currentClasses', this.classService.getCurrentClasses());
+    currentClassesObservable
     .subscribe((res: User['course']) => {
       if ( res.length === 0) {
         this.noCurrentClasses = true;
       } else {
         this.noCurrentClasses = false;
-        for(const c of res) {
+        for (const c of res) {
           this.classService.getClass(c['classID']).subscribe((classRes) => {
             c['title'] = classRes['class'].title;
             this.source.load(res);

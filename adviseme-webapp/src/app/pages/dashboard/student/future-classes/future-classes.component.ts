@@ -7,6 +7,7 @@ import { User } from '../../../../_shared/models/user';
 import { UserService } from '../../../../_shared/services/user.service';
 import { Cart } from '../../../../_shared/models/cart';
 import { CartService } from '../../../../_shared/services/cart.service';
+import { CacheService } from '../../../../_shared/services/cache.service';
 import { ClassViewRenderComponent } from '../../../../_shared/services/class-view.render.component';
 import { flattenFiveObjects } from '../../../../_shared/scripts/flattenObject';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -72,6 +73,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
       constructor(private classService: ClassService,
         private cartService: CartService,
         private userService: UserService,
+        private cacheService: CacheService,
         private messageService: MessageService,
         private cdr: ChangeDetectorRef,
         private router: Router) {
@@ -82,12 +84,18 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
           @returns {none}
       */
       ngOnInit() {
+        // const current = this.cacheService.get('id1234', this.userService.bigOlTest());
+        // current.subscribe(res => {console.log(res)});
         this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
         let user: User;
         // Get the current user model then get the cart by the associated studentID
-        this.userService.getCurrentUser().subscribe((res: User) => {
-          user = res;
 
+        const currentUserObservable = this.cacheService.get(this.currentUser._id + 'user', this.userService.getCurrentUser());
+
+
+        currentUserObservable.subscribe((res: User) => {
+          user = res;
+          const cartObservable = this.cacheService.get(user._id + 'cart', this.cartService.getById(user._id));
           const cir = res.course;
           this.recomendation = 0;
           const data = [];
@@ -101,7 +109,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
               this.recomendation ++;
             }
           }
-          this.cartService.getById(user._id).subscribe((res2: any) => {
+          cartObservable.subscribe((res2: any) => {
             if (res2.data !== null) {
               this.cart = res2.data;
             } else {
