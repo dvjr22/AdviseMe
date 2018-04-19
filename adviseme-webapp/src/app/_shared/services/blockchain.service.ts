@@ -26,7 +26,7 @@ export class BlockchainService {
     Gets the chat by the room id
   **/
   getChain() {
-      this.http.get('/api/blockchain/', this.requestOptions).map((response: Response) => response.json());
+      return this.http.get('/api/blockchain/', this.requestOptions).map((response: Response) => response.json());
   }
 
   newBlock(cart: Cart) {

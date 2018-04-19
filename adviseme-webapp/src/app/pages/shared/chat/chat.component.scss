@@ -1,16 +1,66 @@
+
+/* Chat containers */
+.container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Darker chat container */
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+/* Clear floats */
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style images */
+.container img {
+    float: left;
+    max-width: 60px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    @media screen and (max-width: 500px) {
+      height: 30%;
+    }
+    height: 95%;
+/* Style time text */
+.time-left {
+    float: left;
+    color: #999;
+}
+
 .chat
 {
     list-style: none;
     margin: 0;
     padding: 0;
     margin-right:10px;
-}
-
-.chat li
-{
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #d9d9d9;
 }
 
 .chat li.left .chat-body
@@ -47,25 +97,13 @@
 .panel-body
 {
     overflow-y: scroll;
-    @media screen and (max-width: 500px) {
-      height: 30%;
-    }
     height: 95%;
     width: 100%;
     margin-bottom:4px;
     padding-top: 4px;
-}
-.pull-right
-{
-  margin-right: 4px;
-}
-.primary-font
-{
-  margin-left: 4px;
-}
-.message
-{
-  margin-left: 54px !important;
+    @media screen and (max-width: 500px) {
+      height: 30%;
+    }
 }
 .img-circle
 {

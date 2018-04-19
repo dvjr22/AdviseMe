@@ -10,6 +10,7 @@ exports.createBlock = async function(req, res){
       studentID: req.body.studentID,
       classes: req.body.classes,
       status: req.body.status,
+      advisor: req.body.advisor,
     }
 
   try{
