@@ -6,6 +6,13 @@ interface CacheContent {
   value: any;
 }
 
+export enum CacheKeys {
+  currentUser = 'currentUser',
+  currentClasses = 'currentClasses',
+  gradedClasses = 'gradedClasses',
+  cart = 'cart',
+}
+
 /**
   Cache Service is an observables based in-memory cache implementation
   that keeps track of in-flight observables and sets a default expiry for

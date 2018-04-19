@@ -4,7 +4,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 import { User } from '../../../../_shared/models/user';
 import { ClassService } from '../../../../_shared/services/class.service';
-import { CacheService } from '../../../../_shared/services/cache.service';
+import { CacheService, CacheKeys } from '../../../../_shared/services/cache.service';
 import {CapitalizePipe} from '../../../../@theme/pipes/capitalize.pipe';
 
 /**
@@ -54,7 +54,7 @@ export class PreviousClassesComponent implements OnInit {
   Gets the currents users classes they have took
   */
   ngOnInit() {
-  this.cacheService.get('gradedClasses', this.classService.getGradedClasses()).subscribe((res: User['course']) => {
+  this.cacheService.get(CacheKeys.gradedClasses, this.classService.getGradedClasses()).subscribe((res: User['course']) => {
         if ( res.length === 0) {
           this.noPreviousClasses = true;
         } else {

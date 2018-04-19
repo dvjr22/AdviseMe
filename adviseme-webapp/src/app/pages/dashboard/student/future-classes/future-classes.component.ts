@@ -7,7 +7,7 @@ import { User } from '../../../../_shared/models/user';
 import { UserService } from '../../../../_shared/services/user.service';
 import { Cart } from '../../../../_shared/models/cart';
 import { CartService } from '../../../../_shared/services/cart.service';
-import { CacheService } from '../../../../_shared/services/cache.service';
+import { CacheService, CacheKeys } from '../../../../_shared/services/cache.service';
 import { ClassViewRenderComponent } from '../../../../_shared/services/class-view.render.component';
 import { flattenFiveObjects } from '../../../../_shared/scripts/flattenObject';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -84,7 +84,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
           @returns {none}
       */
       ngOnInit() {
-        this.cacheService.get('user', this.userService.getCurrentUser()).subscribe((res) => {
+        this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser()).subscribe((res) => {
           this.parseTableData(res);
         });
       }
@@ -105,7 +105,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
             this.recomendation ++;
           }
         }
-        this.cacheService.get('cart', this.cartService.getById(data._id)).subscribe((res2: any) => {
+        this.cacheService.get(CacheKeys.cart, this.cartService.getById(data._id)).subscribe((res2: any) => {
           if (res2.data !== null) {
             this.cart = res2.data;
           } else {

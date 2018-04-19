@@ -4,7 +4,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 import { User } from '../../../../_shared/models/user';
 import { ClassService } from '../../../../_shared/services/class.service';
-import { CacheService } from '../../../../_shared/services/cache.service';
+import { CacheService, CacheKeys } from '../../../../_shared/services/cache.service';
 import {CapitalizePipe} from '../../../../@theme/pipes/capitalize.pipe';
 
 /**
@@ -51,7 +51,7 @@ export class CurrentClassesComponent implements OnInit {
   }
   ngOnInit() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.cacheService.get('currentClasses', this.classService.getCurrentClasses()).subscribe((res: User['course']) => {
+    this.cacheService.get(CacheKeys.currentClasses, this.classService.getCurrentClasses()).subscribe((res: User['course']) => {
       if ( res.length === 0) {
         this.noCurrentClasses = true;
       } else {
