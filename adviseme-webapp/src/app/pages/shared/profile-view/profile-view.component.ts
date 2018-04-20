@@ -9,7 +9,6 @@ import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 import { MessageService } from 'primeng/components/common/messageservice';
 
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
-import { Router } from '@angular/router';
 
 const URL = '/upload';
 /**
@@ -64,8 +63,7 @@ export class ProfileViewComponent implements OnInit {
   */
   constructor(private userService: UserService,
     private messageService: MessageService,
-    private cacheService: CacheService,
-    private router: Router) {
+    private cacheService: CacheService) {
   }
   /**
     Gets the currents users id from the local cache then uses the user service
@@ -124,12 +122,6 @@ export class ProfileViewComponent implements OnInit {
   values = '';
   onKey(event: any) { // without type info
     this.values = event.target.value;
-  }
-
-  redoTutorial(event) {
-    this.currentUser.tutorialEnabled = true;
-    this.userService.update(this.currentUser).subscribe(() => {});
-    this.router.navigate(['/']);
   }
 
 }
