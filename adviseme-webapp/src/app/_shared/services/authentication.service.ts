@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 import {Subscription} from 'rxjs/Subscription';
 import { User } from '../models/user';
 import { UserService } from './user.service';
+import { CacheService } from './cache.service';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 @Injectable()
@@ -20,7 +21,7 @@ export class AuthenticationService {
   private _adminSub: Subscription;
 //  currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   // isAdmin: boolean;
-  constructor(private http: Http, private router: Router, private userService: UserService) {}
+  constructor(private http: Http, private router: Router, private userService: UserService, private cacheService: CacheService) {}
 
   // Method for logging in a user by posting the username and password
   // to the rest api
@@ -44,6 +45,7 @@ export class AuthenticationService {
   logout() {
     // Remove user from local storage to log user out
     sessionStorage.removeItem('currentUser');
+    this.cacheService.delete();
   }
 
   /**

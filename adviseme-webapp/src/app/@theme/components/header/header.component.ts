@@ -6,6 +6,7 @@ import { UserService } from '../../../_shared/services/user.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 
 import { AuthenticationService } from '../../../_shared/services/authentication.service';
+import { CacheService, CacheKeys } from '../../../_shared/services/cache.service';
 
 @Component({
   selector: 'ngx-header',
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit {
               private userService: UserService,
               private analyticsService: AnalyticsService,
               private authenticationService: AuthenticationService,
-              private router: Router) {
+              private router: Router,
+              private cacheService: CacheService) {
   }
 
   studentMenu = [
@@ -48,7 +50,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.userService.getCurrentUser()
+    this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser())
         .subscribe(res => {
           this.currentUser = res;
           this.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;

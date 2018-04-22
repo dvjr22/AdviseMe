@@ -3,6 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { flattenObject } from '../../../../_shared/scripts/flattenObject';
 import { User } from '../../../../_shared/models/user';
 import { UserService } from '../../../../_shared/services/user.service';
+import { CacheService, CacheKeys } from '../../../../_shared/services/cache.service';
 
 /**
   List all of the advisors students
@@ -32,14 +33,16 @@ export class StudentlistComponent implements OnInit {
 
 source: LocalDataSource = new LocalDataSource();
 
-constructor(private userService: UserService) { }
+constructor(private userService: UserService, private cacheService: CacheService) { }
 
 ngOnInit() {
-  this.userService.getCurrentUser().subscribe(res => {
+  this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser())
+  .subscribe(res => {
     const students = [];
     if (res['role'] === 'advisor') {
       for (let i = 0; i < res['students'].length; i++) {
-        this.userService.getById(res['students'][i]).subscribe(res2 => {
+        this.cacheService.get(res['students'][i], this.userService.getById(res['students'][i]))
+        .subscribe(res2 => {
           students.push({
             _id: res2['_id'],
             firstName: res2['firstName'],

@@ -1,7 +1,7 @@
 <ng-template [ngIf]="this.currentUser?.role === 'student'">
 <nb-card size="large">
   <nb-card-body>
-    <div *ngIf="this.currentUser?.profilePicture !== undefined " class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
+    <div *ngIf="this.currentUser?.profilePicture !== undefined && this.currentUser?.profilePicture !== null" class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
     <img *ngIf="this.currentUser?.profilePicture === undefined || this.currentUser?.profilePicture === null" src="/assets/images/profile_image.png" class="picture">
     <div class="details">
       <div class="title">
@@ -28,7 +28,7 @@
 <ng-template [ngIf]="this.currentUser?.role !== 'student'">
 <nb-card size="large">
   <nb-card-body>
-    <div *ngIf="this.currentUser?.profilePicture !== undefined" class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
+    <div *ngIf="this.currentUser?.profilePicture !== undefined && this.currentUser?.profilePicture !== null" class="picture" style.background-image="url('{{currentUser?.profilePicture}}')"></div>
     <img *ngIf="this.currentUser?.profilePicture === undefined || this.currentUser?.profilePicture === null" src="/assets/images/profile_image.png" class="picture">
     <div class="details">
       <div class="title">
