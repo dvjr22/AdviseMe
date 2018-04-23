@@ -14,6 +14,8 @@ import { CacheService, CacheKeys } from '../../../_shared/services/cache.service
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
+
+  isLandingPage = true;
   currentUser: User;
   fullName: string;
   @Input() position = 'normal';
@@ -49,15 +51,18 @@ export class HeaderComponent implements OnInit {
       }];
 
   ngOnInit() {
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser())
-        .subscribe(res => {
-          this.currentUser = res;
-          this.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
-          if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
-            this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
-          }
-      });
+    if (this.router.url !== '/landing') {
+      this.isLandingPage = false;
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser())
+          .subscribe(res => {
+            this.currentUser = res;
+            this.fullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
+            if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
+              this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
+            }
+        });
+    }
   }
 
   toggleSidebar(): boolean {

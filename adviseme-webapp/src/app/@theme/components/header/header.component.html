@@ -15,7 +15,7 @@
   class="header-container"
   [class.right]="position === 'normal'"
   [class.left]="position === 'inverse'"
-  *ngIf="currentUser.role === 'student'; else notStudent" >
+  *ngIf="currentUser?.role === 'student'; else notStudent" >
   <nb-action (click)="goToCart()" class="control-item" icon="fa fa-shopping-cart fa-fw" ></nb-action>
   <nb-action>
     <nb-user [menu]="studentMenu" [name]="fullName" [picture]="currentUser?.profilePicture"></nb-user>
