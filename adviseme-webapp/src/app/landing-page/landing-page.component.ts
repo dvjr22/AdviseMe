@@ -33,7 +33,7 @@ export class LandingPageComponent implements OnInit {
     },
     {
       'name': 'Tyler Moon',
-      'linkedin': 'www.linkedin.com/in/tyler-moon-21036393',
+      'linkedin': 'https://www.linkedin.com/in/tyler-moon-21036393',
       'role': 'DevOps Engineer',
     },
   ];
