@@ -1,0 +1,118 @@
+<nb-layout>
+  <nb-layout-header>
+    <ngx-header></ngx-header>
+  </nb-layout-header>
+  <nb-layout-column>
+    <div class="container"  *ngIf="!isAbout; else about">
+      <br><br><br><br><br><br>
+      <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+          <div class="title-content text-center">
+            <h1>Faster. Efficient. Advisement.</h1>
+            <p>A web app that will assist college students through the majority of advising requirements while in pursuit of a degree.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+      </div>
+      <br><br><br>
+      <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6 text-center">
+          <button (click)="login($event)" type="button" name="button" id="login-btn" class="btn btn-success">Login</button>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+      </div>
+      <br><br><br><br><br><br>
+      <div class="row">
+        <iframe id="video-youtube" width="760" height="515" src="https://www.youtube.com/embed/KvtpK-UZhXI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+      <br><br><br><br><br><br><br><br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+          <h3>Secure Login</h3>
+          <img src="/assets/images/advise-me-1.png" alt="" class="screenshot">
+        </div>
+        <div class="col-md-5">
+          <h3>Dashboard</h3>
+          <img src="/assets/images/advise-me-2.png" alt="" class="screenshot">
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <br><br><br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+          <h3>Request Advisor Appointment</h3>
+          <img src="/assets/images/advise-me-3.png" alt="" class="screenshot">
+        </div>
+        <div class="col-md-5">
+          <h3>Class Approval System</h3>
+          <img src="/assets/images/advise-me-4.png" alt="" class="screenshot">
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+    <ng-template #about>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <nb-card>
+              <nb-card-header>
+                <h2>About</h2>
+              </nb-card-header>
+              <nb-card-body>
+                <p>The idea for AdviseMe started during the summer of 2017. A group of rising
+                  seniors at the University of South Carolina were discussing ideas for their
+                  senior <a href="https://cse.sc.edu/capstone/about">Capstone project</a>.
+                  A major problem that everyone had faced during their college careers was
+                  communication issues with their advisors. An idea was then proposed that if
+                  there was a simple web app that could standardize the otherwise haphazard
+                  advisement process then students could feel more confident in their course
+                  choices and avoid a lot of stress. This simple idea was turned into AdviseMe.</p>
+                <p> Starting in the Fall 2017 semester the team, captained by Tyler Hall, hit the ground
+                  running and now near the end of the Spring 2018 semester has a working advisement
+                  communication tool! </p>
+              </nb-card-body>
+            </nb-card>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-2" *ngFor="let p of profiles">
+            <nb-card style="height: 100%;">
+              <nb-card-header>
+                <h5>{{p?.name}}</h5>
+              </nb-card-header>
+              <nb-card-body>
+                <ul>
+                  <li><p>{{p?.role}}</p></li>
+                  <li><a href={{p?.linkedin}}>LinkedIn</a></li>
+                </ul>
+              </nb-card-body>
+              <nb-card-footer>
+
+              </nb-card-footer>
+            </nb-card>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </ng-template>
+  </nb-layout-column>
+  <br><br><br><br>
+  <nb-layout-footer fixed>
+    <ngx-footer></ngx-footer>
+  </nb-layout-footer>
+</nb-layout>
