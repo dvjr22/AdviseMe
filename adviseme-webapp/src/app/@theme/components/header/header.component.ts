@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
       }];
 
   ngOnInit() {
-    if (this.router.url !== '/landing') {
+    if (this.router.url !== '/landing' && this.router.url !== '/about') {
       this.isLandingPage = false;
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser())
@@ -84,6 +84,14 @@ export class HeaderComponent implements OnInit {
   }
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
+  }
+
+  aboutBtn() {
+    this.router.navigate(['/about']);
+  }
+
+  homeBtn() {
+    this.router.navigate(['/landing']);
   }
 
   loginBtn() {

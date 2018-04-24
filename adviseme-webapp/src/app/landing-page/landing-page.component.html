@@ -3,7 +3,7 @@
     <ngx-header></ngx-header>
   </nb-layout-header>
   <nb-layout-column>
-    <div class="container">
+    <div class="container"  *ngIf="!isAbout; else about">
       <br><br><br><br><br><br>
       <div class="row">
         <div class="col-md-3">
@@ -62,7 +62,56 @@
         <div class="col-md-1"></div>
       </div>
     </div>
+    <ng-template #about>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <nb-card>
+              <nb-card-header>
+                <h2>About</h2>
+              </nb-card-header>
+              <nb-card-body>
+                <p>The idea for AdviseMe started during the summer of 2017. A group of rising
+                  seniors at the University of South Carolina were discussing ideas for their
+                  senior <a href="https://cse.sc.edu/capstone/about">Capstone project</a>.
+                  A major problem that everyone had faced during their college careers was
+                  communication issues with their advisors. An idea was then proposed that if
+                  there was a simple web app that could standardize the otherwise haphazard
+                  advisement process then students could feel more confident in their course
+                  choices and avoid a lot of stress. This simple idea was turned into AdviseMe.</p>
+                <p> Starting in the Fall 2017 semester the team, captained by Tyler Hall, hit the ground
+                  running and now near the end of the Spring 2018 semester has a working advisement
+                  communication tool! </p>
+              </nb-card-body>
+            </nb-card>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-2" *ngFor="let p of profiles">
+            <nb-card style="height: 100%;">
+              <nb-card-header>
+                <h5>{{p?.name}}</h5>
+              </nb-card-header>
+              <nb-card-body>
+                <ul>
+                  <li><p>{{p?.role}}</p></li>
+                  <li><a href={{p?.linkedin}}>LinkedIn</a></li>
+                </ul>
+              </nb-card-body>
+              <nb-card-footer>
+
+              </nb-card-footer>
+            </nb-card>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </ng-template>
   </nb-layout-column>
+  <br><br><br><br>
   <nb-layout-footer fixed>
     <ngx-footer></ngx-footer>
   </nb-layout-footer>

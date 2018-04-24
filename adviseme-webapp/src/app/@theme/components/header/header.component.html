@@ -34,5 +34,8 @@
 </ng-template>
 
 <ng-template #loginAlone>
+  <button *ngIf="this.router.url === '/landing'" class="btn btn-success" (click)="aboutBtn()">About</button>
+  <button *ngIf="this.router.url === '/about'" class="btn btn-success" (click)="homeBtn()">Home</button>
+  <span style="width:10px"></span>
   <button class="btn btn-success" (click)="loginBtn()">Login</button>
 </ng-template>
