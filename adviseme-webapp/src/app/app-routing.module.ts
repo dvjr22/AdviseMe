@@ -46,7 +46,7 @@ const routes: Routes = [
     },
   { path: 'landing', loadChildren: 'app/landing-page/landing-page.module#LandingPageModule'},
   { path: 'pages', canActivate: [CanActivateUser], loadChildren: 'app/pages/pages.module#PagesModule'},
-  { path: '', redirectTo: '/pages/dashboard', pathMatch: 'full'},
+  { path: '', redirectTo: '/landing', pathMatch: 'full'},
   { path: '**', redirectTo: '/pages/dashboard' },
 ];
 
