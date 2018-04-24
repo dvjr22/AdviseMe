@@ -7,6 +7,7 @@ import { User } from '../../../../_shared/models/user';
 import { UserService } from '../../../../_shared/services/user.service';
 import { Cart } from '../../../../_shared/models/cart';
 import { CartService } from '../../../../_shared/services/cart.service';
+import { CacheService, CacheKeys } from '../../../../_shared/services/cache.service';
 import { ClassViewRenderComponent } from '../../../../_shared/services/class-view.render.component';
 import { flattenFiveObjects } from '../../../../_shared/scripts/flattenObject';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -72,6 +73,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
       constructor(private classService: ClassService,
         private cartService: CartService,
         private userService: UserService,
+        private cacheService: CacheService,
         private messageService: MessageService,
         private cdr: ChangeDetectorRef,
         private router: Router) {
@@ -82,39 +84,40 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
           @returns {none}
       */
       ngOnInit() {
-        this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-        let user: User;
-        // Get the current user model then get the cart by the associated studentID
-        this.userService.getCurrentUser().subscribe((res: User) => {
-          user = res;
+        this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser()).subscribe((res) => {
+          this.parseTableData(res);
+        });
+      }
 
-          const cir = res.course;
-          this.recomendation = 0;
-          const data = [];
-          for (const c of cir) {
-            if (c.grade === 'tbc' && this.recomendation < 5) {
-              this.classes.push(c);
-              this.classService.getClass(c.classID).subscribe((classRes) => {
-                data.push(classRes);
-                this.source.load(flattenFiveObjects(data));
-              });
-              this.recomendation ++;
-            }
+      parseTableData(data) {
+
+
+        const cir = data.course;
+        this.recomendation = 0;
+        const classData = [];
+        for (const c of cir) {
+          if (c.grade === 'tbc' && this.recomendation < 5) {
+            this.classes.push(c);
+            this.cacheService.get(c.classID, this.classService.getClass(c.classID)).subscribe((classRes) => {
+              classData.push(classRes);
+              this.source.load(flattenFiveObjects(classData));
+            });
+            this.recomendation ++;
           }
-          this.cartService.getById(user._id).subscribe((res2: any) => {
-            if (res2.data !== null) {
-              this.cart = res2.data;
-            } else {
-              // Create the cart
-              const newCart: Cart = new Cart();
-              newCart._id = user._id;
-              newCart.studentID = user.studentID;
-              newCart.status = 'created';
-              this.cartService.create(newCart);
-              this.cart = newCart;
-            }
-          //  this.selectedClasses = this.cart.classes;
-          });
+        }
+        this.cacheService.get(CacheKeys.cart, this.cartService.getById(data._id)).subscribe((res2: any) => {
+          if (res2.data !== null) {
+            this.cart = res2.data;
+          } else {
+            // Create the cart
+            const newCart: Cart = new Cart();
+            newCart._id = data._id;
+            newCart.studentID = data.studentID;
+            newCart.status = 'created';
+            this.cartService.create(newCart);
+            this.cart = newCart;
+          }
+        //  this.selectedClasses = this.cart.classes;
         });
       }
 
@@ -145,7 +148,7 @@ export class FutureClassesComponent implements OnInit, AfterContentChecked {
             for (let i = 0; i < this.classes.length; i++) {
               // For each of the selected classes get the course information and set it to the cart.
               // Then update the cart model. This overwrites insead of updates it currently.
-              this.classService.getClass(this.classes[i].classID).subscribe((res: any) => {
+              this.cacheService.get(this.classes[i].classID, this.classService.getClass(this.classes[i].classID)).subscribe((res: any) => {
                   if (this.cart.classes === undefined) {
                     this.cart.classes = [res];
                   } else {

@@ -71,7 +71,10 @@ export class AdvisorViewRenderComponent extends DefaultEditor implements ViewCel
   }
 
   ngOnInit() {
-    this.renderValue = this.value.toString();
+    if (this.value !== null) {
+      this.renderValue = this.value.toString();
+      console.log(this.renderValue);
+    }
   }
 
   /**

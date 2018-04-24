@@ -8,7 +8,7 @@ import { UserService } from '../../../_shared/services/user.service';
 import { flattenObject } from '../../../_shared/scripts/flattenObject';
 
 import { MessageService } from 'primeng/components/common/messageservice';
-
+import { CacheService } from '../../../_shared/services/cache.service';
 import { AdvisorViewRenderComponent } from '../../../_shared/services/render/advisor-view.render.component';
 
 /**
@@ -66,11 +66,11 @@ export class PermissionComponent implements OnInit {
         major: {
           title: 'Major',
         },
-        advisor: {
-          title: 'Advisor',
-          type: 'custom',
-          renderComponent: AdvisorViewRenderComponent,
-        },
+        // advisor: {
+        //   title: 'Advisor',
+        //   type: 'custom',
+        //   renderComponent: AdvisorViewRenderComponent,
+        // },
         email: {
           title: 'Email',
         },
@@ -82,17 +82,21 @@ export class PermissionComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
   constructor(private userService: UserService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private cacheService: CacheService) { }
 
   ngOnInit() {
     // Get the advisor names for each student
-    this.userService.getAll()
+    this.cacheService.get('allUsers', this.userService.getAll())
       .subscribe((res: User[]) => {
-        for (let i = 0; i < res.length; i++ ) {
-          if (res[i].advisor !== undefined) {
-            this.userService.getById(res[i].advisor).subscribe((advisorRes) => {
-              res[i].advisor = advisorRes.firstName + ' ' + advisorRes.lastName;
-            });
+        if (res !== undefined && res !== null) {
+          for (let i = 0; i < res.length; i++ ) {
+            if (res[i].advisor !== undefined) {
+              this.cacheService.get(res[i].advisor, this.userService.getById(res[i].advisor))
+              .subscribe((advisorRes) => {
+                res[i].advisor = advisorRes.firstName + ' ' + advisorRes.lastName;
+              });
+            }
           }
         }
         this.source.load(flattenObject(res));

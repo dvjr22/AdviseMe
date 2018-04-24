@@ -14,38 +14,29 @@
                   <ul class="chat">
                       <li *ngFor="let c of chats">
                         <div class="left clearfix" *ngIf="c.nickname===msgData.nickname; else rightchat">
-                          <span class="chat-img pull-left" *ngIf="currentUser.profilePicture!==undefined; else defaultProfile">
-                            <img class="img-circle" [src]="'/uploads/' + currentUser?.profilePicture" alt="User Avatar"  />
-                          </span>
-                          <ng-template #defaultProfile>
-                            <span class="chat-img pull-left">
-                              <img class="img-circle" src="http://placehold.it/50/8899FF?text=%20" alt="User Avatar"  />
+                          <div class="container">
+                            <span class="chat-img pull-left" *ngIf="currentUser.profilePicture!==undefined && currentUser.profilePicture !== null; else defaultProfile">
+                              <img class="img-circle" [src]="'/uploads/' + currentUser.profilePicture" alt="User Avatar"  />
                             </span>
-                          </ng-template>
-                          <div class="chat-body clearfix">
-                              <div class="header">
-                                  <strong class="primary-font">{{ c.nickname }}</strong> <small class="pull-right text-muted">
-                                    <span class="glyphicon glyphicon-time"></span>{{ c.updated_at | date: 'medium' }}</small>
-                              </div>
-                              <p class="message">{{ c.message }}</p>
-                          </div>
-                        </div>
-                        <ng-template #rightchat>
-                          <div class="left clearfix">
-                            <span class="chat-img pull-left" *ngIf="otherPicture!==undefined; else otherProfile">
-                              <img class="img-circle" [src]="'/uploads/' + otherPicture" alt="User Avatar"  />
-                            </span>
-                            <ng-template #otherProfile>
+                            <ng-template #defaultProfile>
                               <span class="chat-img pull-left">
-                                <img class="img-circle" src="http://placehold.it/50/CCCCCC?text=%20" alt="User Avatar"  />
+                                <img class="img-circle" src="http://placehold.it/50/8899FF?text=%20" alt="Default Avatar"  />
                               </span>
                             </ng-template>
-                            <div class="chat-body clearfix">
-                              <div class="header">
-                                  <strong class="primary-font">{{ c.nickname }}</strong> <small class="pull-right text-muted">
-                                    <span class="glyphicon glyphicon-time"></span>{{ c.updated_at | date: 'medium' }}</small>
-                              </div>
-                                <p class="message">{{ c.message }}</p>
+                            <p>{{c.message}}</p>
+                            <span class="time-right">{{ c.updated_at | date: 'medium' }}</span>
+                          </div>
+                        </div>
+
+                        <ng-template #rightchat>
+                          <div class="left clearfix">
+                            <div class="container darker">
+                                <img class="right img-circle" [src]="'/uploads/' + otherPicture" alt="User Avatar"  />
+                              <ng-template #otherProfile>
+                                <img class="right img-circle" src="http://placehold.it/50/CCCCCC?text=%20" alt="Default Avatar"  />
+                              </ng-template>
+                              <p>{{c.message}}</p>
+                              <span class="time-left">{{ c.updated_at | date: 'medium' }}</span>
                             </div>
                           </div>
                         </ng-template>

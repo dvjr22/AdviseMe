@@ -121,6 +121,7 @@ exports.updateCart = async function(req, res){
     message: req.body.message,
     approvedDate: req.body.approvedDate,
     pastMessage: req.body.pastMessage,
+    requestDate: req.body.requestDate,
   }
 
   try{

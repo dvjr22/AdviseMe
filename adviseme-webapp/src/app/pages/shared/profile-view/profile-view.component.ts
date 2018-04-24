@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
+import { CacheService, CacheKeys } from '../../../_shared/services/cache.service';
 
 import {CapitalizePipe} from '../../../@theme/pipes/capitalize.pipe';
 
@@ -46,13 +47,23 @@ export class ProfileViewComponent implements OnInit {
   */
   smsChecked = false;
 
+
+  /**
+    Flag for if the screen is a phone
+  */
+  isMobile = false;
+
+  advisorName: string;
+
+
   public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo' });
 
   /**
     Initializes new names for the imports
   */
   constructor(private userService: UserService,
-    private messageService: MessageService) {
+    private messageService: MessageService,
+    private cacheService: CacheService) {
   }
   /**
     Gets the currents users id from the local cache then uses the user service
@@ -60,12 +71,15 @@ export class ProfileViewComponent implements OnInit {
   */
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.userService.getCurrentUser()
+    this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser())
         .subscribe(res => {
           this.currentUser = res;
           this.emailArray = this.currentUser.email.split('@');
           this.emailBegin = this.emailArray[0];
           this.emailEnding = '@' + this.emailArray[1];
+          this.userService.getById(this.currentUser.advisor).subscribe((user) => {
+            this.advisorName = user.firstName + ' ' + user.lastName;
+          });
         });
 
     // File Upload stuff
@@ -79,6 +93,10 @@ export class ProfileViewComponent implements OnInit {
         summary: 'Succesful Upload',
         detail: 'Successfully uploaded a new profile picture'});
     };
+
+    if (window.screen.width <= 360) {
+      this.isMobile = true;
+    }
   }
 
   /**

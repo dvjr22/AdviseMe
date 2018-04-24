@@ -4,6 +4,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 import { User } from '../../../../_shared/models/user';
 import { ClassService } from '../../../../_shared/services/class.service';
+import { CacheService, CacheKeys } from '../../../../_shared/services/cache.service';
 import {CapitalizePipe} from '../../../../@theme/pipes/capitalize.pipe';
 
 /**
@@ -45,26 +46,26 @@ export class PreviousClassesComponent implements OnInit {
   /**
   Initializes new names for the imports
   */
-  constructor(private classService: ClassService) {
+  constructor(private classService: ClassService,
+              private cacheService: CacheService) {
   }
 
   /**
   Gets the currents users classes they have took
   */
   ngOnInit() {
-    this.classService.getGradedClasses()
-    .subscribe((res: User['course']) => {
-      if ( res.length === 0) {
-        this.noPreviousClasses = true;
-      } else {
-        this.noPreviousClasses = false;
-        for(const c of res) {
-          this.classService.getClass(c['classID']).subscribe((classRes) => {
-            c['title'] = classRes['class'].title
-          });
+  this.cacheService.get(CacheKeys.gradedClasses, this.classService.getGradedClasses()).subscribe((res: User['course']) => {
+        if ( res.length === 0) {
+          this.noPreviousClasses = true;
+        } else {
+          this.noPreviousClasses = false;
+          for (const c of res) {
+            this.cacheService.get(c['classID'], this.classService.getClass(c['classID'])).subscribe((classRes) => {
+              c['title'] = classRes['class'].title;
+            });
+          }
+          this.source.load(res);
         }
-        this.source.load(res);
-      }
-    });
+      });
   }
 }

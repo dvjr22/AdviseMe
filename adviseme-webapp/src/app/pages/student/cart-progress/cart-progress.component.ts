@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { CartService } from '../../../_shared/services/cart.service';
+import { UserService } from '../../../_shared/services/user.service';
+import { CacheService, CacheKeys } from '../../../_shared/services/cache.service';
 import { Cart } from '../../../_shared/models/cart';
 import { User } from '../../../_shared/models/user';
 import { Router } from '@angular/router';
@@ -21,6 +23,9 @@ export class CartProgressComponent implements OnInit {
 
   currentUser: User;
   currentCart: Cart;
+
+  advisorName: string;
+  advisorEmail: string;
 
   // configuration for the table
   settings= {
@@ -45,8 +50,10 @@ export class CartProgressComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private cartService: CartService,
+              private userService: UserService,
               private messageService: MessageService,
-              private router: Router) { }
+              private router: Router,
+              private cacheService: CacheService) { }
 
   ngOnInit() {
     this.loadData();
@@ -61,7 +68,7 @@ export class CartProgressComponent implements OnInit {
   **/
   loadData() {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.cartService.getById(this.currentUser._id)
+    this.cacheService.get(CacheKeys.cart, this.cartService.getById(this.currentUser._id))
     .subscribe((res: any) => {
       this.currentCart = res.data;
 
@@ -70,6 +77,13 @@ export class CartProgressComponent implements OnInit {
       } else {
         this.source.load([]);
       }
+    });
+    this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser())
+    .subscribe((res) => {
+      this.userService.getById(res.advisor).subscribe((response) => {
+        this.advisorName = response.firstName + ' ' + response.lastName;
+        this.advisorEmail = response.email;
+      });
     });
   }
   /**

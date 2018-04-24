@@ -164,6 +164,10 @@ export const ADMIN_ITEMS: NbMenuItem[] = [
         title: 'Cart Reset',
         link: '/pages/administrator/cartreset',
       },
+      {
+        title: 'Cart Verification',
+        link: '/pages/administrator/approved-carts',
+      },
     ],
   },
   {

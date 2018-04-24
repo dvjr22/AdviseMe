@@ -4,6 +4,7 @@ import { CapitalizePipe } from '../../../@theme/pipes/capitalize.pipe';
 
 import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
+import { CacheService } from '../../../_shared/services/cache.service';
 
 import { Router } from '@angular/router';
 
@@ -28,7 +29,8 @@ export class ClassViewComponent implements OnInit {
   Class;
   prerequisites;
 
-  constructor(protected route: ActivatedRoute, private classService: ClassService, protected router: Router, private _location: Location) {
+  constructor(protected route: ActivatedRoute, private classService: ClassService,
+    protected router: Router, private _location: Location, private cacheService: CacheService) {
   }
 
   /**
@@ -38,7 +40,7 @@ export class ClassViewComponent implements OnInit {
   ngOnInit() {
     this._id = this.route.snapshot.params['id'];
 
-    this.classService.getClass(this._id)
+    this.cacheService.get(this._id, this.classService.getClass(this._id))
       .subscribe((res: Class) => {
         this.Class = res;
         this.prerequisites = res.prerequisites;

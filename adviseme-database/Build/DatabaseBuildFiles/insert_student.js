@@ -13,12 +13,12 @@ var advisedStudents = []; // array to hold student id to place in advisor doc
 
 // push sample data: Tyler, student
 var tyler = makeTyler();
-insertMany.push(tyler); 
+insertMany.push(tyler);
 var student = makeStudent();
-insertMany.push(student); 
+insertMany.push(student);
 
 // push Tyler and student id to array
-advisedStudents.push(tyler.studentID); 
+advisedStudents.push(tyler.studentID);
 advisedStudents.push(student.studentID);
 
 // Create students
@@ -35,7 +35,7 @@ for (let i = 0; i < noOfStudents; i++) {
 	obj.lastName = last;
 	obj.role = "student"
 	obj.studentID = id;
-	obj.university = "Univeristy of South Carolina";
+	obj.university = "University of South Carolina";
 	obj.major = major(); // get major
 	obj.advisor = "advisor01"; // student advisor
 	obj.advisorRoom = "331A"; // advisor room
@@ -57,7 +57,7 @@ var advisor = makeAdvisor(); // create advisor
 advisor.students = advisedStudents; // add array of student id
 
 // push advisor and admin
-insertMany.push(advisor); 
+insertMany.push(advisor);
 insertMany.push(makeAdmin());
 
 // get connection
@@ -87,7 +87,7 @@ function makeTyler() {
 	obj.lastName = "Hall"; // get random last name
 	obj.role = "student";
 	obj.studentID = "tHall01";
-	obj.university = "Univeristy of South Carolina";
+	obj.university = "University of South Carolina";
 	obj.major = major(); // get major
 	obj.advisor = "advisor01"; // student advisor
 	obj.advisorRoom = "331A"; // advisor room
@@ -115,7 +115,7 @@ function makeStudent() {
 	obj.lastName = "Student"; // get random last name
 	obj.role = "student"
 	obj.studentID = "student01";
-	obj.university = "Univeristy of South Carolina";
+	obj.university = "University of South Carolina";
 	obj.major = major(); // get major
 	obj.advisor = "advisor01"; // student advisor
 	obj.advisorRoom = "331A"; // advisor room
@@ -252,7 +252,7 @@ function course() {
 		["SCIE001", "B"],
 		["CORE002", "B"],
 		["CORE003", "B"],
-		
+
 		// junior 1 (28)
 		["CSCE311", "A"],
 		["CSCE330", "A"],

@@ -23,4 +23,5 @@ export class Cart {
   message: string;
   approvedDate: { semester: string, year: string };
   pastMessage: string;
+  requestDate: string;
 }

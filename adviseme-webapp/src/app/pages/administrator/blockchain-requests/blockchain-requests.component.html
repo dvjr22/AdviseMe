@@ -1,0 +1,45 @@
+<div *ngFor="let block of blockchain">
+  <nb-card >
+    <nb-card-header>
+      <div *ngIf="block._id === 0;else notGenesis">
+        <h4>Genesis Block</h4>
+      </div>
+
+      <ng-template #notGenesis>
+        <h4>Block #{{block._id}}</h4>
+      </ng-template>
+    </nb-card-header>
+    <nb-card-body>
+      <div>
+        <b>Previous Hash: </b>{{block.previousHash}}
+      </div>
+      <div>
+        <b>Timestamp: </b>{{block.timestamp}}
+      </div>
+      <div>
+        <b>Request Data: </b>
+        <br>
+        <span style="margin-left: 40px"><b>Student ID: </b>{{block.data.studentID}}</span>
+        <br>
+        <span style="margin-left: 40px"><b>Advisor ID: </b>{{block.data.advisor}}</span>
+        <br>
+        <ul *ngFor="let class of block.data.classes" style="margin-left: 40px">
+          <li>{{class._id}}</li>
+        </ul>
+      </div>
+      <div>
+        <b>Hash: </b>{{block.hash}}
+        <div>
+          <b>Nonce: </b>{{block.nonce}}
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <ng-template [ngIf]="(blockchain.length - 1) > block._id">
+  <div style="text-align: center;">
+    <i class="ion ion-chevron-down large"></i>
+    <br>
+    <br>
+  </div>
+</ng-template>
+</div>

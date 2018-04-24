@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { ChatService } from '../../../_shared/services/chat.service';
 import { UserService } from '../../../_shared/services/user.service';
+import { CacheService, CacheKeys } from '../../../_shared/services/cache.service';
 import { User } from '../../../_shared/models/user';
 import * as io from 'socket.io-client';
 import { Role } from '../../../_shared/models/constants';
@@ -42,7 +43,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   index;
 
   constructor(protected route: ActivatedRoute, private chatService: ChatService,
-    private userService: UserService) {}
+    private userService: UserService, private cacheService: CacheService) {}
 
   ngOnInit() {
 
@@ -53,7 +54,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       this.index = this.route.snapshot.params['index'];
     } catch (e) {}
     // Get the current user information
-    this.userService.getCurrentUser().subscribe((res) => {
+    this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser()).subscribe((res) => {
       // Set the currentUser variable and format the profile picture url
       this.formatCurrentUser(res);
       // Set the room id to a combination of the two user ids
@@ -75,9 +76,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   **/
   formatCurrentUser(data: any) {
     this.currentUser = data;
-    if (this.currentUser.profilePicture !== null && this.currentUser.profilePicture !== undefined) {
-      this.currentUser.profilePicture = '/uploads/' + this.currentUser.profilePicture;
-    }
   }
 
   /**
@@ -111,7 +109,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         searchId = user.students[this.index];
       break;
     }
-    this.userService.getById(searchId).subscribe((res) => {
+    this.cacheService.get(searchId, this.userService.getById(searchId)).subscribe((res) => {
       this.roomName = res.firstName + ' ' + res.lastName;
       this.otherPicture = res.profilePicture;
       this.description = 'Send a message to ' + this.roomName + ' and AdviseMe will notify you when they respond';
@@ -179,7 +177,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   **/
   joinRoom() {
     const date = new Date();
-    this.userService.getCurrentUser().subscribe((res) => {
+    this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser()).subscribe((res) => {
       this.currentUser = res;
       this.getChatByRoom(this.room);
       this.msgData = { room: this.room, nickname: this.currentUser.firstName + ' ' + this.currentUser.lastName, message: '' };

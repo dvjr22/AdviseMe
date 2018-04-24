@@ -6,6 +6,7 @@ import { Class } from '../../../_shared/models/class';
 import { ClassService } from '../../../_shared/services/class.service';
 import { ClassViewRenderComponent } from '../../../_shared/services/class-view.render.component';
 import { flattenObject } from '../../../_shared/scripts/flattenObject';
+import { CacheService, CacheKeys } from '../../../_shared/services/cache.service';
 
 /**
   Complete course catalog
@@ -54,7 +55,7 @@ export class CoursesComponent implements OnInit {
     /**
       Initializes new names for the imports
     */
-    constructor(private classService: ClassService) {
+    constructor(private classService: ClassService, private cacheService: CacheService) {
     }
 
     /**
@@ -63,7 +64,7 @@ export class CoursesComponent implements OnInit {
     */
     ngOnInit() {
 
-      this.classService.getClasses()
+      this.cacheService.get(CacheKeys.allClasses, this.classService.getClasses())
         .subscribe((res: Class[]) => {
           this.source.load(flattenObject(res));
         });

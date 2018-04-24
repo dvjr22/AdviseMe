@@ -4,6 +4,7 @@ import { Cart } from '../../../_shared/models/cart';
 import { User } from '../../../_shared/models/user';
 import { UserService } from '../../../_shared/services/user.service';
 import { CartService } from '../../../_shared/services/cart.service';
+import { CacheService, CacheKeys } from '../../../_shared/services/cache.service';
 import { flattenObject } from '../../../_shared/scripts/flattenObject';
 import { Router, NavigationEnd } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -58,7 +59,8 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService,
     private userService: UserService,
     private router: Router,
-    private messageService: MessageService) {
+    private messageService: MessageService,
+    private cacheService: CacheService) {
   }
 
   ngOnInit() {
@@ -71,10 +73,11 @@ export class CartComponent implements OnInit {
     @return {none}
   */
   submitToAdvisor() {
-    this.userService.getCurrentUser().subscribe( res => {
+    this.cacheService.get(CacheKeys.currentUser, this.userService.getCurrentUser()).subscribe( res => {
       this.advisorID = res['advisor'];
       this.currentCart.advisor = this.advisorID;
       this.currentCart.status = 'pending';
+      this.currentCart.requestDate = new Date().toString();
       this.currentCart.message = undefined;
       try {
         // Reload the data in the table, should be blank if the cart is sent
@@ -95,9 +98,9 @@ export class CartComponent implements OnInit {
     @return {none}
   */
   loadData() {
-     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       // Get the current user to get the cart by the studentID
-      this.cartService.getById(this.currentUser._id)
+      this.cacheService.get(CacheKeys.cart, this.cartService.getById(this.currentUser._id))
       .subscribe((res: any) => {
         this.currentCart = res.data;
         // If the advisor field is blank then show the cart.
@@ -151,7 +154,8 @@ export class CartComponent implements OnInit {
     if (window.confirm('Are you sure you want to delete?')) {
       const deletedItem = this.currentCart.classes.find(x => x._id === event.data.class__prefix + event.data.class__courseNo);
       const index = this.currentCart.classes.findIndex(d => d._id === event.data.class__prefix + event.data.class__courseNo);
-      if (index <= 0) {
+      if (index >= 0) {
+
         this.currentCart.classes.splice(0, 1); // remove element from array
         this.cartService.update(this.currentCart).subscribe(() => {});
         event.confirm.resolve();
